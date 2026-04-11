@@ -1,4 +1,4 @@
-package com.example.chermn;
+package com.example.chermn.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
