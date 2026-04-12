@@ -40,12 +40,12 @@ public class Student extends Users {
 
     @Override
     public String toString() {
-        return "Users{" +
-                "id=" + getid() +
-                ", username='" + getUserName() + '\'' +
-                ", firstName='" + getFirstName() + '\'' +
-                ", lastName='" + getLastName() + '\'' +
-                '}';
+        return super.toString() +
+                ", vechile category level: " + vechileLevel +
+                ", animal categpry level: " + animalLevel +
+                ", nature category level: " + natureLevel +
+                "}";
+
     }
 
 }
