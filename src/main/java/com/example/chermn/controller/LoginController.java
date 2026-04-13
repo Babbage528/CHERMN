@@ -1,6 +1,7 @@
 package com.example.chermn.controller;
 
 import com.example.chermn.OnBoarding;
+import com.example.chermn.SceneLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,5 +20,14 @@ public class LoginController {
 
         stage.setScene(scene);
         stage.show();
+    }
+
+
+    // make login button load homepage
+    @FXML
+    private void handleSignInClick(ActionEvent event) throws IOException {
+        // TO DO: validation
+        // for now im just going straight to homepage
+        SceneLoader.swapScene(event, "homepage.fxml", "Homepage");
     }
 }

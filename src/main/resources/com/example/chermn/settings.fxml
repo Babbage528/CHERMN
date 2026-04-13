@@ -4,11 +4,34 @@
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
+            fx:controller="com.example.chermn.controller.SettingsController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <Button text="X" onAction="#goBack"/> //exit button
+
+    <!-- Settings Content -->
+    <VBox spacing="20"
+          alignment="TOP_LEFT"
+          AnchorPane.topAnchor="80.0"
+          AnchorPane.leftAnchor="50.0">
+
+        <Label text="Settings"
+               style="-fx-font-size: 32px; -fx-font-weight: bold;" />
+
+        <CheckBox text="Enable Notifications" />
+        <CheckBox text="Dark Mode" />
+        <CheckBox text="Auto‑Save Progress" />
+
+        <Button text="Change Password"
+                style="-fx-background-color: #8cc63f; -fx-text-fill: white; -fx-background-radius: 10; -fx-padding: 10 20;" />
+
+    </VBox>
 
 </AnchorPane>
