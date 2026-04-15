@@ -41,7 +41,8 @@ public class StudentRegisterController {
         Student s = new Student(0, username, firstName, lastName, password, school, 0, 0, 0);
         userDAO.addUser(s);
 
-        System.out.println("Registration succesfull for username: " + username);
+        System.out.println("Role: STUDENT");
+        System.out.println("Registration succesfull for username: " + username + "FirstName: " + firstName + "LastName: " + lastName + "school: " + school);
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("homepage.fxml"));
