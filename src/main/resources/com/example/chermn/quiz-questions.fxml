@@ -21,6 +21,9 @@
             <padding>
                 <Insets bottom="50.0" top="50.0" />
             </padding>
+            <VBox fx:id="container">
+                <Label fx:id="explanation" text=" " style="-fx-text-fill: #3E7C2B" alignment="CENTER"  prefWidth="2000" prefHeight="100.0"/>
+            </VBox>
             <VBox alignment="CENTER">
                 <children>
                 <VBox alignment="CENTER" maxHeight="400.0" maxWidth="1000" spacing="25.0">
@@ -31,9 +34,9 @@
                         <children>
                             <HBox spacing="10.0">
                                 <Button fx:id="option1" HBox.hgrow="ALWAYS" maxWidth="Infinity" prefHeight="100.0"
-                                        style="-fx-background-color: #E7FF76; -fx-text-fill: #3E7C2B; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand; -fx-font-size: 20px;" text="a) Summer" />
+                                        style="-fx-background-color: #E7FF76; -fx-text-fill: #3E7C2B; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand; -fx-font-size: 20px;" onAction="#AnswerSubmitted" text="a) Summer" />
                                 <Button fx:id="option2" HBox.hgrow="ALWAYS" maxWidth="Infinity" prefHeight="100.0"
-                                        style="-fx-background-color: #6DBE45; -fx-text-fill: #3E7C2B; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand; -fx-font-size: 20px;" text="b) Winter"/>
+                                        style="-fx-background-color: #6DBE45; -fx-text-fill: #3E7C2B; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand; -fx-font-size: 20px;" onAction="#AnswerSubmitted"  text="b) Winter"/>
                             </HBox>
                         </children>
                     </VBox>
@@ -41,9 +44,9 @@
                             <children>
                                 <HBox spacing="10.0">
                                     <Button fx:id="option3" HBox.hgrow="ALWAYS" maxWidth="Infinity" prefHeight="100.0"
-                                            style="-fx-background-color: #6DBE45; -fx-text-fill: #3E7C2B; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand; -fx-font-size: 20px;" text="c) Autumn" />
+                                            style="-fx-background-color: #6DBE45; -fx-text-fill: #3E7C2B; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand; -fx-font-size: 20px;" onAction="#AnswerSubmitted" text="c) Autumn" />
                                     <Button fx:id="option4" HBox.hgrow="ALWAYS" maxWidth="Infinity" prefHeight="100.0"
-                                            style="-fx-background-color: #E7FF76; -fx-text-fill: #3E7C2B; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand; -fx-font-size: 20px;" text="d) Spring"/>
+                                            style="-fx-background-color: #E7FF76; -fx-text-fill: #3E7C2B; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand; -fx-font-size: 20px;" onAction="#AnswerSubmitted" text="d) Spring"/>
                                 </HBox>
                             </children>
                         </VBox>
