@@ -50,6 +50,9 @@ public class Users {
     public String getPassword() {
         return password;
     }
+    public String getSchoolName() {
+        return schoolName;
+    }
 
     public void setFirstName(String firstName)
     {
@@ -64,6 +67,10 @@ public class Users {
     public void setPassword(String password)
     {
         this.password = password;
+    }
+    public void setSchoolName(String schoolName)
+    {
+        this.schoolName = schoolName;
     }
 
     @Override

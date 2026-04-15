@@ -23,12 +23,17 @@ public class MockUserDAO implements IUserDAO {
 
     @Override
     public void updateUser(Users user) {
-
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getid() == user.getid()) {
+                users.set(i, user);
+                break;
+            }
+        }
     }
 
     @Override
     public void deleteUser(Users user) {
-
+        users.remove(user);
     }
 
     @Override
