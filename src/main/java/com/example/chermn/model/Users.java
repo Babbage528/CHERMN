@@ -77,4 +77,7 @@ public class Users {
     }
 
 
+    public void setId(int autoIncrementedId) {
+        this.id = id;
+    }
 }
