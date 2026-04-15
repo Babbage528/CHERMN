@@ -1,9 +1,9 @@
 package com.example.chermn.controller;
 
 import com.example.chermn.OnBoarding;
-import com.example.chermn.model.Student;
 import com.example.chermn.model.MockUserDAO;
 import com.example.chermn.model.IUserDAO;
+import com.example.chermn.model.Teacher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,8 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
 
-public class StudentRegisterController {
-
+public class TeacherRegisterController {
     @FXML private TextField firstNameField;
     @FXML private TextField lastNameField;
     @FXML private TextField schoolNameField;
@@ -38,8 +37,8 @@ public class StudentRegisterController {
             return;
         }
 
-        Student s = new Student(0, username, firstName, lastName, password, school, 0, 0, 0);
-        userDAO.addUser(s);
+        Teacher t = new Teacher(0, username, firstName, lastName, password, school);
+        userDAO.addUser(t);
 
         System.out.println("Registration succesfull for username: " + username);
 
