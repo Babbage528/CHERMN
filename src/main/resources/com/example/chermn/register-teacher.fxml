@@ -8,13 +8,10 @@
 <?import javafx.scene.layout.*?>
 
 <StackPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #E8F5E9;" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.chermn.controller.TeacherRegisterController">
+    <ImageView fitHeight="720.0" fitWidth="1280.0" preserveRatio="false">
+        <Image url="@assets/images/bg_general.png"/>
+    </ImageView>
     <children>
-        <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true">
-            <image>
-                <Image url="@assets.images/bg-1.png" />
-            </image>
-        </ImageView>
-
         <AnchorPane>
             <children>
                 <Label layoutX="100.0" layoutY="90.0" text="Step 2 of 2" style="-fx-font-size: 18px; -fx-text-fill: #666666; -fx-font-weight: bold;" />
