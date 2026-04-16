@@ -1,9 +1,11 @@
 package com.example.chermn.controller;
 
+import java.io.IOException;
+
 import com.example.chermn.OnBoarding;
-import com.example.chermn.model.MockUserDAO;
-import com.example.chermn.model.IUserDAO;
+import com.example.chermn.dao.UserDAO;
 import com.example.chermn.model.Teacher;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +15,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import java.io.IOException;
 
 public class TeacherRegisterController {
     @FXML private TextField firstNameField;
@@ -22,7 +23,7 @@ public class TeacherRegisterController {
     @FXML private TextField unameField;
     @FXML private PasswordField passwordField;
 
-    private MockUserDAO userDAO = new MockUserDAO();
+    private UserDAO userDAO = new UserDAO();
 
     @FXML
     private void handleRegisterSubmit(ActionEvent event) throws IOException {
@@ -38,7 +39,7 @@ public class TeacherRegisterController {
         }
 
         Teacher t = new Teacher(0, username, firstName, lastName, password, school);
-        userDAO.addUser(t);
+        userDAO.createUser(t);
         System.out.println("Role: TEACHER");
         System.out.println("Registration succesfull for username: " + username + "FirstName: " + firstName + "LastName: " + lastName + "school: " + school);
 

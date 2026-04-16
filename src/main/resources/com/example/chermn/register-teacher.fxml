@@ -41,7 +41,7 @@
                                        style="-fx-background-color: #F0F7EE; -fx-background-radius: 10;" />
                         </VBox>
                         <VBox spacing="5.0">
-                            <Label text="Username" style="-fx-text-fill: #999999; -fx-font-size: 14px;" />
+                            <Label text="email" style="-fx-text-fill: #999999; -fx-font-size: 14px;" />
                             <TextField fx:id="unameField" prefHeight="45.0" promptText="Email"
                                        style="-fx-background-color: #F0F7EE; -fx-background-radius: 10;" />
                         </VBox>
