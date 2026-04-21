@@ -1,24 +1,25 @@
 package com.example.chermn.controller;
 
+import java.io.IOException;
+
 import com.example.chermn.OnBoarding;
-import com.example.chermn.model.MockUserDAO;
+import com.example.chermn.dao.UserDAO;
 import com.example.chermn.model.Users;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import java.io.IOException;
 
 public class LoginController {
 
     @FXML private TextField usernameField;
     @FXML private PasswordField passwordField;
-    private MockUserDAO userDAO = new MockUserDAO();
+    private UserDAO userDAO = new UserDAO();
 
     @FXML
     private void handleSignUpClick(ActionEvent event) throws IOException {

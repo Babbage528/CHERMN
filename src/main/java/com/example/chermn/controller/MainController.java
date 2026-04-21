@@ -1,17 +1,23 @@
 package com.example.chermn.controller;
 
+import java.io.IOException;
+
 import com.example.chermn.OnBoarding;
-import com.example.chermn.model.*;
+import com.example.chermn.dao.UserDAO;
+import com.example.chermn.model.Student;
+import com.example.chermn.model.Users;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import java.io.IOException;
 
 public class MainController {
 
@@ -19,7 +25,7 @@ public class MainController {
     @FXML private TextField firstNameField, lastNameField, usernameField, schoolField;
     @FXML private PasswordField passwordField;
 
-    private MockUserDAO userDAO = new MockUserDAO();
+    private UserDAO userDAO = new UserDAO();
 
     private void selectUser(Users user) {
         userListView.getSelectionModel().select(user);
@@ -68,7 +74,7 @@ public class MainController {
     @FXML
     private void onAdd() {
         Users newUser = new Student(0, "newuser", "New", "User", "123", "QUT", 0, 0, 0);
-        userDAO.addUser(newUser);
+        userDAO.createUser(newUser);
         syncUsers();
         selectUser(newUser);
         firstNameField.requestFocus();
