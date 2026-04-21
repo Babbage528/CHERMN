@@ -17,6 +17,7 @@ public class QuizQuestions extends Application{
         Scene scene = new Scene(fxmlLoader.load(), WIDTH, HEIGHT);
         stage.setTitle(TITLE);
         stage.setScene(scene);
+        /// stage.setFullScreen(true);
         stage.show();
     }
     public static void main(String[] args) {
