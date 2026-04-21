@@ -11,7 +11,7 @@ public class QuizBegin extends Application{
     public static final int HEIGHT = 720;
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(QuizBegin.class.getResource("quiz-begin.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(QuizBegin.class.getResource("quiz-results.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), WIDTH, HEIGHT);
         stage.setTitle(TITLE);
         stage.setScene(scene);
