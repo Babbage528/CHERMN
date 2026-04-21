@@ -32,5 +32,10 @@ public class QuizBeginController {
         Scene scene = new Scene(fxmlLoader.load(), QuizBegin.WIDTH, QuizBegin.HEIGHT);
         stage.setScene(scene);
     }
+
+
+
+
+
 }
 
