@@ -2,6 +2,7 @@
 package com.example.chermn.controller;
 
 
+import com.example.chermn.OnBoarding;
 import com.example.chermn.QuizQuestions;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,10 +17,15 @@ import org.json.JSONObject;
 import org.json.JSONArray;
 
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.util.Collections;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 
 import java.sql.Array;
@@ -43,6 +49,10 @@ public class QuizQuestionsController {
 
     int currentQuestion = 0;
     int score = 0;
+
+    public static final String TITLE = "Farmer Fred's Trivia";
+    public static final int WIDTH = 1280;
+    public static final int HEIGHT = 720;
 
     @FXML
     private void getQuestions() {
@@ -107,7 +117,7 @@ public class QuizQuestionsController {
     }
 
     @FXML
-    public void nextQuestion(){
+    public void nextQuestion() throws IOException {
         currentQuestion += 1;
         option1.setDisable(false);
         option2.setDisable(false);
@@ -123,8 +133,11 @@ public class QuizQuestionsController {
             getQuestions();
         }
         else{
-            explanation.setText("score: " + score);
-
+            /// explanation.setText("score: " + score);
+            Stage stage = (Stage) Next.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("quiz-results.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
+            stage.setScene(scene);
         }
 
         }
