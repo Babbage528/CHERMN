@@ -44,7 +44,7 @@ public class LoginController {
             FXMLLoader loader = new FXMLLoader(OnBoarding.class.getResource("homepage.fxml"));
             Scene scene = new Scene(loader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
 
-            MainController controller = loader.getController();
+            HomepageController controller = loader.getController();
             controller.setUser(user);
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
