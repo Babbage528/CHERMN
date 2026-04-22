@@ -26,6 +26,7 @@ public class MainController {
     @FXML private PasswordField passwordField;
 
     private UserDAO userDAO = new UserDAO();
+    private Users currentUser;
 
     private void selectUser(Users user) {
         userListView.getSelectionModel().select(user);
@@ -111,5 +112,15 @@ public class MainController {
         FXMLLoader loader = new FXMLLoader(OnBoarding.class.getResource("login-screen.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(loader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT));
+    }
+
+    public void setUser(Users user) {
+        this.currentUser = user;
+
+        //shows the data in the UI
+        firstNameField.setText(user.getFirstName());
+        lastNameField.setText(user.getLastName());
+        usernameField.setText(user.getUserName());
+        schoolField.setText(user.getSchoolName());
     }
 }

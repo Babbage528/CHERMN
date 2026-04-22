@@ -41,9 +41,14 @@ public class LoginController {
         if (user != null) {
             System.out.println("Login Success! Welcome, " + user.getUserName());
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(OnBoarding.class.getResource("homepage.fxml"));
-            stage.setScene(new Scene(loader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT));
+            Scene scene = new Scene(loader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
+
+            MainController controller = loader.getController();
+            controller.setUser(user);
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
         } else {
             System.out.println("Username or Password is incorrect!");
         }
