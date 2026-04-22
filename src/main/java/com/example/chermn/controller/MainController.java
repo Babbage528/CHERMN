@@ -81,7 +81,7 @@ public class MainController {
     }
 
     @FXML
-    private void onEditConfirm() {
+    private void onEditConfirm() throws Exception {
         Users selected = userListView.getSelectionModel().getSelectedItem();
         if (selected != null) {
             selected.setFirstName(firstNameField.getText());

@@ -64,10 +64,19 @@ public class Users {
         this.lastName = lastName;
     }
 
-    public void setPassword(String password)
+    public void setPassword(String password) throws Exception
     {
+        if (password == null)
+        {
+            throw new IllegalArgumentException("Password must not be null");
+        }
+        else if (password.length() < 5)
+        {
+            throw new IllegalArgumentException("Password must be at least 5 characters");
+        }
         this.password = password;
     }
+
     public void setSchoolName(String schoolName)
     {
         this.schoolName = schoolName;

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chermn.controller.SettingsController">
+    <children>
+        <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@assets/images/farm_background-NEED%20TO%20UPGRADE.png" />
+            </image>
+        </ImageView>
+      <TitledPane animated="false" prefHeight="600.0" prefWidth="520.0" text="Settings">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #6DBE45;">
+               <children>
+                  <Button fx:id="closeButton" onAction="#closeButtonClick" layoutX="767.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="X">
+                     <font>
+                        <Font name="System Bold" size="56.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="signOutButton" onAction="#signOutButtonClick" layoutX="522.0" layoutY="338.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="228.0" style="-fx-background-color: #F7FAE9;" text="Sign Out" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="40.0">
+                     <font>
+                        <Font name="System Bold Italic" size="28.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="157.0" layoutY="59.0" text="Music">
+                     <font>
+                        <Font name="System Bold" size="26.0" />
+                     </font>
+                  </Label>
+                  <Slider layoutX="336.0" layoutY="66.0" />
+                  <Slider layoutX="336.0" layoutY="154.0" />
+                  <Button fx:id="getHelpButton" onAction="#getHelpButtonClick" layoutX="81.0" layoutY="338.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="224.0" style="-fx-background-color: #F7FAE9;" text="Get Help" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0">
+                     <font>
+                        <Font name="System Bold Italic" size="28.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="111.0" layoutY="147.0" text="Sound FX">
+                     <font>
+                        <Font name="System Bold" size="26.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+        </content>
+         <StackPane.margin>
+            <Insets bottom="100.0" left="200.0" right="200.0" top="100.0" />
+         </StackPane.margin>
+         <font>
+            <Font name="System Bold Italic" size="21.0" />
+         </font>
+      </TitledPane>
+    </children>
+</StackPane>
