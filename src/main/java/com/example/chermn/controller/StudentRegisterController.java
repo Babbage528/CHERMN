@@ -35,7 +35,7 @@ public class StudentRegisterController {
         String password = passwordField.getText();
 
         if (firstName.isEmpty() || lastName.isEmpty() || username.isEmpty() || password.isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, "Form Error!", "Tolong isi semua kolom yang tersedia.");
+            showAlert(Alert.AlertType.ERROR, "Form Error!", "Please fill in all the field");
             return;
         }
 
