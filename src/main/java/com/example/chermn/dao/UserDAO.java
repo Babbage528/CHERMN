@@ -3,10 +3,12 @@ package com.example.chermn.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.example.chermn.DatabaseConnection;
+import com.example.chermn.model.Student;
 import com.example.chermn.model.Users;
 
 public class UserDAO implements IUserDAO {
@@ -25,6 +27,35 @@ public class UserDAO implements IUserDAO {
 
             stmt.executeUpdate();
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void createStudent(Student s) {
+        String sqlUser = "INSERT INTO USER (username, password_hash, email, first_name, last_name, school_name) VALUES (?, ?, ?, ?, ?, ?)";
+
+        try (Connection conn = DatabaseConnection.connect()) {
+            PreparedStatement stmtUser = conn.prepareStatement(sqlUser, Statement.RETURN_GENERATED_KEYS);
+            stmtUser.setString(1, s.getUserName());
+            stmtUser.setString(2, s.getPassword());
+            stmtUser.setString(3, s.getUserName());
+            stmtUser.setString(4, s.getFirstName());
+            stmtUser.setString(5, s.getLastName());
+            stmtUser.setString(6, s.getSchoolName());
+            stmtUser.executeUpdate();
+            ResultSet rs = stmtUser.getGeneratedKeys();
+            if (rs.next()) {
+                int newId = rs.getInt(1);
+                String sqlProgress = "INSERT INTO USER_PROGRESS (user_id, category_id, level_id, current_growth_stage) VALUES (?, ?, 1, 0)";
+                PreparedStatement stmtProg = conn.prepareStatement(sqlProgress);
+
+                for (int catId = 1; catId <= 3; catId++) {
+                    stmtProg.setInt(1, newId);
+                    stmtProg.setInt(2, catId);
+                    stmtProg.executeUpdate();
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

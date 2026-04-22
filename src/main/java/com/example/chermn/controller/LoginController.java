@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -36,16 +37,34 @@ public class LoginController {
         String inputUser = usernameField.getText();
         String inputPass = passwordField.getText();
 
-        Users user = userDAO.login(inputUser, inputPass);
+        if (inputUser.isEmpty() || inputPass.isEmpty()) {
+            showAlert(Alert.AlertType.WARNING, "Error", "Username and password cannot be empty!");
+            return;
+        }
 
-        if (user != null) {
-            System.out.println("Login Success! Welcome, " + user.getUserName());
+        try {
+            Users user = userDAO.login(inputUser, inputPass);
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(OnBoarding.class.getResource("homepage.fxml"));
-            stage.setScene(new Scene(loader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT));
-        } else {
-            System.out.println("Username or Password is incorrect!");
+            if (user != null) {
+                System.out.println("Login Success! Welcome, " + user.getUserName());
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                FXMLLoader loader = new FXMLLoader(OnBoarding.class.getResource("homepage.fxml"));
+                stage.setScene(new Scene(loader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT));
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Login Failed", "Username or Password is incorrect!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Database Error", "Problem with DB connection");
         }
     }
+    //For the pop-up alert message
+    private void showAlert(Alert.AlertType type, String title, String content) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
 }
