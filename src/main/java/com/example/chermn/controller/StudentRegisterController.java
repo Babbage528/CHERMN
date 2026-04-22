@@ -40,7 +40,7 @@ public class StudentRegisterController {
         }
 
         if (password.length() < 5) {
-            showAlert(Alert.AlertType.WARNING, "Password Lemah", "Password harus minimal 5 karakter!");
+            showAlert(Alert.AlertType.WARNING, "Password is weak", "Password has to be 5 character min!");
             return;
         }
 
@@ -49,7 +49,7 @@ public class StudentRegisterController {
             Student s = new Student(0, username, firstName, lastName, password, school, 1, 1, 1);
             userDAO.createStudent(s);
 
-            showAlert(Alert.AlertType.INFORMATION, "Registrasi Berhasil", "Akun " + username + " telah berhasil dibuat!");
+            showAlert(Alert.AlertType.INFORMATION, "Registration success", "Account " + username + "successfully registered!");
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("homepage.fxml"));
@@ -61,7 +61,7 @@ public class StudentRegisterController {
 
         } catch (Exception e) {
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Database Error", "Terjadi kesalahan saat menyimpan data ke database.");
+            showAlert(Alert.AlertType.ERROR, "Database Error", "There is problem when saving to the DB.");
         }
     }
 
