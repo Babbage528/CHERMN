@@ -6,6 +6,8 @@ module com.example.chermn {
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
 
+    requires java.sql;
+    
     opens com.example.chermn to javafx.fxml;
     exports com.example.chermn;
     exports com.example.chermn.controller;

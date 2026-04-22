@@ -24,12 +24,16 @@
                     </columnConstraints>
 
                     <children>
+<!--                        <VBox spacing="5.0" GridPane.rowIndex="0">-->
+<!--                            <Label text="Email" style="-fx-text-fill: #666666;" />-->
+<!--                            <TextField fx:id="emailField" prefHeight="40.0" promptText="jennifer@gmail.com"-->
+<!--                                       style="-fx-background-color: #f0f4f0; -fx-background-radius: 10;" />-->
+<!--                        </VBox>-->
                         <VBox spacing="5.0" GridPane.rowIndex="0">
                             <Label text="Email" style="-fx-text-fill: #666666;" />
-                            <TextField fx:id="emailField" prefHeight="40.0" promptText="jennifer@gmail.com"
+                            <TextField fx:id="usernameField" prefHeight="40.0" promptText="Your Email"
                                        style="-fx-background-color: #f0f4f0; -fx-background-radius: 10;" />
                         </VBox>
-
                         <VBox spacing="5.0" GridPane.rowIndex="1">
                             <Label text="Password" style="-fx-text-fill: #666666;" />
                             <PasswordField fx:id="passwordField" prefHeight="40.0" promptText="••••••••"
@@ -41,7 +45,7 @@
                 </GridPane>
 
                 <VBox spacing="10.0" alignment="CENTER">
-                    <Button fx:id="signInButton" text="Sign In" prefHeight="45.0" maxWidth="Infinity"
+                    <Button fx:id="signInButton" text="Sign In" prefHeight="45.0" maxWidth="Infinity" onAction="#handleSignIn"
                             style="-fx-background-color: #8cc63f; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-cursor: hand;" />
 
                     <HBox spacing="5.0" alignment="CENTER">

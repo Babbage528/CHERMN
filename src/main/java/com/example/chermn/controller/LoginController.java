@@ -1,15 +1,25 @@
 package com.example.chermn.controller;
 
+import java.io.IOException;
+
 import com.example.chermn.OnBoarding;
+import com.example.chermn.dao.UserDAO;
+import com.example.chermn.model.Users;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import java.io.IOException;
 
 public class LoginController {
+
+    @FXML private TextField usernameField;
+    @FXML private PasswordField passwordField;
+    private UserDAO userDAO = new UserDAO();
 
     @FXML
     private void handleSignUpClick(ActionEvent event) throws IOException {
@@ -19,5 +29,23 @@ public class LoginController {
 
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    private void handleSignIn(ActionEvent event) throws IOException {
+        String inputUser = usernameField.getText();
+        String inputPass = passwordField.getText();
+
+        Users user = userDAO.login(inputUser, inputPass);
+
+        if (user != null) {
+            System.out.println("Login Success! Welcome, " + user.getUserName());
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(OnBoarding.class.getResource("homepage.fxml"));
+            stage.setScene(new Scene(loader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT));
+        } else {
+            System.out.println("Username or Password is incorrect!");
+        }
     }
 }
