@@ -1,6 +1,6 @@
 package com.example.chermn.controller;
 
-
+import com.example.chermn.model.Users;
 import com.example.chermn.OnBoarding;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,6 +28,7 @@ public class HomepageController {
     @FXML
     private Button settingsButton;
 
+    private Users currentUser;
 
     // defining the associated actions associated with the above button variables
 
@@ -68,5 +69,11 @@ public class HomepageController {
         FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("settings-selection.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
         stage.setScene(scene);
+    }
+
+    public void setUser(Users user) {
+        this.currentUser = user;
+        System.out.println("Logged in as: " + user.getUserName());
+        System.out.println(currentUser.getUserName());
     }
 }
