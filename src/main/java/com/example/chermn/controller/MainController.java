@@ -122,6 +122,5 @@ public class MainController {
         lastNameField.setText(user.getLastName());
         usernameField.setText(user.getUserName());
         schoolField.setText(user.getSchoolName());
-        System.out.println(currentUser.getUserName());
     }
 }

@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -42,13 +43,13 @@ public class LoginController {
             System.out.println("Login Success! Welcome, " + user.getUserName());
 
             FXMLLoader loader = new FXMLLoader(OnBoarding.class.getResource("homepage.fxml"));
-            Scene scene = new Scene(loader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
+            Parent root = loader.load();
 
             HomepageController controller = loader.getController();
             controller.setUser(user);
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
+            stage.setScene(new Scene(root, OnBoarding.WIDTH, OnBoarding.HEIGHT));
         } else {
             System.out.println("Username or Password is incorrect!");
         }

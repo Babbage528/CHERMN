@@ -74,6 +74,5 @@ public class HomepageController {
     public void setUser(Users user) {
         this.currentUser = user;
         System.out.println("Logged in as: " + user.getUserName());
-        System.out.println(currentUser.getUserName());
     }
 }
