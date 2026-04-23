@@ -4,7 +4,9 @@ module com.example.chermn {
 
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
+    requires java.desktop;
     requires org.json;
+    requires java.sql;
     requires java.net.http;
 
     opens com.example.chermn to javafx.fxml;
