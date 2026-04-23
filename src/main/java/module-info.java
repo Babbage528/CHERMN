@@ -7,6 +7,7 @@ module com.example.chermn {
     requires java.desktop;
     requires org.json;
     requires java.sql;
+    requires java.net.http;
 
     opens com.example.chermn to javafx.fxml;
     exports com.example.chermn;
