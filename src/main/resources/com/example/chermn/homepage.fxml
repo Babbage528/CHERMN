@@ -6,14 +6,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chermn.controller.HomepageController" >
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chermn.controller.HomepageController">
    <children>
-      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true">
          <image>
-            <Image url="@assets/images/farm_background-NEED%20TO%20UPGRADE.png" />
+            <Image url="@assets/images/Background.png" />
          </image>
       </ImageView>
-      <GridPane prefHeight="723.0" prefWidth="1280.0">
+
+
+      <GridPane prefHeight="720.0" prefWidth="1280.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="600.0" />
@@ -21,36 +23,97 @@
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="250.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="220.0" />
         </columnConstraints>
+
         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="350.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="150.0" vgrow="SOMETIMES" />
         </rowConstraints>
+
          <children>
-            <Button fx:id="animalButton" onAction="#animalButtonClick" alignment="CENTER" blendMode="HARD_LIGHT" contentDisplay="CENTER" ellipsisString="" mnemonicParsing="false" prefHeight="107.0" prefWidth="231.0" style="-fx-background-color: transparent;" text="CHICKEN" GridPane.columnIndex="1" GridPane.rowIndex="3">
-               <font>
-                  <Font size="32.0" />
-               </font>
+
+             <!-- Uploads the image of the chicken (level 3) to the grid at column 1 row 3 -->
+             <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                 <image>
+                     <Image url="@assets/images/chickenLevel3.png" />
+                 </image>
                <GridPane.margin>
-                  <Insets left="170.0" />
+                  <Insets bottom="35.0" left="250.0" />
+               </GridPane.margin>
+             </ImageView>
+
+             <!-- Creates a button that will appear on top of the animal within the grid at column 1 and row 3 -->
+            <Button fx:id="animalButton" onAction="#animalButtonClick" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets bottom="35.0" left="250.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="plantButton" onAction="#plantButtonClick" mnemonicParsing="false" prefHeight="345.0" prefWidth="576.0" style="-fx-background-color: transparent;" text="TREES/PLANTS" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <font>
-                  <Font size="53.0" />
-               </font>
-            </Button>
-            <Button fx:id="vehicleButton" onAction="#vehicleButtonClick" mnemonicParsing="false" prefHeight="149.0" prefWidth="228.0" style="-fx-background-color: transparent;" text="TRACTOR" GridPane.columnIndex="3" GridPane.rowIndex="2">
-               <font>
-                  <Font size="31.0" />
-               </font>
+
+
+
+             <!-- Uploads the image of the tractor (level 3) to the grid at column 2 row 2 -->
+             <ImageView fitHeight="275.0" fitWidth="275.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                 <image>
+                     <Image url="@assets/images/tractorLevel3.png" />
+                 </image>
+                 <GridPane.margin>
+                     <Insets bottom="200.0" />
+                 </GridPane.margin>
+             </ImageView>
+
+             <!-- Creates a button that will appear on top of the vechile within the grid at column 3 and row 3 -->
+            <Button fx:id="vehicleButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#vehicleButtonClick" prefHeight="210.0" prefWidth="270.0" style="-fx-background-color: transparent;" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <GridPane.margin>
-                  <Insets top="150.0" />
+                  <Insets bottom="200.0" />
                </GridPane.margin>
             </Button>
-            <Button  fx:id="settingsButton" onAction="#settingsButtonClick" mnemonicParsing="false" prefHeight="117.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="SETTINGS" />
-            <Button  fx:id="farmHouseButton" onAction="#farmHouseButtonClick" mnemonicParsing="false" prefHeight="151.0" prefWidth="228.0" style="-fx-background-color: transparent;" text="FARM HOUSE" GridPane.columnIndex="2" GridPane.rowIndex="2">
+
+
+
+
+
+             <!-- Uploads the image of the settings icon to the grid at column 0 row 0 -->
+             <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                 <image>
+                     <Image url="@assets/images/Settings.png" />
+                 </image>
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+             </ImageView>
+
+             <!-- Creates a button that will appear on top of the settings icon within the grid at column 0 and row 0 -->
+            <Button fx:id="settingsButton" mnemonicParsing="false" onAction="#settingsButtonClick" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: transparent;" GridPane.columnIndex="0" GridPane.rowIndex="0">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></Button>
+
+
+
+
+             <!-- Uploads the image of the farm house to the grid at column 2 row 2 -->
+             <ImageView
+                     fitHeight="220.0" fitWidth="220.0"
+                     pickOnBounds="true"
+                     preserveRatio="true"
+                     GridPane.columnIndex="2" GridPane.rowIndex="2">
+                 <image>
+                     <Image url="@assets/images/farmHouse.png" />
+                 </image>
+                 <GridPane.margin>
+                     <Insets bottom="200.0" />
+                 </GridPane.margin>
+             </ImageView>
+
+             <!-- Creates a button that will appear on top of the farm house icon within the grid at column 2 and row 2 -->
+             <Button fx:id="farmHouseButton"
+                     minHeight="-Infinity" minWidth="-Infinity"
+                     mnemonicParsing="false"
+                     onAction="#farmHouseButtonClick"
+                     prefHeight="200.0" prefWidth="222.0"
+                     style="-fx-background-color: transparent;"
+                     GridPane.columnIndex="2" GridPane.rowIndex="2">
                <font>
                   <Font size="21.0" />
                </font>
