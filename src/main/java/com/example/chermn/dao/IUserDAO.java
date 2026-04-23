@@ -9,4 +9,5 @@ public interface IUserDAO {
     public void deleteUser(Users user);
     Users getUserByUsername(String username);
     List<Users> getAllUsers();
+    Users login(String username, String password);
 }
