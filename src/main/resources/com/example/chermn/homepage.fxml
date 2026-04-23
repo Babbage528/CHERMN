@@ -4,7 +4,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chermn.controller.HomepageController">
    <children>
@@ -93,11 +92,7 @@
 
 
              <!-- Uploads the image of the farm house to the grid at column 2 row 2 -->
-             <ImageView
-                     fitHeight="220.0" fitWidth="220.0"
-                     pickOnBounds="true"
-                     preserveRatio="true"
-                     GridPane.columnIndex="2" GridPane.rowIndex="2">
+             <ImageView fitHeight="220.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
                  <image>
                      <Image url="@assets/images/farmHouse.png" />
                  </image>
@@ -107,20 +102,68 @@
              </ImageView>
 
              <!-- Creates a button that will appear on top of the farm house icon within the grid at column 2 and row 2 -->
-             <Button fx:id="farmHouseButton"
-                     minHeight="-Infinity" minWidth="-Infinity"
-                     mnemonicParsing="false"
-                     onAction="#farmHouseButtonClick"
-                     prefHeight="200.0" prefWidth="222.0"
-                     style="-fx-background-color: transparent;"
-                     GridPane.columnIndex="2" GridPane.rowIndex="2">
-               <font>
-                  <Font size="21.0" />
-               </font>
+             <Button fx:id="farmHouseButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#farmHouseButtonClick" prefHeight="200.0" prefWidth="222.0" style="-fx-background-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets bottom="200.0" />
                </GridPane.margin>
             </Button>
+
+
+             <!-- Uploads the image of one corn to the grid at column 4 row 2 -->
+             <ImageView fitHeight="100" fitWidth="100" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                 <image>
+                     <Image url="@assets/images/corn.png" />
+                 </image>
+                 <GridPane.margin>
+                     <Insets bottom="200.0" />
+                 </GridPane.margin>
+             </ImageView>
+
+
+             <!-- Uploads the image of another corn to the grid at column 4 row 2 -->
+             <ImageView fitHeight="100" fitWidth="100" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                 <image>
+                     <Image url="@assets/images/corn.png" />
+                 </image>
+                 <GridPane.margin>
+                     <Insets bottom="150.0" left="25" />
+                 </GridPane.margin>
+             </ImageView>
+
+             <!-- Creates a button that will appear on top of the corn icon within the grid at column 4 and row 2 -->
+             <Button fx:id="cornButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cornButtonClick" prefHeight="131.0" prefWidth="106.0" style="-fx-background-color: transparent;" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                 <GridPane.margin>
+                     <Insets bottom="175.0" />
+                 </GridPane.margin>
+             </Button>
+
+
+             <!-- Uploads the image of a profile picture to the grid at column 4 row 0 -->
+             <ImageView
+                     fitHeight="60" fitWidth="60"
+                     pickOnBounds="true"
+                     preserveRatio="true"
+                     GridPane.columnIndex="4" GridPane.rowIndex="0">
+                 <image>
+                     <Image url="@assets/images/account_circle.png" />
+                 </image>
+               <GridPane.margin>
+                  <Insets left="100.0" />
+               </GridPane.margin>
+             </ImageView>
+
+             <!-- Creates a button that will appear on top of the profile icon within the grid at column 4 and row 2 -->
+             <Button fx:id="profileButton"
+                     minHeight="-Infinity" minWidth="-Infinity"
+                     mnemonicParsing="false"
+                     onAction="#cornButtonClick"
+                     prefHeight="60" prefWidth="60"
+                     style="-fx-background-color: transparent;"
+                     GridPane.columnIndex="4" GridPane.rowIndex="0">
+               <GridPane.margin>
+                  <Insets left="100.0" />
+               </GridPane.margin></Button>
+
          </children>
       </GridPane>
    </children>

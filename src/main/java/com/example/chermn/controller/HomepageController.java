@@ -69,4 +69,9 @@ public class HomepageController {
         Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
         stage.setScene(scene);
     }
+
+    @FXML
+    protected void cornButtonClick() throws IOException {
+
+    }
 }
