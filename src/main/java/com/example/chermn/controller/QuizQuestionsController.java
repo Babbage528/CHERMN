@@ -59,7 +59,7 @@ public class QuizQuestionsController {
     }
 
     @FXML
-    private void getQuestions() throws JSONException {
+    public void getQuestions() throws JSONException {
         List<String> answers = new ArrayList<>();
 
             JSONObject jsonQuestion = resultsArray.getJSONObject(currentQuestion);

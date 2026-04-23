@@ -1,5 +1,6 @@
 package com.example.chermn;
 
+import com.example.chermn.controller.QuizQuestionsController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,7 +12,7 @@ public class QuizBegin extends Application{
     public static final int HEIGHT = 720;
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(QuizBegin.class.getResource("quiz-results.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(QuizBegin.class.getResource("quiz-begin.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), WIDTH, HEIGHT);
         stage.setTitle(TITLE);
         stage.setScene(scene);
