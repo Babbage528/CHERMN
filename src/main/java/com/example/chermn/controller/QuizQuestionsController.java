@@ -13,6 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.control.Label;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONArray;
 
@@ -54,8 +55,11 @@ public class QuizQuestionsController {
     public static final int WIDTH = 1280;
     public static final int HEIGHT = 720;
 
+    public QuizQuestionsController() throws JSONException {
+    }
+
     @FXML
-    private void getQuestions() {
+    private void getQuestions() throws JSONException {
         List<String> answers = new ArrayList<>();
 
             JSONObject jsonQuestion = resultsArray.getJSONObject(currentQuestion);
@@ -117,7 +121,7 @@ public class QuizQuestionsController {
     }
 
     @FXML
-    public void nextQuestion() throws IOException {
+    public void nextQuestion() throws IOException, JSONException {
         currentQuestion += 1;
         option1.setDisable(false);
         option2.setDisable(false);
