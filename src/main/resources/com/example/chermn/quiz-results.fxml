@@ -28,7 +28,7 @@
             <VBox alignment="TOP_CENTER">
                 <children>
                     <Label style="-fx-font-size: 56px; -fx-font-weight: bold; -fx-text-fill: #3E7C2B;" text="Congratulations!" />
-                    <Label style="-fx-font-size: 28px; -fx-font-fill: #666666; -fx-text-fill: #3E7C2B;" text="You passed with ${quizResultsController.percentageScore}" />
+                    <Label fx:id="resultsLabel" style="-fx-font-size: 28px; -fx-font-fill: #666666; -fx-text-fill: #3E7C2B;" />
                 </children>
             </VBox>
 

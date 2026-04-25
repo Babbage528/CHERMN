@@ -49,7 +49,7 @@ public class QuizQuestionsController {
     String correctAnswer = null;
 
     int currentQuestion = 0;
-    int score = 0;
+    public static int score = 0;
 
     public static final String TITLE = "Farmer Fred's Trivia";
     public static final int WIDTH = 1280;
