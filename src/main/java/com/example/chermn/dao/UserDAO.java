@@ -32,9 +32,8 @@ public class UserDAO implements IUserDAO {
         }
     }
 
-
     public void createStudent(Student s) {
-        String sqlUser = "INSERT INTO USER (username, password_hash, email, first_name, last_name, school_name) VALUES (?, ?, ?, ?, ?, ?)";
+        String sqlUser = "INSERT INTO USER (username, password_hash, email, first_name, last_name, school_name, role) VALUES (?, ?, ?, ?, ?, ?, 'student')";
 
         try (Connection conn = DatabaseConnection.connect()) {
             PreparedStatement stmtUser = conn.prepareStatement(sqlUser, Statement.RETURN_GENERATED_KEYS);
@@ -62,7 +61,6 @@ public class UserDAO implements IUserDAO {
         }
     }
 
-
     //finds user in db, based on username
     public Users getUserByUsername(String username) {
         String sql = "SELECT * FROM USER WHERE username = ?";
@@ -87,7 +85,7 @@ public class UserDAO implements IUserDAO {
                     int vehicle = 1;
                     int nature = 1;
 
-                    // SECOND QUERY: fetch progress
+                    // second SQL query to fetch the students progress
                     String progressSql = "SELECT category_id, level_id FROM USER_PROGRESS WHERE user_id = ?";
 
                     try (PreparedStatement ps = conn.prepareStatement(progressSql)) {
@@ -103,16 +101,20 @@ public class UserDAO implements IUserDAO {
                                 case 1:
                                     // assigning the level that the user is currently on in animal section
                                     animal = level;
+                                    break;
                                 case 2:
                                     // assigning the level that the user is currently on in vehicle section
                                     vehicle = level;
+                                    break;
                                 case 3:
-                                    // asssinging the level that the user is currently on in nature level
+                                    // assigning the level that the user is currently on in nature level
                                     nature = level;
+                                    break;
                             }
                         }
                     }
 
+                    // returns the current user as a student with all information
                     return new Student(
                             rs.getInt("user_id"),
                             rs.getString("username"),
@@ -126,7 +128,7 @@ public class UserDAO implements IUserDAO {
                     );
                 }
 
-                // else if parent or teacher
+                // else if parent or teacher - might need to edit later particularly if have different roles
                 else {
                     return new Users(
                             rs.getInt("user_id"),
@@ -146,26 +148,11 @@ public class UserDAO implements IUserDAO {
         return null;
     }
 
-
     //returns user if login input is correct otherwise returns null
     public Users login(String username, String password) {
         Users user = getUserByUsername(username);
 
         if (user != null && user.getPassword().equals(password)) {
-
-            // checks to see whether the user is a student
-            if (user instanceof Student) {
-                return new Student(
-                        user.getId(),
-                        user.getUserName(),
-                        user.getPassword(),
-                        user.getAnimalLevel(),
-                        user.getVehicleLevel(),
-                        user.getNatureLevel()
-                );
-            }
-
-            // else if teacher or parent - might have to change when creating homepage for parent/teacher view
             return user;
         }
 

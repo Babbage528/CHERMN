@@ -30,12 +30,8 @@ public class HomepageController {
     @FXML
     private ImageView animalImageView;
 
-
-    // Just for the testing part, want to create an example student with different levels to showcase different images
-    // Student exampleStudent = new Student(123, "rmull", "Rebecca", "Mullock", "12345", "QUT", 1, 2, 2);
-    // the logged-in user
+    // defining variable for current logged-in user
     private Student currentUser;
-
 
     // assign the user passed through the controller to assignedUser
     public void setCurrentUser(Users user) {
@@ -49,7 +45,6 @@ public class HomepageController {
         // pulls the current user's stats/levels for the images
         displayLevelImages();
     }
-
 
     // defining the different strings required for each image level
     // Vehicle Icon Url
