@@ -32,6 +32,7 @@ public class UserDAO implements IUserDAO {
         }
     }
 
+
     public void createStudent(Student s) {
         String sqlUser = "INSERT INTO USER (username, password_hash, email, first_name, last_name, school_name) VALUES (?, ?, ?, ?, ?, ?)";
 
@@ -61,6 +62,7 @@ public class UserDAO implements IUserDAO {
         }
     }
 
+
     //finds user in db, based on username
     public Users getUserByUsername(String username) {
         String sql = "SELECT * FROM USER WHERE username = ?";
@@ -72,14 +74,69 @@ public class UserDAO implements IUserDAO {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                return new Users(
-                        rs.getInt("user_id"),
-                        rs.getString("username"),
-                        "", //only storing username and password for now
-                        "", //same as above
-                        rs.getString("password_hash"),
-                        "" //same as above
-                );
+
+                int userId = rs.getInt("user_id");
+
+                String role = rs.getString("role");
+
+                // checking to see whether user is student
+                if ("student".equals(role))
+                {
+                    // default values
+                    int animal = 1;
+                    int vehicle = 1;
+                    int nature = 1;
+
+                    // SECOND QUERY: fetch progress
+                    String progressSql = "SELECT category_id, level_id FROM USER_PROGRESS WHERE user_id = ?";
+
+                    try (PreparedStatement ps = conn.prepareStatement(progressSql)) {
+                        ps.setInt(1, userId);
+                        ResultSet pr = ps.executeQuery();
+
+                        while (pr.next()) {
+                            int category = pr.getInt("category_id");
+                            int level = pr.getInt("level_id");
+
+                            // switching based off the category stored in the database
+                            switch (category) {
+                                case 1:
+                                    // assigning the level that the user is currently on in animal section
+                                    animal = level;
+                                case 2:
+                                    // assigning the level that the user is currently on in vehicle section
+                                    vehicle = level;
+                                case 3:
+                                    // asssinging the level that the user is currently on in nature level
+                                    nature = level;
+                            }
+                        }
+                    }
+
+                    return new Student(
+                            rs.getInt("user_id"),
+                            rs.getString("username"),
+                            "", //only storing username and password for now
+                            "", //same as above
+                            rs.getString("password_hash"),
+                            "", //same as above
+                            vehicle,
+                            animal,
+                            nature
+                    );
+                }
+
+                // else if parent or teacher
+                else {
+                    return new Users(
+                            rs.getInt("user_id"),
+                            rs.getString("username"),
+                            "", //only storing username and password for now
+                            "", //same as above
+                            rs.getString("password_hash"),
+                            "" //same as above
+                    );
+                }
             }
 
         } catch (Exception e) {
@@ -89,11 +146,26 @@ public class UserDAO implements IUserDAO {
         return null;
     }
 
+
     //returns user if login input is correct otherwise returns null
     public Users login(String username, String password) {
         Users user = getUserByUsername(username);
 
         if (user != null && user.getPassword().equals(password)) {
+
+            // checks to see whether the user is a student
+            if (user instanceof Student) {
+                return new Student(
+                        user.getId(),
+                        user.getUserName(),
+                        user.getPassword(),
+                        user.getAnimalLevel(),
+                        user.getVehicleLevel(),
+                        user.getNatureLevel()
+                );
+            }
+
+            // else if teacher or parent - might have to change when creating homepage for parent/teacher view
             return user;
         }
 
