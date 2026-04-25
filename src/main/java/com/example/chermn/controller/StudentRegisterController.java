@@ -46,14 +46,20 @@ public class StudentRegisterController {
 
         try {
 
-            Student s = new Student(0, username, firstName, lastName, password, school, 1, 1, 1);
-            userDAO.createStudent(s);
+            Student student = new Student(0, username, firstName, lastName, password, school, 1, 1, 1);
+            userDAO.createStudent(student);
 
-            showAlert(Alert.AlertType.INFORMATION, "Registration success", "Account " + username + "successfully registered!");
+            showAlert(Alert.AlertType.INFORMATION, "Registration success", "Account " + username + " successfully registered!");
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("homepage.fxml"));
             Parent root = fxmlLoader.load();
+
+            // Get the controller for the homepage
+            HomepageController controller = fxmlLoader.getController();
+
+            // Pass the logged-in user to the homepage controller
+            controller.setCurrentUser(student);
 
             Scene scene = new Scene(root, OnBoarding.WIDTH, OnBoarding.HEIGHT);
             stage.setScene(scene);

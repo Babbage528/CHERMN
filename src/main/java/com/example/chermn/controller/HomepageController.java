@@ -2,6 +2,7 @@ package com.example.chermn.controller;
 
 import com.example.chermn.OnBoarding;
 import com.example.chermn.model.Student;
+import com.example.chermn.model.Users;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,17 +32,31 @@ public class HomepageController {
 
 
     // Just for the testing part, want to create an example student with different levels to showcase different images
-    Student exampleStudent = new Student(123, "rmull", "Rebecca", "Mullock", "12345", "QUT", 1, 2, 2);
+    // Student exampleStudent = new Student(123, "rmull", "Rebecca", "Mullock", "12345", "QUT", 1, 2, 2);
+    // the logged-in user
+    private Student currentUser;
+
+
+    // assign the user passed through the controller to assignedUser
+    public void setCurrentUser(Users user) {
+        // check whether the user is a student
+        if (user instanceof Student student) {
+            this.currentUser = student;
+        }
+        else {
+            throw new IllegalArgumentException("Homepage requires a Student user");
+        }
+        // pulls the current user's stats/levels for the images
+        displayLevelImages();
+    }
 
 
     // defining the different strings required for each image level
     // Vehicle Icon Url
     // level 1 - hoe
     String vehicle_level1 = "/com/example/chermn/assets/images/hoe_Level1.png";
-
     // level 2 - plow
     String vehicle_Level2 = "/com/example/chermn/assets/images/plow_Level2.png";
-
     // level 3 - tractor
     String vehicle_Level3 = "/com/example/chermn/assets/images/tractor_Level3.png";
 
@@ -74,14 +89,6 @@ public class HomepageController {
     @FXML
     private Button settingsButton;
 
-    // runs automatically after the linked FXML is loaded
-    @FXML
-    public void initialize() {
-        if (animalImageView != null) {
-            displayLevelImages();
-        }
-
-    }
 
     // defining the associated actions associated with the above button variables
 
@@ -132,7 +139,7 @@ public class HomepageController {
     }
 
     private String getVehicleURL() {
-        switch(exampleStudent.getVehicleLevel()) {
+        switch(currentUser.getVehicleLevel()) {
             case 1:
                 return vehicle_level1;
             case 2:
@@ -145,7 +152,7 @@ public class HomepageController {
     }
 
     private String getAnimalURL() {
-        switch(exampleStudent.getAnimalLevel()) {
+        switch(currentUser.getAnimalLevel()) {
             case 1:
                 return animal_level1;
             case 2:
@@ -158,7 +165,7 @@ public class HomepageController {
     }
 
     private String getNatureURL() {
-        switch(exampleStudent.getNatureLevel()) {
+        switch(currentUser.getNatureLevel()) {
             case 1:
                 return nature_Level1;
             case 2:
@@ -180,17 +187,17 @@ public class HomepageController {
         Image cornImage = new Image(getClass().getResource(nature_url).toExternalForm());
 
         // sets the size of the vehicle depending on the image
-        int level = exampleStudent.getVehicleLevel();
+        int level = currentUser.getVehicleLevel();
         if (level == 3) {
             vehicleImageView.setFitWidth(275); // big one (tractor)
             vehicleImageView.setFitHeight(275);
         }
         else if (level == 2){
             vehicleImageView.setFitWidth(220); // smaller one (plow)
-            vehicleImageView.setFitWidth(220);
+            vehicleImageView.setFitHeight(220);
         }
         else {
-            vehicleImageView.setFitWidth(180);
+            vehicleImageView.setFitWidth(180); // smaller one (hoe)
             vehicleImageView.setFitHeight(180);
         }
 
@@ -203,7 +210,6 @@ public class HomepageController {
         natureImageView2.setImage(cornImage);
         natureImageView3.setImage(cornImage);
         natureImageView4.setImage(cornImage);
-
     }
 
 
