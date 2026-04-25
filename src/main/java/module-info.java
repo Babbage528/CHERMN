@@ -9,5 +9,6 @@ module com.example.chermn {
     opens com.example.chermn to javafx.fxml;
     exports com.example.chermn;
     exports com.example.chermn.controller;
+    exports com.example.chermn.model;
     opens com.example.chermn.controller to javafx.fxml;
 }

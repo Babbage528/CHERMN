@@ -21,7 +21,8 @@ public class Users {
     }
 
     // Public constructor without id since it is auto-incremented
-    public Users(String userName, String firstName, String lastName, String password, String schoolName) {
+    public Users(String userName, String firstName, String lastName, String password, String schoolName)
+    {
         this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -49,17 +50,36 @@ public class Users {
     public String getPassword() {
         return password;
     }
+    public String getSchoolName() {
+        return schoolName;
+    }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName(String firstName)
+    {
         this.firstName = firstName;
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName(String lastName)
+    {
         this.lastName = lastName;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(String password) throws Exception
+    {
+        if (password == null)
+        {
+            throw new IllegalArgumentException("Password must not be null");
+        }
+        else if (password.length() < 5)
+        {
+            throw new IllegalArgumentException("Password must be at least 5 characters");
+        }
         this.password = password;
+    }
+
+    public void setSchoolName(String schoolName)
+    {
+        this.schoolName = schoolName;
     }
 
     @Override
@@ -73,4 +93,7 @@ public class Users {
     }
 
 
+    public void setId(int autoIncrementedId) {
+        this.id = autoIncrementedId;
+    }
 }
