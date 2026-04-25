@@ -32,11 +32,9 @@
 
          <children>
 
-             <!-- Uploads the image of the chicken (level 3) to the grid at column 1 row 3 -->
-             <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                 <image>
-                     <Image url="@assets/images/chickenLevel3.png" />
-                 </image>
+             <!-- Uploads the image of the chicken corresponding to the current user level to the grid at column 1 row 3 -->
+             <ImageView fx:id="animalImageView" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+
                <GridPane.margin>
                   <Insets bottom="35.0" left="250.0" />
                </GridPane.margin>
@@ -52,10 +50,7 @@
 
 
              <!-- Uploads the image of the tractor (level 3) to the grid at column 2 row 2 -->
-             <ImageView fitHeight="275.0" fitWidth="275.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                 <image>
-                     <Image url="@assets/images/tractorLevel3.png" />
-                 </image>
+             <ImageView fx:id="vehicleImageView" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
                  <GridPane.margin>
                      <Insets bottom="200.0" />
                  </GridPane.margin>
@@ -74,9 +69,7 @@
 
              <!-- Uploads the image of the settings icon to the grid at column 0 row 0 -->
              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                 <image>
-                     <Image url="@assets/images/Settings.png" />
-                 </image>
+                 <Image url="@assets/images/Settings.png" />
                <GridPane.margin>
                   <Insets left="5.0" />
                </GridPane.margin>
@@ -87,8 +80,6 @@
                <GridPane.margin>
                   <Insets left="5.0" />
                </GridPane.margin></Button>
-
-
 
 
              <!-- Uploads the image of the farm house to the grid at column 2 row 2 -->
@@ -110,40 +101,44 @@
 
 
              <!-- Uploads the image of one corn to the grid at column 4 row 2 -->
-             <ImageView fitHeight="100" fitWidth="100" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="2">
-                 <image>
-                     <Image url="@assets/images/corn.png" />
-                 </image>
+             <ImageView fx:id="natureImageView1" fitHeight="100" fitWidth="100" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="2">
                  <GridPane.margin>
-                     <Insets bottom="200.0" />
+                     <Insets bottom="120.0" left="-35.0" />
                  </GridPane.margin>
              </ImageView>
 
 
-             <!-- Uploads the image of another corn to the grid at column 4 row 2 -->
-             <ImageView fitHeight="100" fitWidth="100" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="2">
-                 <image>
-                     <Image url="@assets/images/corn.png" />
-                 </image>
+             <!-- Uploads the image of a second corn to the grid at column 4 row 2 -->
+             <ImageView fx:id="natureImageView2" fitHeight="100" fitWidth="100" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="2">
                  <GridPane.margin>
-                     <Insets bottom="150.0" left="25" />
+                     <Insets bottom="85.0" left="-5.0" />
+                 </GridPane.margin>
+             </ImageView>
+
+             <!-- Uploads the image of a third corn to the grid at column 4 row 2 -->
+             <ImageView fx:id="natureImageView3" fitHeight="100" fitWidth="100" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                 <GridPane.margin>
+                     <Insets bottom="55.0" left="30.0" />
+                 </GridPane.margin>
+             </ImageView>
+
+             <!-- Uploads the image of a fourth corn to the grid at column 4 row 2 -->
+             <ImageView fx:id="natureImageView4" fitHeight="100" fitWidth="100" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                 <GridPane.margin>
+                     <Insets bottom="25.0" left="70.0" />
                  </GridPane.margin>
              </ImageView>
 
              <!-- Creates a button that will appear on top of the corn icon within the grid at column 4 and row 2 -->
-             <Button fx:id="cornButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cornButtonClick" prefHeight="131.0" prefWidth="106.0" style="-fx-background-color: transparent;" GridPane.columnIndex="4" GridPane.rowIndex="2">
+             <Button fx:id="cornButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cornButtonClick" prefHeight="130.0" prefWidth="160.0" style="-fx-background-color: transparent;" GridPane.columnIndex="4" GridPane.rowIndex="2">
                  <GridPane.margin>
-                     <Insets bottom="175.0" />
+                     <Insets bottom="50.0" left="-25.0" />
                  </GridPane.margin>
              </Button>
 
 
              <!-- Uploads the image of a profile picture to the grid at column 4 row 0 -->
-             <ImageView
-                     fitHeight="60" fitWidth="60"
-                     pickOnBounds="true"
-                     preserveRatio="true"
-                     GridPane.columnIndex="4" GridPane.rowIndex="0">
+             <ImageView fitHeight="60" fitWidth="60" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="0">
                  <image>
                      <Image url="@assets/images/account_circle.png" />
                  </image>
@@ -153,13 +148,7 @@
              </ImageView>
 
              <!-- Creates a button that will appear on top of the profile icon within the grid at column 4 and row 2 -->
-             <Button fx:id="profileButton"
-                     minHeight="-Infinity" minWidth="-Infinity"
-                     mnemonicParsing="false"
-                     onAction="#cornButtonClick"
-                     prefHeight="60" prefWidth="60"
-                     style="-fx-background-color: transparent;"
-                     GridPane.columnIndex="4" GridPane.rowIndex="0">
+             <Button fx:id="profileButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#profileButtonClick" prefHeight="60" prefWidth="60" style="-fx-background-color: transparent;" GridPane.columnIndex="4" GridPane.rowIndex="0">
                <GridPane.margin>
                   <Insets left="100.0" />
                </GridPane.margin></Button>

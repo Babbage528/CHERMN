@@ -21,8 +21,7 @@ public class Users {
     }
 
     // Public constructor without id since it is auto-incremented
-    public Users(String userName, String firstName, String lastName, String password, String schoolName)
-    {
+    public Users(String userName, String firstName, String lastName, String password, String schoolName) {
         this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -51,18 +50,15 @@ public class Users {
         return password;
     }
 
-    public void setFirstName(String firstName)
-    {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public void setLastName(String lastName)
-    {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public void setPassword(String password)
-    {
+    public void setPassword(String password) {
         this.password = password;
     }
 
