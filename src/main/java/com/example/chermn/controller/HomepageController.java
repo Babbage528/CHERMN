@@ -85,7 +85,7 @@ public class HomepageController {
     @FXML
     private Button settingsButton;
 
-    private Users currentUser;
+
 
     // defining the associated actions associated with the above button variables
 
