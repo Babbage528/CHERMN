@@ -39,7 +39,6 @@ public class QuizQuestionsController {
     JSONObject jsonObject = new JSONObject("{\"response_code\":0,\"results\":[{\"type\":\"multiple\",\"difficulty\":\"easy\",\"category\":\"Science &amp; Nature\",\"question\":\"Alzheimer&#039;s disease primarily affects which part of the human body?\",\"correct_answer\":\"Brain\",\"incorrect_answers\":[\"Lungs\",\"Skin\",\"Heart\"]},{\"type\":\"multiple\",\"difficulty\":\"easy\",\"category\":\"Science &amp; Nature\",\"question\":\"How many planets make up our Solar System?\",\"correct_answer\":\"8\",\"incorrect_answers\":[\"7\",\"9\",\"6\"]},{\"type\":\"multiple\",\"difficulty\":\"easy\",\"category\":\"Science &amp; Nature\",\"question\":\"Which of these Elements is a metalloid?\",\"correct_answer\":\"Antimony\",\"incorrect_answers\":[\"Tin\",\"Bromine\",\"Rubidium\"]},{\"type\":\"multiple\",\"difficulty\":\"easy\",\"category\":\"Science &amp; Nature\",\"question\":\"Which is the most abundant element in the universe?\",\"correct_answer\":\"Hydrogen\",\"incorrect_answers\":[\"Helium\",\"Lithium\",\"Oxygen\"]},{\"type\":\"multiple\",\"difficulty\":\"easy\",\"category\":\"Science &amp; Nature\",\"question\":\"Human cells typically have how many copies of each gene?\",\"correct_answer\":\"2\",\"incorrect_answers\":[\"1\",\"4\",\"3\"]},{\"type\":\"multiple\",\"difficulty\":\"easy\",\"category\":\"Science &amp; Nature\",\"question\":\"What is the hottest planet in the Solar System?\",\"correct_answer\":\"Venus\",\"incorrect_answers\":[\"Mars\",\"Mercury\",\"Jupiter\"]},{\"type\":\"multiple\",\"difficulty\":\"easy\",\"category\":\"Science &amp; Nature\",\"question\":\"The asteroid belt is located between which two planets?\",\"correct_answer\":\"Mars and Jupiter\",\"incorrect_answers\":[\"Jupiter and Saturn\",\"Mercury and Venus\",\"Earth and Mars\"]},{\"type\":\"multiple\",\"difficulty\":\"easy\",\"category\":\"Science &amp; Nature\",\"question\":\"Which type of rock is created by intense heat AND pressure?\",\"correct_answer\":\"Metamorphic\",\"incorrect_answers\":[\"Sedimentary\",\"Igneous\",\"Diamond\"]},{\"type\":\"multiple\",\"difficulty\":\"easy\",\"category\":\"Science &amp; Nature\",\"question\":\"The medical term for the belly button is which of the following?\",\"correct_answer\":\"Umbilicus\",\"incorrect_answers\":[\"Nevus\",\"Nares\",\"Paxillus\"]},{\"type\":\"multiple\",\"difficulty\":\"easy\",\"category\":\"Science &amp; Nature\",\"question\":\"What is the official name of the star located closest to the North Celestial Pole?\",\"correct_answer\":\"Polaris\",\"incorrect_answers\":[\"Eridanus\",\"Gamma Cephei\",\"Iota Cephei\"]}]}");
     JSONArray resultsArray = jsonObject.getJSONArray("results");
 
-
     @FXML
     private Pane container;
 
@@ -50,8 +49,6 @@ public class QuizQuestionsController {
     private Label explanation;
 
     String correctAnswer = null;
-
-    int currentQuestion = 0;
 
     public static final String TITLE = "Farmer Fred's Trivia";
     public static final int WIDTH = 1280;
@@ -80,8 +77,6 @@ public class QuizQuestionsController {
             ///    }
             /// JSONObject jsonQuestion = resultsArray.getJSONObject(currentQuestion);
 
-
-            String questionText = currentQuestion.getQuestion();
             correctAnswer = currentQuestion.getCorrectAnswer();
             List<String> incorrectAnswers = currentQuestion.getIncorrectAnswers();
             answers.add(correctAnswer);
@@ -95,15 +90,13 @@ public class QuizQuestionsController {
             Collections.shuffle(answers);
 
             /// Display Question and answers
-            questionbutton.setText("Q." + answerIndex + " " + questionText);
+            questionbutton.setText("Q." + answerIndex + " " + currentQuestion.getQuestion());
             option1.setText("a) " + answers.get(0));
             option2.setText("b) " + answers.get(1));
             option3.setText("c) " + answers.get(2));
             option4.setText("d) " + answers.get(3));
 
         }
-
-
 
     public void AnswerSubmitted(javafx.event.ActionEvent actionEvent) {
         Button userAnswer = (Button) actionEvent.getSource();
@@ -138,7 +131,6 @@ public class QuizQuestionsController {
 
     @FXML
     public void nextQuestion() throws IOException, JSONException {
-        currentQuestion += 1;
         option1.setDisable(false);
         option2.setDisable(false);
         option3.setDisable(false);
@@ -149,7 +141,8 @@ public class QuizQuestionsController {
 
         Next.setDisable(true);
 
-        if(currentQuestion < 10){
+        if(answerIndex < 10){
+            answerIndex++;
             getQuestions();
         }
         else{
