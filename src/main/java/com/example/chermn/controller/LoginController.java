@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.example.chermn.OnBoarding;
 import com.example.chermn.dao.UserDAO;
+import com.example.chermn.model.Student;
 import com.example.chermn.model.Users;
 
 import javafx.event.ActionEvent;
@@ -49,8 +50,36 @@ public class LoginController {
             if (user != null) {
                 System.out.println("Login Success! Welcome, " + user.getUserName());
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                FXMLLoader loader = new FXMLLoader(OnBoarding.class.getResource("homepage.fxml"));
-                stage.setScene(new Scene(loader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT));
+
+                if (user instanceof Student)
+                {
+                    // passes through the user into the homepage controller for students
+                    FXMLLoader loader = new FXMLLoader(OnBoarding.class.getResource("homepage.fxml"));
+                    stage.setScene(new Scene(loader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT));
+
+                    // Get the controller for the homepage
+                    HomepageController controller = loader.getController();
+
+                    // Pass the logged-in user to the homepage controller
+                    controller.setCurrentUser(user);
+
+                }
+                else
+                {
+                    // if user is teacher or parent, passes through the user to homepage controller for non-students
+                    /// /////////////////////////////////////////////// FOR MOMENT JUST SET TO HOMEPAGE AS YET TO CREATE SEPARATE ONE
+                    FXMLLoader loader = new FXMLLoader(OnBoarding.class.getResource("homepage.fxml"));
+                    stage.setScene(new Scene(loader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT));
+
+                    // Get the controller for the homepage for students/parents once created
+                    // HomepageController controller = loader.getController();
+
+                    // Pass the logged-in user to the homepage controller for teacher/parents once created
+                    // controller.setCurrentUser(user);
+
+                }
+
+
             } else {
                 showAlert(Alert.AlertType.ERROR, "Login Failed", "Username or Password is incorrect!");
             }

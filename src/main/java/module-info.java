@@ -4,6 +4,7 @@ module com.example.chermn {
 
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
+    requires org.xerial.sqlitejdbc;
     requires java.sql;
 
     opens com.example.chermn to javafx.fxml;

@@ -33,7 +33,7 @@ public class UserDAO implements IUserDAO {
     }
 
     public void createStudent(Student s) {
-        String sqlUser = "INSERT INTO USER (username, password_hash, email, first_name, last_name, school_name) VALUES (?, ?, ?, ?, ?, ?)";
+        String sqlUser = "INSERT INTO USER (username, password_hash, email, first_name, last_name, school_name, role) VALUES (?, ?, ?, ?, ?, ?, 'student')";
 
         try (Connection conn = DatabaseConnection.connect()) {
             PreparedStatement stmtUser = conn.prepareStatement(sqlUser, Statement.RETURN_GENERATED_KEYS);
@@ -72,14 +72,73 @@ public class UserDAO implements IUserDAO {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                return new Users(
-                        rs.getInt("user_id"),
-                        rs.getString("username"),
-                        "", //only storing username and password for now
-                        "", //same as above
-                        rs.getString("password_hash"),
-                        "" //same as above
-                );
+
+                int userId = rs.getInt("user_id");
+
+                String role = rs.getString("role");
+
+                // checking to see whether user is student
+                if ("student".equals(role))
+                {
+                    // default values
+                    int animal = 1;
+                    int vehicle = 1;
+                    int nature = 1;
+
+                    // second SQL query to fetch the students progress
+                    String progressSql = "SELECT category_id, level_id FROM USER_PROGRESS WHERE user_id = ?";
+
+                    try (PreparedStatement ps = conn.prepareStatement(progressSql)) {
+                        ps.setInt(1, userId);
+                        ResultSet pr = ps.executeQuery();
+
+                        while (pr.next()) {
+                            int category = pr.getInt("category_id");
+                            int level = pr.getInt("level_id");
+
+                            // switching based off the category stored in the database
+                            switch (category) {
+                                case 1:
+                                    // assigning the level that the user is currently on in animal section
+                                    animal = level;
+                                    break;
+                                case 2:
+                                    // assigning the level that the user is currently on in vehicle section
+                                    vehicle = level;
+                                    break;
+                                case 3:
+                                    // assigning the level that the user is currently on in nature level
+                                    nature = level;
+                                    break;
+                            }
+                        }
+                    }
+
+                    // returns the current user as a student with all information
+                    return new Student(
+                            rs.getInt("user_id"),
+                            rs.getString("username"),
+                            "", //only storing username and password for now
+                            "", //same as above
+                            rs.getString("password_hash"),
+                            "", //same as above
+                            vehicle,
+                            animal,
+                            nature
+                    );
+                }
+
+                // else if parent or teacher - might need to edit later particularly if have different roles
+                else {
+                    return new Users(
+                            rs.getInt("user_id"),
+                            rs.getString("username"),
+                            "", //only storing username and password for now
+                            "", //same as above
+                            rs.getString("password_hash"),
+                            "" //same as above
+                    );
+                }
             }
 
         } catch (Exception e) {
