@@ -23,8 +23,10 @@ public class TriviaQuestion {
         return this.question;
     }
 
-    public boolean checkAnswer (String userGuess) {
-        return this.correctAnswer.equalsIgnoreCase(userGuess);
+    public String getCorrectAnswer () {
+        return this.correctAnswer;
     }
+
+    public List<String> getIncorrectAnswers () {return this.incorrectAnswers;}
 
 }

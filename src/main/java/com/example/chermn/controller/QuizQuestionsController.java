@@ -57,33 +57,37 @@ public class QuizQuestionsController {
     public static final int WIDTH = 1280;
     public static final int HEIGHT = 720;
 
+    int answerIndex = 1;
+
     public QuizQuestionsController() throws JSONException {
     }
 
     @FXML
-    public void getQuestions() throws JSONException {
+    public void getQuestions() {
         List<String> answers = new ArrayList<>();
 
             QuizBeginApiService apiService = new QuizBeginApiService();
             List<TriviaQuestion> realQuestions = apiService.fetchQuestions();
             QuizSessionController session = new QuizSessionController(realQuestions);
 
-            TriviaQuestion currentQuestion1 = session.getCurrentQuestion();
+            TriviaQuestion currentQuestion = session.getCurrentQuestion();
 
-            while (currentQuestion1 != null) {
-                System.out.println("Category: " + currentQuestion1.getCategory());
-                System.out.println("Question: " + currentQuestion1.getQuestion());
-                System.out.print("Your answer: ");
-        }
-            JSONObject jsonQuestion = resultsArray.getJSONObject(currentQuestion);
+            ///
+            ///    while (currentQuestion1 != null) {
+            ///        System.out.println("Category: " + currentQuestion1.getCategory());
+            ///        System.out.println("Question: " + currentQuestion1.getQuestion());
+            ///        System.out.print("Your answer: ");
+            ///    }
+            /// JSONObject jsonQuestion = resultsArray.getJSONObject(currentQuestion);
 
 
-            String questionText = jsonQuestion.getString("question");
-            correctAnswer = jsonQuestion.getString("correct_answer");
-            JSONArray incorrect_answers_array = jsonQuestion.getJSONArray("incorrect_answers");
+            String questionText = currentQuestion.getQuestion();
+            correctAnswer = currentQuestion.getCorrectAnswer();
+            List<String> incorrectAnswers = currentQuestion.getIncorrectAnswers();
             answers.add(correctAnswer);
-            for (int j = 0; j < incorrect_answers_array.length(); j++) {
-                String answer =incorrect_answers_array.getString(j);
+
+            for (int j = 0; j < incorrectAnswers.size(); j++) {
+                String answer = incorrectAnswers.get(j);
                 answers.add(answer);
             }
 
@@ -91,7 +95,7 @@ public class QuizQuestionsController {
             Collections.shuffle(answers);
 
             /// Display Question and answers
-            questionbutton.setText("Q."+ (currentQuestion + 1) + " " + questionText);
+            questionbutton.setText("Q." + answerIndex + " " + questionText);
             option1.setText("a) " + answers.get(0));
             option2.setText("b) " + answers.get(1));
             option3.setText("c) " + answers.get(2));
@@ -129,7 +133,6 @@ public class QuizQuestionsController {
         } else {
             explanation.setText("Incorrect! " + correctAnswer + " is the correct answer, next time!");
             explanation.setStyle("-fx-background-color: #ECFCE3; -fx-font-size: 20px;");
-
         }
     }
 
