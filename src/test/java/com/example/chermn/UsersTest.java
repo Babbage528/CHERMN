@@ -1,3 +1,4 @@
+package com.example.chermn;
 // import class and database
 import com.example.chermn.model.Users;
 

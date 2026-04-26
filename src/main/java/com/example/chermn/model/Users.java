@@ -64,11 +64,11 @@ public class Users {
         this.lastName = lastName;
     }
 
-    public void setPassword(String password) throws Exception
+    public void setPassword(String password)
     {
-        if (password == null)
+        if (password == null || password.length() < 5)
         {
-            throw new IllegalArgumentException("Password must not be null");
+            throw new IllegalArgumentException("Password must be a minimum of 5 chars");
         }
         else if (password.length() < 5)
         {
