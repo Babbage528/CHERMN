@@ -118,10 +118,10 @@ public class UserDAO implements IUserDAO {
                     return new Student(
                             rs.getInt("user_id"),
                             rs.getString("username"),
-                            "", //only storing username and password for now
-                            "", //same as above
+                            rs.getString("first_name"),
+                            rs.getString("last_name"),
                             rs.getString("password_hash"),
-                            "", //same as above
+                            rs.getString("school_name"),
                             vehicle,
                             animal,
                             nature

@@ -6,6 +6,7 @@ import com.example.chermn.model.Users;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -83,6 +84,8 @@ public class HomepageController {
     private Button cornButton;
     @FXML
     private Button settingsButton;
+    @FXML
+    private Button profileButton;
 
 
     // defining the associated actions associated with the above button variables
@@ -122,6 +125,19 @@ public class HomepageController {
 
     @FXML
     protected void profileButtonClick(ActionEvent actionEvent) {
+        Stage stage = (Stage) profileButton.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("profile-screen.fxml"));
+        try {
+            stage.setScene(new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        // Get the controller for the profile page
+        profileController controller = fxmlLoader.getController();
+
+        // Pass the logged-in user to the student profile controller
+        controller.setCurrentUser(currentUser);
     }
 
 
