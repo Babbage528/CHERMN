@@ -19,14 +19,12 @@ public class UserDAOTest {
     @Test
     void testCreateUser() {
         String username = "testuser_" + System.currentTimeMillis();
-
         Users user = new Users(0, username, "Test", "User", "1234", "QUT");
         userDAO.createUser(user);
-
         Users found = userDAO.getUserByUsername(username);
         assertNotNull(found);
         
-        //cleaning up
+        //clean
         userDAO.deleteUser(found);
     }
 
@@ -34,14 +32,12 @@ public class UserDAOTest {
     @Test
     void testLoginSuccess() {
         String username = "loginuser_" + System.currentTimeMillis();
-
         Users user = new Users(0, username, "Test", "User", "pass", "QUT");
         userDAO.createUser(user);
-
         Users loggedIn = userDAO.login(username, "pass");        
         assertNotNull(loggedIn);
 
-        // cleanup
+        //cleanup
         userDAO.deleteUser(loggedIn);
     }
 
@@ -51,11 +47,27 @@ public class UserDAOTest {
         String username = "user_" + System.currentTimeMillis();
         Users user = new Users(0, username, "Test", "User", "correct", "QUT");
         userDAO.createUser(user);
-
         Users loggedIn = userDAO.login(username, "notcorrect");
         assertNull(loggedIn);
 
+        //cleanup
         userDAO.deleteUser(userDAO.getUserByUsername(username));
+    }
+
+    //checks that login fails with wrong username or password
+    @Test
+    void testUpdateUser() {
+        String username = "updateuser_" + System.currentTimeMillis();
+        Users user = new Users(0, username, "Old", "Name", "123", "QUT");
+        userDAO.createUser(user);
+        Users found = userDAO.getUserByUsername(username);
+        found.setPassword("newpass");
+        userDAO.updateUser(found);
+        Users updated = userDAO.getUserByUsername(username);
+        assertEquals("newpass", updated.getPassword());
+
+        //cleanup
+        userDAO.deleteUser(updated);
     }
 
     //checks that login fails with wrong username or password
@@ -65,34 +77,14 @@ public class UserDAOTest {
         assertNull(loggedIn);
     }
 
-    //checks that login fails with wrong username or password
-    @Test
-    void testUpdateUser() {
-        String username = "updateuser_" + System.currentTimeMillis();
-        Users user = new Users(0, username, "Old", "Name", "123", "QUT");
-        userDAO.createUser(user);
-
-        Users found = userDAO.getUserByUsername(username);
-        found.setPassword("newpass");
-        userDAO.updateUser(found);
-
-        Users updated = userDAO.getUserByUsername(username);
-        assertEquals("newpass", updated.getPassword());
-
-        //deleting so db won't fill up
-        userDAO.deleteUser(updated);
-    }
-
     //creates a user, deletes it, and checks that it is removed
     @Test
     void testDeleteUser() {
         String username = "deleteuser_" + System.currentTimeMillis();
         Users user = new Users(0, username, "Test", "User", "123", "QUT");
         userDAO.createUser(user);
-
         Users found = userDAO.getUserByUsername(username);
         userDAO.deleteUser(found);
-
         Users deleted = userDAO.getUserByUsername(username);
         assertNull(deleted);
     }
