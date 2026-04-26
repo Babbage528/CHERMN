@@ -1,9 +1,10 @@
 
 package com.example.chermn.controller;
 
-
+import com.example.chermn.controller.QuizSessionController;
 import com.example.chermn.OnBoarding;
 import com.example.chermn.QuizQuestions;
+import com.example.chermn.model.TriviaQuestion;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -33,6 +34,8 @@ import java.sql.Array;
 import java.util.Arrays;
 public class QuizQuestionsController {
 
+    public static int score = 0;
+
     JSONObject jsonObject = new JSONObject("{\"response_code\":0,\"results\":[{\"type\":\"multiple\",\"difficulty\":\"easy\",\"category\":\"Science &amp; Nature\",\"question\":\"Alzheimer&#039;s disease primarily affects which part of the human body?\",\"correct_answer\":\"Brain\",\"incorrect_answers\":[\"Lungs\",\"Skin\",\"Heart\"]},{\"type\":\"multiple\",\"difficulty\":\"easy\",\"category\":\"Science &amp; Nature\",\"question\":\"How many planets make up our Solar System?\",\"correct_answer\":\"8\",\"incorrect_answers\":[\"7\",\"9\",\"6\"]},{\"type\":\"multiple\",\"difficulty\":\"easy\",\"category\":\"Science &amp; Nature\",\"question\":\"Which of these Elements is a metalloid?\",\"correct_answer\":\"Antimony\",\"incorrect_answers\":[\"Tin\",\"Bromine\",\"Rubidium\"]},{\"type\":\"multiple\",\"difficulty\":\"easy\",\"category\":\"Science &amp; Nature\",\"question\":\"Which is the most abundant element in the universe?\",\"correct_answer\":\"Hydrogen\",\"incorrect_answers\":[\"Helium\",\"Lithium\",\"Oxygen\"]},{\"type\":\"multiple\",\"difficulty\":\"easy\",\"category\":\"Science &amp; Nature\",\"question\":\"Human cells typically have how many copies of each gene?\",\"correct_answer\":\"2\",\"incorrect_answers\":[\"1\",\"4\",\"3\"]},{\"type\":\"multiple\",\"difficulty\":\"easy\",\"category\":\"Science &amp; Nature\",\"question\":\"What is the hottest planet in the Solar System?\",\"correct_answer\":\"Venus\",\"incorrect_answers\":[\"Mars\",\"Mercury\",\"Jupiter\"]},{\"type\":\"multiple\",\"difficulty\":\"easy\",\"category\":\"Science &amp; Nature\",\"question\":\"The asteroid belt is located between which two planets?\",\"correct_answer\":\"Mars and Jupiter\",\"incorrect_answers\":[\"Jupiter and Saturn\",\"Mercury and Venus\",\"Earth and Mars\"]},{\"type\":\"multiple\",\"difficulty\":\"easy\",\"category\":\"Science &amp; Nature\",\"question\":\"Which type of rock is created by intense heat AND pressure?\",\"correct_answer\":\"Metamorphic\",\"incorrect_answers\":[\"Sedimentary\",\"Igneous\",\"Diamond\"]},{\"type\":\"multiple\",\"difficulty\":\"easy\",\"category\":\"Science &amp; Nature\",\"question\":\"The medical term for the belly button is which of the following?\",\"correct_answer\":\"Umbilicus\",\"incorrect_answers\":[\"Nevus\",\"Nares\",\"Paxillus\"]},{\"type\":\"multiple\",\"difficulty\":\"easy\",\"category\":\"Science &amp; Nature\",\"question\":\"What is the official name of the star located closest to the North Celestial Pole?\",\"correct_answer\":\"Polaris\",\"incorrect_answers\":[\"Eridanus\",\"Gamma Cephei\",\"Iota Cephei\"]}]}");
     JSONArray resultsArray = jsonObject.getJSONArray("results");
 
@@ -49,7 +52,6 @@ public class QuizQuestionsController {
     String correctAnswer = null;
 
     int currentQuestion = 0;
-    public static int score = 0;
 
     public static final String TITLE = "Farmer Fred's Trivia";
     public static final int WIDTH = 1280;
@@ -62,6 +64,17 @@ public class QuizQuestionsController {
     public void getQuestions() throws JSONException {
         List<String> answers = new ArrayList<>();
 
+            QuizBeginApiService apiService = new QuizBeginApiService();
+            List<TriviaQuestion> realQuestions = apiService.fetchQuestions();
+            QuizSessionController session = new QuizSessionController(realQuestions);
+
+            TriviaQuestion currentQuestion1 = session.getCurrentQuestion();
+
+            while (currentQuestion1 != null) {
+                System.out.println("Category: " + currentQuestion1.getCategory());
+                System.out.println("Question: " + currentQuestion1.getQuestion());
+                System.out.print("Your answer: ");
+        }
             JSONObject jsonQuestion = resultsArray.getJSONObject(currentQuestion);
 
 
@@ -143,10 +156,13 @@ public class QuizQuestionsController {
             Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
             stage.setScene(scene);
         }
+    }
 
-        }
+
 
     }
+
+
 
 
 

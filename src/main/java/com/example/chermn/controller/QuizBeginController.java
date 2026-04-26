@@ -1,8 +1,9 @@
 package com.example.chermn.controller;
 
 
-import com.example.chermn.OnBoarding;
+import com.example.chermn.controller.QuizBeginApiService;
 import com.example.chermn.QuizBegin;
+import com.example.chermn.model.TriviaQuestion;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,6 +24,7 @@ import java.io.IOException;
 
 import javax.imageio.IIOParam;
 import java.io.IOException;
+import java.util.List;
 
 public class QuizBeginController {
 
@@ -53,7 +55,6 @@ public class QuizBeginController {
         stage.setScene(scene);
         stage.show();
         scene2Controller.getQuestions();
-
 
     }
 
