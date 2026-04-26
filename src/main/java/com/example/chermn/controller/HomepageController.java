@@ -1,5 +1,6 @@
 package com.example.chermn.controller;
 
+import com.example.chermn.model.Users;
 import com.example.chermn.OnBoarding;
 import com.example.chermn.model.Student;
 import com.example.chermn.model.Users;
@@ -84,6 +85,7 @@ public class HomepageController {
     @FXML
     private Button settingsButton;
 
+    private Users currentUser;
 
     // defining the associated actions associated with the above button variables
 
