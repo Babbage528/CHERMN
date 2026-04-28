@@ -1,12 +1,12 @@
 package com.example.chermn.controller;
 
 import com.example.chermn.OnBoarding;
+import com.example.chermn.Session;
 import com.example.chermn.model.Student;
 import com.example.chermn.model.Users;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -33,9 +33,10 @@ public class HomepageController {
 
     // defining variable for current logged-in user
     private Student currentUser;
+    private Users user = Session.getCurrentUser();
 
-    // assign the user passed through the controller to assignedUser
-    public void setCurrentUser(Users user) {
+    // assign the current user to the one logged in through settings
+    public void setCurrentUser() {
         // check whether the user is a student
         if (user instanceof Student student) {
             this.currentUser = student;
@@ -43,6 +44,11 @@ public class HomepageController {
         else {
             throw new IllegalArgumentException("Homepage requires a Student user");
         }
+
+    }
+
+    public void initialize() {
+        setCurrentUser();
         // pulls the current user's stats/levels for the images
         displayLevelImages();
     }
@@ -133,11 +139,6 @@ public class HomepageController {
             throw new RuntimeException(e);
         }
 
-        // Get the controller for the profile page
-        profileController controller = fxmlLoader.getController();
-
-        // Pass the logged-in user to the student profile controller
-        controller.setCurrentUser(currentUser);
     }
 
 

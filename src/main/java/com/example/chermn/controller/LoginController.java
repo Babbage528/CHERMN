@@ -3,6 +3,7 @@ package com.example.chermn.controller;
 import java.io.IOException;
 
 import com.example.chermn.OnBoarding;
+import com.example.chermn.Session;
 import com.example.chermn.dao.UserDAO;
 import com.example.chermn.model.Student;
 import com.example.chermn.model.Users;
@@ -49,18 +50,13 @@ public class LoginController {
             if (user != null) {
                 System.out.println("Login Success! Welcome, " + user.getUserName());
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Session.setCurrentUser(user);
 
                 if (user instanceof Student)
                 {
                     // passes through the user into the homepage controller for students
                     FXMLLoader loader = new FXMLLoader(OnBoarding.class.getResource("homepage.fxml"));
                     stage.setScene(new Scene(loader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT));
-
-                    // Get the controller for the homepage
-                    HomepageController controller = loader.getController();
-
-                    // Pass the logged-in user to the homepage controller
-                    controller.setCurrentUser(user);
 
                 }
                 else
@@ -70,11 +66,6 @@ public class LoginController {
                     FXMLLoader loader = new FXMLLoader(OnBoarding.class.getResource("homepage.fxml"));
                     stage.setScene(new Scene(loader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT));
 
-                    // Get the controller for the homepage for students/parents once created
-                    // HomepageController controller = loader.getController();
-
-                    // Pass the logged-in user to the homepage controller for teacher/parents once created
-                    // controller.setCurrentUser(user);
 
                 }
 
