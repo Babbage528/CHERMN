@@ -147,7 +147,7 @@ public class HomepageController {
     @FXML
     protected void cornButtonClick() throws IOException {
         Stage stage = (Stage) cornButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("quiz-selection.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("quiz-begin.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
         stage.setScene(scene);
     }

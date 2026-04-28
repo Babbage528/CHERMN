@@ -16,6 +16,11 @@ public class QuizBeginApiService {
 
     public static final String API_REQUEST = "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=easy&category=27&encode=base64";
 
+
+    /** Public static 'fetchQuestions' creates a Http client to request and retrieve the content from a request API_REQUEST.
+     * Utilises the public getters in TriviaQuestion.java to loop through the request response and move items of interest into
+     * a list of trivia questions questionList. The list of questions can then be used by the quiz session/quiz controllers.
+     */
     public static List<TriviaQuestion> fetchQuestions() {
         List<TriviaQuestion> questionList = new ArrayList<>();
 
@@ -55,7 +60,7 @@ public class QuizBeginApiService {
 
 
         }catch (Exception e) {
-            System.out.println("Error fetching from the API: " + e.getMessage());
+            System.out.println("Error fetching from the API: " + e.getMessage()); // for testing
         }
 
         return questionList;

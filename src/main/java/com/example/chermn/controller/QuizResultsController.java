@@ -39,8 +39,9 @@ public class QuizResultsController {
 
     int percentageScore = (QuizQuestionsController.score*10);
 
+    // Intended for 10 question quizzes only
     public void initialize() {
-        if (percentageScore >= 60) {
+        if (percentageScore >= 80) {
             resultsLabel.setText("You passed with " + percentageScore + "%");
         }
         else {
