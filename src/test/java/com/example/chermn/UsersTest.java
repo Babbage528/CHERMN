@@ -90,5 +90,25 @@ public class UsersTest {
         assertThrows(IllegalArgumentException.class, () -> users.setLastName(last_name_spaces));
     }
 
+    @Test
+    public void testSetFirstName_noDigits() throws Exception{
+        String first_name_spaces = "John9";
+        assertThrows(IllegalArgumentException.class, () -> users.setFirstName(first_name_spaces));
+    }
+
+    @Test
+    public void testSetLastName_noDigits() throws Exception{
+        String last_name_spaces = "Smith10";
+        assertThrows(IllegalArgumentException.class, () -> users.setLastName(last_name_spaces));
+    }
+
+    @Test
+    public void testSetSchoolName_noDigits() throws Exception{
+        String school_name_spaces = "Gladstone State 921023";
+        assertThrows(IllegalArgumentException.class, () -> users.setSchoolName(school_name_spaces));
+    }
+
+
+
 
 }

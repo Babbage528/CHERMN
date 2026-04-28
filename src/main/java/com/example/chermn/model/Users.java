@@ -62,6 +62,9 @@ public class Users {
         else if (firstName.contains(" ")){
             throw new IllegalArgumentException("Please only enter your first name.");
         }
+        else if (firstName.contains("0") || firstName.contains("1") || firstName.contains("2") || firstName.contains("3") || firstName.contains("4") || firstName.contains("5") || firstName.contains("6") || firstName.contains("7") || firstName.contains("8") || firstName.contains("9")) {
+            throw new IllegalArgumentException("Please ensure first name does not contain digits.");
+        }
 
         this.firstName = firstName;
     }
@@ -73,6 +76,9 @@ public class Users {
         }
         else if (lastName.contains(" ")){
             throw new IllegalArgumentException("Please only enter your last name.");
+        }
+        else if (lastName.contains("0") || lastName.contains("1") || lastName.contains("2") || lastName.contains("3") || lastName.contains("4") || lastName.contains("5") || lastName.contains("6") || lastName.contains("7") || lastName.contains("8") || lastName.contains("9")) {
+            throw new IllegalArgumentException("Please ensure last name does not contain digits.");
         }
 
         this.lastName = lastName;
@@ -97,7 +103,13 @@ public class Users {
 
             throw new IllegalArgumentException("School name must be entered.");
         }
+        else if (schoolName.contains("0") || schoolName.contains("1") || schoolName.contains("2") || schoolName.contains("3") || schoolName.contains("4") || schoolName.contains("5") || schoolName.contains("6") || schoolName.contains("7") || schoolName.contains("8") || schoolName.contains("9")) {
+            throw new IllegalArgumentException("Please ensure school name does not contain digits.");
+        }
+
         this.schoolName = schoolName;
+
+
     }
 
     @Override

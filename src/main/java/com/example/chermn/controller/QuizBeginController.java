@@ -39,7 +39,7 @@ public class QuizBeginController {
     @FXML
     protected void returnToHomepageButtonClick() throws  IOException{
         Stage stage = (Stage) returnToHomepageButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(QuizBegin.class.getResource("home-page.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(QuizBegin.class.getResource("homepage.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), QuizBegin.WIDTH, QuizBegin.HEIGHT);
         stage.setScene(scene);
     }

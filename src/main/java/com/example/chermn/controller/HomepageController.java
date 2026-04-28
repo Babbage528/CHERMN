@@ -92,7 +92,7 @@ public class HomepageController {
     @FXML
     protected void animalButtonClick() throws IOException{
         Stage stage = (Stage) animalButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("animal-level-selection.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("quiz-begin.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
         stage.setScene(scene);
     }
@@ -101,7 +101,7 @@ public class HomepageController {
     @FXML
     protected void vehicleButtonClick() throws IOException {
         Stage stage = (Stage) vehicleButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("vehicle-level-selection.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("quiz-begin.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
         stage.setScene(scene);
     }
@@ -109,7 +109,7 @@ public class HomepageController {
     @FXML
     protected void farmHouseButtonClick() throws IOException {
         Stage stage = (Stage) farmHouseButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("farmHouse-selection.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("quiz-begin.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
         stage.setScene(scene);
     }
@@ -130,7 +130,7 @@ public class HomepageController {
     @FXML
     protected void cornButtonClick() throws IOException {
         Stage stage = (Stage) cornButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("plant-level-selection.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("quiz-selection.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
         stage.setScene(scene);
     }
