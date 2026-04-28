@@ -54,13 +54,27 @@ public class Users {
         return schoolName;
     }
 
-    public void setFirstName(String firstName)
-    {
+    public void setFirstName(String firstName) {
+        if (firstName == null){
+
+            throw new IllegalArgumentException("First name must be entered.");
+        }
+        else if (firstName.contains(" ")){
+            throw new IllegalArgumentException("Please only enter your first name.");
+        }
+
         this.firstName = firstName;
     }
 
-    public void setLastName(String lastName)
-    {
+    public void setLastName(String lastName) {
+        if (lastName == null){
+
+            throw new IllegalArgumentException("Last name must be entered.");
+        }
+        else if (lastName.contains(" ")){
+            throw new IllegalArgumentException("Please only enter your last name.");
+        }
+
         this.lastName = lastName;
     }
 
@@ -79,6 +93,10 @@ public class Users {
 
     public void setSchoolName(String schoolName)
     {
+        if (schoolName == null){
+
+            throw new IllegalArgumentException("School name must be entered.");
+        }
         this.schoolName = schoolName;
     }
 

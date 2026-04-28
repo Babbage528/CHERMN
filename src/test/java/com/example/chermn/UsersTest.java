@@ -61,5 +61,34 @@ public class UsersTest {
         assertThrows(IllegalArgumentException.class, () -> users.setPassword(new_password));
     }
 
+    //tests for first name, last name, school name -> special characters and no spaces
+
+    @Test
+    public void testSetFirstName_null() throws Exception{
+        assertThrows(IllegalArgumentException.class, () -> users.setFirstName(null));
+    }
+
+    @Test
+    public void testSetLastName_null() throws Exception{
+        assertThrows(IllegalArgumentException.class, () -> users.setLastName(null));
+    }
+
+    @Test
+    public void testSetSchoolName_null() throws Exception{
+        assertThrows(IllegalArgumentException.class, () -> users.setSchoolName(null));
+    }
+
+    @Test
+    public void testSetFirstName_noSpaces() throws Exception{
+        String first_name_spaces = "John Smith";
+        assertThrows(IllegalArgumentException.class, () -> users.setFirstName(first_name_spaces));
+    }
+
+    @Test
+    public void testSetLastName_noSpaces() throws Exception{
+        String last_name_spaces = "John Smith";
+        assertThrows(IllegalArgumentException.class, () -> users.setLastName(last_name_spaces));
+    }
+
 
 }
