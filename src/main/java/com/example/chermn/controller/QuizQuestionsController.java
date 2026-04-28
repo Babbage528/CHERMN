@@ -36,14 +36,11 @@ public class QuizQuestionsController {
 
     public static int score = 0;
 
-    JSONObject jsonObject = new JSONObject("{\"response_code\":0,\"results\":[{\"type\":\"multiple\",\"difficulty\":\"easy\",\"category\":\"Science &amp; Nature\",\"question\":\"Alzheimer&#039;s disease primarily affects which part of the human body?\",\"correct_answer\":\"Brain\",\"incorrect_answers\":[\"Lungs\",\"Skin\",\"Heart\"]},{\"type\":\"multiple\",\"difficulty\":\"easy\",\"category\":\"Science &amp; Nature\",\"question\":\"How many planets make up our Solar System?\",\"correct_answer\":\"8\",\"incorrect_answers\":[\"7\",\"9\",\"6\"]},{\"type\":\"multiple\",\"difficulty\":\"easy\",\"category\":\"Science &amp; Nature\",\"question\":\"Which of these Elements is a metalloid?\",\"correct_answer\":\"Antimony\",\"incorrect_answers\":[\"Tin\",\"Bromine\",\"Rubidium\"]},{\"type\":\"multiple\",\"difficulty\":\"easy\",\"category\":\"Science &amp; Nature\",\"question\":\"Which is the most abundant element in the universe?\",\"correct_answer\":\"Hydrogen\",\"incorrect_answers\":[\"Helium\",\"Lithium\",\"Oxygen\"]},{\"type\":\"multiple\",\"difficulty\":\"easy\",\"category\":\"Science &amp; Nature\",\"question\":\"Human cells typically have how many copies of each gene?\",\"correct_answer\":\"2\",\"incorrect_answers\":[\"1\",\"4\",\"3\"]},{\"type\":\"multiple\",\"difficulty\":\"easy\",\"category\":\"Science &amp; Nature\",\"question\":\"What is the hottest planet in the Solar System?\",\"correct_answer\":\"Venus\",\"incorrect_answers\":[\"Mars\",\"Mercury\",\"Jupiter\"]},{\"type\":\"multiple\",\"difficulty\":\"easy\",\"category\":\"Science &amp; Nature\",\"question\":\"The asteroid belt is located between which two planets?\",\"correct_answer\":\"Mars and Jupiter\",\"incorrect_answers\":[\"Jupiter and Saturn\",\"Mercury and Venus\",\"Earth and Mars\"]},{\"type\":\"multiple\",\"difficulty\":\"easy\",\"category\":\"Science &amp; Nature\",\"question\":\"Which type of rock is created by intense heat AND pressure?\",\"correct_answer\":\"Metamorphic\",\"incorrect_answers\":[\"Sedimentary\",\"Igneous\",\"Diamond\"]},{\"type\":\"multiple\",\"difficulty\":\"easy\",\"category\":\"Science &amp; Nature\",\"question\":\"The medical term for the belly button is which of the following?\",\"correct_answer\":\"Umbilicus\",\"incorrect_answers\":[\"Nevus\",\"Nares\",\"Paxillus\"]},{\"type\":\"multiple\",\"difficulty\":\"easy\",\"category\":\"Science &amp; Nature\",\"question\":\"What is the official name of the star located closest to the North Celestial Pole?\",\"correct_answer\":\"Polaris\",\"incorrect_answers\":[\"Eridanus\",\"Gamma Cephei\",\"Iota Cephei\"]}]}");
-    JSONArray resultsArray = jsonObject.getJSONArray("results");
-
     @FXML
     private Pane container;
 
     @FXML
-    private Button option1, option2, option3, option4, start, questionbutton, Next;
+    private Button option1, option2, option3, option4,  questionbutton, Next;
 
     @FXML
     private Label explanation;
@@ -56,9 +53,11 @@ public class QuizQuestionsController {
 
     int answerIndex = 1;
 
-    public QuizQuestionsController() throws JSONException {
-    }
-
+    /** public 'getQuestions' retries the api response from QuizBegin, including the question, correct answers and incorrect answer.
+     * It adds the correct answers and incorrect answers into a list and randomizes the list so that the answers are not always in the same place.
+     * The Text on the questions and answer buttons in the fxml are then set to the question and answers retrieved from the api, with appropriate formatting such as 'a), b)...' and 'Q1.'.
+     *
+     */
     @FXML
     public void getQuestions() {
         List<String> answers = new ArrayList<>();
@@ -98,6 +97,12 @@ public class QuizQuestionsController {
 
         }
 
+    /** Public void 'Answer Submitted' controls the UI and score when a user clicks an answer button.
+     * @param actionEvent is used to check for any of the buttons submitted (as users can select correct or incorrect answer and the same code block needs to run - DRY code).
+     * Once a button clicking event has been registered, the incorrect option buttons are disabled.
+     * There is then a conditional statement to check if the user submitted the correct answer which updates the score, gives an appropriate message and sets the label colour to green.
+     * If the user submits an incorrect answer, the score is not updated, an appropriate message is displayed and the label is coloured red.
+     */
     public void AnswerSubmitted(javafx.event.ActionEvent actionEvent) {
         Button userAnswer = (Button) actionEvent.getSource();
         Next.setDisable(false);
@@ -129,8 +134,16 @@ public class QuizQuestionsController {
         }
     }
 
+    /** Public void 'nextQuestion' is used to get the next question for the user.
+     * The buttons are all enabled again after being disabled when the answer was submitted, and the label and message are hidden.
+     * The next button is disabled to enforce users to submit an answer before continuing.
+     * A conditional statement determines if the quiz is still continuing which will increase the index for what question the user is on.
+     * If the user has finished the quiz it will change to the scene and fxml for 'quiz results' to display the score.
+     *
+     * @throws IOException
+     */
     @FXML
-    public void nextQuestion() throws IOException, JSONException {
+    public void nextQuestion() throws IOException {
         option1.setDisable(false);
         option2.setDisable(false);
         option3.setDisable(false);
