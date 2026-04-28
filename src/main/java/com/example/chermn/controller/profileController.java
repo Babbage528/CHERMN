@@ -61,6 +61,9 @@ public class profileController {
     // defining the associated actions associated with the above button variables
     @FXML
     protected void closeButtonClick() throws IOException {
+        // clears the data entered into the text fields
+        clearUserDetails();
+
         Stage stage = (Stage) closeButton.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(OnBoarding.class.getResource("homepage.fxml"));
         Scene scene = new Scene(loader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
@@ -127,6 +130,16 @@ public class profileController {
         schoolField.setText(currentUser.getSchoolName());
 
     }
+
+    // Clear the text fields with the current users inputted information
+    private void clearUserDetails() {
+        firstNameField.clear();
+        lastNameField.clear();
+        // no email field at the moment
+        // emailField.clear();
+        schoolField.clear();
+    }
+
 
 
     // instantiate userDAO to access
