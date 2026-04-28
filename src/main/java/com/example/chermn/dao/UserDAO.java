@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.chermn.DatabaseConnection;
+import com.example.chermn.Session;
 import com.example.chermn.model.Student;
 import com.example.chermn.model.Users;
 
@@ -118,10 +119,10 @@ public class UserDAO implements IUserDAO {
                     return new Student(
                             rs.getInt("user_id"),
                             rs.getString("username"),
-                            "", //only storing username and password for now
-                            "", //same as above
+                            rs.getString("first_name"),
+                            rs.getString("last_name"),
                             rs.getString("password_hash"),
-                            "", //same as above
+                            rs.getString("school_name"),
                             vehicle,
                             animal,
                             nature
@@ -202,16 +203,19 @@ public class UserDAO implements IUserDAO {
         }
     }
 
-    //updates user info, based on what they wish
+    //updates user info, based on what they wish - updated so that student can update first, last, password and school
     public void updateUser(Users user) {
-        String sql = "UPDATE USER SET username = ?, password_hash = ? WHERE user_id = ?";
+        String sql = "UPDATE USER SET first_name = ?, last_name = ?, school_name = ?, username = ?, password_hash = ? WHERE user_id = ?";
 
         try (Connection conn = DatabaseConnection.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, user.getUserName());
-            stmt.setString(2, user.getPassword());
-            stmt.setInt(3, user.getid());
+            stmt.setString(1, user.getFirstName());
+            stmt.setString(2, user.getLastName());
+            stmt.setString(3, user.getSchoolName());
+            stmt.setString(4, user.getUserName());
+            stmt.setString(5, user.getPassword());
+            stmt.setInt(6, user.getid());
 
             stmt.executeUpdate();
 

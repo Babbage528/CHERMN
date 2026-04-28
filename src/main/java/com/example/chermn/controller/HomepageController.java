@@ -2,6 +2,7 @@ package com.example.chermn.controller;
 
 import com.example.chermn.model.Users;
 import com.example.chermn.OnBoarding;
+import com.example.chermn.Session;
 import com.example.chermn.model.Student;
 import com.example.chermn.model.Users;
 import javafx.event.ActionEvent;
@@ -33,9 +34,10 @@ public class HomepageController {
 
     // defining variable for current logged-in user
     private Student currentUser;
+    private Users user = Session.getCurrentUser();
 
-    // assign the user passed through the controller to assignedUser
-    public void setCurrentUser(Users user) {
+    // assign the current user to the one logged in through settings
+    public void setCurrentUser() {
         // check whether the user is a student
         if (user instanceof Student student) {
             this.currentUser = student;
@@ -43,6 +45,11 @@ public class HomepageController {
         else {
             throw new IllegalArgumentException("Homepage requires a Student user");
         }
+
+    }
+
+    public void initialize() {
+        setCurrentUser();
         // pulls the current user's stats/levels for the images
         displayLevelImages();
     }
@@ -84,6 +91,8 @@ public class HomepageController {
     private Button cornButton;
     @FXML
     private Button settingsButton;
+    @FXML
+    private Button profileButton;
 
 
 
@@ -124,6 +133,14 @@ public class HomepageController {
 
     @FXML
     protected void profileButtonClick(ActionEvent actionEvent) {
+        Stage stage = (Stage) profileButton.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("profile-screen.fxml"));
+        try {
+            stage.setScene(new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 

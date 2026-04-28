@@ -2,6 +2,9 @@ package com.example.chermn.controller;
 
 
 import com.example.chermn.OnBoarding;
+import com.example.chermn.Session;
+import com.example.chermn.model.Student;
+import com.example.chermn.model.Users;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -33,18 +36,33 @@ public class SettingsController {
     @FXML
     private Slider soundFXSlider;
 
+    // defining variable for current logged-in user
+    private Users currentUser = Session.getCurrentUser();
+
+    // assign the user passed through the controller to assignedUser
+    public void setCurrentUser(Users user) {
+        // check whether the user is a student
+        if (user instanceof Student student) {
+            this.currentUser = student;
+        }
+        else {
+            throw new IllegalArgumentException("Student profile requires a Student user");
+        }
+    }
+
 
     // defining the associated actions associated with the above button variables
     @FXML
     protected void closeButtonClick() throws IOException {
         Stage stage = (Stage) closeButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("homepage.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
+        FXMLLoader loader = new FXMLLoader(OnBoarding.class.getResource("homepage.fxml"));
+        Scene scene = new Scene(loader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
         stage.setScene(scene);
     }
 
     @FXML
     protected void signOutButtonClick() throws IOException {
+        Session.clearCurrentUser();
         Stage stage = (Stage) signOutButton.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("onboarding-screen.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
