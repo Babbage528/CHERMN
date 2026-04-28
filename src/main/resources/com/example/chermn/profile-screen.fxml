@@ -122,6 +122,8 @@
                         <Insets bottom="40.0" />
                      </GridPane.margin>
                   </Label>
+
+                   <!-- Creates an update button allowing the user to update their details -->
                    <Button fx:id="updateButton" layoutX="522.0" layoutY="338.0" mnemonicParsing="false" onAction="#updateButtonClick" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #F7FAE9;" text="Update" GridPane.columnIndex="1" GridPane.rowIndex="4">
                        <font>
                            <Font name="System Bold Italic" size="18.0" />
@@ -130,6 +132,13 @@
                         <Insets left="-80.0" />
                      </GridPane.margin>
                    </Button>
+
+                    <!-- label to display the user's username as can't be changed -->
+                   <Label fx:id="usernameLabel" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                       <GridPane.margin>
+                           <Insets bottom="40.0" />
+                       </GridPane.margin>
+                   </Label>
 
                    <!-- Text fields for the user's personal data -->
                   <TextField fx:id="firstNameField" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -142,11 +151,7 @@
                         <Insets top="50.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <GridPane.margin>
-                        <Insets bottom="40.0" />
-                     </GridPane.margin>
-                  </TextField>
+
                   <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets top="50.0" />
