@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 public class QuizBeginApiService {
 
-    public static final String API_REQUEST = "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=easy&encode=base64";
+    public static final String API_REQUEST = "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=easy&category=27&encode=base64";
 
     public static List<TriviaQuestion> fetchQuestions() {
         List<TriviaQuestion> questionList = new ArrayList<>();

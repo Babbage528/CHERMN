@@ -90,7 +90,7 @@ public class QuizQuestionsController {
             Collections.shuffle(answers);
 
             /// Display Question and answers
-            questionbutton.setText("Q." + answerIndex + " " + currentQuestion.getQuestion());
+            questionbutton.setText("Q" + answerIndex + ". " + currentQuestion.getQuestion());
             option1.setText("a) " + answers.get(0));
             option2.setText("b) " + answers.get(1));
             option3.setText("c) " + answers.get(2));
@@ -125,7 +125,7 @@ public class QuizQuestionsController {
             explanation.setStyle("-fx-background-color: #ECFCE3; -fx-font-size: 20px;");
         } else {
             explanation.setText("Incorrect! " + correctAnswer + " is the correct answer, next time!");
-            explanation.setStyle("-fx-background-color: #ECFCE3; -fx-font-size: 20px;");
+            explanation.setStyle("-fx-background-color: #FFC2C2; -fx-font-size: 20px;");
         }
     }
 

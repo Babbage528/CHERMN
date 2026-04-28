@@ -29,8 +29,8 @@
                 <VBox alignment="CENTER" maxHeight="400.0" maxWidth="1000" spacing="25.0">
                     <children>
                         <Label fx:id="new" text=" " prefWidth="200" prefHeight="50.0"/>
-                    <Button fx:id="questionbutton" HBox.hgrow="ALWAYS" maxWidth="Infinity" prefHeight="100.0"
-                            style="-fx-background-color: #E7FF76; -fx-text-fill: #3E7C2B; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand; -fx-font-size: 20px;" text=" " />
+                    <Button fx:id="questionbutton" HBox.hgrow="ALWAYS" maxWidth="Infinity" prefHeight="160.0"
+                            style="-fx-background-color: #E7FF76; -fx-text-fill: #3E7C2B; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand; -fx-font-size: 20px; -fx-wrap-text:true;" text=" "  />
                     <VBox alignment="CENTER" spacing="150.0">
                         <children>
                             <HBox spacing="10.0">
