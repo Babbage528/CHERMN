@@ -108,6 +108,18 @@ public class UsersTest {
         assertThrows(IllegalArgumentException.class, () -> users.setSchoolName(school_name_spaces));
     }
 
+    @Test
+    public void testSetFirstName_noSpecialCharacters() throws Exception{
+        String first_name_spaces = "John@#&";
+        assertThrows(IllegalArgumentException.class, () -> users.setFirstName(first_name_spaces));
+    }
+
+    @Test
+    public void testSetLastName_noSpecialCharacters() throws Exception{
+        String last_name_spaces = "Smith^?/";
+        assertThrows(IllegalArgumentException.class, () -> users.setLastName(last_name_spaces));
+    }
+
 
 
 

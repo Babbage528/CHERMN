@@ -65,6 +65,9 @@ public class Users {
         else if (firstName.contains("0") || firstName.contains("1") || firstName.contains("2") || firstName.contains("3") || firstName.contains("4") || firstName.contains("5") || firstName.contains("6") || firstName.contains("7") || firstName.contains("8") || firstName.contains("9")) {
             throw new IllegalArgumentException("Please ensure first name does not contain digits.");
         }
+        else if (firstName.contains("!") || firstName.contains("@") || firstName.contains("#") || firstName.contains("$") || firstName.contains("%") || firstName.contains("^") || firstName.contains("&") || firstName.contains("*") || firstName.contains("(") || firstName.contains(")") || firstName.contains("-") || firstName.contains("_") || firstName.contains("+") || firstName.contains("=") || firstName.contains("`") || firstName.contains("~") || firstName.contains(",") || firstName.contains("<") || firstName.contains(".") || firstName.contains(">") || firstName.contains("/") || firstName.contains("?") || firstName.contains(":") || firstName.contains(";") || firstName.contains("'") || firstName.contains("[") || firstName.contains("]") || firstName.contains("{") || firstName.contains("}")) {
+            throw new IllegalArgumentException("Please ensure first name does not special characters.");
+        }
 
         this.firstName = firstName;
     }
@@ -79,6 +82,9 @@ public class Users {
         }
         else if (lastName.contains("0") || lastName.contains("1") || lastName.contains("2") || lastName.contains("3") || lastName.contains("4") || lastName.contains("5") || lastName.contains("6") || lastName.contains("7") || lastName.contains("8") || lastName.contains("9")) {
             throw new IllegalArgumentException("Please ensure last name does not contain digits.");
+        }
+        else if (lastName.contains("!") || lastName.contains("@") || lastName.contains("#") || lastName.contains("$") || lastName.contains("%") || lastName.contains("^") || lastName.contains("&") || lastName.contains("*") || lastName.contains("(") || lastName.contains(")") || lastName.contains("-") || lastName.contains("_") || lastName.contains("+") || lastName.contains("=") || lastName.contains("`") || lastName.contains("~") || lastName.contains(",") || lastName.contains("<") || lastName.contains(".") || lastName.contains(">") || lastName.contains("/") || lastName.contains("?") || lastName.contains(":") || lastName.contains(";") || lastName.contains("'") || lastName.contains("[") || lastName.contains("]") || lastName.contains("{") || lastName.contains("}")) {
+            throw new IllegalArgumentException("Please ensure last name does not special characters.");
         }
 
         this.lastName = lastName;
