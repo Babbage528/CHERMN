@@ -33,10 +33,10 @@ public class TeacherRegisterController {
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
         String school = schoolNameField.getText();
-        String username = unameField.getText();
+        String email = unameField.getText().trim().toLowerCase();
         String password = passwordField.getText();
 
-        if (firstName.isEmpty() ||lastName.isEmpty() || username.isEmpty() || password.isEmpty()) {
+        if (firstName.isEmpty() ||lastName.isEmpty() || email.isEmpty() || password.isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Form Error!", "Please fill in all the field");
             return;
         }
@@ -45,13 +45,22 @@ public class TeacherRegisterController {
             showAlert(Alert.AlertType.WARNING, "Password is weak", "Password has to be 5 character min!");
             return;
         }
+        if (!email.matches("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")) {
+            showAlert(Alert.AlertType.WARNING, "Invalid Email", "Please enter a valid email address (e.g., name@example.com)");
+            return;
+        }
+        if (userDAO.isEmailTaken(email)) {
+            showAlert(Alert.AlertType.ERROR, "Registration Error",
+                    "This email is already registered. Please use another email or login.");
+            return;
+        }
         try {
-            Teacher t = new Teacher(0, username, firstName, lastName, password, school);
+            Teacher t = new Teacher(0, email, firstName, lastName, password, school);
             userDAO.createTeacher(t);
 
             Session.setCurrentUser(t);
 
-            showAlert(Alert.AlertType.INFORMATION, "Registration success", "Account " + username + " successfully registered!");
+            showAlert(Alert.AlertType.INFORMATION, "Registration success", "Account " + email + " successfully registered!");
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("homepage.fxml"));

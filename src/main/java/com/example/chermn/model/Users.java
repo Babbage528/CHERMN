@@ -14,22 +14,41 @@ public class Users {
     public Users(int id, String userName, String firstName, String lastName, String password, String schoolName) {
         this.id = id;
         this.userName = userName;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstName = formatToTitleCase(firstName);
+        this.lastName = formatToTitleCase(lastName);
         this.password = password;
-        this.schoolName = schoolName;
+        this.schoolName = formatToTitleCase(schoolName);
     }
 
     // Public constructor without id since it is auto-incremented
     public Users(String userName, String firstName, String lastName, String password, String schoolName)
     {
         this.userName = userName;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstName = formatToTitleCase(firstName);
+        this.lastName = formatToTitleCase(lastName);
         this.password = password;
-        this.schoolName = schoolName;
+        this.schoolName = formatToTitleCase(schoolName);
     }
 
+    private String formatToTitleCase(String input) {
+        if (input == null || input.isEmpty()) return input;
+
+        StringBuilder result = new StringBuilder();
+        boolean capitalizeNext = true;
+
+        for (char c : input.toCharArray()) {
+            if (Character.isSpaceChar(c)) {
+                capitalizeNext = true;
+                result.append(c);
+            } else if (capitalizeNext) {
+                result.append(Character.toUpperCase(c));
+                capitalizeNext = false;
+            } else {
+                result.append(Character.toLowerCase(c));
+            }
+        }
+        return result.toString().trim();
+    }
 
     public int getid() {
         return id;
@@ -69,7 +88,7 @@ public class Users {
             throw new IllegalArgumentException("Please ensure first name does not special characters.");
         }
 
-        this.firstName = firstName;
+        this.firstName = formatToTitleCase(firstName);
     }
 
     public void setLastName(String lastName) {
@@ -87,7 +106,7 @@ public class Users {
             throw new IllegalArgumentException("Please ensure last name does not special characters.");
         }
 
-        this.lastName = lastName;
+        this.lastName = formatToTitleCase(lastName);
     }
 
     public void setPassword(String password)
@@ -113,7 +132,7 @@ public class Users {
             throw new IllegalArgumentException("Please ensure school name does not contain digits.");
         }
 
-        this.schoolName = schoolName;
+        this.schoolName = formatToTitleCase(schoolName);
 
 
     }

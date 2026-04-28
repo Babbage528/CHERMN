@@ -147,6 +147,17 @@ public class UserDAO implements IUserDAO {
         return -1;
     }
 
+    public boolean isEmailTaken(String email) {
+        String sql = "SELECT COUNT(*) FROM USER WHERE LOWER(username) = LOWER(?)";
+        try (Connection conn = DatabaseConnection.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, email);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) return rs.getInt(1) > 0;
+        } catch (Exception e) { e.printStackTrace(); }
+        return false;
+    }
+
     //finds user in db, based on username
     public Users getUserByUsername(String username) {
         String sql = "SELECT * FROM USER WHERE username = ?";

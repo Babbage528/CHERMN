@@ -29,13 +29,13 @@ public class ParentRegisterController {
     private void handleRegisterSubmit(ActionEvent event) {
         String firstName = firstNameField.getText().trim();
         String lastName = lastNameField.getText().trim();
-        String username = unameField.getText().trim();
+        String email = unameField.getText().trim().toLowerCase();
         String password = passwordField.getText();
         String relationship = relationshipComboBox.getValue();
         String studentName = studentNameField.getText().trim();
         String school = schoolNameField.getText().trim();
 
-        if (firstName.isEmpty() || lastName.isEmpty() || username.isEmpty() ||
+        if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() ||
                 password.isEmpty() || studentName.isEmpty() || school.isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Form Error!", "Please fill in all the fields");
             return;
@@ -45,7 +45,15 @@ public class ParentRegisterController {
             showAlert(Alert.AlertType.WARNING, "Password is weak", "Password has to be 5 characters minimum!");
             return;
         }
-
+        if (!email.matches("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")) {
+            showAlert(Alert.AlertType.WARNING, "Invalid Email", "Please enter a valid email address (e.g., name@example.com)");
+            return;
+        }
+        if (userDAO.isEmailTaken(email)) {
+            showAlert(Alert.AlertType.ERROR, "Registration Error",
+                    "This email is already registered. Please use another email or login.");
+            return;
+        }
         try {
             int foundStudentId = userDAO.findStudentIdByName(studentName, school);
 
@@ -55,14 +63,15 @@ public class ParentRegisterController {
                                 ". Please check, is it right or not?");
                 return;
             }
-            Parent p = new Parent(0, username, firstName, lastName, password, school, relationship, studentName);
+            Parent p = new Parent(0, email, firstName, lastName, password, school, relationship, studentName);
             p.setStudentId(foundStudentId);
             userDAO.createParent(p);
 
             Session.setCurrentUser(p);
-            showAlert(Alert.AlertType.INFORMATION, "Registration Success", "Account " + username + " successfully registered!");
+            showAlert(Alert.AlertType.INFORMATION, "Registration Success", "Account " + email + " successfully registered!");
             switchScene(event, "homepage.fxml");
-
+        } catch (IllegalArgumentException e) {
+            showAlert(Alert.AlertType.ERROR, "Invalid Input", e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Database Error", e.getMessage());
