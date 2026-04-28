@@ -30,7 +30,7 @@
                         </columnConstraints>
                         <children>
                             <VBox spacing="5.0" GridPane.rowIndex="0">
-                                <Label text="Username" style="-fx-text-fill: #666666;" />
+                                <Label text="Email" style="-fx-text-fill: #666666;" />
                                 <TextField fx:id="usernameField" prefHeight="40.0" promptText="Your Username"
                                            style="-fx-background-color: #f0f4f0; -fx-background-radius: 10;" />
                             </VBox>
