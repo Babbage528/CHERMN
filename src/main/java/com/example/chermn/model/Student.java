@@ -1,20 +1,20 @@
 package com.example.chermn.model;
 
 public class Student extends Users {
-    private int vechileLevel;
+    // vehicle
+    private int vehicleLevel;
     private int animalLevel;
     private int natureLevel;
 
-    public Student(int id, String userName, String firstName, String lastName, String password, String schoolName, int vechileLevel, int animalLevel, int natureLevel)
-    {
+    public Student(int id, String userName, String firstName, String lastName, String password, String schoolName, int vechileLevel, int animalLevel, int natureLevel) {
         super(id, userName, firstName, lastName, password, schoolName);
-        this.vechileLevel = vechileLevel;
+        this.vehicleLevel = vechileLevel;
         this.animalLevel = animalLevel;
         this.natureLevel = natureLevel;
     }
 
-    public int getVechileLevel() {
-        return vechileLevel;
+    public int getVehicleLevel() {
+        return vehicleLevel;
     }
 
     public int getAnimalLevel() {
@@ -25,8 +25,8 @@ public class Student extends Users {
         return natureLevel;
     }
 
-    public void setVechileLevel(int level) {
-        vechileLevel = level;
+    public void setVehicleLevel(int level) {
+        vehicleLevel = level;
     }
 
     public void setAnimalLevel(int level) {
@@ -41,11 +41,10 @@ public class Student extends Users {
     @Override
     public String toString() {
         return super.toString() +
-                ", vechile category level: " + vechileLevel +
+                ", vechile category level: " + vehicleLevel +
                 ", animal categpry level: " + animalLevel +
                 ", nature category level: " + natureLevel +
                 "}";
-
     }
 
 }

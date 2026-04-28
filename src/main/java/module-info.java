@@ -4,13 +4,12 @@ module com.example.chermn {
 
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
-    requires java.desktop;
-    requires org.json;
+    requires org.xerial.sqlitejdbc;
     requires java.sql;
-    requires java.net.http;
 
     opens com.example.chermn to javafx.fxml;
     exports com.example.chermn;
     exports com.example.chermn.controller;
+    exports com.example.chermn.model;
     opens com.example.chermn.controller to javafx.fxml;
 }

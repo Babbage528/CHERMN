@@ -3,39 +3,34 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.*?>
 
-<VBox alignment="TOP_LEFT" prefHeight="720.0" prefWidth="1280.0" spacing="40.0"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.chermn.controller.OnBoardingController">
+<StackPane alignment="TOP_LEFT" prefHeight="720.0" prefWidth="1280.0"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.example.chermn.controller.OnBoardingController">
 
-    <padding>
-        <Insets bottom="50.0" left="100.0" right="50.0" top="200.0" />
-    </padding>
+    <ImageView fitHeight="720.0" fitWidth="1280.0" preserveRatio="false">
+        <Image url="@assets/images/bg_general.png"/>
+    </ImageView>
 
-    <children>
-        <VBox spacing="5.0">
-            <children>
+    <VBox spacing="40.0">
+        <padding>
+            <Insets bottom="50.0" left="100.0" right="50.0" top="200.0" />
+        </padding>
+
+        <children>
+            <VBox spacing="5.0">
                 <Label style="-fx-font-size: 40px; -fx-font-weight: bold; -fx-text-fill: #3E7C2B;" text="Welcome to" />
                 <Label style="-fx-font-size: 40px; -fx-font-weight: bold; -fx-text-fill: #3E7C2B;" text="Farmer Fred's Trivia" />
                 <Label style="-fx-font-size: 18px; -fx-text-fill: #666666;" text="Let's get started" />
-            </children>
-        </VBox>
+            </VBox>
 
-        <VBox alignment="CENTER_LEFT" maxHeight="450.0" maxWidth="420.0" spacing="25.0">
-            <children>
-                <VBox alignment="CENTER" spacing="10.0">
-                    <children>
-                        <HBox spacing="10.0">
-                            <Button fx:id="signUpButton" HBox.hgrow="ALWAYS" maxWidth="Infinity" prefHeight="50.0"
-                                    style="-fx-background-color: #6DBE45; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand;" text="Sign Up" onAction="#signUpButtonClick"/>
-                            <Button fx:id="loginButton" HBox.hgrow="ALWAYS" maxWidth="Infinity" prefHeight="50.0"
-                                    style="-fx-background-color: #F7FAE9; -fx-stroke: #6DBE45; -fx-stroke-width: 1px;-fx-text-fill: #6DBE45; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand;" text="Log In" onAction="#logInButtonClick"/>
-                        </HBox>
-                    </children>
-                </VBox>
-            </children>
-        </VBox>
-    </children>
-</VBox>
+            <HBox spacing="10.0" maxWidth="420.0">
+                <Button fx:id="signUpButton" HBox.hgrow="ALWAYS" maxWidth="Infinity" prefHeight="50.0"
+                        style="-fx-background-color: #6DBE45; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand;" text="Sign Up" onAction="#signUpButtonClick"/>
+                <Button fx:id="loginButton" HBox.hgrow="ALWAYS" maxWidth="Infinity" prefHeight="50.0"
+                        style="-fx-background-color: #F7FAE9; -fx-stroke: #6DBE45; -fx-stroke-width: 1px;-fx-text-fill: #6DBE45; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand;" text="Log In" onAction="#logInButtonClick"/>
+            </HBox>
+        </children>
+    </VBox>
+</StackPane>
