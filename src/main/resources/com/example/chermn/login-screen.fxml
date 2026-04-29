@@ -3,57 +3,58 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="TOP_LEFT" prefHeight="720.0" prefWidth="1280.0" spacing="40.0"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.chermn.controller.LoginController">
-    <padding>
-        <Insets bottom="50.0" left="100.0" right="50.0" top="150.0" />
-    </padding>
+<StackPane alignment="TOP_LEFT" prefHeight="720.0" prefWidth="1280.0"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.example.chermn.controller.LoginController">
 
-    <children>
-        <VBox alignment="CENTER" maxHeight="450.0" maxWidth="420.0" spacing="25.0" style="-fx-background-color: white; -fx-background-radius: 30; -fx-padding: 40; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 15, 0, 0, 10);">
-            <children>
-                <Label text="Welcome Back!" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #333333;" />
+    <ImageView fitHeight="720.0" fitWidth="1280.0" preserveRatio="false">
+        <Image url="@assets/images/bg_general.png"/>
+    </ImageView>
 
-                <GridPane hgap="10.0" vgap="15.0">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
+    <VBox spacing="25.0">
+        <padding>
+            <Insets bottom="50.0" left="100.0" right="50.0" top="150.0" />
+        </padding>
 
-                    <children>
-                        <VBox spacing="5.0" GridPane.rowIndex="0">
-                            <Label text="Email" style="-fx-text-fill: #666666;" />
-                            <TextField fx:id="emailField" prefHeight="40.0" promptText="jennifer@gmail.com"
-                                       style="-fx-background-color: #f0f4f0; -fx-background-radius: 10;" />
-                        </VBox>
+        <children>
+            <VBox alignment="CENTER" maxHeight="450.0" maxWidth="420.0" spacing="25.0"
+                  style="-fx-background-color: white; -fx-background-radius: 30; -fx-padding: 40; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 15, 0, 0, 10);">
+                <children>
+                    <Label text="Welcome Back!" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #333333;" />
 
-                        <VBox spacing="5.0" GridPane.rowIndex="1">
-                            <Label text="Password" style="-fx-text-fill: #666666;" />
-                            <PasswordField fx:id="passwordField" prefHeight="40.0" promptText="••••••••"
+                    <GridPane hgap="10.0" vgap="15.0">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        </columnConstraints>
+                        <children>
+                            <VBox spacing="5.0" GridPane.rowIndex="0">
+                                <Label text="Username" style="-fx-text-fill: #666666;" />
+                                <TextField fx:id="usernameField" prefHeight="40.0" promptText="Your Username"
                                            style="-fx-background-color: #f0f4f0; -fx-background-radius: 10;" />
-                            <Hyperlink text="Forgot Password?" alignment="CENTER_RIGHT" maxWidth="Infinity"
-                                       style="-fx-font-size: 11px; -fx-text-fill: #8cc63f;" />
-                        </VBox>
-                    </children>
-                </GridPane>
+                            </VBox>
+                            <VBox spacing="5.0" GridPane.rowIndex="1">
+                                <Label text="Password" style="-fx-text-fill: #666666;" />
+                                <PasswordField fx:id="passwordField" prefHeight="40.0" promptText="••••••••"
+                                               style="-fx-background-color: #f0f4f0; -fx-background-radius: 10;" />
+                                <Hyperlink text="Forgot Password?" alignment="CENTER_RIGHT" maxWidth="Infinity"
+                                           style="-fx-font-size: 11px; -fx-text-fill: #8cc63f;" />
+                            </VBox>
+                        </children>
+                    </GridPane>
 
-                <VBox spacing="10.0" alignment="CENTER">
-                    <Button fx:id="signInButton"
-                            text="Sign In"
-                            prefHeight="45.0"
-                            maxWidth="Infinity"
-                            onAction="#handleSignInClick"
-                            style="-fx-background-color: #8cc63f; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-cursor: hand;" />
+                    <VBox spacing="10.0" alignment="CENTER">
+                        <Button fx:id="signInButton" text="Sign In" prefHeight="45.0" maxWidth="Infinity" onAction="#handleSignIn"
+                                style="-fx-background-color: #8cc63f; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-cursor: hand;" />
 
-                    <HBox spacing="5.0" alignment="CENTER">
-                        <Label text="Don't have an account?" />
-                        <Hyperlink text="Sign up" onAction="#handleSignUpClick" style="-fx-text-fill: #8cc63f; -fx-font-weight: bold;" />
-                    </HBox>
-                </VBox>
-            </children>
-        </VBox>
-    </children>
-</VBox>
+                        <HBox spacing="5.0" alignment="CENTER">
+                            <Label text="Don't have an account?" />
+                            <Hyperlink text="Sign up" onAction="#handleSignUpClick" style="-fx-text-fill: #8cc63f; -fx-font-weight: bold;" />
+                        </HBox>
+                    </VBox>
+                </children>
+            </VBox>
+        </children>
+    </VBox>
+</StackPane>

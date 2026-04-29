@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+
+<AnchorPane
+        prefHeight="400.0" prefWidth="600.0"
+        xmlns="http://javafx.com/javafx/17.0.12"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="com.example.chermn.controller.profileController">
+
+    <children>
+    <!-- Background image behind the title pane of the farm background -->
+    <ImageView fitHeight="720.0" fitWidth="1280.0"
+               opacity="0.4" pickOnBounds="true">
+        <image>
+            <Image url="@assets/images/Background.png" />
+        </image>
+    </ImageView>
+    <AnchorPane layoutX="190.0" layoutY="100.0"
+                prefHeight="520.0" prefWidth="900.0"
+                style="-fx-background-color: #6DBE45;">
+
+        <children>
+            <!-- Creates a close button to exit from the settings page -->
+            <Button fx:id="closeButton"
+                    layoutX="767.0" mnemonicParsing="false"
+                    onAction="#closeButtonClick"
+                    style="-fx-background-color: transparent;"
+                    text="X" AnchorPane.leftAnchor="0.0">
+                <font>
+                    <Font name="System Bold" size="56.0" />
+                </font>
+            </Button>
+
+
+            <!-- Creates a vbox off to the left to display the different menu actions, with equal spacing between all buttons-->
+            <VBox alignment="CENTER"
+                  layoutY="82.0"
+                  prefHeight="370.0" prefWidth="188.0"
+                  spacing="40.0" style="-fx-border-color: black; -fx-border-width: 2;
+                  -fx-border-radius: 5; -fx-padding: 10; -fx-background-color: #F7FAE9;"
+                  AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
+
+                <children>
+                    <Button fx:id="userProfileButton"
+                            mnemonicParsing="false"
+                            onAction="#userProfileButtonClick"
+                            prefHeight="50.0" prefWidth="180.0"
+                            style="-fx-background-color: transparent;"
+                            text="User Profile">
+                        <font>
+                            <Font name="System Bold Italic" size="18.0" />
+                        </font>
+                    </Button>
+
+
+                    <Button fx:id="levelProgressButton"
+                            mnemonicParsing="false" onAction="#levelProgressButtonClick"
+                            prefHeight="50.0" prefWidth="180.0"
+                            style="-fx-background-color: transparent;"
+                            text="Level Progress">
+                        <font>
+                            <Font name="System Bold Italic" size="18.0" />
+                        </font>
+                    </Button>
+
+
+                    <Button fx:id="changePasswordButton"
+                            mnemonicParsing="false"
+                            onAction="#changePasswordButtonClick"
+                            prefHeight="50.0" prefWidth="180.0"
+                            style="-fx-background-color: transparent;"
+                            text="Change Password">
+                        <font>
+                            <Font name="System Bold Italic" size="18.0" />
+                        </font>
+                    </Button>
+
+
+                    <!-- Creates a sign-out button to allow the user to sign out of game -->
+                    <Button fx:id="signOutButton"
+                            layoutX="522.0" layoutY="338.0"
+                            mnemonicParsing="false"
+                            onAction="#signOutButtonClick"
+                            prefHeight="50.0" prefWidth="180.0"
+                            style="-fx-background-color: transparent;"
+                            text="Sign Out">
+                        <font>
+                            <Font name="System Bold Italic" size="18.0" />
+                        </font>
+                    </Button>
+                </children>
+            </VBox>
+
+            <!-- Creates a stack pane to store the content for each profile page -->
+            <StackPane fx:id="contentPane"
+                       layoutX="273.0" layoutY="15.0"
+                       prefHeight="490.0" prefWidth="605.0">
+
+            </StackPane>
+
+        </children>
+
+    </AnchorPane>
+
+    </children>
+
+</AnchorPane>
