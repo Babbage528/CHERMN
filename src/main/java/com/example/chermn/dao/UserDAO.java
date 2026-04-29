@@ -15,8 +15,9 @@ import com.example.chermn.model.Users;
 public class UserDAO implements IUserDAO {
 
     //creates new user and stores in db
+    // at the moment, creates a new teacher - could extend so that parents don't have to enter school name - instead enter childs details
     public void createUser(Users user) {
-        String sql = "INSERT INTO USER (username, password_hash, email) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO USER (username, password_hash, email, first_name, last_name, school_name, role) VALUES (?, ?, ?, ?, ?, ?, 'teacher')";
 
         try (Connection conn = DatabaseConnection.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -24,7 +25,10 @@ public class UserDAO implements IUserDAO {
             //atm we're using username as email
             stmt.setString(1, user.getUserName());
             stmt.setString(2, user.getPassword());
-            stmt.setString(3, user.getUserName()); 
+            stmt.setString(3, user.getUserName()); // using user name as email
+            stmt.setString(4, user.getFirstName());
+            stmt.setString(5, user.getLastName());
+            stmt.setString(6, user.getSchoolName());
 
             stmt.executeUpdate();
 
@@ -40,7 +44,7 @@ public class UserDAO implements IUserDAO {
             PreparedStatement stmtUser = conn.prepareStatement(sqlUser, Statement.RETURN_GENERATED_KEYS);
             stmtUser.setString(1, s.getUserName());
             stmtUser.setString(2, s.getPassword());
-            stmtUser.setString(3, s.getUserName());
+            stmtUser.setString(3, s.getUserName()); // using username as email at the moment
             stmtUser.setString(4, s.getFirstName());
             stmtUser.setString(5, s.getLastName());
             stmtUser.setString(6, s.getSchoolName());

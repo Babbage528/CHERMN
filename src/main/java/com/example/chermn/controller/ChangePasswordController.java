@@ -1,5 +1,6 @@
 package com.example.chermn.controller;
 
+import com.example.chermn.Session;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -32,7 +33,7 @@ public class ChangePasswordController extends profileController{
             updatePasswordDetails(newPassword);
 
             // updates the user in the database
-            userDAO.updateUser(currentUser);
+            userDAO.updateUser(user);
 
             // alerts user that password has been changed
             showAlert(Alert.AlertType.WARNING, "Password Updated!", "Your password has been updated");
@@ -47,8 +48,8 @@ public class ChangePasswordController extends profileController{
 
     private void updatePasswordDetails(String newPassword) throws Exception {
 
-        if (newPassword != null && !newPassword.equals(currentUser.getPassword())) {
-            currentUser.setPassword(newPassword);
+        if (newPassword != null && !newPassword.equals(user.getPassword())) {
+            user.setPassword(newPassword);
         }
     }
 

@@ -10,12 +10,9 @@ public class Session {
     // the current logged-in user
     private static Users currentUser;
 
-    // the database
-    private static UserDAO userDAO = new UserDAO();
-
-
     // sets the current user for the session
     public static void setCurrentUser(Users user) {
+
         currentUser = user;
     }
 
@@ -28,6 +25,5 @@ public class Session {
     public static void clearCurrentUser() {
         currentUser = null;
     }
-
 
 }
