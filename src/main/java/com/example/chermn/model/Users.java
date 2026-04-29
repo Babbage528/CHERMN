@@ -56,7 +56,6 @@ public class Users {
 
     public void setFirstName(String firstName) {
         if (firstName == null){
-
             throw new IllegalArgumentException("First name must be entered.");
         }
         else if (firstName.contains(" ")){
@@ -66,15 +65,13 @@ public class Users {
             throw new IllegalArgumentException("Please ensure first name does not contain digits.");
         }
         else if (firstName.contains("!") || firstName.contains("@") || firstName.contains("#") || firstName.contains("$") || firstName.contains("%") || firstName.contains("^") || firstName.contains("&") || firstName.contains("*") || firstName.contains("(") || firstName.contains(")") || firstName.contains("-") || firstName.contains("_") || firstName.contains("+") || firstName.contains("=") || firstName.contains("`") || firstName.contains("~") || firstName.contains(",") || firstName.contains("<") || firstName.contains(".") || firstName.contains(">") || firstName.contains("/") || firstName.contains("?") || firstName.contains(":") || firstName.contains(";") || firstName.contains("'") || firstName.contains("[") || firstName.contains("]") || firstName.contains("{") || firstName.contains("}")) {
-            throw new IllegalArgumentException("Please ensure first name does not special characters.");
+            throw new IllegalArgumentException("Please ensure first name does not contain special characters.");
         }
-
         this.firstName = firstName;
     }
 
     public void setLastName(String lastName) {
         if (lastName == null){
-
             throw new IllegalArgumentException("Last name must be entered.");
         }
         else if (lastName.contains(" ")){
@@ -84,7 +81,7 @@ public class Users {
             throw new IllegalArgumentException("Please ensure last name does not contain digits.");
         }
         else if (lastName.contains("!") || lastName.contains("@") || lastName.contains("#") || lastName.contains("$") || lastName.contains("%") || lastName.contains("^") || lastName.contains("&") || lastName.contains("*") || lastName.contains("(") || lastName.contains(")") || lastName.contains("-") || lastName.contains("_") || lastName.contains("+") || lastName.contains("=") || lastName.contains("`") || lastName.contains("~") || lastName.contains(",") || lastName.contains("<") || lastName.contains(".") || lastName.contains(">") || lastName.contains("/") || lastName.contains("?") || lastName.contains(":") || lastName.contains(";") || lastName.contains("'") || lastName.contains("[") || lastName.contains("]") || lastName.contains("{") || lastName.contains("}")) {
-            throw new IllegalArgumentException("Please ensure last name does not special characters.");
+            throw new IllegalArgumentException("Please ensure last name does not contain special characters.");
         }
 
         this.lastName = lastName;

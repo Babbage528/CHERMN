@@ -100,19 +100,17 @@ public class HomepageController {
 
     @FXML
     protected void animalButtonClick() throws IOException{
-        Stage stage = (Stage) animalButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("quiz-begin.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
-        stage.setScene(scene);
+        loadQuizBegin("animals");
     }
-
 
     @FXML
     protected void vehicleButtonClick() throws IOException {
-        Stage stage = (Stage) vehicleButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("quiz-begin.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
-        stage.setScene(scene);
+        loadQuizBegin("vehicles");
+    }
+
+    @FXML
+    protected void cornButtonClick() throws IOException {
+       loadQuizBegin("nature");
     }
 
     @FXML
@@ -122,6 +120,26 @@ public class HomepageController {
         Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
         stage.setScene(scene);
     }
+
+
+
+
+
+    private void loadQuizBegin(String category) throws IOException {
+        FXMLLoader loader = new FXMLLoader(OnBoarding.class.getResource("quiz-begin.fxml"));
+        Scene scene = new Scene(loader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
+
+        // Get the controller for quiz-begin.fxml
+        QuizBeginController controller = loader.getController();
+        controller.initCategory(category);
+
+        Stage stage = (Stage) animalButton.getScene().getWindow();
+        stage.setScene(scene);
+    }
+
+
+
+
 
     @FXML
     protected void settingsButtonClick() throws IOException {
@@ -141,15 +159,6 @@ public class HomepageController {
             throw new RuntimeException(e);
         }
 
-    }
-
-
-    @FXML
-    protected void cornButtonClick() throws IOException {
-        Stage stage = (Stage) cornButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("quiz-begin.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
-        stage.setScene(scene);
     }
 
     private String getVehicleURL() {

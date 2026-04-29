@@ -167,7 +167,13 @@ public class QuizQuestionsController {
         }
     }
 
+    private String category;
+    private String difficulty;
 
+    public void initData(String category, String difficulty) {
+        this.category = category;
+        this.difficulty = difficulty;
+    }
 
     }
 

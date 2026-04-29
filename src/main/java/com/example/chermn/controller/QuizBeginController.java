@@ -34,7 +34,16 @@ public class QuizBeginController {
     @FXML
     private Button beginQuizButton;
 
+    // save the category and difficulty to pass later
+    private String selectedCategory;
+    private String selectedDifficulty;
 
+    public void initCategory(String category){
+        this.selectedCategory = category;
+    }
+    public void initDifficulty(String difficulty){
+        this.selectedDifficulty = difficulty;
+    }
 
     @FXML
     protected void returnToHomepageButtonClick() throws  IOException{
@@ -49,13 +58,20 @@ public class QuizBeginController {
     protected void beginQuizButtonClick(ActionEvent event) throws IOException, JSONException {
         FXMLLoader loader = new FXMLLoader(QuizBegin.class.getResource("quiz-questions.fxml"));
         Parent root = loader.load();
+
         QuizQuestionsController scene2Controller = loader.getController();
+
+        // Pass category + difficulty from THIS screen
+        scene2Controller.initData(selectedCategory, selectedDifficulty);
+
+        // Now load the scene
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, QuizBegin.WIDTH, QuizBegin.HEIGHT);
         stage.setScene(scene);
         stage.show();
-        scene2Controller.getQuestions();
 
+        // Now that category/difficulty are set, fetch questions
+        scene2Controller.getQuestions();
     }
 
 

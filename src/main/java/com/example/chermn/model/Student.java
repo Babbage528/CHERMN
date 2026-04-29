@@ -41,8 +41,8 @@ public class Student extends Users {
     @Override
     public String toString() {
         return super.toString() +
-                ", vechile category level: " + vehicleLevel +
-                ", animal categpry level: " + animalLevel +
+                ", vehicle category level: " + vehicleLevel +
+                ", animal category level: " + animalLevel +
                 ", nature category level: " + natureLevel +
                 "}";
     }
