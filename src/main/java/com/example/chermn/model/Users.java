@@ -1,5 +1,7 @@
 package com.example.chermn.model;
 
+import java.util.Objects;
+
 public class Users {
     // user id is auto-incremented
     private int id;
@@ -13,21 +15,23 @@ public class Users {
     // Public constructor for User
     public Users(int id, String userName, String firstName, String lastName, String password, String schoolName) {
         this.id = id;
-        this.userName = userName;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
-        this.schoolName = schoolName;
+        // calls the setters to ensure validation is upheld when constructing user
+        setUsername(userName);
+        setFirstName(firstName);
+        setLastName(lastName);
+        setPassword(password);
+        setSchoolName(schoolName);
     }
 
     // Public constructor without id since it is auto-incremented
     public Users(String userName, String firstName, String lastName, String password, String schoolName)
     {
-        this.userName = userName;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
-        this.schoolName = schoolName;
+        // calls the setters to ensure validation is upheld
+        setUsername(userName);
+        setFirstName(firstName);
+        setLastName(lastName);
+        setPassword(password);
+        setSchoolName(schoolName);
     }
 
 
@@ -36,10 +40,12 @@ public class Users {
     }
 
     public String getUserName() {
+
         return userName;
     }
 
     public String getFirstName() {
+
         return firstName;
     }
 
@@ -48,46 +54,27 @@ public class Users {
     }
 
     public String getPassword() {
+
         return password;
     }
-    public String getSchoolName() {
+
+    public String getSchoolName()
+    {
         return schoolName;
     }
 
     public void setFirstName(String firstName) {
-        if (firstName == null){
-
-            throw new IllegalArgumentException("First name must be entered.");
-        }
-        else if (firstName.contains(" ")){
-            throw new IllegalArgumentException("Please only enter your first name.");
-        }
-        else if (firstName.contains("0") || firstName.contains("1") || firstName.contains("2") || firstName.contains("3") || firstName.contains("4") || firstName.contains("5") || firstName.contains("6") || firstName.contains("7") || firstName.contains("8") || firstName.contains("9")) {
-            throw new IllegalArgumentException("Please ensure first name does not contain digits.");
-        }
-        else if (firstName.contains("!") || firstName.contains("@") || firstName.contains("#") || firstName.contains("$") || firstName.contains("%") || firstName.contains("^") || firstName.contains("&") || firstName.contains("*") || firstName.contains("(") || firstName.contains(")") || firstName.contains("-") || firstName.contains("_") || firstName.contains("+") || firstName.contains("=") || firstName.contains("`") || firstName.contains("~") || firstName.contains(",") || firstName.contains("<") || firstName.contains(".") || firstName.contains(">") || firstName.contains("/") || firstName.contains("?") || firstName.contains(":") || firstName.contains(";") || firstName.contains("'") || firstName.contains("[") || firstName.contains("]") || firstName.contains("{") || firstName.contains("}")) {
-            throw new IllegalArgumentException("Please ensure first name does not special characters.");
-        }
-
-        this.firstName = firstName;
+        // validate the first name, ensuring only letters are entered
+        validateName(firstName, "First name");
+        // formats the first name to ensure consistency
+        this.firstName = formatName(firstName);
     }
 
     public void setLastName(String lastName) {
-        if (lastName == null){
-
-            throw new IllegalArgumentException("Last name must be entered.");
-        }
-        else if (lastName.contains(" ")){
-            throw new IllegalArgumentException("Please only enter your last name.");
-        }
-        else if (lastName.contains("0") || lastName.contains("1") || lastName.contains("2") || lastName.contains("3") || lastName.contains("4") || lastName.contains("5") || lastName.contains("6") || lastName.contains("7") || lastName.contains("8") || lastName.contains("9")) {
-            throw new IllegalArgumentException("Please ensure last name does not contain digits.");
-        }
-        else if (lastName.contains("!") || lastName.contains("@") || lastName.contains("#") || lastName.contains("$") || lastName.contains("%") || lastName.contains("^") || lastName.contains("&") || lastName.contains("*") || lastName.contains("(") || lastName.contains(")") || lastName.contains("-") || lastName.contains("_") || lastName.contains("+") || lastName.contains("=") || lastName.contains("`") || lastName.contains("~") || lastName.contains(",") || lastName.contains("<") || lastName.contains(".") || lastName.contains(">") || lastName.contains("/") || lastName.contains("?") || lastName.contains(":") || lastName.contains(";") || lastName.contains("'") || lastName.contains("[") || lastName.contains("]") || lastName.contains("{") || lastName.contains("}")) {
-            throw new IllegalArgumentException("Please ensure last name does not special characters.");
-        }
-
-        this.lastName = lastName;
+        // validate the last name, ensuring only letters are entered
+        validateName(lastName, "Last name");
+        // formats the last name to ensure consistency
+        this.lastName = formatName(lastName);
     }
 
     public void setPassword(String password)
@@ -105,17 +92,9 @@ public class Users {
 
     public void setSchoolName(String schoolName)
     {
-        if (schoolName == null){
-
-            throw new IllegalArgumentException("School name must be entered.");
-        }
-        else if (schoolName.contains("0") || schoolName.contains("1") || schoolName.contains("2") || schoolName.contains("3") || schoolName.contains("4") || schoolName.contains("5") || schoolName.contains("6") || schoolName.contains("7") || schoolName.contains("8") || schoolName.contains("9")) {
-            throw new IllegalArgumentException("Please ensure school name does not contain digits.");
-        }
+        validateName(schoolName, "School name");
 
         this.schoolName = schoolName;
-
-
     }
 
     @Override
@@ -132,4 +111,49 @@ public class Users {
     public void setId(int autoIncrementedId) {
         this.id = autoIncrementedId;
     }
+
+
+    public void setUsername(String username) {
+        if ((Objects.equals(username, "")) || (username == null))
+        {
+            throw new IllegalArgumentException("Username must not be left blank");
+        }
+        else
+        {
+            this.userName = username;
+        }
+
+    }
+
+    // a private method to format the name into standard format
+    private String formatName(String name) {
+        name = name.trim().toLowerCase();
+
+        return Character.toUpperCase(name.charAt(0)) + name.substring(1);
+    }
+
+
+    // validate name method that uses regex
+    private void validateName(String name, String fieldName) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException(fieldName + " must not be empty.");
+        }
+
+        if (Objects.equals(fieldName, "School name"))
+        {
+            // ensures that only letters or spaces are entered into the name fields
+            if (!name.matches("^[a-zA-Z ]+$")) {
+                throw new IllegalArgumentException(fieldName + " must contain only letters or spaces.");
+            }
+        }
+        else
+        {
+            // ensures that only letters are entered into the name fields
+            if (!name.matches("^[a-zA-Z]+$")) {
+                throw new IllegalArgumentException(fieldName + " must contain only letters.");
+            }
+        }
+
+    }
+
 }
