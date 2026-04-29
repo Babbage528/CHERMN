@@ -11,7 +11,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import javafx.scene.control.Button;
 import javafx.scene.Node;
 
 import javax.swing.*;
@@ -67,14 +66,11 @@ public abstract class BaseProfileController {
     protected UserDAO userDAO = new UserDAO();
 
     // defining variable for current logged-in user
-    // protected Student currentUser;
     protected Users user;
 
-    // initalizing variabels
+    // initialising variables
     public void initialize() {
         user = Session.getCurrentUser();
-        // setCurrentUser(user);
     }
-
 
 }

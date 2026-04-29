@@ -33,35 +33,6 @@ public class ProfileController extends BaseProfileController{
     @FXML
     private Button signOutButton;
 
-//    // instantiate userDAO to access
-//    protected UserDAO userDAO = new UserDAO();
-//
-//    // defining variable for current logged-in user
-//    // protected Student currentUser;
-//    protected Users user;
-//
-//    // initalizing variabels
-//    public void initialize() {
-//        user = Session.getCurrentUser();
-//        // setCurrentUser(user);
-//    }
-
-
-    // defining the associated actions associated with the above button variables
-    //public void setCurrentUser(Users user) {
-    //        // check whether the user is a student
-      //      if (user instanceof Student student) {
-        //        this.currentUser = student;
-          //  }
-            //else {
-              //  throw new IllegalArgumentException("Student profile requires a Student user");
-            //}
-
-        //}
-
-    // assign the user to currentUser as a student
-
-
     @Override
     protected StackPane getContainer() {
         return contentPane;
@@ -92,16 +63,6 @@ public class ProfileController extends BaseProfileController{
         Scene scene = new Scene(loader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
         stage.setScene(scene);
     }
-
-//    @FXML
-//    protected void signOutButtonClick() throws IOException {
-//        Stage stage = (Stage) signOutButton.getScene().getWindow();
-//        FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("onboarding-screen.fxml"));
-//        Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
-//        stage.setScene(scene);
-//    }
-
-
 
     @Override
     protected void signOutButtonClick(ActionEvent event) throws IOException {

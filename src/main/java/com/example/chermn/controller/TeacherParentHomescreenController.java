@@ -19,42 +19,19 @@ public class TeacherParentHomescreenController extends BaseProfileController {
     private StackPane contentArea;
 
 
-    // creating a method to load the view of the profile depending on the button pressed
-    //private void loadView(String fxml) {
-    //    try {
-     //       FXMLLoader loader = new FXMLLoader(OnBoarding.class.getResource(fxml));
-      //      Parent view = loader.load();
-
-       //     contentArea.getChildren().setAll(view);
-        //} catch (IOException e) {
-        //    e.printStackTrace();
-        //}
-
-
-//    public void initialize() {
-//        // defining variable for current logged-in user
-//        Users user = Session.getCurrentUser();
-//    }
-
     @Override
     @FXML
     protected void signOutButtonClick(ActionEvent event) throws IOException {
         super.signOutButtonClick(event);
     }
 
-    //@FXML
-    //protected void signOutButtonClick() throws IOException {
-    //    Stage stage = (Stage) signOutButton.getScene().getWindow();
-    //    FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("onboarding-screen.fxml"));
-    //    Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
-    //    stage.setScene(scene);
-    //}
-
     @FXML
     private void showDashboard(ActionEvent actionEvent) {
         // want to change opacity of background picture back to normal
         fullBackground.setOpacity(1);
 
+        // remove any loaded sub-view to get the basic dashboard back again
+        contentArea.getChildren().clear();
     }
 
 

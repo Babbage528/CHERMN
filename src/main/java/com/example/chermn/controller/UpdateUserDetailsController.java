@@ -29,9 +29,7 @@ public class UpdateUserDetailsController extends ProfileController {
         @FXML
         private Button updateButton;
 
-    // defining variable for current logged-in user
 
-    // private Users currentUser;
 
     @Override
     public void initialize() {
