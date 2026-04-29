@@ -15,10 +15,9 @@ import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
 import java.io.IOException;
-import java.util.AbstractQueue;
 
 
-public class profileController extends BaseProfileController{
+public class ProfileController extends BaseProfileController{
 
     @FXML
     private StackPane contentPane;
@@ -34,18 +33,18 @@ public class profileController extends BaseProfileController{
     @FXML
     private Button signOutButton;
 
-    // instantiate userDAO to access
-    protected UserDAO userDAO = new UserDAO();
-
-    // defining variable for current logged-in user
-    // protected Student currentUser;
-    protected Users user;
-
-    // initalizing variabels
-    public void initialize() {
-        user = Session.getCurrentUser();
-        // setCurrentUser(user);
-    }
+//    // instantiate userDAO to access
+//    protected UserDAO userDAO = new UserDAO();
+//
+//    // defining variable for current logged-in user
+//    // protected Student currentUser;
+//    protected Users user;
+//
+//    // initalizing variabels
+//    public void initialize() {
+//        user = Session.getCurrentUser();
+//        // setCurrentUser(user);
+//    }
 
 
     // defining the associated actions associated with the above button variables

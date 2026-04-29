@@ -1,6 +1,10 @@
 package com.example.chermn.controller;
 
 import com.example.chermn.OnBoarding;
+import com.example.chermn.Session;
+import com.example.chermn.dao.UserDAO;
+import com.example.chermn.model.Student;
+import com.example.chermn.model.Users;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,10 +33,23 @@ public abstract class BaseProfileController {
         }
     }
 
+    private String setProfileType(Users user) {
+        String fxml;
+        if (userDAO.getUserByUsername(user.getUserName()) instanceof Student student)
+        {
+            fxml = "change-password.fxml";
+        }
+        else
+        {
+            fxml = "teacher-changePassword.fxml";
+        }
+
+        return fxml;
+    }
 
     @FXML
     protected void changePasswordButtonClick(ActionEvent event) {
-        loadView("change-password.fxml");
+        loadView(setProfileType(user));
     }
 
     @FXML
@@ -44,6 +61,20 @@ public abstract class BaseProfileController {
         stage.setScene(scene);
     }
 
+
+
+    // instantiate userDAO to access
+    protected UserDAO userDAO = new UserDAO();
+
+    // defining variable for current logged-in user
+    // protected Student currentUser;
+    protected Users user;
+
+    // initalizing variabels
+    public void initialize() {
+        user = Session.getCurrentUser();
+        // setCurrentUser(user);
+    }
 
 
 }

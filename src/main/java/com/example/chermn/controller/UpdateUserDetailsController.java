@@ -1,7 +1,5 @@
 package com.example.chermn.controller;
 
-import com.example.chermn.model.Student;
-import com.example.chermn.model.Users;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import java.io.IOException;
 
-public class UpdateUserDetailsController extends profileController{
+public class UpdateUserDetailsController extends ProfileController {
 
 
 // the profile will display the students information and allows them to update
@@ -39,13 +37,15 @@ public class UpdateUserDetailsController extends profileController{
     public void initialize() {
         super.initialize();
 
-        // pulls the current user's stats/levels for the images
+        // pulls the current user's stats/levels for the fields
         fillUserDetails();
     }
 
 
 
-    // Set the text fields with the current users information when the UI loads
+
+
+//    // Set the text fields with the current users information when the UI loads
         private void fillUserDetails() {
 
             firstNameField.setText(user.getFirstName());

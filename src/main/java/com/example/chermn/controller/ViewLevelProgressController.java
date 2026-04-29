@@ -1,11 +1,10 @@
 package com.example.chermn.controller;
 
 import com.example.chermn.model.Student;
-import com.example.chermn.model.Users;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class ViewLevelProgressController extends profileController {
+public class ViewLevelProgressController extends ProfileController {
     @FXML
     private Label animalLevel;
     @FXML

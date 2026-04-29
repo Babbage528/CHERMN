@@ -5,7 +5,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 
-public class ChangePasswordController extends ProfileController {
+public class ChangeTeacherPasswordController extends TeacherParentHomescreenController{
+
 
     @FXML
     private PasswordField reconfirmPasswordField;
@@ -60,5 +61,8 @@ public class ChangePasswordController extends ProfileController {
         alert.setContentText(content);
         alert.showAndWait();
     }
+
+
+
 
 }

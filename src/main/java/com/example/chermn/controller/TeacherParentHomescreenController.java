@@ -1,24 +1,16 @@
 package com.example.chermn.controller;
 
-import com.example.chermn.OnBoarding;
 import com.example.chermn.Session;
-import com.example.chermn.dao.UserDAO;
-import com.example.chermn.model.Student;
 import com.example.chermn.model.Users;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class teacherParentHomescreenController extends BaseProfileController {
+public class TeacherParentHomescreenController extends BaseProfileController {
     @FXML
     private Button signOutButton;
     @FXML
@@ -39,10 +31,10 @@ public class teacherParentHomescreenController extends BaseProfileController {
         //}
 
 
-    public void initialize() {
-        // defining variable for current logged-in user
-        Users user = Session.getCurrentUser();
-    }
+//    public void initialize() {
+//        // defining variable for current logged-in user
+//        Users user = Session.getCurrentUser();
+//    }
 
     @Override
     @FXML
@@ -88,7 +80,7 @@ public class teacherParentHomescreenController extends BaseProfileController {
         fullBackground.setOpacity(0.4);
 
         // change to the user details screen
-        loadView( "update-user-details.fxml");
+        loadView( "teacher-viewDetails.fxml");
     }
 
 
@@ -98,6 +90,5 @@ public class teacherParentHomescreenController extends BaseProfileController {
         super.changePasswordButtonClick(event);
     }
 
-
-    }
+}
 
