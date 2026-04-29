@@ -20,13 +20,13 @@ public class QuizBeginApiService {
      */
     public static String getApiRequest() {
 
-        if (HomepageController.categorySelection == 1) {
+        if (HomepageController.getCategorySelection() == 1) {
             return "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=easy&category=27&encode=base64";
         }
-        else if (HomepageController.categorySelection == 2) {
+        else if (HomepageController.getCategorySelection() == 2) {
             return "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=easy&category=28&encode=base64";
         }
-        else if (HomepageController.categorySelection == 3) {
+        else if (HomepageController.getCategorySelection() == 3) {
             return "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=easy&category=17&encode=base64";
         }
         return "";

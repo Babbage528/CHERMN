@@ -30,6 +30,9 @@ public class QuizBeginController {
     @FXML
     private Button beginQuizButton;
 
+    /** Protected void 'returnToHomepageButtonClick' defines the actions that occur when the return to homepage ui element
+     * is selected. The function returns the user to the homepage screen.
+     */
     @FXML
     protected void returnToHomepageButtonClick() throws  IOException{
         Stage stage = (Stage) returnToHomepageButton.getScene().getWindow();
@@ -38,7 +41,9 @@ public class QuizBeginController {
         stage.setScene(scene);
     }
 
-
+    /** Protected void 'beginQuizButtonClick' defines the actions that occur when the begin quiz button
+     * is selected. The function continues the user onto the quiz questions scene screen.
+     */
     @FXML
     protected void beginQuizButtonClick(ActionEvent event) throws IOException, JSONException {
         FXMLLoader loader = new FXMLLoader(QuizBegin.class.getResource("quiz-questions.fxml"));
@@ -51,6 +56,8 @@ public class QuizBeginController {
         scene2Controller.getQuestions();
     }
 
+    /** Public void 'setCategoryText' Acts as a setter for the fxml category text label. Used by home page controller.
+     */
     @FXML
     public void setCategoryText(String text) {
         categoryLabel.setText(text);

@@ -28,6 +28,9 @@ public class QuizResultsController {
     public QuizResultsController() throws JSONException {
     }
 
+    /** Protected void 'returnToHomepageButtonClick' defines the actions that occur when the return to homepage ui element
+     * is selected. The function returns the user to the homepage screen.
+     */
     @FXML
     protected void returnToHomepageButtonClick() throws  IOException{
         Stage stage = (Stage) returnToHomepageButton.getScene().getWindow();

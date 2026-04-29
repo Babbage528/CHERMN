@@ -36,7 +36,12 @@ public class HomepageController {
     // defining variable for current logged-in user
     private Student currentUser;
     private Users user = Session.getCurrentUser();
-    public static int categorySelection;
+    private static int categorySelection;
+
+    // getter for private variable
+    public static int getCategorySelection() {
+        return categorySelection;
+    }
 
     // assign the current user to the one logged in through settings
     public void setCurrentUser() {
