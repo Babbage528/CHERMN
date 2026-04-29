@@ -1,30 +1,23 @@
 package com.example.chermn.controller;
 
 
-import com.example.chermn.controller.QuizBeginApiService;
 import com.example.chermn.QuizBegin;
-import com.example.chermn.model.TriviaQuestion;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import org.json.JSONException;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+
 import java.io.IOException;
 
-import javax.imageio.IIOParam;
-import java.io.IOException;
-import java.util.List;
+import java.net.URL;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
 public class QuizBeginController {
 
@@ -32,9 +25,10 @@ public class QuizBeginController {
     private Button returnToHomepageButton;
 
     @FXML
+    private Label categoryLabel;
+
+    @FXML
     private Button beginQuizButton;
-
-
 
     @FXML
     protected void returnToHomepageButtonClick() throws  IOException{
@@ -55,12 +49,11 @@ public class QuizBeginController {
         stage.setScene(scene);
         stage.show();
         scene2Controller.getQuestions();
-
     }
 
-
-
-
-
+    @FXML
+    public void setCategoryText(String text) {
+        categoryLabel.setText(text);
+    }
 }
 

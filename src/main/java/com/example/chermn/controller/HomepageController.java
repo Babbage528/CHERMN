@@ -8,6 +8,7 @@ import com.example.chermn.model.Users;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -35,6 +36,7 @@ public class HomepageController {
     // defining variable for current logged-in user
     private Student currentUser;
     private Users user = Session.getCurrentUser();
+    public static int categorySelection;
 
     // assign the current user to the one logged in through settings
     public void setCurrentUser() {
@@ -100,18 +102,26 @@ public class HomepageController {
 
     @FXML
     protected void animalButtonClick() throws IOException{
+        categorySelection = 1;
         Stage stage = (Stage) animalButton.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("quiz-begin.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
+        Parent root = fxmlLoader.load();
+        QuizBeginController quizController = fxmlLoader.getController();
+        quizController.setCategoryText("Category: Animals");
+        Scene scene = new Scene(root, OnBoarding.WIDTH, OnBoarding.HEIGHT);
         stage.setScene(scene);
     }
 
 
     @FXML
     protected void vehicleButtonClick() throws IOException {
+        categorySelection = 2;
         Stage stage = (Stage) vehicleButton.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("quiz-begin.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
+        Parent root = fxmlLoader.load();
+        QuizBeginController quizController = fxmlLoader.getController();
+        quizController.setCategoryText("Category: Vehicles");
+        Scene scene = new Scene(root, OnBoarding.WIDTH, OnBoarding.HEIGHT);
         stage.setScene(scene);
     }
 
@@ -146,9 +156,13 @@ public class HomepageController {
 
     @FXML
     protected void cornButtonClick() throws IOException {
+        categorySelection = 3;
         Stage stage = (Stage) cornButton.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("quiz-begin.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
+        Parent root = fxmlLoader.load();
+        QuizBeginController quizController = fxmlLoader.getController();
+        quizController.setCategoryText("Category: Science and Nature");
+        Scene scene = new Scene(root, OnBoarding.WIDTH, OnBoarding.HEIGHT);
         stage.setScene(scene);
     }
 
