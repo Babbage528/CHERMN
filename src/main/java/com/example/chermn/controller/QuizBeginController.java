@@ -59,19 +59,15 @@ public class QuizBeginController {
         FXMLLoader loader = new FXMLLoader(QuizBegin.class.getResource("quiz-questions.fxml"));
         Parent root = loader.load();
 
-        QuizQuestionsController scene2Controller = loader.getController();
-
+        QuizQuestionsController controller = loader.getController();
         // Pass category + difficulty from THIS screen
-        scene2Controller.initData(selectedCategory, selectedDifficulty);
+        controller.initData(selectedCategory, selectedDifficulty);
 
         // Now load the scene
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, QuizBegin.WIDTH, QuizBegin.HEIGHT);
         stage.setScene(scene);
         stage.show();
-
-        // Now that category/difficulty are set, fetch questions
-        scene2Controller.getQuestions();
     }
 
 

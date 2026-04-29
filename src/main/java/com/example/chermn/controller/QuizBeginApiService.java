@@ -19,7 +19,7 @@ public class QuizBeginApiService {
     // dont hard code the request, cant change difficulty or category
     // public static final String API_REQUEST = "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=easy&category=27&encode=base64";
 
-    // map categorys to IDs
+    // map categories to IDs - these numbers might be wrong!
     private static int mapCategory(String category) {
         return switch (category.toLowerCase()){
             case "animals" -> 27;
@@ -70,8 +70,7 @@ public class QuizBeginApiService {
                     incorrectAnswers.add(decode(jsonIncorrectAnswers.getString(j)));
                 }
 
-                TriviaQuestion newQuestion = new TriviaQuestion(categoryDecoded, questionDecoded, correctAnswerDecoded, incorrectAnswers);
-                questionList.add(newQuestion);
+                questionList.add(new TriviaQuestion(categoryDecoded, questionDecoded, correctAnswerDecoded, incorrectAnswers));
             }
 
 

@@ -35,23 +35,35 @@ import java.util.Arrays;
 public class QuizQuestionsController {
 
     public static int score = 0;
+    private String category;
+    private String difficulty;
 
-    @FXML
-    private Pane container;
+    private QuizSessionController session;
+    private int answerIndex = 1;
+    private String correctAnswer;
 
     @FXML
     private Button option1, option2, option3, option4,  questionbutton, Next;
 
     @FXML
-    private Label explanation;
-
-    String correctAnswer = null;
+    private Label explanation, newLabel;
 
     public static final String TITLE = "Farmer Fred's Trivia";
     public static final int WIDTH = 1280;
     public static final int HEIGHT = 720;
 
-    int answerIndex = 1;
+    public void initData(String category, String difficulty){
+        this.category = category;
+        this.difficulty = difficulty;
+
+        QuizBeginApiService api = new QuizBeginApiService();
+        List<TriviaQuestion> questions = api.fetchQuestions(category, difficulty);
+
+        session = new QuizSessionController(questions);
+
+        // load first questions now that session exists
+        getQuestions();
+    }
 
     /** public 'getQuestions' retries the api response from QuizBegin, including the question, correct answers and incorrect answer.
      * It adds the correct answers and incorrect answers into a list and randomizes the list so that the answers are not always in the same place.
@@ -60,40 +72,22 @@ public class QuizQuestionsController {
      */
     @FXML
     public void getQuestions() {
+        TriviaQuestion q = session.getCurrentQuestion();
+
         List<String> answers = new ArrayList<>();
+        correctAnswer = q.getCorrectAnswer();
+        answers.add(correctAnswer);
+        answers.addAll(q.getIncorrectAnswers());
 
-            QuizBeginApiService apiService = new QuizBeginApiService();
-            List<TriviaQuestion> realQuestions = apiService.fetchQuestions();
-            QuizSessionController session = new QuizSessionController(realQuestions);
+        /// randomize answers so correct answer isn't always same position
+        Collections.shuffle(answers);
 
-            TriviaQuestion currentQuestion = session.getCurrentQuestion();
-
-            ///
-            ///    while (currentQuestion1 != null) {
-            ///        System.out.println("Category: " + currentQuestion1.getCategory());
-            ///        System.out.println("Question: " + currentQuestion1.getQuestion());
-            ///        System.out.print("Your answer: ");
-            ///    }
-            /// JSONObject jsonQuestion = resultsArray.getJSONObject(currentQuestion);
-
-            correctAnswer = currentQuestion.getCorrectAnswer();
-            List<String> incorrectAnswers = currentQuestion.getIncorrectAnswers();
-            answers.add(correctAnswer);
-
-            for (int j = 0; j < incorrectAnswers.size(); j++) {
-                String answer = incorrectAnswers.get(j);
-                answers.add(answer);
-            }
-
-            /// randomize answers so correct answer isn't always same position
-            Collections.shuffle(answers);
-
-            /// Display Question and answers
-            questionbutton.setText("Q" + answerIndex + ". " + currentQuestion.getQuestion());
-            option1.setText("a) " + answers.get(0));
-            option2.setText("b) " + answers.get(1));
-            option3.setText("c) " + answers.get(2));
-            option4.setText("d) " + answers.get(3));
+        /// Display Question and answers
+        questionbutton.setText("Q" + answerIndex + ". " + q.getQuestion());
+        option1.setText("a) " + answers.get(0));
+        option2.setText("b) " + answers.get(1));
+        option3.setText("c) " + answers.get(2));
+        option4.setText("d) " + answers.get(3));
 
         }
 
@@ -103,27 +97,13 @@ public class QuizQuestionsController {
      * There is then a conditional statement to check if the user submitted the correct answer which updates the score, gives an appropriate message and sets the label colour to green.
      * If the user submits an incorrect answer, the score is not updated, an appropriate message is displayed and the label is coloured red.
      */
-    public void AnswerSubmitted(javafx.event.ActionEvent actionEvent) {
-        Button userAnswer = (Button) actionEvent.getSource();
+    @FXML
+    public void AnswerSubmitted(javafx.event.ActionEvent event) {
+        Button userAnswer = (Button) event.getSource();
         Next.setDisable(false);
-        if (option1.getText().substring(3).equals(correctAnswer)) {
-            option2.setDisable(true);
-            option3.setDisable(true);
-            option4.setDisable(true);
-        } else if (option2.getText().substring(3).equals(correctAnswer)) {
-            option1.setDisable(true);
-            option3.setDisable(true);
-            option4.setDisable(true);
-        } else if (option3.getText().substring(3).equals(correctAnswer)) {
-            option1.setDisable(true);
-            option2.setDisable(true);
-            option4.setDisable(true);
-        } else {
-            option1.setDisable(true);
-            option2.setDisable(true);
-            option3.setDisable(true);
 
-        }
+        disableIncorrectButtons();
+
         if (userAnswer.getText().substring(3).equals(correctAnswer)) {
             score += 1;
             explanation.setText("Correct! " + correctAnswer + " is the correct answer, good job!");
@@ -131,6 +111,14 @@ public class QuizQuestionsController {
         } else {
             explanation.setText("Incorrect! " + correctAnswer + " is the correct answer, next time!");
             explanation.setStyle("-fx-background-color: #FFC2C2; -fx-font-size: 20px;");
+        }
+    }
+
+    private void disableIncorrectButtons() {
+        for (Button b : List.of(option1, option2, option3, option4)) {
+            if (!b.getText().substring(3).equals(correctAnswer)) {
+                b.setDisable(true);
+            }
         }
     }
 
@@ -151,37 +139,16 @@ public class QuizQuestionsController {
 
         explanation.setText(" ");
         explanation.setStyle("-fx-background-color: transparent;");
-
         Next.setDisable(true);
 
         if(answerIndex < 10){
+            session.nextQuestion();
             answerIndex++;
             getQuestions();
-        }
-        else{
-            /// explanation.setText("score: " + score);
+        } else{
             Stage stage = (Stage) Next.getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("quiz-results.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
-            stage.setScene(scene);
+            stage.setScene(new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT));
         }
     }
-
-    private String category;
-    private String difficulty;
-
-    public void initData(String category, String difficulty) {
-        this.category = category;
-        this.difficulty = difficulty;
-    }
-
-    }
-
-
-
-
-
-
-
-
-
+}

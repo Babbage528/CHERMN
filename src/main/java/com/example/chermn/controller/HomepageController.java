@@ -8,6 +8,7 @@ import com.example.chermn.model.Users;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -127,14 +128,14 @@ public class HomepageController {
 
     private void loadQuizBegin(String category) throws IOException {
         FXMLLoader loader = new FXMLLoader(OnBoarding.class.getResource("quiz-begin.fxml"));
-        Scene scene = new Scene(loader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
-
+        Parent root = loader.load();
         // Get the controller for quiz-begin.fxml
         QuizBeginController controller = loader.getController();
         controller.initCategory(category);
+        controller.initDifficulty("easy");
 
         Stage stage = (Stage) animalButton.getScene().getWindow();
-        stage.setScene(scene);
+        stage.setScene(new Scene(root, OnBoarding.WIDTH, OnBoarding.HEIGHT));
     }
 
 
