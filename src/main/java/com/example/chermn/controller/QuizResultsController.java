@@ -17,6 +17,9 @@ import java.util.ResourceBundle;
 public class QuizResultsController {
 
     @FXML
+    private Label congratsLabel;
+
+    @FXML
     private Label resultsLabel;
 
     @FXML
@@ -46,9 +49,11 @@ public class QuizResultsController {
     public void initialize() {
         if (percentageScore >= 80) {
             resultsLabel.setText("You passed with " + percentageScore + "%");
+            congratsLabel.setText("Congratulations!");
         }
         else {
             resultsLabel.setText("You failed with " + percentageScore + "%");
+            congratsLabel.setText("Better luck next time!");
         }
 
     }
