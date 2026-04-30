@@ -71,7 +71,10 @@ public class QuizResultsController {
             resultsLabel.setText("You passed with " + percentageScore + "%");
             congratsLabel.setText("Congratulations!");
             setCurrentUser();
-            if (HomepageController.getCategorySelection() == 1) {
+            if (student.getAnimalLevel() == 3)  {
+                Student.setAnimalLevel(3);
+            }
+            else if (HomepageController.getCategorySelection() == 1) {
                 Student.setAnimalLevel(student.getAnimalLevel() + 1);
             }
             else if (HomepageController.getCategorySelection() == 2) {
