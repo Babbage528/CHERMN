@@ -50,6 +50,7 @@ public class Users {
     }
 
     public String getLastName() {
+
         return lastName;
     }
 
@@ -60,6 +61,7 @@ public class Users {
 
     public String getSchoolName()
     {
+
         return schoolName;
     }
 
@@ -94,7 +96,7 @@ public class Users {
     {
         validateName(schoolName, "School name");
 
-        this.schoolName = schoolName;
+        this.schoolName = formatSchoolName(schoolName);
     }
 
     @Override
@@ -109,6 +111,7 @@ public class Users {
 
 
     public void setId(int autoIncrementedId) {
+
         this.id = autoIncrementedId;
     }
 
@@ -138,7 +141,7 @@ public class Users {
         if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException(fieldName + " must not be empty.");
         }
-
+        // checks whether the school name was entered
         if (Objects.equals(fieldName, "School name"))
         {
             // ensures that only letters or spaces are entered into the name fields
@@ -146,13 +149,36 @@ public class Users {
                 throw new IllegalArgumentException(fieldName + " must contain only letters or spaces.");
             }
         }
-        else
+        else // first or last name
         {
             // ensures that only letters are entered into the name fields
             if (!name.matches("^[a-zA-Z]+$")) {
                 throw new IllegalArgumentException(fieldName + " must contain only letters.");
             }
         }
+
+    }
+
+    // since school name can have spaces, and hence multiple words
+    // have separte format method
+    private String formatSchoolName(String schoolName) {
+
+        // first split the schoolName into the different words stored in the array
+        String[] splitStringArray = schoolName.split(" ");
+
+        // the formatted string
+        String formattedString = "";
+
+        // iterate through the splitString array and format individual words
+        // since school name, each word should be capitalised
+        for(String splitString : splitStringArray)
+        {
+            // adds the formatted section to the string with a blank space after
+            formattedString = formattedString + formatName(splitString) + " ";
+        }
+
+        // trims the final string before returning
+        return formattedString.trim();
 
     }
 

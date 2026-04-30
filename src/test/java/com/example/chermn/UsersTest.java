@@ -195,13 +195,14 @@ public class UsersTest {
     }
 
     @Test
-    public void testGetSchoolName_initalValue() {
-        assertEquals("QUT", users.getSchoolName());
+    public void testGetSchoolName_initialValue() {
+        assertEquals("Qut", users.getSchoolName());
     }
+
     @Test
     public void testSetSchoolName_valid() {
         users.setSchoolName("primary school");
-        assertEquals("primary school", users.getSchoolName());
+        assertEquals("Primary School", users.getSchoolName());
     }
 
 
