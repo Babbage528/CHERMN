@@ -37,7 +37,7 @@ public class LoginController {
 
     @FXML
     private void handleSignIn(ActionEvent event) throws IOException {
-        String inputUser = usernameField.getText();
+        String inputUser = usernameField.getText().trim().toLowerCase();
         String inputPass = passwordField.getText();
 
         if (inputUser.isEmpty() || inputPass.isEmpty()) {

@@ -72,6 +72,7 @@ public class RoleSelectionController {
     }
     @FXML
     private void handleBack(ActionEvent event) {
+        System.out.println("BACK CLICKED");
         try {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("onboarding-screen.fxml"));

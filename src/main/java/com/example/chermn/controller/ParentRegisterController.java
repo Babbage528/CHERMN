@@ -35,6 +35,14 @@ public class ParentRegisterController {
         String studentName = studentNameField.getText().trim();
         String school = schoolNameField.getText().trim();
 
+
+        if (!studentName.contains(" ")) {
+            showAlert(Alert.AlertType.ERROR,
+                    "Invalid Student Name",
+                    "Please enter full name (First Last)");
+            return;
+        }
+
         if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() ||
                 password.isEmpty() || studentName.isEmpty() || school.isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Form Error!", "Please fill in all the fields");
@@ -55,12 +63,13 @@ public class ParentRegisterController {
             return;
         }
         try {
-            int foundStudentId = userDAO.findStudentIdByName(studentName, school);
+            Integer foundStudentId = userDAO.findStudentIdByName(studentName, school);
 
-            if (foundStudentId == -1) {
-                showAlert(Alert.AlertType.ERROR, "Registration Error",
-                        "There is no student named '" + studentName + "' in " + school +
-                                ". Please check, is it right or not?");
+            if (foundStudentId == null) {
+                showAlert(Alert.AlertType.ERROR,
+                        "Student Not Found",
+                        "We couldn't find a student named '" + studentName +
+                                "' in " + school + ". Please check spelling or school name.");
                 return;
             }
             Parent p = new Parent(0, email, firstName, lastName, password, school, relationship, studentName);
@@ -69,7 +78,7 @@ public class ParentRegisterController {
 
             Session.setCurrentUser(p);
             showAlert(Alert.AlertType.INFORMATION, "Registration Success", "Account " + email + " successfully registered!");
-            switchScene(event, "homepage.fxml");
+            switchScene(event, "teacher-parent-homescreen.fxml");
         } catch (IllegalArgumentException e) {
             showAlert(Alert.AlertType.ERROR, "Invalid Input", e.getMessage());
         } catch (Exception e) {
