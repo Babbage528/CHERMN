@@ -22,8 +22,9 @@ public class UserDAO implements IUserDAO {
     }
 
     //creates new user and stores in db
+    // at the moment, creates a new teacher - could extend so that parents don't have to enter school name - instead enter childs details
     public void createUser(Users user) {
-        String sql = "INSERT INTO USER (username, password_hash, email) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO USER (username, password_hash, email, first_name, last_name, school_name, role) VALUES (?, ?, ?, ?, ?, ?, 'teacher')";
 
         try (Connection conn = DatabaseConnection.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -31,8 +32,10 @@ public class UserDAO implements IUserDAO {
             //atm we're using username as email
             stmt.setString(1, user.getUserName());
             stmt.setString(2, hash(user.getPassword()));
-            stmt.setString(3, user.getUserName()); 
-
+            stmt.setString(3, user.getUserName());  // using user name as email
+            stmt.setString(4, user.getFirstName());
+            stmt.setString(5, user.getLastName());
+            stmt.setString(6, user.getSchoolName());
             stmt.executeUpdate();
 
         } catch (Exception e) {
@@ -47,7 +50,7 @@ public class UserDAO implements IUserDAO {
             PreparedStatement stmtUser = conn.prepareStatement(sqlUser, Statement.RETURN_GENERATED_KEYS);
             stmtUser.setString(1, s.getUserName());
             stmtUser.setString(2, hash(s.getPassword()));
-            stmtUser.setString(3, s.getUserName());
+            stmtUser.setString(3, s.getUserName());// using username as email at the moment
             stmtUser.setString(4, s.getFirstName());
             stmtUser.setString(5, s.getLastName());
             stmtUser.setString(6, s.getSchoolName());
@@ -64,23 +67,6 @@ public class UserDAO implements IUserDAO {
                     stmtProg.executeUpdate();
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void createTeacher(Teacher t) {
-        String sqlUser = "INSERT INTO USER (username, password_hash, email, first_name, last_name, school_name, role) VALUES (?, ?, ?, ?, ?, ?, 'teacher')";
-
-        try (Connection conn = DatabaseConnection.connect()) {
-            PreparedStatement stmtUser = conn.prepareStatement(sqlUser, Statement.RETURN_GENERATED_KEYS);
-            stmtUser.setString(1, t.getUserName());
-            stmtUser.setString(2, hash(t.getPassword()));
-            stmtUser.setString(3, t.getUserName());
-            stmtUser.setString(4, t.getFirstName());
-            stmtUser.setString(5, t.getLastName());
-            stmtUser.setString(6, t.getSchoolName());
-            stmtUser.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -230,10 +216,10 @@ public class UserDAO implements IUserDAO {
                     return new Users(
                             rs.getInt("user_id"),
                             rs.getString("username"),
-                            "", //only storing username and password for now
-                            "", //same as above
+                            rs.getString("first_name"),
+                            rs.getString("last_name"),
                             rs.getString("password_hash"),
-                            "" //same as above
+                            rs.getString("school_name")
                     );
                 }
             }
@@ -251,6 +237,7 @@ public class UserDAO implements IUserDAO {
         if (user != null && BCrypt.checkpw(password, user.getPassword())) {
             return user;
         }
+
         return null;
     }
 
@@ -300,15 +287,19 @@ public class UserDAO implements IUserDAO {
     //updates user info, based on what they wish - updated so that student can update first, last, password and school
     public void updateUser(Users user) {
         String sql = "UPDATE USER SET first_name = ?, last_name = ?, school_name = ?, username = ?, password_hash = ? WHERE user_id = ?";
+
         try (Connection conn = DatabaseConnection.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
+
             stmt.setString(1, user.getFirstName());
             stmt.setString(2, user.getLastName());
             stmt.setString(3, user.getSchoolName());
             stmt.setString(4, user.getUserName());
             stmt.setString(5, hash(user.getPassword()));
             stmt.setInt(6, user.getid());
+
             stmt.executeUpdate();
+
         } catch (Exception e) {
             e.printStackTrace();
         }

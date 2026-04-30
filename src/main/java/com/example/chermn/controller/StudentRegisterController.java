@@ -6,6 +6,7 @@ import com.example.chermn.Session;
 import com.example.chermn.dao.UserDAO;
 import com.example.chermn.model.Student;
 
+import com.example.chermn.model.Users;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -58,6 +59,7 @@ public class StudentRegisterController {
             Student student = new Student(0, email, firstName, lastName, password, school, 1, 1, 1);
             userDAO.createStudent(student);
 
+            // store in session
             Session.setCurrentUser(student);
 
             showAlert(Alert.AlertType.INFORMATION, "Registration success", "Account " + email + " successfully registered!");

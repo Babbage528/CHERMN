@@ -1,30 +1,23 @@
 package com.example.chermn.controller;
 
 
-import com.example.chermn.controller.QuizBeginApiService;
 import com.example.chermn.QuizBegin;
-import com.example.chermn.model.TriviaQuestion;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import org.json.JSONException;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+
 import java.io.IOException;
 
-import javax.imageio.IIOParam;
-import java.io.IOException;
-import java.util.List;
+import java.net.URL;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
 public class QuizBeginController {
 
@@ -32,10 +25,14 @@ public class QuizBeginController {
     private Button returnToHomepageButton;
 
     @FXML
+    private Label categoryLabel;
+
+    @FXML
     private Button beginQuizButton;
 
-
-
+    /** Protected void 'returnToHomepageButtonClick' defines the actions that occur when the return to homepage ui element
+     * is selected. The function returns the user to the homepage screen.
+     */
     @FXML
     protected void returnToHomepageButtonClick() throws  IOException{
         Stage stage = (Stage) returnToHomepageButton.getScene().getWindow();
@@ -44,7 +41,9 @@ public class QuizBeginController {
         stage.setScene(scene);
     }
 
-
+    /** Protected void 'beginQuizButtonClick' defines the actions that occur when the begin quiz button
+     * is selected. The function continues the user onto the quiz questions scene screen.
+     */
     @FXML
     protected void beginQuizButtonClick(ActionEvent event) throws IOException, JSONException {
         FXMLLoader loader = new FXMLLoader(QuizBegin.class.getResource("quiz-questions.fxml"));
@@ -55,12 +54,13 @@ public class QuizBeginController {
         stage.setScene(scene);
         stage.show();
         scene2Controller.getQuestions();
-
     }
 
-
-
-
-
+    /** Public void 'setCategoryText' Acts as a setter for the fxml category text label. Used by home page controller.
+     */
+    @FXML
+    public void setCategoryText(String text) {
+        categoryLabel.setText(text);
+    }
 }
 

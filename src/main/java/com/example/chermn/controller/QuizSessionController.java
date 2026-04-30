@@ -12,6 +12,8 @@ public class QuizSessionController {
         this.currentQuiz = realQuestions;
     }
 
+    /** Public TriviaQuestion 'getCurrentQuestions' handles the return of the current trivia question. Acts as a getter.
+     */
     public TriviaQuestion getCurrentQuestion() {
         if (currentQuestionIndex < currentQuiz.size()) {
             return currentQuiz.get(currentQuestionIndex);

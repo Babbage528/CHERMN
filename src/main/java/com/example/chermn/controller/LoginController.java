@@ -63,8 +63,7 @@ public class LoginController {
                 else
                 {
                     // if user is teacher or parent, passes through the user to homepage controller for non-students
-                    /// /////////////////////////////////////////////// FOR MOMENT JUST SET TO HOMEPAGE AS YET TO CREATE SEPARATE ONE
-                    FXMLLoader loader = new FXMLLoader(OnBoarding.class.getResource("homepage.fxml"));
+                    FXMLLoader loader = new FXMLLoader(OnBoarding.class.getResource("teacher-parent-homescreen.fxml"));
                     stage.setScene(new Scene(loader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT));
 
 

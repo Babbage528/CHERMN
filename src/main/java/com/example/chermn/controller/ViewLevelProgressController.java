@@ -1,9 +1,10 @@
 package com.example.chermn.controller;
 
+import com.example.chermn.model.Student;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class ViewLevelProgressController extends profileController {
+public class ViewLevelProgressController extends ProfileController {
     @FXML
     private Label animalLevel;
     @FXML
@@ -11,13 +12,23 @@ public class ViewLevelProgressController extends profileController {
     @FXML
     private Label natureLevel;
 
+    private Student currentUser;
+
     @Override
     public void initialize() {
         super.initialize();
+        // check whether the user is a student
+        if (user instanceof Student student) {
+            currentUser = student;
+        }
+        else {
+            throw new IllegalArgumentException("Student profile requires a Student user");
+        }
 
         // pulls the current user's stats/levels for the images
         fillUserLevels();
     }
+
 
     // Set the text fields with the current users information when the UI loads
     private void fillUserLevels() {

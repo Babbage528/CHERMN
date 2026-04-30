@@ -8,7 +8,13 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.chermn.controller.farmHouseController"
+            fx:controller="com.example.chermn.controller.StudentDetailsController"
             prefHeight="400.0" prefWidth="600.0">
+
+    <VBox spacing="10" xmlns:fx="http://javafx.com/fxml">
+        <Label text="My Students" style="-fx-font-size: 18;" />
+        <ListView fx:id="studentsList"/>
+    </VBox>
+
 
 </AnchorPane>

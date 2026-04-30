@@ -8,10 +8,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import java.io.IOException;
 
-public class UpdateUserDetailsController extends profileController{
+public class UpdateUserDetailsController extends ProfileController {
 
 
-// the profile will display the users information and allows them to update
+// the profile will display the students information and allows them to update
 
         @FXML
         private StackPane contentPane;
@@ -29,26 +29,29 @@ public class UpdateUserDetailsController extends profileController{
         @FXML
         private Button updateButton;
 
-    // defining variable for current logged-in user
-    //private Student currentUser;
+
 
     @Override
     public void initialize() {
         super.initialize();
 
-        // pulls the current user's stats/levels for the images
+        // pulls the current user's stats/levels for the fields
         fillUserDetails();
     }
 
-    // Set the text fields with the current users information when the UI loads
+
+
+
+
+//    // Set the text fields with the current users information when the UI loads
         private void fillUserDetails() {
 
-            firstNameField.setText(currentUser.getFirstName());
-            lastNameField.setText(currentUser.getLastName());
-            usernameLabel.setText(currentUser.getUserName());
+            firstNameField.setText(user.getFirstName());
+            lastNameField.setText(user.getLastName());
+            usernameLabel.setText(user.getUserName());
             // there is no email field for students as of yet
             // emailField.setText(currentUser.getEmail());
-            schoolField.setText(currentUser.getSchoolName());
+            schoolField.setText(user.getSchoolName());
 
         }
 
@@ -66,7 +69,7 @@ public class UpdateUserDetailsController extends profileController{
             updateUserDetails(firstName, lastName, schoolName);
 
             // updates the user in the database
-            userDAO.updateUser(currentUser);
+            userDAO.updateUser(user);
 
             // update the text fields with current data stored in the database
             fillUserDetails();
@@ -75,16 +78,16 @@ public class UpdateUserDetailsController extends profileController{
 
         private void updateUserDetails(String firstName, String lastName, String schoolName) {
 
-            if (firstName != null && !firstName.equals(currentUser.getFirstName())) {
-                currentUser.setFirstName(firstName);
+            if (firstName != null && !firstName.equals(user.getFirstName())) {
+                user.setFirstName(firstName);
             }
 
-            if (lastName != null && !lastName.equals(currentUser.getLastName())) {
-                currentUser.setLastName(lastName);
+            if (lastName != null && !lastName.equals(user.getLastName())) {
+                user.setLastName(lastName);
             }
 
-            if(schoolName != null && !schoolName.equals(currentUser.getSchoolName())) {
-                currentUser.setSchoolName(schoolName);
+            if(schoolName != null && !schoolName.equals(user.getSchoolName())) {
+                user.setSchoolName(schoolName);
             }
         }
 
