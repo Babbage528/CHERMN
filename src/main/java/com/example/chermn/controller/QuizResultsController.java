@@ -1,7 +1,11 @@
 package com.example.chermn.controller;
 
 import com.example.chermn.controller.QuizQuestionsController;
+import com.example.chermn.controller.HomepageController;
+import com.example.chermn.Session;
 import com.example.chermn.QuizBegin;
+import com.example.chermn.model.Student;
+import com.example.chermn.model.Users;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -45,15 +49,42 @@ public class QuizResultsController {
 
     int percentageScore = (QuizQuestionsController.score*10);
 
+    // Initialise the user logged in
+    Users currentStudent = Session.getCurrentUser();
+
     // Intended for 10 question quizzes only
     public void initialize() {
         if (percentageScore >= 80) {
             resultsLabel.setText("You passed with " + percentageScore + "%");
             congratsLabel.setText("Congratulations!");
+            setCurrentUser();
+            if (HomepageController.getCategorySelection() == 1) {
+                Student.setAnimalLevel(HomepageController.getCategorySelection() + 1);
+            }
+            else if (HomepageController.getCategorySelection() == 2) {
+                Student.setVehicleLevel(HomepageController.getCategorySelection() + 1);
+            }
+            else if (HomepageController.getCategorySelection() == 3) {
+                Student.setNatureLevel(HomepageController.getCategorySelection() + 1);
+            }
+
         }
         else {
             resultsLabel.setText("You failed with " + percentageScore + "%");
             congratsLabel.setText("Better luck next time!");
+            setCurrentUser();
+        }
+
+    }
+
+    // Check if logged in user is a student
+    public void setCurrentUser() {
+        // check whether the user is a student
+        if (currentStudent instanceof Student student) {
+            this.currentStudent = student;
+        }
+        else {
+            throw new IllegalArgumentException("Quiz requires a Student user");
         }
 
     }
