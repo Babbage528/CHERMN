@@ -8,7 +8,7 @@ import com.example.chermn.model.Users;
 public class Session {
 
     // the current logged-in user
-    private static Users currentUser;
+    public static Users currentUser;
 
     // the database
     private static UserDAO userDAO = new UserDAO();

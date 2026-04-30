@@ -24,9 +24,9 @@
             </padding>
             <VBox alignment="TOP_CENTER">
                 <children>
-                    <Label style="-fx-font-size: 56px; -fx-font-weight: bold; -fx-text-fill: #3E7C2B;" text="Level 1!" />
-                    <Label style="-fx-font-size: 28px; -fx-font-fill: #666666; -fx-text-fill: #3E7C2B;" text="Difficulty: Easy" />
-                    <Label style="-fx-font-size: 28px; -fx-text-fill: #666666; -fx-text-fill: #3E7C2B;" text="Category: Animals" />
+                    <Label style="-fx-font-size: 56px; -fx-font-weight: bold; -fx-text-fill: #3E7C2B;" text="Level [make dynamic]!"  />
+                    <Label style="-fx-font-size: 28px; -fx-font-fill: #666666; -fx-text-fill: #3E7C2B;" text="Difficulty: [make dynamic]" />
+                    <Label style="-fx-font-size: 28px; -fx-text-fill: #666666; -fx-text-fill: #3E7C2B;" text="Category: [make dynamic]" />
                 </children>
             </VBox>
 

@@ -16,21 +16,10 @@ import static java.net.URLDecoder.decode;
 
 public class QuizBeginApiService {
 
-    // dont hard code the request, cant change difficulty or category
+    // don't hard code the request, cant change difficulty or category
     // public static final String API_REQUEST = "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=easy&category=27&encode=base64";
 
-    // map categories to IDs - these numbers might be wrong!
-    private static int mapCategory(String category) {
-        return switch (category.toLowerCase()){
-            case "animals" -> 27;
-            case "vehicles" -> 28;
-            case "nature" -> 23;
-            default -> 27;
-        };
-    }
-
-
-    /** Public static 'fetchQuestions' creates a Http client to request and retrieve the content from a request API_REQUEST.
+    /** Public static 'fetchQuestions' creates an Http client to request and retrieve the content from a request API_REQUEST.
      * Utilises the public getters in TriviaQuestion.java to loop through the request response and move items of interest into
      * a list of trivia questions questionList. The list of questions can then be used by the quiz session/quiz controllers.
      */
@@ -38,11 +27,11 @@ public class QuizBeginApiService {
         List<TriviaQuestion> questionList = new ArrayList<>();
 
         try {
-            int categoryId = mapCategory(category); // get mapped ID
-            String apiUrl = "https://opentdb.com/api.php?amount=10"
-                    + "&type=multiple"
+            String apiUrl = "https://opentdb.com/api.php?"
+                    + "&amount=10" // how many questions, could make dynamic
+                    + "&type=multiple" // multiple choice, not t/f
                     + "&difficulty=" + difficulty
-                    + "&category=" +categoryId
+                    + "&category=" +category
                     + "&encode=base64";
 
             HttpClient client = HttpClient.newHttpClient();

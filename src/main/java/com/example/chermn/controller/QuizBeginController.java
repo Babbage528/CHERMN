@@ -1,6 +1,7 @@
 package com.example.chermn.controller;
 
 
+import com.example.chermn.DatabaseConnection;
 import com.example.chermn.controller.QuizBeginApiService;
 import com.example.chermn.QuizBegin;
 import com.example.chermn.model.TriviaQuestion;
@@ -26,6 +27,8 @@ import javax.imageio.IIOParam;
 import java.io.IOException;
 import java.util.List;
 
+import static com.example.chermn.Session.currentUser;
+
 public class QuizBeginController {
 
     @FXML
@@ -35,15 +38,15 @@ public class QuizBeginController {
     private Button beginQuizButton;
 
     // save the category and difficulty to pass later
+    @FXML
     private String selectedCategory;
-    private String selectedDifficulty;
+    @FXML
+    private String difficulty;
 
     public void initCategory(String category){
         this.selectedCategory = category;
     }
-    public void initDifficulty(String difficulty){
-        this.selectedDifficulty = difficulty;
-    }
+
 
     @FXML
     protected void returnToHomepageButtonClick() throws  IOException{
@@ -56,23 +59,35 @@ public class QuizBeginController {
 
     @FXML
     protected void beginQuizButtonClick(ActionEvent event) throws IOException, JSONException {
+
+        // 1. Determine difficulty based on category
+        switch (selectedCategory.toLowerCase()) {
+            case "animals":
+                difficulty = String.valueOf(currentUser.getAnimalLevel());
+                break;
+            case "nature":
+                difficulty = String.valueOf(currentUser.getNatureLevel());
+                break;
+            case "vehicles":
+                difficulty = String.valueOf(currentUser.getVehicleLevel());
+                break;
+            default:
+                difficulty = "1"; // fallback
+        }
+
+        // 2. Load quiz-questions.fxml
         FXMLLoader loader = new FXMLLoader(QuizBegin.class.getResource("quiz-questions.fxml"));
         Parent root = loader.load();
 
+        // 3. Pass category + difficulty to QuizQuestionsController
         QuizQuestionsController controller = loader.getController();
-        // Pass category + difficulty from THIS screen
-        controller.initData(selectedCategory, selectedDifficulty);
+        controller.initData(selectedCategory, difficulty);
 
-        // Now load the scene
+        // 4. Switch scene
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, QuizBegin.WIDTH, QuizBegin.HEIGHT);
         stage.setScene(scene);
         stage.show();
     }
-
-
-
-
-
 }
 

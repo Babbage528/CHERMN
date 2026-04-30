@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import java.io.IOException;
 
-public class UpdateUserDetailsController extends profileController{
+public class UpdateUserDetailsController extends ProfileController{
 
 
 // the profile will display the users information and allows them to update

@@ -5,7 +5,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 
-public class ChangePasswordController extends profileController{
+public class ChangePasswordController extends ProfileController{
 
     @FXML
     private PasswordField reconfirmPasswordField;

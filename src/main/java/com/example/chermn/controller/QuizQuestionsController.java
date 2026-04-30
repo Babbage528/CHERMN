@@ -35,8 +35,7 @@ import java.util.Arrays;
 public class QuizQuestionsController {
 
     public static int score = 0;
-    private String category;
-    private String difficulty;
+    private String category, difficulty;
 
     private QuizSessionController session;
     private int answerIndex = 1;
