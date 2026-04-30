@@ -59,13 +59,13 @@ public class QuizResultsController {
             congratsLabel.setText("Congratulations!");
             setCurrentUser();
             if (HomepageController.getCategorySelection() == 1) {
-                Student.setAnimalLevel(HomepageController.getCategorySelection() + 1);
+                student.setAnimalLevel(student.getAnimalLevel() + 1);
             }
             else if (HomepageController.getCategorySelection() == 2) {
-                Student.setVehicleLevel(HomepageController.getCategorySelection() + 1);
+                student.setVehicleLevel(student.getVehicleLevel() + 1);
             }
             else if (HomepageController.getCategorySelection() == 3) {
-                Student.setNatureLevel(HomepageController.getCategorySelection() + 1);
+                student.setNatureLevel(student.getNatureLevel() + 1);
             }
 
         }
@@ -77,11 +77,13 @@ public class QuizResultsController {
 
     }
 
+    Student student;
+
     // Check if logged in user is a student
     public void setCurrentUser() {
         // check whether the user is a student
-        if (currentStudent instanceof Student student) {
-            this.currentStudent = student;
+        if (currentStudent instanceof Student) {
+            student = (Student) this.currentStudent;
         }
         else {
             throw new IllegalArgumentException("Quiz requires a Student user");
