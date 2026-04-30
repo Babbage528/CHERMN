@@ -3,9 +3,11 @@ package com.example.chermn.controller;
 import java.io.IOException;
 
 import com.example.chermn.OnBoarding;
+import com.example.chermn.Session;
 import com.example.chermn.dao.UserDAO;
 import com.example.chermn.model.Teacher;
 
+import com.example.chermn.model.Users;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,10 +43,16 @@ public class TeacherRegisterController {
         Teacher t = new Teacher(0, username, firstName, lastName, password, school);
         userDAO.createUser(t);
         System.out.println("Role: TEACHER");
-        System.out.println("Registration succesfull for username: " + username + "FirstName: " + firstName + "LastName: " + lastName + "school: " + school);
+        System.out.println("Registration successful for username: " + username + "FirstName: " + firstName + "LastName: " + lastName + "school: " + school);
+
+        // fetch the actual saved user from DB (with real ID)
+        Users savedUser = userDAO.getUserByUsername(username);
+
+        // store in session
+        Session.setCurrentUser(savedUser);
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("homepage.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("teacher-parent-homescreen.fxml"));
         Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root, OnBoarding.WIDTH, OnBoarding.HEIGHT);
