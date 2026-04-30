@@ -44,13 +44,26 @@ public class QuizResultsController {
         FXMLLoader fxmlLoader = new FXMLLoader(QuizBegin.class.getResource("homepage.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), QuizBegin.WIDTH, QuizBegin.HEIGHT);
         stage.setScene(scene);
-        initialize();
     }
 
     int percentageScore = (QuizQuestionsController.score*10);
 
     // Initialise the user logged in
     Users currentStudent = Session.getCurrentUser();
+
+    Student student;
+
+    // Check if logged in user is a student
+    public void setCurrentUser() {
+        // check whether the user is a student
+        if (currentStudent instanceof Student) {
+            student = (Student) currentStudent;
+        }
+        else {
+            throw new IllegalArgumentException("Quiz requires a Student user");
+        }
+
+    }
 
     // Intended for 10 question quizzes only
     public void initialize() {
@@ -59,13 +72,28 @@ public class QuizResultsController {
             congratsLabel.setText("Congratulations!");
             setCurrentUser();
             if (HomepageController.getCategorySelection() == 1) {
-                student.setAnimalLevel(student.getAnimalLevel() + 1);
+                if (student.getAnimalLevel() == 3) {
+                    Student.setAnimalLevel(3);
+                }
+                else {
+                    Student.setAnimalLevel(student.getAnimalLevel() + 1);
+                }
             }
             else if (HomepageController.getCategorySelection() == 2) {
-                student.setVehicleLevel(student.getVehicleLevel() + 1);
+                if (student.getVehicleLevel() == 3) {
+                    Student.setVehicleLevel(3);
+                }
+                else {
+                    Student.setVehicleLevel(student.getVehicleLevel() + 1);
+                }
             }
             else if (HomepageController.getCategorySelection() == 3) {
-                student.setNatureLevel(student.getNatureLevel() + 1);
+                if (student.getNatureLevel() == 3) {
+                    Student.setNatureLevel(3);
+                }
+                else  {
+                    Student.setNatureLevel(student.getNatureLevel() + 1);
+                }
             }
 
         }
@@ -77,19 +105,7 @@ public class QuizResultsController {
 
     }
 
-    Student student;
 
-    // Check if logged in user is a student
-    public void setCurrentUser() {
-        // check whether the user is a student
-        if (currentStudent instanceof Student) {
-            student = (Student) this.currentStudent;
-        }
-        else {
-            throw new IllegalArgumentException("Quiz requires a Student user");
-        }
-
-    }
 
 
 
