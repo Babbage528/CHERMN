@@ -31,9 +31,9 @@ public class TeacherRegisterController {
 
     @FXML
     private void handleRegisterSubmit(ActionEvent event) throws IOException {
-        String firstName = firstNameField.getText();
-        String lastName = lastNameField.getText();
-        String school = schoolNameField.getText();
+        String firstName = firstNameField.getText().trim();;
+        String lastName = lastNameField.getText().trim();;
+        String school = schoolNameField.getText().trim();;
         String email = unameField.getText().trim().toLowerCase();
         String password = passwordField.getText();
 
