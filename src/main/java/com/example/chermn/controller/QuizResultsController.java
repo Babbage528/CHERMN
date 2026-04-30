@@ -52,6 +52,20 @@ public class QuizResultsController {
     // Initialise the user logged in
     Users currentStudent = Session.getCurrentUser();
 
+    Student student;
+
+    // Check if logged in user is a student
+    public void setCurrentUser() {
+        // check whether the user is a student
+        if (currentStudent instanceof Student) {
+            student = (Student) currentStudent;
+        }
+        else {
+            throw new IllegalArgumentException("Quiz requires a Student user");
+        }
+
+    }
+
     // Intended for 10 question quizzes only
     public void initialize() {
         if (percentageScore >= 80) {
@@ -77,19 +91,7 @@ public class QuizResultsController {
 
     }
 
-    Student student;
 
-    // Check if logged in user is a student
-    public void setCurrentUser() {
-        // check whether the user is a student
-        if (currentStudent instanceof Student) {
-            student = (Student) this.currentStudent;
-        }
-        else {
-            throw new IllegalArgumentException("Quiz requires a Student user");
-        }
-
-    }
 
 
 

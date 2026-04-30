@@ -164,6 +164,7 @@ public class QuizQuestionsController {
             FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("quiz-results.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
             stage.setScene(scene);
+            score = 0;
         }
     }
 

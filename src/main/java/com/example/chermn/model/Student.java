@@ -6,9 +6,9 @@ public class Student extends Users {
     private static int animalLevel;
     private static int natureLevel;
 
-    public Student(int id, String userName, String firstName, String lastName, String password, String schoolName, int vechileLevel, int animalLevel, int natureLevel) {
+    public Student(int id, String userName, String firstName, String lastName, String password, String schoolName, int vehicleLevel, int animalLevel, int natureLevel) {
         super(id, userName, firstName, lastName, password, schoolName);
-        this.vehicleLevel = vechileLevel;
+        this.vehicleLevel = vehicleLevel;
         this.animalLevel = animalLevel;
         this.natureLevel = natureLevel;
     }
@@ -41,8 +41,8 @@ public class Student extends Users {
     @Override
     public String toString() {
         return super.toString() +
-                ", vechile category level: " + vehicleLevel +
-                ", animal categpry level: " + animalLevel +
+                ", vehicle category level: " + vehicleLevel +
+                ", animal category level: " + animalLevel +
                 ", nature category level: " + natureLevel +
                 "}";
     }
