@@ -2,9 +2,9 @@ package com.example.chermn.model;
 
 public class Student extends Users {
     // vehicle
-    private int vehicleLevel;
-    private int animalLevel;
-    private int natureLevel;
+    private static int vehicleLevel;
+    private static int animalLevel;
+    private static int natureLevel;
 
     public Student(int id, String userName, String firstName, String lastName, String password, String schoolName, int vechileLevel, int animalLevel, int natureLevel) {
         super(id, userName, firstName, lastName, password, schoolName);
@@ -25,15 +25,15 @@ public class Student extends Users {
         return natureLevel;
     }
 
-    public void setVehicleLevel(int level) {
+    public static void setVehicleLevel(int level) {
         vehicleLevel = level;
     }
 
-    public void setAnimalLevel(int level) {
+    public static void setAnimalLevel(int level) {
         animalLevel = level;
     }
 
-    public void setNatureLevel(int level) {
+    public static void setNatureLevel(int level) {
         natureLevel = level;
     }
 
