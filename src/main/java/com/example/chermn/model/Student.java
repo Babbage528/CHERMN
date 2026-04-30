@@ -8,9 +8,9 @@ public class Student extends Users {
 
     public Student(int id, String userName, String firstName, String lastName, String password, String schoolName, int vehicleLevel, int animalLevel, int natureLevel) {
         super(id, userName, firstName, lastName, password, schoolName);
-        this.vehicleLevel = vehicleLevel;
-        this.animalLevel = animalLevel;
-        this.natureLevel = natureLevel;
+        Student.vehicleLevel = vehicleLevel;
+        Student.animalLevel = animalLevel;
+        Student.natureLevel = natureLevel;
     }
 
     public int getVehicleLevel() {

@@ -44,7 +44,6 @@ public class QuizResultsController {
         FXMLLoader fxmlLoader = new FXMLLoader(QuizBegin.class.getResource("homepage.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), QuizBegin.WIDTH, QuizBegin.HEIGHT);
         stage.setScene(scene);
-        initialize();
     }
 
     int percentageScore = (QuizQuestionsController.score*10);
@@ -73,13 +72,13 @@ public class QuizResultsController {
             congratsLabel.setText("Congratulations!");
             setCurrentUser();
             if (HomepageController.getCategorySelection() == 1) {
-                student.setAnimalLevel(student.getAnimalLevel() + 1);
+                Student.setAnimalLevel(student.getAnimalLevel() + 1);
             }
             else if (HomepageController.getCategorySelection() == 2) {
-                student.setVehicleLevel(student.getVehicleLevel() + 1);
+                Student.setVehicleLevel(student.getVehicleLevel() + 1);
             }
             else if (HomepageController.getCategorySelection() == 3) {
-                student.setNatureLevel(student.getNatureLevel() + 1);
+                Student.setNatureLevel(student.getNatureLevel() + 1);
             }
 
         }
