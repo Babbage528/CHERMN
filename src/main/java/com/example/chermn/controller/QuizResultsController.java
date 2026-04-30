@@ -71,17 +71,29 @@ public class QuizResultsController {
             resultsLabel.setText("You passed with " + percentageScore + "%");
             congratsLabel.setText("Congratulations!");
             setCurrentUser();
-            if (student.getAnimalLevel() == 3)  {
-                Student.setAnimalLevel(3);
-            }
-            else if (HomepageController.getCategorySelection() == 1) {
-                Student.setAnimalLevel(student.getAnimalLevel() + 1);
+            if (HomepageController.getCategorySelection() == 1) {
+                if (student.getAnimalLevel() == 3) {
+                    Student.setAnimalLevel(3);
+                }
+                else {
+                    Student.setAnimalLevel(student.getAnimalLevel() + 1);
+                }
             }
             else if (HomepageController.getCategorySelection() == 2) {
-                Student.setVehicleLevel(student.getVehicleLevel() + 1);
+                if (student.getVehicleLevel() == 3) {
+                    Student.setVehicleLevel(3);
+                }
+                else {
+                    Student.setVehicleLevel(student.getVehicleLevel() + 1);
+                }
             }
             else if (HomepageController.getCategorySelection() == 3) {
-                Student.setNatureLevel(student.getNatureLevel() + 1);
+                if (student.getNatureLevel() == 3) {
+                    Student.setNatureLevel(3);
+                }
+                else  {
+                    Student.setNatureLevel(student.getNatureLevel() + 1);
+                }
             }
 
         }
