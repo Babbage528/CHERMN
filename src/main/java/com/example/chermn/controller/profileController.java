@@ -18,8 +18,7 @@ import java.io.IOException;
 
 
 
-public class profileController {
-
+private class profileController {
     @FXML
     private StackPane contentPane;
 
