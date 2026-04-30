@@ -9,6 +9,7 @@ module com.example.chermn {
     requires org.json;
     requires java.net.http;
     requires java.desktop;
+    requires jbcrypt;
 
     opens com.example.chermn to javafx.fxml;
     exports com.example.chermn;
