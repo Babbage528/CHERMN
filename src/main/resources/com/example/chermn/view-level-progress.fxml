@@ -89,7 +89,7 @@
 
 
             <!-- Labels to display the current user's level across the different categories-->
-            <Label fx:id="animalLevel"
+            <Label fx:id="natureLevel"
                    GridPane.columnIndex="1" GridPane.rowIndex="2">
                 <GridPane.margin>
                     <Insets bottom="40.0" />
@@ -103,7 +103,7 @@
                 </GridPane.margin>
             </Label>
 
-            <Label fx:id="natureLevel"
+            <Label fx:id="animalLevel"
                    GridPane.columnIndex="1" GridPane.rowIndex="1">
                 <GridPane.margin>
                     <Insets top="50.0" />
