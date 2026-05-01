@@ -1,7 +1,5 @@
 package com.example.chermn.controller;
 
-import java.io.IOException;
-
 import com.example.chermn.OnBoarding;
 import com.example.chermn.Session;
 import com.example.chermn.dao.UserDAO;
