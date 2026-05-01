@@ -5,6 +5,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.scene.effect.DropShadow?>
 
 <StackPane prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml"
            fx:controller="com.example.chermn.controller.RoleSelectionController">
@@ -16,7 +17,19 @@
         <Image url="@assets/images/bg_general.png" />
       </image>
     </ImageView>
-
+    <AnchorPane prefHeight="720.0" prefWidth="1280.0">
+      <children>
+        <Button onAction="#handleBack" layoutX="40.0" layoutY="40.0" prefHeight="45.0" prefWidth="45.0"
+                style="-fx-background-color: #76C043; -fx-background-radius: 50; -fx-cursor: hand;">
+          <graphic>
+            <Label text="‹" style="-fx-text-fill: white; -fx-font-size: 28px; -fx-font-weight: bold; -fx-padding: 0 0 5 0;" />
+          </graphic>
+          <effect>
+            <DropShadow color="#00000033" radius="5" offsetY="2" />
+          </effect>
+        </Button>
+      </children>
+    </AnchorPane>
     <VBox alignment="CENTER" spacing="40.0">
       <children>
         <VBox alignment="CENTER" spacing="5.0">
