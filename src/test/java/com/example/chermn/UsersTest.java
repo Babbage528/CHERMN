@@ -214,7 +214,7 @@ public class UsersTest {
         assertEquals("John", user1.getFirstName());
         assertEquals("Doe", user1.getLastName());
         assertEquals("12345", user1.getPassword());
-        assertEquals("QUT", user1.getSchoolName());
+        assertEquals("Qut", user1.getSchoolName());
     }
 
     @Test
