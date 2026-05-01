@@ -38,7 +38,7 @@
 
             <!-- Creates a vbox off to the left to display the different menu actions, with equal spacing between all buttons-->
             <VBox alignment="CENTER" layoutY="82.0"
-                  prefHeight="370.0" prefWidth="220.0"
+                  prefHeight="370.0" prefWidth="200.0"
                   spacing="40.0"
                   style="-fx-border-color: black; -fx-border-width: 2;
                   -fx-border-radius: 10; -fx-padding: 10;
