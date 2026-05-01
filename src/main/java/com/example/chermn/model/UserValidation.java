@@ -46,7 +46,7 @@ public class UserValidation {
             }
         }
 
-        return formattedString;
+        return formattedString.trim();
     }
 
 
