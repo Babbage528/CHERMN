@@ -34,19 +34,23 @@ import java.sql.Array;
 import java.util.Arrays;
 public class QuizQuestionsController {
 
+    /// setting score for new quiz
     public static int score = 0;
 
     @FXML
     private Pane container;
 
     @FXML
+    /// buttons from quiz-questions.fxml
     private Button option1, option2, option3, option4,  questionbutton, Next;
 
     @FXML
+    /// label from quiz-questions.fxml
     private Label explanation;
 
     String correctAnswer = null;
 
+    /// setting window attributes
     public static final String TITLE = "Farmer Fred's Trivia";
     public static final int WIDTH = 1280;
     public static final int HEIGHT = 720;
@@ -62,24 +66,20 @@ public class QuizQuestionsController {
     public void getQuestions() {
         List<String> answers = new ArrayList<>();
 
+        /// retrieving api questions from QuizBeginApiService
             QuizBeginApiService apiService = new QuizBeginApiService();
             List<TriviaQuestion> realQuestions = apiService.fetchQuestions();
             QuizSessionController session = new QuizSessionController(realQuestions);
 
+        /// setting 'currentQuestion' to cycle through
             TriviaQuestion currentQuestion = session.getCurrentQuestion();
 
-            ///
-            ///    while (currentQuestion1 != null) {
-            ///        System.out.println("Category: " + currentQuestion1.getCategory());
-            ///        System.out.println("Question: " + currentQuestion1.getQuestion());
-            ///        System.out.print("Your answer: ");
-            ///    }
-            /// JSONObject jsonQuestion = resultsArray.getJSONObject(currentQuestion);
-
+        /// defining responses from api
             correctAnswer = currentQuestion.getCorrectAnswer();
             List<String> incorrectAnswers = currentQuestion.getIncorrectAnswers();
             answers.add(correctAnswer);
 
+        /// collating both correct and incorrect answers from api
             for (int j = 0; j < incorrectAnswers.size(); j++) {
                 String answer = incorrectAnswers.get(j);
                 answers.add(answer);
@@ -88,7 +88,7 @@ public class QuizQuestionsController {
             /// randomize answers so correct answer isn't always same position
             Collections.shuffle(answers);
 
-            /// Display Question and answers
+            /// Display Question and answers with formatting
             questionbutton.setText("Q" + answerIndex + ". " + currentQuestion.getQuestion());
             option1.setText("a) " + answers.get(0));
             option2.setText("b) " + answers.get(1));
@@ -105,31 +105,55 @@ public class QuizQuestionsController {
      */
     public void AnswerSubmitted(javafx.event.ActionEvent actionEvent) {
         Button userAnswer = (Button) actionEvent.getSource();
+        /// disable next button so users cant skip through questions
         Next.setDisable(false);
+
+        /// defining outcome if correct answer
         if (option1.getText().substring(3).equals(correctAnswer)) {
+            ///correct answer format
+            option1.setDisable(true);
+            option1.setStyle("-fx-background-color: #E7FF76; -fx-text-fill: #3E7C2B; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand; -fx-font-size: 20px;-fx-opacity: 1.0;");
+            ///incorrect answers
             option2.setDisable(true);
             option3.setDisable(true);
             option4.setDisable(true);
         } else if (option2.getText().substring(3).equals(correctAnswer)) {
+            ///correct answer format
+            option2.setDisable(true);
+            option2.setStyle("-fx-background-color: #6DBE45; -fx-text-fill: #3E7C2B; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand; -fx-font-size: 20px;-fx-opacity: 1.0;");
+            /// incorrect answers
             option1.setDisable(true);
             option3.setDisable(true);
             option4.setDisable(true);
         } else if (option3.getText().substring(3).equals(correctAnswer)) {
+            ///correct answer format
+            option3.setDisable(true);
+            option3.setStyle("-fx-background-color: #6DBE45; -fx-text-fill: #3E7C2B; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand; -fx-font-size: 20px;-fx-opacity: 1.0;");
+            /// incorrect answers
             option1.setDisable(true);
             option2.setDisable(true);
             option4.setDisable(true);
         } else {
+            ///correct answer format
+            option4.setDisable(true);
+            option4.setStyle("-fx-background-color: #E7FF76; -fx-text-fill: #3E7C2B; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand; -fx-font-size: 20px;-fx-opacity: 1.0;");
+            /// incorrect answers
             option1.setDisable(true);
             option2.setDisable(true);
             option3.setDisable(true);
 
         }
+
+        /// setting label formatting and text depending on answer
         if (userAnswer.getText().substring(3).equals(correctAnswer)) {
+            /// incrementing score
             score += 1;
             explanation.setText("Correct! " + correctAnswer + " is the correct answer, good job!");
+            /// green background for label
             explanation.setStyle("-fx-background-color: #ECFCE3; -fx-font-size: 20px;");
         } else {
             explanation.setText("Incorrect! " + correctAnswer + " is the correct answer, next time!");
+            /// red background for label
             explanation.setStyle("-fx-background-color: #FFC2C2; -fx-font-size: 20px;");
         }
     }
@@ -144,29 +168,41 @@ public class QuizQuestionsController {
      */
     @FXML
     public void nextQuestion() throws IOException {
+        /// enabling all answer buttons
         option1.setDisable(false);
         option2.setDisable(false);
         option3.setDisable(false);
         option4.setDisable(false);
 
+        /// resetting button formatting
+        option1.setStyle("-fx-background-color: #E7FF76; -fx-text-fill: #3E7C2B; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand; -fx-font-size: 20px;");
+        option2.setStyle("-fx-background-color: #6DBE45; -fx-text-fill: #3E7C2B; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand; -fx-font-size: 20px;");
+        option3.setStyle("-fx-background-color: #6DBE45; -fx-text-fill: #3E7C2B; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand; -fx-font-size: 20px;");
+        option4.setStyle("-fx-background-color: #E7FF76; -fx-text-fill: #3E7C2B; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand; -fx-font-size: 20px;");
+
+
+        /// resetting label
         explanation.setText(" ");
         explanation.setStyle("-fx-background-color: transparent;");
 
+        /// enabling next button
         Next.setDisable(true);
 
+        /// incrementing index of question and re-running getQuestions for new question
         if(answerIndex < 10){
             answerIndex++;
             getQuestions();
         }
         else{
-            /// explanation.setText("score: " + score);
+            /// change scene after quiz finished
             Stage stage = (Stage) Next.getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("quiz-results.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
             stage.setScene(scene);
+            ///  reset score
+            score = 0;
         }
     }
-
 
 
     }

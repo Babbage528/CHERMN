@@ -6,6 +6,7 @@ import com.example.chermn.OnBoarding;
 import com.example.chermn.Session;
 import com.example.chermn.model.UserValidation;
 import com.example.chermn.dao.UserDAO;
+import com.example.chermn.model.Student;
 import com.example.chermn.model.Teacher;
 
 import com.example.chermn.model.Users;
@@ -48,6 +49,11 @@ public class TeacherRegisterController {
 
             // store in session
             Session.setCurrentUser(savedUser);
+            // store in session
+            Session.setCurrentUser(savedUser);
+
+            // shows alert to the teacher that they have successfully registered
+            showAlert(Alert.AlertType.INFORMATION, "Registration success", "Account " + email + " successfully registered!");
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("teacher-parent-homescreen.fxml"));

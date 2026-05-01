@@ -64,6 +64,20 @@ public class StudentRegisterController {
         }
     }
 
+    @FXML
+    private void handleBack(ActionEvent event) {
+        try {
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("role-selection.fxml"));
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root, OnBoarding.WIDTH, OnBoarding.HEIGHT);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
