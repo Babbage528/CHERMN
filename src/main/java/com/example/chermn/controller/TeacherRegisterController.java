@@ -53,7 +53,7 @@ public class TeacherRegisterController {
             Session.setCurrentUser(savedUser);
 
             // shows alert to the teacher that they have successfully registered
-            showAlert(Alert.AlertType.INFORMATION, "Registration success", "Account " + email + " successfully registered!");
+            showAlert(Alert.AlertType.INFORMATION, "Registration success", "Account " + username + " successfully registered!");
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("teacher-parent-homescreen.fxml"));
