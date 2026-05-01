@@ -55,7 +55,7 @@ public class StudentRegisterController {
         }
         // if any of the fields inputs were incorrect
         catch (IllegalArgumentException e) {
-            showAlert(Alert.AlertType.ERROR, "Form Error!", String.valueOf(e));
+            showAlert(Alert.AlertType.ERROR, "Form Error!", e.getMessage());
         }
         // any database/saving error
         catch (Exception e) {
