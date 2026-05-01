@@ -17,6 +17,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class TeacherRegisterController {
     @FXML private TextField firstNameField;
     @FXML private TextField lastNameField;
@@ -77,5 +79,23 @@ public class TeacherRegisterController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    @FXML
+    private void handleBack(ActionEvent event) {
+        try {
+            switchScene(event, "role-selection.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void switchScene(ActionEvent event, String fxmlFile) throws IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource(fxmlFile));
+        javafx.scene.Parent root = fxmlLoader.load();
+        Scene scene = new Scene(root, OnBoarding.WIDTH, OnBoarding.HEIGHT);
+        stage.setScene(scene);
+        stage.show();
     }
 }
