@@ -96,14 +96,14 @@
                 </GridPane.margin>
             </Label>
 
-            <Label fx:id="vehicleLevel"
+            <Label fx:id="animalLevel"
                    GridPane.columnIndex="1" GridPane.rowIndex="1">
                 <GridPane.margin>
                     <Insets bottom="40.0" />
                 </GridPane.margin>
             </Label>
 
-            <Label fx:id="animalLevel"
+            <Label fx:id="vehicleLevel"
                    GridPane.columnIndex="1" GridPane.rowIndex="1">
                 <GridPane.margin>
                     <Insets top="50.0" />
