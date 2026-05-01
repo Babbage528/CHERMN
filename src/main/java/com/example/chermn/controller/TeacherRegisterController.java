@@ -4,9 +4,7 @@ import java.io.IOException;
 
 import com.example.chermn.OnBoarding;
 import com.example.chermn.Session;
-import com.example.chermn.model.UserValidation;
 import com.example.chermn.dao.UserDAO;
-import com.example.chermn.model.Student;
 import com.example.chermn.model.Teacher;
 
 import com.example.chermn.model.Users;
@@ -31,7 +29,7 @@ public class TeacherRegisterController {
     private UserDAO userDAO = new UserDAO();
 
     @FXML
-    private void handleRegisterSubmit(ActionEvent event) throws IOException {
+    private void handleRegisterSubmit(ActionEvent event) {
         try {
             String firstName =firstNameField.getText();
             String lastName = lastNameField.getText();
