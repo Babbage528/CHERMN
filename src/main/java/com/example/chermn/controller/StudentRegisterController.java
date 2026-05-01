@@ -3,10 +3,10 @@ package com.example.chermn.controller;
 import java.io.IOException;
 import com.example.chermn.OnBoarding;
 import com.example.chermn.Session;
+import com.example.chermn.model.UserValidation;
 import com.example.chermn.dao.UserDAO;
 import com.example.chermn.model.Student;
 
-import com.example.chermn.model.Users;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,23 +30,12 @@ public class StudentRegisterController {
 
     @FXML
     private void handleRegisterSubmit(ActionEvent event) throws IOException {
-        String firstName = firstNameField.getText();
-        String lastName = lastNameField.getText();
-        String school = schoolNameField.getText();
-        String username = unameField.getText();
-        String password = passwordField.getText();
-
-        if (firstName.isEmpty() || lastName.isEmpty() || username.isEmpty() || password.isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, "Form Error!", "Please fill in all the field");
-            return;
-        }
-
-        if (password.length() < 5) {
-            showAlert(Alert.AlertType.WARNING, "Password is weak", "Password has to be 5 character min!");
-            return;
-        }
-
         try {
+            String firstName =firstNameField.getText();
+            String lastName = lastNameField.getText();
+            String school = schoolNameField.getText();
+            String username = unameField.getText();
+            String password = passwordField.getText();
 
             Student student = new Student(0, username, firstName, lastName, password, school, 1, 1, 1);
             userDAO.createStudent(student);
@@ -63,7 +52,13 @@ public class StudentRegisterController {
             stage.setScene(scene);
             stage.show();
 
-        } catch (Exception e) {
+        }
+        // if any of the fields inputs were incorrect
+        catch (IllegalArgumentException e) {
+            showAlert(Alert.AlertType.ERROR, "Form Error!", String.valueOf(e));
+        }
+        // any database/saving error
+        catch (Exception e) {
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Database Error", "There is problem when saving to the DB.");
         }
