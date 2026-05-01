@@ -37,6 +37,7 @@ public class TeacherParentHomescreenController extends BaseProfileController {
 
     @Override
     protected StackPane getContainer() {
+        // returns the stack pane for the teacher user
         return contentArea;
     }
 
@@ -64,6 +65,9 @@ public class TeacherParentHomescreenController extends BaseProfileController {
     @FXML
     @Override
     protected void changePasswordButtonClick(ActionEvent event) {
+        // changing opacity of background picture to display details over top
+        fullBackground.setOpacity(0.4);
+
         super.changePasswordButtonClick(event);
     }
 

@@ -5,22 +5,20 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
-
-<AnchorPane
-        prefHeight="400.0" prefWidth="600.0"
-        xmlns="http://javafx.com/javafx/17.0.12"
-        xmlns:fx="http://javafx.com/fxml/1"
-        fx:controller="com.example.chermn.controller.ProfileController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.chermn.controller.ProfileController">
 
     <children>
     <!-- Background image behind the title pane of the farm background -->
-    <ImageView fitHeight="720.0" fitWidth="1280.0"
-               opacity="0.4" pickOnBounds="true">
+    <ImageView fitHeight="720.0" fitWidth="1280.0" opacity="0.4" pickOnBounds="true">
         <image>
             <Image url="@assets/images/Background.png" />
         </image>
     </ImageView>
+
+        <!-- Anchor pane to anchor the separate components of the profile screen together -->
     <AnchorPane layoutX="190.0" layoutY="100.0"
                 prefHeight="520.0" prefWidth="900.0"
                 style="-fx-background-color: #6DBE45;">
@@ -39,42 +37,43 @@
 
 
             <!-- Creates a vbox off to the left to display the different menu actions, with equal spacing between all buttons-->
-            <VBox alignment="CENTER"
-                  layoutY="82.0"
-                  prefHeight="370.0" prefWidth="188.0"
-                  spacing="40.0" style="-fx-border-color: black; -fx-border-width: 2;
-                  -fx-border-radius: 5; -fx-padding: 10; -fx-background-color: #F7FAE9;"
+            <VBox alignment="CENTER" layoutY="82.0"
+                  prefHeight="370.0" prefWidth="200.0"
+                  spacing="40.0"
+                  style="-fx-border-color: black; -fx-border-width: 2;
+                  -fx-border-radius: 10; -fx-padding: 10;
+                  -fx-background-color: #F7FAE9; -fx-background-radius: 10;"
                   AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
 
                 <children>
-                    <Button fx:id="userProfileButton"
-                            mnemonicParsing="false"
+                    <!-- Creates a profile button for the user to navigate to view their details -->
+                    <Button fx:id="userProfileButton" mnemonicParsing="false"
                             onAction="#userProfileButtonClick"
                             prefHeight="50.0" prefWidth="180.0"
-                            style="-fx-background-color: transparent;"
+                            style="-fx-background-color: transparent; -fx-border-radius: 5;"
                             text="User Profile">
                         <font>
                             <Font name="System Bold Italic" size="18.0" />
                         </font>
                     </Button>
 
-
+                    <!-- Creates a button to allow users to view their progress throughout the different levels -->
                     <Button fx:id="levelProgressButton"
-                            mnemonicParsing="false" onAction="#levelProgressButtonClick"
+                            mnemonicParsing="false"
+                            onAction="#levelProgressButtonClick"
                             prefHeight="50.0" prefWidth="180.0"
-                            style="-fx-background-color: transparent;"
+                            style="-fx-background-color: transparent; -fx-border-radius: 5;"
                             text="Level Progress">
                         <font>
                             <Font name="System Bold Italic" size="18.0" />
                         </font>
                     </Button>
 
-
-                    <Button fx:id="changePasswordButton"
-                            mnemonicParsing="false"
+                    <!-- Creates a button to allow users to change their password -->
+                    <Button fx:id="changePasswordButton" mnemonicParsing="false"
                             onAction="#changePasswordButtonClick"
                             prefHeight="50.0" prefWidth="180.0"
-                            style="-fx-background-color: transparent;"
+                            style="-fx-background-color: transparent; -fx-border-radius: 5;"
                             text="Change Password">
                         <font>
                             <Font name="System Bold Italic" size="18.0" />
@@ -85,10 +84,9 @@
                     <!-- Creates a sign-out button to allow the user to sign out of game -->
                     <Button fx:id="signOutButton"
                             layoutX="522.0" layoutY="338.0"
-                            mnemonicParsing="false"
-                            onAction="#signOutButtonClick"
+                            mnemonicParsing="false" onAction="#signOutButtonClick"
                             prefHeight="50.0" prefWidth="180.0"
-                            style="-fx-background-color: transparent;"
+                            style="-fx-background-color: transparent; -fx-border-radius: 5;"
                             text="Sign Out">
                         <font>
                             <Font name="System Bold Italic" size="18.0" />
@@ -101,7 +99,6 @@
             <StackPane fx:id="contentPane"
                        layoutX="273.0" layoutY="15.0"
                        prefHeight="490.0" prefWidth="605.0">
-
             </StackPane>
 
         </children>

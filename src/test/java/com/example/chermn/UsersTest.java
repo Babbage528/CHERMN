@@ -195,13 +195,14 @@ public class UsersTest {
     }
 
     @Test
-    public void testGetSchoolName_initalValue() {
-        assertEquals("QUT", users.getSchoolName());
+    public void testGetSchoolName_initialValue() {
+        assertEquals("Qut", users.getSchoolName());
     }
+
     @Test
     public void testSetSchoolName_valid() {
         users.setSchoolName("primary school");
-        assertEquals("primary school", users.getSchoolName());
+        assertEquals("Primary School", users.getSchoolName());
     }
 
 
@@ -213,7 +214,7 @@ public class UsersTest {
         assertEquals("John", user1.getFirstName());
         assertEquals("Doe", user1.getLastName());
         assertEquals("12345", user1.getPassword());
-        assertEquals("QUT", user1.getSchoolName());
+        assertEquals("Qut", user1.getSchoolName());
     }
 
     @Test
