@@ -10,24 +10,27 @@ import java.io.IOException;
 
 public class UpdateUserDetailsController extends ProfileController {
 
-
 // the profile will display the students information and allows them to update
+    @FXML
+    private StackPane contentPane;
 
-        @FXML
-        private StackPane contentPane;
-        @FXML
-        private TextField firstNameField;
-        @FXML
-        private TextField lastNameField;
-        @FXML
-        private Label usernameLabel;
-        @FXML
-        private TextField emailField;
-        @FXML
-        private TextField schoolField;
+    @FXML
+    private TextField firstNameField;
 
-        @FXML
-        private Button updateButton;
+    @FXML
+    private TextField lastNameField;
+
+    @FXML
+    private Label usernameLabel;
+
+    @FXML
+    private TextField emailField;
+
+    @FXML
+    private TextField schoolField;
+
+    @FXML
+    private Button updateButton;
 
 
 
@@ -42,9 +45,8 @@ public class UpdateUserDetailsController extends ProfileController {
 
 
 
-
-//    // Set the text fields with the current users information when the UI loads
-        private void fillUserDetails() {
+    // Set the text fields with the current users information when the UI loads
+    private void fillUserDetails() {
 
             firstNameField.setText(user.getFirstName());
             lastNameField.setText(user.getLastName());
@@ -76,16 +78,18 @@ public class UpdateUserDetailsController extends ProfileController {
 
         }
 
+        // updates the users details
         private void updateUserDetails(String firstName, String lastName, String schoolName) {
 
+            // checks to ensure that the first name has been modified before updating
             if (firstName != null && !firstName.equals(user.getFirstName())) {
                 user.setFirstName(firstName);
             }
-
+            // checks to ensure that the last name has been modified before updating
             if (lastName != null && !lastName.equals(user.getLastName())) {
                 user.setLastName(lastName);
             }
-
+            // checks to ensure that the school name has been modified before updating
             if(schoolName != null && !schoolName.equals(user.getSchoolName())) {
                 user.setSchoolName(schoolName);
             }
