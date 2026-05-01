@@ -201,19 +201,19 @@ public class UsersTest {
     @Test
     public void testSetSchoolName_valid() {
         users.setSchoolName("primary school");
-        assertEquals("primary school", users.getSchoolName());
+        assertEquals("Primary School", users.getSchoolName());
     }
 
 
     // tests for the user constructor
     @Test
     public void testUserConstructor_valid() {
-        Users user1 = new Users("user1", "John", "Doe", "12345","QUT");
+        Users user1 = new Users("user1", "John", "Doe", "12345","primary School");
         assertEquals("user1", user1.getUserName());
         assertEquals("John", user1.getFirstName());
         assertEquals("Doe", user1.getLastName());
         assertEquals("12345", user1.getPassword());
-        assertEquals("QUT", user1.getSchoolName());
+        assertEquals("Primary School", user1.getSchoolName());
     }
 
     @Test
