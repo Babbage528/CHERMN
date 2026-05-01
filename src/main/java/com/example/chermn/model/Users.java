@@ -1,7 +1,5 @@
 package com.example.chermn.model;
 
-import java.util.Objects;
-
 public class Users {
     // user id is auto-incremented
     private int id;
@@ -25,8 +23,7 @@ public class Users {
     }
 
     // Public constructor without id since it is auto-incremented
-    public Users(String userName, String firstName, String lastName, String password, String schoolName)
-    {
+    public Users(String userName, String firstName, String lastName, String password, String schoolName) {
         // using setters to ensure user validation is passing for each field
         setUsername(userName);
         setFirstName(firstName);
@@ -59,8 +56,7 @@ public class Users {
         return password;
     }
 
-    public String getSchoolName()
-    {
+    public String getSchoolName() {
         return schoolName;
     }
 
@@ -77,17 +73,16 @@ public class Users {
     }
 
     // sets the password, ensuring follows validation rules
-    public void setPassword(String password)
-    {
+    public void setPassword(String password) {
         UserValidation.validatePassword(password);
         this.password = password;
     }
 
-    // sets the school name following validation rules
-    public void setSchoolName(String schoolName)
-    {
+    // sets the school name following validation rules, and formats so
+    // each word starts with a capital letter
+    public void setSchoolName(String schoolName) {
         UserValidation.validateSchoolName(schoolName);
-        this.schoolName = schoolName;
+        this.schoolName = UserValidation.formatSchoolName(schoolName);
     }
 
     // converts user's information into a string

@@ -28,6 +28,27 @@ public class UserValidation {
         return Character.toUpperCase(name.charAt(0)) + name.substring(1);
     }
 
+    // format the school name to generic form
+    public static String formatSchoolName(String name) {
+        String[] splitString;
+        // splits the string at each space and adds to array
+        splitString = name.split(" ");
+
+        // formatted string
+        String formattedString = "";
+
+        // for each word in the split string
+        for (String word : splitString) {
+            if (!word.isEmpty())
+            {
+                // adds the formatted word to the formatted string
+                formattedString = formattedString + formatName(word) + " ";
+            }
+        }
+
+        return formattedString;
+    }
+
 
         // validate school name using regex
         public static void validateSchoolName(String name) {
