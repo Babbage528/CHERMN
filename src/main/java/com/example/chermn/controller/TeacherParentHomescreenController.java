@@ -64,6 +64,9 @@ public class TeacherParentHomescreenController extends BaseProfileController {
     @FXML
     @Override
     protected void changePasswordButtonClick(ActionEvent event) {
+        // want to change opacity of background picture so that details displayed on top
+        fullBackground.setOpacity(0.4);
+
         super.changePasswordButtonClick(event);
     }
 

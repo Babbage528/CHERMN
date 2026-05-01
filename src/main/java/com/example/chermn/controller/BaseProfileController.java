@@ -34,7 +34,7 @@ public abstract class BaseProfileController {
 
     private String setProfileType(Users user) {
         String fxml;
-        if (userDAO.getUserByUsername(user.getUserName()) instanceof Student student)
+        if (user instanceof Student)
         {
             fxml = "change-password.fxml";
         }
@@ -70,7 +70,9 @@ public abstract class BaseProfileController {
 
     // initialising variables
     public void initialize() {
+
         user = Session.getCurrentUser();
     }
+
 
 }

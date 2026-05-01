@@ -1,6 +1,7 @@
 package com.example.chermn.controller;
 
 import com.example.chermn.Session;
+import com.example.chermn.model.Student;
 import com.example.chermn.model.Users;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,9 +21,13 @@ public class UpdateTeacherDetailsController extends TeacherParentHomescreenContr
     @FXML
     private TextField schoolField;
 
+
+
     @Override
     public void initialize() {
         super.initialize();
+
+        user = Session.getCurrentUser();
 
         // pulls the current user's stats/levels for the fields
         fillUserDetails();

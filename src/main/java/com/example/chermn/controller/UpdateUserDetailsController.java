@@ -1,5 +1,8 @@
 package com.example.chermn.controller;
 
+import com.example.chermn.Session;
+import com.example.chermn.model.Student;
+import com.example.chermn.model.Users;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -29,67 +32,80 @@ public class UpdateUserDetailsController extends ProfileController {
         @FXML
         private Button updateButton;
 
+        Users user = Session.getCurrentUser();
+        Student currentStudent;
+
 
 
     @Override
     public void initialize() {
         super.initialize();
 
+        // sets the current students user
+        setCurrentUser(user);
+
         // pulls the current user's stats/levels for the fields
         fillUserDetails();
     }
 
 
+    // sets the current user to a student type if it is an instance of Student class
+    private void setCurrentUser(Users user) {
+        if (user instanceof Student) {
+            currentStudent = (Student) user;
+        }
+    }
 
 
 
-//    // Set the text fields with the current users information when the UI loads
-        private void fillUserDetails() {
 
-            firstNameField.setText(user.getFirstName());
-            lastNameField.setText(user.getLastName());
-            usernameLabel.setText(user.getUserName());
-            // there is no email field for students as of yet
-            // emailField.setText(currentUser.getEmail());
-            schoolField.setText(user.getSchoolName());
+    // Set the text fields with the current users information when the UI loads
+    private void fillUserDetails() {
 
+        firstNameField.setText(user.getFirstName());
+        lastNameField.setText(user.getLastName());
+        usernameLabel.setText(user.getUserName());
+        // there is no email field for students as of yet
+        // emailField.setText(currentUser.getEmail());
+        schoolField.setText(user.getSchoolName());
+
+    }
+
+
+    @FXML
+    private void updateButtonClick(ActionEvent actionEvent) throws IOException {
+
+        // collect the data written in the text fields
+        String firstName = firstNameField.getText().trim();
+        String lastName = lastNameField.getText().trim();
+        String schoolName = schoolField.getText().trim();
+
+
+        // pass it through to update method
+        updateUserDetails(firstName, lastName, schoolName);
+
+        // updates the user in the database
+        userDAO.updateUser(user);
+
+        // update the text fields with current data stored in the database
+        fillUserDetails();
+
+    }
+
+    private void updateUserDetails(String firstName, String lastName, String schoolName) {
+
+        if (firstName != null && !firstName.equals(user.getFirstName())) {
+            user.setFirstName(firstName);
         }
 
-
-        @FXML
-        private void updateButtonClick(ActionEvent actionEvent) throws IOException {
-
-            // collect the data written in the text fields
-            String firstName = firstNameField.getText().trim();
-            String lastName = lastNameField.getText().trim();
-            String schoolName = schoolField.getText().trim();
-
-
-            // pass it through to update method
-            updateUserDetails(firstName, lastName, schoolName);
-
-            // updates the user in the database
-            userDAO.updateUser(user);
-
-            // update the text fields with current data stored in the database
-            fillUserDetails();
-
+        if (lastName != null && !lastName.equals(user.getLastName())) {
+            user.setLastName(lastName);
         }
 
-        private void updateUserDetails(String firstName, String lastName, String schoolName) {
-
-            if (firstName != null && !firstName.equals(user.getFirstName())) {
-                user.setFirstName(firstName);
-            }
-
-            if (lastName != null && !lastName.equals(user.getLastName())) {
-                user.setLastName(lastName);
-            }
-
-            if(schoolName != null && !schoolName.equals(user.getSchoolName())) {
-                user.setSchoolName(schoolName);
-            }
+        if(schoolName != null && !schoolName.equals(user.getSchoolName())) {
+            user.setSchoolName(schoolName);
         }
+    }
 
     }
 
