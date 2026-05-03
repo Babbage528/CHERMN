@@ -52,8 +52,14 @@ public class MockUserDaoTest {
         dao.createUser(user);
         user.setPassword("newpass");
         dao.updateUser(user);
-        Users updated = dao.getUserByUsername("nik");
-        assertEquals("newpass", updated.getPassword());
+
+        // old password should fail
+        assertNull(dao.login("nik", "pass123"));
+        // new password should succeed
+        assertNotNull(dao.login("nik", "newpass"));
+
+        //Users updated = dao.getUserByUsername("nik");
+        //assertEquals("newpass", updated.getPassword());
     }
 
     //test delete user
