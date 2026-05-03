@@ -279,10 +279,10 @@ public class UserDAO implements IUserDAO {
                 users.add(new Users(
                         rs.getInt("user_id"),
                         rs.getString("username"),
-                        "",
-                        "",
+                        rs.getString("first_name"),
+                        rs.getString("last_name"),
                         rs.getString("password_hash"),
-                        ""
+                        rs.getString("school_name")
                 ));
             }
 
