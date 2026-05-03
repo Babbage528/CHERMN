@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import com.example.chermn.dao.UserDAO;
 import com.example.chermn.model.Users;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class UserDAOTest {
 
@@ -19,7 +20,7 @@ public class UserDAOTest {
     @Test
     void testCreateUser() {
         String username = "testuser_" + System.currentTimeMillis();
-        Users user = new Users(0, username, "Test", "User", "1234", "QUT");
+        Users user = new Users(0, username, "Test", "User", "12345", "QUT");
         userDAO.createUser(user);
         Users found = userDAO.getUserByUsername(username);
         assertNotNull(found);
@@ -32,9 +33,9 @@ public class UserDAOTest {
     @Test
     void testLoginSuccess() {
         String username = "loginuser_" + System.currentTimeMillis();
-        Users user = new Users(0, username, "Test", "User", "pass", "QUT");
+        Users user = new Users(0, username, "Test", "User", "password", "QUT");
         userDAO.createUser(user);
-        Users loggedIn = userDAO.login(username, "pass");        
+        Users loggedIn = userDAO.login(username, "password");
         assertNotNull(loggedIn);
 
         //cleanup
@@ -58,13 +59,18 @@ public class UserDAOTest {
     @Test
     void testUpdateUser() {
         String username = "updateuser_" + System.currentTimeMillis();
-        Users user = new Users(0, username, "Old", "Name", "123", "QUT");
+        Users user = new Users(0, username, "Old", "Name", "12345", "QUT");
         userDAO.createUser(user);
         Users found = userDAO.getUserByUsername(username);
         found.setPassword("newpass");
         userDAO.updateUser(found);
         Users updated = userDAO.getUserByUsername(username);
-        assertEquals("newpass", updated.getPassword());
+
+        // Old password should fail
+        assertNull(userDAO.login(username, "12345"));
+
+        // New password should succeed
+        assertNotNull(userDAO.login(username, "newpass"));
 
         //cleanup
         userDAO.deleteUser(updated);
@@ -81,7 +87,7 @@ public class UserDAOTest {
     @Test
     void testDeleteUser() {
         String username = "deleteuser_" + System.currentTimeMillis();
-        Users user = new Users(0, username, "Test", "User", "123", "QUT");
+        Users user = new Users(0, username, "Test", "User", "12345", "QUT");
         userDAO.createUser(user);
         Users found = userDAO.getUserByUsername(username);
         userDAO.deleteUser(found);
