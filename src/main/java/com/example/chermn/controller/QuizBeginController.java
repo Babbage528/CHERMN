@@ -25,7 +25,7 @@ public class QuizBeginController {
     private Button returnToHomepageButton;
 
     @FXML
-    private Label categoryLabel;
+    private Label categoryLabel, difficultyLabel;
 
     @FXML
     private Button beginQuizButton;
