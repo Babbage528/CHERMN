@@ -62,5 +62,12 @@ public class QuizBeginController {
     public void setCategoryText(String text) {
         categoryLabel.setText(text);
     }
+
+    /** Public void 'setDifficultyText' Acts as a setter for the fxml category difficulty label. Used by home page controller.
+     */
+    @FXML
+    public void setDifficultyText(String text) {
+        difficultyLabel.setText(text);
+    }
 }
 
