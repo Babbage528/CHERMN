@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"com.example.chermn","l":"com.example.chermn"},{"m":"com.example.chermn","l":"com.example.chermn.controller"},{"m":"com.example.chermn","l":"com.example.chermn.model"}];updateSearchResults();
