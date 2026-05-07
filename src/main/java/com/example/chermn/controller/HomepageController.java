@@ -36,14 +36,16 @@ public class HomepageController {
     private ImageView animalImageView;
 
     // defining variable for current logged-in user
-    private Student currentUser;
+    private static Student currentUser;
     private Users user = Session.getCurrentUser();
     private static int categorySelection;
+    private static String difficultySelection;
 
-    // getter for private variable
+    // getters for private variables
     public static int getCategorySelection() {
         return categorySelection;
     }
+    public static String getDifficultySelection() { return difficultySelection; }
 
     // assign the current user to the one logged in through settings
     public void setCurrentUser() {
@@ -117,12 +119,15 @@ public class HomepageController {
         quizController.setCategoryText("Category: Animals");
         if (getQuizLevel("Animal") == 1) {
             quizController.setDifficultyText("Difficulty: Easy");
+            difficultySelection = "Easy";
         }
         else if (getQuizLevel("Animal") == 2) {
             quizController.setDifficultyText("Difficulty: Medium");
+            difficultySelection = "Medium";
         }
         else if (getQuizLevel("Animal") == 3) {
             quizController.setDifficultyText("Difficulty: Hard");
+            difficultySelection = "Hard";
         }
         Scene scene = new Scene(root, OnBoarding.WIDTH, OnBoarding.HEIGHT);
         stage.setScene(scene);
@@ -139,12 +144,15 @@ public class HomepageController {
         quizController.setCategoryText("Category: Vehicles");
         if (getQuizLevel("Vehicle") == 1) {
             quizController.setDifficultyText("Difficulty: Easy");
+            difficultySelection = "Easy";
         }
         else if (getQuizLevel("Vehicle") == 2) {
             quizController.setDifficultyText("Difficulty: Medium");
+            difficultySelection = "Medium";
         }
         else if (getQuizLevel("Vehicle") == 3) {
             quizController.setDifficultyText("Difficulty: Hard");
+            difficultySelection = "Hard";
         }
         Scene scene = new Scene(root, OnBoarding.WIDTH, OnBoarding.HEIGHT);
         stage.setScene(scene);
@@ -189,24 +197,27 @@ public class HomepageController {
         quizController.setCategoryText("Category: Science and Nature");
         if (getQuizLevel("Nature") == 1) {
             quizController.setDifficultyText("Difficulty: Easy");
+            difficultySelection = "Easy";
         }
         else if (getQuizLevel("Nature") == 2) {
             quizController.setDifficultyText("Difficulty: Medium");
+            difficultySelection = "Medium";
         }
         else if (getQuizLevel("Nature") == 3) {
             quizController.setDifficultyText("Difficulty: Hard");
+            difficultySelection = "Hard";
         }
         Scene scene = new Scene(root, OnBoarding.WIDTH, OnBoarding.HEIGHT);
         stage.setScene(scene);
     }
 
-    /** Private int "getQuizLevel" acts as a getter for the current user's quiz level. Accommodates for different categories.
+    /** Public int "getQuizLevel" acts as a getter for the current user's quiz level. Accommodates for different categories.
      * @param levelType level of target user quiz
      * @exception NoSuchMethodException constructed method does not exist
      * @exception InvocationTargetException invoked method does not properly work with target object
      * @exception IllegalAccessException lack of permission for field, method etc
      */
-    private int getQuizLevel(String levelType) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public static int getQuizLevel(String levelType) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         String methodName = "get" + levelType + "Level";
         Method method = currentUser.getClass().getMethod(methodName);
         return (int) method.invoke(currentUser);

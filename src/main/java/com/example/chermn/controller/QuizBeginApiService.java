@@ -5,12 +5,14 @@ import com.example.chermn.controller.HomepageController;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class QuizBeginApiService {
@@ -21,13 +23,19 @@ public class QuizBeginApiService {
     public static String getApiRequest() {
 
         if (HomepageController.getCategorySelection() == 1) {
-            return "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=easy&category=27&encode=base64";
+            if (Objects.equals(HomepageController.getDifficultySelection(), "Easy")) {return "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=easy&category=27&encode=base64";}
+            else if (Objects.equals(HomepageController.getDifficultySelection(), "Medium")) {return "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=medium&category=27&encode=base64";}
+            else if (Objects.equals(HomepageController.getDifficultySelection(), "Hard")) {return "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=hard&category=27&encode=base64";}
         }
         else if (HomepageController.getCategorySelection() == 2) {
-            return "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=easy&category=28&encode=base64";
+            if (Objects.equals(HomepageController.getDifficultySelection(), "Easy")) {return "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=easy&category=28&encode=base64";}
+            else if (Objects.equals(HomepageController.getDifficultySelection(), "Medium")) {return "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=medium&category=28&encode=base64";}
+            else if (Objects.equals(HomepageController.getDifficultySelection(), "Hard")) {return "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=hard&category=28&encode=base64";}
         }
         else if (HomepageController.getCategorySelection() == 3) {
-            return "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=easy&category=17&encode=base64";
+            if (Objects.equals(HomepageController.getDifficultySelection(), "Easy")) {return "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=easy&category=17&encode=base64";}
+            else if (Objects.equals(HomepageController.getDifficultySelection(), "Medium")) {return "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=medium&category=17&encode=base64";}
+            else if (Objects.equals(HomepageController.getDifficultySelection(), "Hard")) {return "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=hard&category=17&encode=base64";}
         }
         return "";
     }
