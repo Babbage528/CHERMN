@@ -300,7 +300,7 @@ public class UserDAO implements IUserDAO {
         try (Connection conn = DatabaseConnection.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, user.getid());
+            stmt.setInt(1, user.getId());
             stmt.executeUpdate();
 
         } catch (Exception e) {
@@ -320,7 +320,7 @@ public class UserDAO implements IUserDAO {
             stmt.setString(3, user.getSchoolName());
             stmt.setString(4, user.getUserName());
             stmt.setString(5, hash(user.getPassword()));
-            stmt.setInt(6, user.getid());
+            stmt.setInt(6, user.getId());
 
             stmt.executeUpdate();
 
