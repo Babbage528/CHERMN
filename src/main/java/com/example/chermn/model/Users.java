@@ -263,7 +263,7 @@ public class Users {
     }
 
     /**
-     * Converts the User's details to a string format.     *
+     * Converts the User's details to a string format.
      * @return the user's details in a string sentence.
      */
     @Override

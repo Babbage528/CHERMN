@@ -1,7 +1,5 @@
 package com.example.chermn.controller;
 
-import com.example.chermn.controller.QuizQuestionsController;
-import com.example.chermn.controller.HomepageController;
 import com.example.chermn.Session;
 import com.example.chermn.QuizBegin;
 import com.example.chermn.model.Student;
@@ -73,26 +71,26 @@ public class QuizResultsController {
             setCurrentUser();
             if (HomepageController.getCategorySelection() == 1) {
                 if (student.getAnimalLevel() == 3) {
-                    Student.setAnimalLevel(3);
+                    student.setAnimalLevel(3);
                 }
                 else {
-                    Student.setAnimalLevel(student.getAnimalLevel() + 1);
+                    student.setAnimalLevel(student.getAnimalLevel() + 1);
                 }
             }
             else if (HomepageController.getCategorySelection() == 2) {
                 if (student.getVehicleLevel() == 3) {
-                    Student.setVehicleLevel(3);
+                    student.setVehicleLevel(3);
                 }
                 else {
-                    Student.setVehicleLevel(student.getVehicleLevel() + 1);
+                    student.setVehicleLevel(student.getVehicleLevel() + 1);
                 }
             }
             else if (HomepageController.getCategorySelection() == 3) {
                 if (student.getNatureLevel() == 3) {
-                    Student.setNatureLevel(3);
+                    student.setNatureLevel(3);
                 }
                 else  {
-                    Student.setNatureLevel(student.getNatureLevel() + 1);
+                    student.setNatureLevel(student.getNatureLevel() + 1);
                 }
             }
 
