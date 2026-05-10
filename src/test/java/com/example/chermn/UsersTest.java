@@ -21,7 +21,7 @@ public class UsersTest {
     // tests for id -> getting the initial value
     @Test
     public void testGetId_initialValue() {
-        assertEquals(1, users.getid());
+        assertEquals(1, users.getId());
     }
 
     // tests for username -> normal, edge and invalid inputs
