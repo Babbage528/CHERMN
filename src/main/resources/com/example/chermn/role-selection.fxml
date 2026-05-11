@@ -22,7 +22,7 @@
         <Button onAction="#handleBack" layoutX="40.0" layoutY="40.0" prefHeight="45.0" prefWidth="45.0"
                 style="-fx-background-color: #76C043; -fx-background-radius: 50; -fx-cursor: hand;">
           <graphic>
-            <Label text="‹" style="-fx-text-fill: white; -fx-font-size: 28px; -fx-font-weight: bold; -fx-padding: 0 0 5 0;" />
+            <Label text="‹" accessibleText="back" style="-fx-text-fill: white; -fx-font-size: 28px; -fx-font-weight: bold; -fx-padding: 0 0 5 0;" />
           </graphic>
           <effect>
             <DropShadow color="#00000033" radius="5" offsetY="2" />
@@ -91,7 +91,7 @@
               </children>
             </HBox>
 
-            <Button fx:id="nextButton" text="Next" prefHeight="50.0" prefWidth="350.0" onAction="#handleNext"
+            <Button fx:id="nextButton" text="Next" accessibleText="next" prefHeight="50.0" prefWidth="350.0" onAction="#handleNext"
                     style="-fx-background-color: #6DBE45; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18px; -fx-background-radius: 15; -fx-cursor: hand;" />
           </children>
         </VBox>

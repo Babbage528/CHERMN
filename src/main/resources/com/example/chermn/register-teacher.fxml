@@ -18,7 +18,7 @@
                 <Button onAction="#handleBack" layoutX="40.0" layoutY="40.0" prefHeight="45.0" prefWidth="45.0"
                         style="-fx-background-color: #76C043; -fx-background-radius: 50; -fx-cursor: hand;">
                     <graphic>
-                        <Label text="‹" style="-fx-text-fill: white; -fx-font-size: 28px; -fx-font-weight: bold; -fx-padding: 0 0 5 0;" />
+                        <Label text="‹" accessibleText="back" style="-fx-text-fill: white; -fx-font-size: 28px; -fx-font-weight: bold; -fx-padding: 0 0 5 0;" />
                     </graphic>
                     <effect>
                         <DropShadow color="#00000033" radius="5" offsetY="2" />
@@ -58,7 +58,7 @@
                                            style="-fx-background-color: #F0F7EE; -fx-background-radius: 10;" />
                         </VBox>
 
-                        <Button fx:id="nextButton" onAction="#handleRegisterSubmit" prefHeight="50.0" maxWidth="Infinity" text="Next"
+                        <Button fx:id="nextButton" onAction="#handleRegisterSubmit" prefHeight="50.0" maxWidth="Infinity" text="Next" accessibleText="next"
                                 style="-fx-background-color: #76C043; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 16px; -fx-background-radius: 12; -fx-cursor: hand;">
                             <VBox.margin>
                                 <Insets top="10.0" />

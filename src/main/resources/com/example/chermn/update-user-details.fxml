@@ -128,7 +128,7 @@
                                 onAction="#updateButtonClick"
                                 prefHeight="50.0" prefWidth="140.0"
                                 style="-fx-background-color: #F7FAE9;"
-                                text="Update"
+                                text="Update" accessibleText="update my details"
                                 GridPane.columnIndex="1" GridPane.rowIndex="4">
                             <font>
                                 <Font name="System Bold Italic" size="18.0" />

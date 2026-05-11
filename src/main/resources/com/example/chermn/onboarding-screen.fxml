@@ -26,9 +26,9 @@
             </VBox>
 
             <HBox spacing="10.0" maxWidth="420.0">
-                <Button fx:id="signUpButton" HBox.hgrow="ALWAYS" maxWidth="Infinity" prefHeight="50.0"
+                <Button fx:id="signUpButton" accessibleText="Sign up" HBox.hgrow="ALWAYS" maxWidth="Infinity" prefHeight="50.0"
                         style="-fx-background-color: #6DBE45; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand;" text="Sign Up" onAction="#signUpButtonClick"/>
-                <Button fx:id="loginButton" HBox.hgrow="ALWAYS" maxWidth="Infinity" prefHeight="50.0"
+                <Button fx:id="loginButton" accessibleText="log in" HBox.hgrow="ALWAYS" maxWidth="Infinity" prefHeight="50.0"
                         style="-fx-background-color: #F7FAE9; -fx-stroke: #6DBE45; -fx-stroke-width: 1px;-fx-text-fill: #6DBE45; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand;" text="Log In" onAction="#logInButtonClick"/>
             </HBox>
         </children>

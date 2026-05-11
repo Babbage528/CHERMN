@@ -60,5 +60,4 @@ public class ChangePasswordController extends ProfileController {
         alert.setContentText(content);
         alert.showAndWait();
     }
-
 }

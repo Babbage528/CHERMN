@@ -29,7 +29,8 @@
                     layoutX="767.0" mnemonicParsing="false"
                     onAction="#closeButtonClick"
                     style="-fx-background-color: transparent;"
-                    text="X" AnchorPane.leftAnchor="0.0">
+                    text="X" accessibleText="exit"
+                    AnchorPane.leftAnchor="0.0">
                 <font>
                     <Font name="System Bold" size="56.0" />
                 </font>
@@ -47,7 +48,7 @@
 
                 <children>
                     <!-- Creates a profile button for the user to navigate to view their details -->
-                    <Button fx:id="userProfileButton" mnemonicParsing="false"
+                    <Button fx:id="userProfileButton" accessibleText="user profile" mnemonicParsing="false"
                             onAction="#userProfileButtonClick"
                             prefHeight="50.0" prefWidth="180.0"
                             style="-fx-background-color: transparent; -fx-border-radius: 5;"
@@ -63,7 +64,7 @@
                             onAction="#levelProgressButtonClick"
                             prefHeight="50.0" prefWidth="180.0"
                             style="-fx-background-color: transparent; -fx-border-radius: 5;"
-                            text="Level Progress">
+                            text="Level Progress" accessibleText="level progress">
                         <font>
                             <Font name="System Bold Italic" size="18.0" />
                         </font>
@@ -74,7 +75,7 @@
                             onAction="#changePasswordButtonClick"
                             prefHeight="50.0" prefWidth="180.0"
                             style="-fx-background-color: transparent; -fx-border-radius: 5;"
-                            text="Change Password">
+                            text="Change Password" accessibleText="Change password">
                         <font>
                             <Font name="System Bold Italic" size="18.0" />
                         </font>
@@ -87,7 +88,7 @@
                             mnemonicParsing="false" onAction="#signOutButtonClick"
                             prefHeight="50.0" prefWidth="180.0"
                             style="-fx-background-color: transparent; -fx-border-radius: 5;"
-                            text="Sign Out">
+                            text="Sign Out" accessibleText="sign out">
                         <font>
                             <Font name="System Bold Italic" size="18.0" />
                         </font>

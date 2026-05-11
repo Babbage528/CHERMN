@@ -44,7 +44,7 @@
                           mnemonicParsing="false"
                           onAction="#closeButtonClick"
                           style="-fx-background-color: transparent;"
-                          text="X">
+                          text="X" accessibleText="exit">
                      <font>
                         <Font name="System Bold" size="56.0" />
                      </font>
@@ -57,7 +57,7 @@
                           onAction="#signOutButtonClick"
                           prefHeight="102.0" prefWidth="228.0"
                           style="-fx-background-color: #F7FAE9;"
-                          text="Sign Out"
+                          text="Sign Out" accessibleText="sign out"
                           AnchorPane.bottomAnchor="20.0"
                           AnchorPane.rightAnchor="40.0">
                      <font>
@@ -92,7 +92,7 @@
                           onAction="#getHelpButtonClick"
                           prefHeight="102.0" prefWidth="224.0"
                           style="-fx-background-color: #F7FAE9;"
-                          text="Get Help"
+                          text="Get Help" accessibleText="get help"
                           AnchorPane.bottomAnchor="20.0"
                           AnchorPane.leftAnchor="40.0">
                      <font>
