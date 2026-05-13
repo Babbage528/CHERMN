@@ -66,5 +66,6 @@ public class BaseController {
     public void cancelSpeak(MouseEvent e) {
         settleDelay.stop();
         lastHoveredNode = null;
+        SpeechHelper.stop(); // makes sure only the one you want, plays
     }
 }
