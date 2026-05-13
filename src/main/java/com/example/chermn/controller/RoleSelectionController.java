@@ -7,8 +7,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.awt.*;
 import java.io.IOException;
 
 public class RoleSelectionController extends BaseController {
@@ -16,7 +19,16 @@ public class RoleSelectionController extends BaseController {
     private String selectedRole = "";
 
     @FXML
+    private Button nextButton;
+
+    @FXML
     private VBox studentCard, teacherCard, parentCard;
+
+    @FXML
+    public void initialize() {
+        nextButton.setDisable(true);
+        nextButton.setStyle("-fx-background-color: grey; -fx-opacity: 0.6;");
+    }
 
     @FXML
     private void selectStudent() {
@@ -37,12 +49,20 @@ public class RoleSelectionController extends BaseController {
     }
 
     private void highlightCard(VBox activeCard) {
-        studentCard.setStyle(studentCard.getStyle() + "-fx-border-color: transparent;");
-        teacherCard.setStyle(teacherCard.getStyle() + "-fx-border-color: transparent;");
-        parentCard.setStyle(parentCard.getStyle() + "-fx-border-color: transparent;");
 
-        activeCard.setStyle(activeCard.getStyle() + "-fx-border-color: #3E7C2B; -fx-border-width: 3; -fx-border-radius: 20;");
+        // reset styles cleanly
+        studentCard.setStyle("-fx-border-color: transparent;");
+        teacherCard.setStyle("-fx-border-color: transparent;");
+        parentCard.setStyle("-fx-border-color: transparent;");
+
+        // highlight selected card
+        activeCard.setStyle("-fx-border-color: #3E7C2B; -fx-border-width: 3; -fx-border-radius: 20;");
+
+        // enable NEXT button
+        nextButton.setDisable(false);
+        nextButton.setStyle("-fx-background-color: #3E7C2B; -fx-text-fill: white; -fx-opacity: 1;");
     }
+
 
     @FXML
     private void handleNext(ActionEvent event) throws IOException {
@@ -62,6 +82,8 @@ public class RoleSelectionController extends BaseController {
             case "Parent":
                 fxmlFile = "register-parent.fxml";
                 break;
+            default:
+                fxmlFile = "";
         }
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -70,6 +92,7 @@ public class RoleSelectionController extends BaseController {
         Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
         stage.setScene(scene);
     }
+
     @FXML
     private void handleBack(ActionEvent event) {
         System.out.println("BACK CLICKED");

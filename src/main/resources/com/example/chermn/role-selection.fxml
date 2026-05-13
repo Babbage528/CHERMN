@@ -21,7 +21,7 @@
         <Button onAction="#handleBack" layoutX="40.0" layoutY="40.0" prefHeight="45.0" prefWidth="45.0"
                 style="-fx-background-color: #76C043; -fx-background-radius: 50; -fx-cursor: hand;">
           <graphic>
-            <Label text="‹" accessibleText="back" onMouseEntered="#speakAccessibleText" style="-fx-text-fill: white; -fx-font-size: 28px; -fx-font-weight: bold; -fx-padding: 0 0 5 0;" />
+            <Label text="‹" mouseTransparent="true" accessibleText="back" onMouseEntered="#speakAccessibleText" style="-fx-text-fill: white; -fx-font-size: 28px; -fx-font-weight: bold; -fx-padding: 0 0 5 0;" />
           </graphic>
           <effect>
             <DropShadow color="#00000033" radius="5" offsetY="2" />
