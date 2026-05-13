@@ -17,14 +17,13 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 
-public class HomepageController extends BaseController{
 /**
  * Controller for the user's homepage screen.
  * Handles navigating between different screen stemming off the homepage.
  * Handles loading the different images corresponding to the user's current
  * level into the image views.
  */
-public class HomepageController {
+public class HomepageController extends BaseController {
 
     // defining the buttons used in the homepage screen
     @FXML

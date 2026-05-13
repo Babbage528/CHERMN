@@ -17,7 +17,6 @@ import java.io.IOException;
  * Controller for the settings screen.
  * Handles displaying the game rules and overall objective, signing out, and music controls.
  */
-public class SettingsController {
 
 public class SettingsController extends BaseController{
 

@@ -17,13 +17,12 @@ import javax.swing.*;
 import javafx.event.ActionEvent;
 import java.io.IOException;
 
-public abstract class BaseProfileController extends BaseController{
 /**
  * Controller for the base profiles screens.
  * Handles the base profile functionalities, such as displaying screens, changing passwords,
  * and signing out.
  */
-public abstract class BaseProfileController {
+public abstract class BaseProfileController extends BaseController{
 
     /**
      * Abstract method that gets the type of StackPane used
