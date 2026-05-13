@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 
-public class SettingsController {
+public class SettingsController extends BaseController{
 
     // defining the buttons and sliders used in the settings screen
     @FXML

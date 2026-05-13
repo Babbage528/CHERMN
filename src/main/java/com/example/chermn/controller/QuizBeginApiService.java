@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class QuizBeginApiService {
+public class QuizBeginApiService extends BaseController{
 
     /** Public static String 'getApiRequest' determines the category of quiz required for the api request. It finds what
      * button was clicked and returns the corresponding API call for use in the https request.

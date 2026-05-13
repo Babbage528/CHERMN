@@ -20,7 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class MainController {
+public class MainController extends BaseController{
 
     @FXML private ListView<Users> userListView;
     @FXML private TextField firstNameField, lastNameField, usernameField, schoolField;
@@ -124,15 +124,4 @@ public class MainController {
         usernameField.setText(user.getUserName());
         schoolField.setText(user.getSchoolName());
     }
-
-    // text to speech for all accessible text
-    public void speakAccessibleText(MouseEvent e) {
-        Node node = (Node) e.getSource();
-        String text = node.getAccessibleText();
-
-        if (text != null && !text.isBlank()) {
-            SpeechHelper.speak(text);
-        }
-    }
-
 }

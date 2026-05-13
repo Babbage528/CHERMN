@@ -17,7 +17,7 @@ import javax.swing.*;
 import javafx.event.ActionEvent;
 import java.io.IOException;
 
-public abstract class BaseProfileController {
+public abstract class BaseProfileController extends BaseController{
 
     protected abstract StackPane getContainer();
 

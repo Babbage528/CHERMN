@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 
-public class HomepageController {
+public class HomepageController extends BaseController{
 
     // creating image views to allow swapping correlating images in and out
     @FXML

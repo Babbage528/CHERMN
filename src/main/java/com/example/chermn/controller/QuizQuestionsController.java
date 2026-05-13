@@ -32,7 +32,7 @@ import javafx.stage.Stage;
 
 import java.sql.Array;
 import java.util.Arrays;
-public class QuizQuestionsController {
+public class QuizQuestionsController extends BaseController {
 
     /// setting score for new quiz
     public static int score = 0;

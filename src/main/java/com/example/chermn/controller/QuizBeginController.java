@@ -19,7 +19,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class QuizBeginController {
+public class QuizBeginController extends BaseController {
 
     @FXML
     private Button returnToHomepageButton;
