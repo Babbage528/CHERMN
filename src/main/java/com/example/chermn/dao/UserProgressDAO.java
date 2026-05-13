@@ -1,14 +1,22 @@
 package com.example.chermn.dao;
 
-import com.example.chermn.DatabaseConnection;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import com.example.chermn.DatabaseConnection;
+
+/**
+ * Handles user progress database operations
+ */
 public class UserProgressDAO {
 
-    //updates the farm (progress)
+    /**
+     * Ypdates user progress for a category.
+     * @param userId user ID
+     * @param categoryId category ID
+     * @param newStage new progress stage
+     */
     public void updateProgress(int userId, int categoryId, int newStage) {
 
         String sql = """
@@ -31,7 +39,12 @@ public class UserProgressDAO {
         }
     }
 
-    //returns the current progress
+    /**
+     * getting current progress for a user/category
+     * @param userId user ID
+     * @param categoryId category ID
+     * @return current progress stage
+     */
     public int getProgress(int userId, int categoryId) {
 
         String sql = """
