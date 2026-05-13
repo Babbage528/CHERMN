@@ -24,12 +24,19 @@ public class SpeechHelper {
     private static void speakWindows(String text) throws Exception {
         String safe = text.replace("'", "''");
 
-        String command = "PowerShell -Command \"Add-Type –AssemblyName System.Speech;" +
-                " $speak = New-Object System.Speech.Synthesis.SpeechSynthesizer;" +
-                " $speak.Speak('" + safe + "');\"";
+        String command =
+                "Add-Type –AssemblyName System.Speech;" +
+                        "$s = New-Object System.Speech.Synthesis.SpeechSynthesizer;" +
+                        "$s.Speak('" + safe + "');";
 
-        new ProcessBuilder("cmd.exe", "/c", command).start();
+        new ProcessBuilder(
+                "powershell.exe",
+                "-NoProfile",
+                "-WindowStyle", "Hidden",
+                "-Command", command
+        ).start();
     }
+
 
     private static void speakMac(String text) throws Exception {
         new ProcessBuilder("say", text).start();
