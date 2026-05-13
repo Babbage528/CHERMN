@@ -21,7 +21,9 @@
         <Button onAction="#handleBack" layoutX="40.0" layoutY="40.0" prefHeight="45.0" prefWidth="45.0"
                 style="-fx-background-color: #76C043; -fx-background-radius: 50; -fx-cursor: hand;">
           <graphic>
-            <Label text="‹" mouseTransparent="true" accessibleText="back" onMouseEntered="#speakAccessibleText" style="-fx-text-fill: white; -fx-font-size: 28px; -fx-font-weight: bold; -fx-padding: 0 0 5 0;" />
+            <Label text="‹" mouseTransparent="true" accessibleText="back"
+                   onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
+                   style="-fx-text-fill: white; -fx-font-size: 28px; -fx-font-weight: bold; -fx-padding: 0 0 5 0;" />
           </graphic>
           <effect>
             <DropShadow color="#00000033" radius="5" offsetY="2" />
@@ -32,7 +34,9 @@
     <VBox alignment="CENTER" spacing="40.0">
       <children>
         <VBox alignment="CENTER" spacing="5.0">
-          <Label text="Who are you?" accessibleText="Who are you?" onMouseEntered="#speakAccessibleText" style="-fx-font-size: 48px; -fx-font-weight: bold; -fx-text-fill: #3E7C2B;" />
+          <Label text="Who are you?" accessibleText="Who are you?"
+                 onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
+                 style="-fx-font-size: 48px; -fx-font-weight: bold; -fx-text-fill: #3E7C2B;" />
         </VBox>
 
         <VBox alignment="CENTER_LEFT" spacing="5.0">
@@ -40,7 +44,9 @@
             <Insets left="150.0" />
           </padding>
           <children>
-            <Label text="Step 1 of 2" accessibleText="Step 1 of 2" onMouseEntered="#speakAccessibleText" style="-fx-font-size: 16px; -fx-text-fill: #666666;" />
+            <Label text="Step 1 of 2" accessibleText="Step 1 of 2"
+                   onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
+                   style="-fx-font-size: 16px; -fx-text-fill: #666666;" />
           </children>
         </VBox>
 
@@ -49,8 +55,10 @@
           <children>
             <HBox alignment="CENTER" spacing="25.0">
               <children>
-                <VBox fx:id="studentCard" onMouseClicked="#selectStudent" accessibleText="I'm a student." onMouseEntered="#speakAccessibleText"alignment="CENTER" spacing="15.0" prefWidth="250.0"
-                      style="-fx-background-color: #D5E8D4; -fx-background-radius: 20; -fx-padding: 25; -fx-cursor: hand;">
+                <VBox fx:id="studentCard" onMouseClicked="#selectStudent" accessibleText="I'm a student."
+                      onMouseEntered="#speakAccessibleText"onMouseExited="#cancelSpeak" alignment="CENTER"
+                      spacing="15.0" prefWidth="250.0" style="-fx-background-color: #D5E8D4;
+                      -fx-background-radius: 20; -fx-padding: 25; -fx-cursor: hand;">
                   <children>
                     <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                       <image>
@@ -62,8 +70,10 @@
                   </children>
                 </VBox>
 
-                <VBox fx:id="teacherCard" onMouseClicked="#selectTeacher" accessibleText="I'm a teacher." onMouseEntered="#speakAccessibleText" alignment="CENTER" spacing="15.0" prefWidth="250.0"
-                      style="-fx-background-color: #FFF2CC; -fx-background-radius: 20; -fx-padding: 25; -fx-cursor: hand;">
+                <VBox fx:id="teacherCard" onMouseClicked="#selectTeacher" accessibleText="I'm a teacher."
+                      onMouseEntered="#speakAccessibleText"  onMouseExited="#cancelSpeak" alignment="CENTER"
+                      spacing="15.0" prefWidth="250.0" style="-fx-background-color: #FFF2CC; -fx-background-radius: 20;
+                      -fx-padding: 25; -fx-cursor: hand;">
                   <children>
                     <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                       <image>
@@ -75,8 +85,10 @@
                   </children>
                 </VBox>
 
-                <VBox fx:id="parentCard" onMouseClicked="#selectParent" accessibleText="I'm a Parent." onMouseEntered="#speakAccessibleText"alignment="CENTER" spacing="15.0" prefWidth="250.0"
-                      style="-fx-background-color: #F8CECC; -fx-background-radius: 20; -fx-padding: 25; -fx-cursor: hand;">
+                <VBox fx:id="parentCard" onMouseClicked="#selectParent" accessibleText="I'm a Parent."
+                      onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak" alignment="CENTER"
+                      spacing="15.0" prefWidth="250.0" style="-fx-background-color: #F8CECC; -fx-background-radius: 20;
+                      -fx-padding: 25; -fx-cursor: hand;">
                   <children>
                     <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                       <image>
@@ -90,8 +102,10 @@
               </children>
             </HBox>
 
-            <Button fx:id="nextButton" text="Next" accessibleText="next" onMouseEntered="#speakAccessibleText" prefHeight="50.0" prefWidth="350.0" onAction="#handleNext"
-                    style="-fx-background-color: #6DBE45; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18px; -fx-background-radius: 15; -fx-cursor: hand;" />
+            <Button fx:id="nextButton" text="Next" accessibleText="next" onMouseEntered="#speakAccessibleText"
+                    onMouseExited="#cancelSpeak" prefHeight="50.0" prefWidth="350.0" onAction="#handleNext"
+                    style="-fx-background-color: #6DBE45; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size:
+                    18px; -fx-background-radius: 15; -fx-cursor: hand;" />
           </children>
         </VBox>
       </children>

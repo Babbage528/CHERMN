@@ -45,7 +45,7 @@
                     prefHeight="100.0" prefWidth="100.0"
                     style="-fx-background-color: transparent;"
                     GridPane.columnIndex="1" GridPane.rowIndex="3" cursor="HAND"
-                    onMouseEntered="#speakAccessibleText">
+                    onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak">
                <GridPane.margin>
                   <Insets bottom="35.0" left="250.0" />
                </GridPane.margin>
@@ -62,7 +62,7 @@
              <!-- Creates a button that will appear on top of the vechile within the grid at column 3 and row 3 -->
             <Button fx:id="vehicleButton"
                     accessibleText="Open vehicle quiz"
-                    onMouseEntered="#speakAccessibleText"
+                    onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                     maxHeight="-Infinity" maxWidth="-Infinity"
                     minHeight="-Infinity" minWidth="-Infinity"
                     onAction="#vehicleButtonClick"
@@ -83,7 +83,8 @@
              </ImageView>
 
              <!-- Creates a button that will appear on top of the settings icon within the grid at column 0 and row 0 -->
-            <Button fx:id="settingsButton" accessibleText="Open settings" onMouseEntered="#speakAccessibleText"
+            <Button fx:id="settingsButton" accessibleText="Open settings"
+                    onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                     mnemonicParsing="false" onAction="#settingsButtonClick"
                     prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: transparent;"
                     GridPane.columnIndex="0" GridPane.rowIndex="0">
@@ -105,7 +106,8 @@
 
              <!-- Creates a button that will appear on top of the farm house icon within the grid at column 2 and row 2 -->
              <Button fx:id="farmHouseButton" accessibleText="Go to farmhouse" minHeight="-Infinity" minWidth="-Infinity"
-                     mnemonicParsing="false" onAction="#farmHouseButtonClick" onMouseEntered="#speakAccessibleText"
+                     mnemonicParsing="false" onAction="#farmHouseButtonClick"
+                     onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                      prefHeight="200.0" prefWidth="222.0" style="-fx-background-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets bottom="200.0" />
@@ -143,7 +145,8 @@
              </ImageView>
 
              <!-- Creates a button that will appear on top of the corn icon within the grid at column 4 and row 2 -->
-             <Button fx:id="cornButton"  accessibleText="open nature quiz" onMouseEntered="#speakAccessibleText"
+             <Button fx:id="cornButton"  accessibleText="open nature quiz"
+                     onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                      minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cornButtonClick"
                      prefHeight="130.0" prefWidth="160.0" style="-fx-background-color: transparent;"
                      GridPane.columnIndex="4" GridPane.rowIndex="2">
@@ -164,7 +167,8 @@
              </ImageView>
 
              <!-- Creates a button that will appear on top of the profile icon within the grid at column 4 and row 2 -->
-             <Button fx:id="profileButton" accessibleText="open profile" onMouseEntered="#speakAccessibleText"
+             <Button fx:id="profileButton" accessibleText="open profile"
+                     onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                      minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#profileButtonClick"
                      prefHeight="60" prefWidth="60" style="-fx-background-color: transparent;" GridPane.columnIndex="4"
                      GridPane.rowIndex="0">
