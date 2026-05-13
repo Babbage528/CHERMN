@@ -5,11 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 
 
-public class StudentDetailsController {
-
+public class StudentDetailsController extends BaseController{
 
     private UpdateUserDetailsController controller;
-
 
     @FXML
     private ListView studentsList;
@@ -18,14 +16,9 @@ public class StudentDetailsController {
     public void initialize() {
 
         // pulls the current users student details and levels
-
     }
-
 
     private void getStudentDetails(Users currentUser){
-
     }
-
-
 
 }

@@ -1,22 +1,41 @@
 package com.example.chermn;
 
-import com.sun.speech.freetts.Voice;
-import com.sun.speech.freetts.VoiceManager;
 
 public class SpeechHelper {
 
-    private static final String VOICE_NAME = "kevin16";
-
     public static void speak(String text) {
-        Voice voice = VoiceManager.getInstance().getVoice(VOICE_NAME);
+        if (text == null || text.isBlank()) return;
 
-        if (voice == null) {
-            System.out.println("Voice not found");
-            return;
+        String os = System.getProperty("os.name").toLowerCase();
+
+        try {
+            if (os.contains("win")) {
+                speakWindows(text);
+            } else if (os.contains("mac")) {
+                speakMac(text);
+            } else if (os.contains("nix") || os.contains("nux")) {
+                speakLinux(text);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+    }
 
-        voice.allocate();
-        voice.speak(text);
-        voice.deallocate();
+    private static void speakWindows(String text) throws Exception {
+        String safe = text.replace("'", "''");
+
+        String command = "PowerShell -Command \"Add-Type –AssemblyName System.Speech;" +
+                " $speak = New-Object System.Speech.Synthesis.SpeechSynthesizer;" +
+                " $speak.Speak('" + safe + "');\"";
+
+        new ProcessBuilder("cmd.exe", "/c", command).start();
+    }
+
+    private static void speakMac(String text) throws Exception {
+        new ProcessBuilder("say", text).start();
+    }
+
+    private static void speakLinux(String text) throws Exception {
+        new ProcessBuilder("espeak", text).start();
     }
 }

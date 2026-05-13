@@ -11,7 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.io.IOException;
 
-public class RoleSelectionController {
+public class RoleSelectionController extends BaseController {
 
     private String selectedRole = "";
 

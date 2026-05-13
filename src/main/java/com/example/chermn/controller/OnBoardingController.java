@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class OnBoardingController {
+public class OnBoardingController extends BaseController{
 
     @FXML
     private Button loginButton;

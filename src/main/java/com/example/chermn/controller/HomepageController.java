@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
+
+public class HomepageController extends BaseController{
 /**
  * Controller for the user's homepage screen.
  * Handles navigating between different screen stemming off the homepage.

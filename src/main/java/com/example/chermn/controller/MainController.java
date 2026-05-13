@@ -3,6 +3,7 @@ package com.example.chermn.controller;
 import java.io.IOException;
 
 import com.example.chermn.OnBoarding;
+import com.example.chermn.SpeechHelper;
 import com.example.chermn.dao.UserDAO;
 import com.example.chermn.model.Student;
 import com.example.chermn.model.Users;
@@ -19,7 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class MainController {
+public class MainController extends BaseController{
 
     @FXML private ListView<Users> userListView;
     @FXML private TextField firstNameField, lastNameField, usernameField, schoolField;

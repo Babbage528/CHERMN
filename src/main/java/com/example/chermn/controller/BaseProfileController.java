@@ -17,6 +17,7 @@ import javax.swing.*;
 import javafx.event.ActionEvent;
 import java.io.IOException;
 
+public abstract class BaseProfileController extends BaseController{
 /**
  * Controller for the base profiles screens.
  * Handles the base profile functionalities, such as displaying screens, changing passwords,

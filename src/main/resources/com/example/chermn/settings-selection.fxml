@@ -26,9 +26,8 @@
 
         <!-- Sets a titled pane to include the settings info -->
       <TitledPane
-              animated="false"
-              prefHeight="600.0" prefWidth="520.0"
-              text="Settings" accessibleText="settings">
+              animated="false" prefHeight="600.0" prefWidth="520.0"
+              text="Settings" accessibleText="settings" onMouseEntered="#speakAccessibleText" >
 
           <!-- Sets the content of the titled pane to include all the settings options -->
         <content>
@@ -44,7 +43,7 @@
                           mnemonicParsing="false"
                           onAction="#closeButtonClick"
                           style="-fx-background-color: transparent;"
-                          text="X" accessibleText="exit">
+                          text="X" accessibleText="exit" onMouseEntered="#speakAccessibleText" >
                      <font>
                         <Font name="System Bold" size="56.0" />
                      </font>
@@ -57,7 +56,7 @@
                           onAction="#signOutButtonClick"
                           prefHeight="102.0" prefWidth="228.0"
                           style="-fx-background-color: #F7FAE9;"
-                          text="Sign Out" accessibleText="sign out"
+                          text="Sign Out" accessibleText="sign out" onMouseEntered="#speakAccessibleText"
                           AnchorPane.bottomAnchor="20.0"
                           AnchorPane.rightAnchor="40.0">
                      <font>
@@ -66,14 +65,14 @@
                   </Button>
 
                    <!-- Creates a label with text Music -->
-                  <Label layoutX="157.0" layoutY="59.0" text="Music">
+                  <Label layoutX="157.0" layoutY="59.0" text="Music" accessibleText="Music Slider" onMouseEntered="#speakAccessibleText" >
                      <font>
                         <Font name="System Bold" size="26.0" />
                      </font>
                   </Label>
 
                    <!-- Creates a label with text Sound FX -->
-                   <Label layoutX="111.0" layoutY="147.0" text="Sound FX">
+                   <Label layoutX="111.0" layoutY="147.0" text="Sound FX" accessibleText="Sound FX Slider" onMouseEntered="#speakAccessibleText" >
                        <font>
                            <Font name="System Bold" size="26.0" />
                        </font>
@@ -92,7 +91,7 @@
                           onAction="#getHelpButtonClick"
                           prefHeight="102.0" prefWidth="224.0"
                           style="-fx-background-color: #F7FAE9;"
-                          text="Get Help" accessibleText="get help"
+                          text="Get Help" accessibleText="get help" onMouseEntered="#speakAccessibleText"
                           AnchorPane.bottomAnchor="20.0"
                           AnchorPane.leftAnchor="40.0">
                      <font>

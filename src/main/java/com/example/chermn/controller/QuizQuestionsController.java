@@ -15,6 +15,15 @@ import java.util.Collections;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+
+import java.sql.Array;
+import java.util.Arrays;
+public class QuizQuestionsController extends BaseController {
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;

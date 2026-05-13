@@ -27,7 +27,7 @@
     </rowConstraints>
 
         <children>
-            <Label text="Level Progress" accessibleText="Level Progress" GridPane.columnIndex="1">
+            <Label text="Level Progress" accessibleText="Level Progress" onMouseEntered="#speakAccessibleText" GridPane.columnIndex="1">
                 <font>
                     <Font name="System Bold Italic" size="24.0" />
                 </font>
@@ -38,7 +38,7 @@
 
             <Label layoutX="313.0" layoutY="45.0"
                    text="View my level progress"
-                   accessibleText="View my level progress"
+                   accessibleText="View my level progress" onMouseEntered="#speakAccessibleText"
                    GridPane.columnIndex="1">
                 <font>
                     <Font name="System Bold Italic" size="14.0" />
@@ -48,7 +48,7 @@
                 </GridPane.margin>
             </Label>
 
-            <Label text="Animal Category:" accessibleText="Animal Category"
+            <Label text="Animal Category:" accessibleText="Animal Category" onMouseEntered="#speakAccessibleText"
                    GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                 <font>
                     <Font name="System Bold Italic" size="16.0" />
@@ -60,7 +60,7 @@
 
             <Label
                     layoutX="10.0" layoutY="145.0"
-                    text="Vehicle Category:" accessibleText="Vehicle Category"
+                    text="Vehicle Category:" accessibleText="Vehicle Category" onMouseEntered="#speakAccessibleText"
                     GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                 <font>
                     <Font name="System Bold Italic" size="16.0" />
@@ -72,7 +72,7 @@
 
             <Label
                     layoutX="10.0" layoutY="145.0"
-                    text="Plant Category:" accessibleText="plant category"
+                    text="Plant Category:" accessibleText="plant category" onMouseEntered="#speakAccessibleText"
                     GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                 <font>
                     <Font name="System Bold Italic" size="16.0" />
