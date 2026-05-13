@@ -19,22 +19,18 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-
 import java.sql.Array;
 import java.util.Arrays;
-public class QuizQuestionsController extends BaseController {
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-public class QuizQuestionsController {
+
+public class QuizQuestionsController  extends BaseController{
 
     /// setting score for new quiz
     public static int score = 0;
     public static String theQuestion;
-
-
 
     @FXML
     /// buttons from quiz-questions.fxml
