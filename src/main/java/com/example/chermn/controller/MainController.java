@@ -3,6 +3,7 @@ package com.example.chermn.controller;
 import java.io.IOException;
 
 import com.example.chermn.OnBoarding;
+import com.example.chermn.SpeechHelper;
 import com.example.chermn.dao.UserDAO;
 import com.example.chermn.model.Student;
 import com.example.chermn.model.Users;
@@ -123,4 +124,15 @@ public class MainController {
         usernameField.setText(user.getUserName());
         schoolField.setText(user.getSchoolName());
     }
+
+    // text to speech for all accessible text
+    public void speakAccessibleText(MouseEvent e) {
+        Node node = (Node) e.getSource();
+        String text = node.getAccessibleText();
+
+        if (text != null && !text.isBlank()) {
+            SpeechHelper.speak(text);
+        }
+    }
+
 }
