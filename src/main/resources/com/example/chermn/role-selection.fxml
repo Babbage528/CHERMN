@@ -4,7 +4,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.effect.DropShadow?>
 
 <StackPane prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml"
@@ -33,7 +32,7 @@
     <VBox alignment="CENTER" spacing="40.0">
       <children>
         <VBox alignment="CENTER" spacing="5.0">
-          <Label text="Who are you?" style="-fx-font-size: 48px; -fx-font-weight: bold; -fx-text-fill: #3E7C2B;" />
+          <Label text="Who are you?" accessibleText="Who are you?" style="-fx-font-size: 48px; -fx-font-weight: bold; -fx-text-fill: #3E7C2B;" />
         </VBox>
 
         <VBox alignment="CENTER_LEFT" spacing="5.0">
@@ -41,7 +40,7 @@
             <Insets left="150.0" />
           </padding>
           <children>
-            <Label text="Step 1 of 2" style="-fx-font-size: 16px; -fx-text-fill: #666666;" />
+            <Label text="Step 1 of 2" accessibleText="Step 1 of 2" style="-fx-font-size: 16px; -fx-text-fill: #666666;" />
           </children>
         </VBox>
 
@@ -58,8 +57,8 @@
                         <Image url="@assets/images/student_chick.png" />
                       </image>
                     </ImageView>
-                    <Label text="I'm a" style="-fx-font-size: 14px; -fx-text-fill: #555555;" />
-                    <Label text="Student" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #3E7C2B;" />
+                    <Label text="I'm a" accessibleText="I'm a" style="-fx-font-size: 14px; -fx-text-fill: #555555;" />
+                    <Label text="Student" accessibleText="Student" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #3E7C2B;" />
                   </children>
                 </VBox>
 
@@ -71,8 +70,8 @@
                         <Image url="@assets/images/teacher_chick.png" />
                       </image>
                     </ImageView>
-                    <Label text="I'm a" style="-fx-font-size: 14px; -fx-text-fill: #555555;" />
-                    <Label text="Teacher" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #D4A017;" />
+                    <Label text="I'm a" accessibleText="I'm a" style="-fx-font-size: 14px; -fx-text-fill: #555555;" />
+                    <Label text="Teacher" accessibleText="Teacher" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #D4A017;" />
                   </children>
                 </VBox>
 
@@ -84,8 +83,8 @@
                         <Image url="@assets/images/guardian_chick.png" />
                       </image>
                     </ImageView>
-                    <Label text="I'm a" style="-fx-font-size: 14px; -fx-text-fill: #555555;" />
-                    <Label text="Parent" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #B85450;" />
+                    <Label text="I'm a" accessibleText="I'm a" style="-fx-font-size: 14px; -fx-text-fill: #555555;" />
+                    <Label text="Parent" accessibleText="Parent" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #B85450;" />
                   </children>
                 </VBox>
               </children>

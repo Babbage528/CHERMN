@@ -11,7 +11,6 @@
         xmlns:fx="http://javafx.com/fxml/1"
         fx:controller="com.example.chermn.controller.UpdateUserDetailsController">
 
-
     <children>
                 <!-- Creates a grid pane to store the user's profile information -->
                 <GridPane hgap="20.0"
@@ -33,8 +32,7 @@
                     </rowConstraints>
 
                     <children>
-
-                        <Label text="User Profile"
+                        <Label text="User Profile" accessibleText="User profile"
                                GridPane.columnIndex="1">
                             <font>
                                 <Font name="System Bold Italic" size="24.0" />
@@ -44,10 +42,10 @@
                             </GridPane.margin>
                         </Label>
 
-
                         <Label
                                 layoutX="313.0" layoutY="45.0"
                                 text="View your personal details"
+                                accessibleText="view your personal details"
                                 GridPane.columnIndex="1">
                             <font>
                                 <Font name="System Bold Italic" size="14.0" />
@@ -57,8 +55,7 @@
                             </GridPane.margin>
                         </Label>
 
-
-                        <Label text="First Name:"
+                        <Label text="First Name:" accessibleText="first name"
                                GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                             <font>
                                 <Font name="System Bold Italic" size="16.0" />
@@ -68,10 +65,9 @@
                             </GridPane.margin>
                         </Label>
 
-
                         <Label
                                 layoutX="10.0" layoutY="145.0"
-                                text="Last Name:"
+                                text="Last Name:" accessibleText="last name"
                                 GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                             <font>
                                 <Font name="System Bold Italic" size="16.0" />
@@ -81,10 +77,9 @@
                             </GridPane.margin>
                         </Label>
 
-
                         <Label
                                 layoutX="10.0" layoutY="145.0"
-                                text="Username:"
+                                text="Username:" accessibleText="username"
                                 GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                             <font>
                                 <Font name="System Bold Italic" size="16.0" />
@@ -94,10 +89,9 @@
                             </GridPane.margin>
                         </Label>
 
-
                         <Label
                                 layoutX="10.0" layoutY="243.0"
-                                text="Email:"
+                                text="Email:" accessibleText="email"
                                 GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                             <font>
                                 <Font name="System Bold Italic" size="16.0" />
@@ -107,10 +101,9 @@
                             </GridPane.margin>
                         </Label>
 
-
                         <Label
                                 layoutX="10.0" layoutY="243.0"
-                                text="School:"
+                                text="School:" accessibleText="school"
                                 GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                             <font>
                                 <Font name="System Bold Italic" size="16.0" />
@@ -119,7 +112,6 @@
                                 <Insets bottom="40.0" />
                             </GridPane.margin>
                         </Label>
-
 
                         <!-- Creates an update button allowing the user to update their details -->
                         <Button fx:id="updateButton"
@@ -154,7 +146,6 @@
                             </GridPane.margin>
                         </TextField>
 
-
                         <TextField fx:id="lastNameField"
                                    GridPane.columnIndex="1" GridPane.rowIndex="1">
                             <GridPane.margin>
@@ -169,18 +160,13 @@
                             </GridPane.margin>
                         </TextField>
 
-
                         <TextField fx:id="schoolField"
                                    GridPane.columnIndex="1" GridPane.rowIndex="3">
                             <GridPane.margin>
                                 <Insets bottom="40.0" />
                             </GridPane.margin>
                         </TextField>
-
                     </children>
-
                 </GridPane>
-
             </children>
-
 </AnchorPane>

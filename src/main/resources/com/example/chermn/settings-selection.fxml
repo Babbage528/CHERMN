@@ -28,7 +28,7 @@
       <TitledPane
               animated="false"
               prefHeight="600.0" prefWidth="520.0"
-              text="Settings">
+              text="Settings" accessibleText="settings">
 
           <!-- Sets the content of the titled pane to include all the settings options -->
         <content>
@@ -99,20 +99,15 @@
                         <Font name="System Bold Italic" size="28.0" />
                      </font>
                   </Button>
-
                </children>
             </AnchorPane>
         </content>
-
          <StackPane.margin>
             <Insets bottom="100.0" left="200.0" right="200.0" top="100.0" />
          </StackPane.margin>
-
          <font>
             <Font name="System Bold Italic" size="21.0" />
          </font>
-
       </TitledPane>
-
     </children>
 </StackPane>
