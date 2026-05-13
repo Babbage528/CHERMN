@@ -8,14 +8,55 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.chermn.DatabaseConnection;
-import com.example.chermn.Session;
 import com.example.chermn.model.Parent;
 import com.example.chermn.model.Student;
-import com.example.chermn.model.Teacher;
 import com.example.chermn.model.Users;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class UserDAO implements IUserDAO {
+
+    public List<Student> getStudentsBySchool(String schoolName) {
+        List<Student> students = new ArrayList<>();
+
+    String sql = """
+        SELECT *
+        FROM USER
+        WHERE role = 'student'
+        AND school_name = ?
+    """;
+
+    try (Connection conn = DatabaseConnection.connect();
+
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+        stmt.setString(1, schoolName);
+
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+
+            students.add(new Student(
+                    rs.getInt("user_id"),
+                    rs.getString("username"),
+                    rs.getString("first_name"),
+                    rs.getString("last_name"),
+                    rs.getString("password_hash"),
+                    rs.getString("school_name"),
+                    1,
+                    1,
+                    1
+            ));
+
+        }
+
+    } catch (Exception e) {
+
+        e.printStackTrace();
+
+    }
+
+    return students;
+    }
 
     private String hash(String password) {
         return BCrypt.hashpw(password, BCrypt.gensalt());

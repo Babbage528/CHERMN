@@ -1,21 +1,21 @@
 package com.example.chermn.controller;
 
+import java.io.IOException;
+
 import com.example.chermn.OnBoarding;
 import com.example.chermn.Session;
 import com.example.chermn.dao.UserDAO;
 import com.example.chermn.model.Student;
 import com.example.chermn.model.Users;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import javafx.scene.Node;
-
-import javax.swing.*;
-import javafx.event.ActionEvent;
-import java.io.IOException;
 
 /**
  * Controller for the base profiles screens.
@@ -57,14 +57,19 @@ public abstract class BaseProfileController {
      */
     public void loadView(String fxml) {
         try {
-            Parent view = FXMLLoader.load(
-                    BaseProfileController.class.getResource("/com/example/chermn/" + fxml)
+            FXMLLoader loader = new FXMLLoader(
+                BaseProfileController.class.getResource("/com/example/chermn/" + fxml)
             );
+            
+            Parent view = loader.load();
+                        
             getContainer().getChildren().setAll(view);
+        
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+
+}
 
     /**
      * Sets the profile type depending on the inputted user's type.
