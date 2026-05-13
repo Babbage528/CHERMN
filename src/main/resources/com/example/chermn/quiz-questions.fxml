@@ -25,7 +25,7 @@
                 <Insets bottom="50.0" top="40.0" />
             </padding>
 
-            <!-- blank label to be changed by controller -->
+            <!-- blank label to be changed by controller - add accessibility?-->
             <VBox fx:id="container">
                 <Label fx:id="explanation" text=" " style="-fx-text-fill: #3E7C2B" alignment="CENTER"  prefWidth="2000" prefHeight="70.0"/>
             </VBox>

@@ -33,11 +33,9 @@
          <children>
 
              <!-- Uploads the image of the chicken corresponding to the current user level to the grid at column 1 row 3 -->
-             <ImageView fx:id="animalImageView" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
-
-               <GridPane.margin>
-                  <Insets bottom="35.0" left="250.0" />
-               </GridPane.margin>
+             <ImageView fx:id="animalImageView" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true"
+                        preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <GridPane.margin> <Insets bottom="35.0" left="250.0" /> </GridPane.margin>
              </ImageView>
 
              <!-- Creates a button that will appear on top of the animal within the grid at column 1 and row 3 -->
@@ -46,16 +44,16 @@
                     onAction="#animalButtonClick"
                     prefHeight="100.0" prefWidth="100.0"
                     style="-fx-background-color: transparent;"
-                    GridPane.columnIndex="1" GridPane.rowIndex="3" cursor="HAND">
+                    GridPane.columnIndex="1" GridPane.rowIndex="3" cursor="HAND"
+                    onMouseEntered="#speakAccessibleText">
                <GridPane.margin>
                   <Insets bottom="35.0" left="250.0" />
                </GridPane.margin>
             </Button>
 
-
-
              <!-- Uploads the image of the tractor (level 3) to the grid at column 2 row 2 -->
-             <ImageView fx:id="vehicleImageView" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
+             <ImageView fx:id="vehicleImageView" pickOnBounds="true" preserveRatio="true"
+                        GridPane.columnIndex="3" GridPane.rowIndex="3">
                  <GridPane.margin>
                      <Insets bottom="200.0" />
                  </GridPane.margin>
@@ -64,6 +62,7 @@
              <!-- Creates a button that will appear on top of the vechile within the grid at column 3 and row 3 -->
             <Button fx:id="vehicleButton"
                     accessibleText="Open vehicle quiz"
+                    onMouseEntered="#speakAccessibleText"
                     maxHeight="-Infinity" maxWidth="-Infinity"
                     minHeight="-Infinity" minWidth="-Infinity"
                     onAction="#vehicleButtonClick"
@@ -75,10 +74,6 @@
                </GridPane.margin>
             </Button>
 
-
-
-
-
              <!-- Uploads the image of the settings icon to the grid at column 0 row 0 -->
              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0">
                  <Image url="@assets/images/Settings.png" />
@@ -88,14 +83,18 @@
              </ImageView>
 
              <!-- Creates a button that will appear on top of the settings icon within the grid at column 0 and row 0 -->
-            <Button fx:id="settingsButton" accessibleText="Open settings" mnemonicParsing="false" onAction="#settingsButtonClick" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: transparent;" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <Button fx:id="settingsButton" accessibleText="Open settings" onMouseEntered="#speakAccessibleText"
+                    mnemonicParsing="false" onAction="#settingsButtonClick"
+                    prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: transparent;"
+                    GridPane.columnIndex="0" GridPane.rowIndex="0">
                <GridPane.margin>
                   <Insets left="5.0" />
                </GridPane.margin></Button>
 
 
              <!-- Uploads the image of the farm house to the grid at column 2 row 2 -->
-             <ImageView fitHeight="220.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
+             <ImageView fitHeight="220.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true"
+                        GridPane.columnIndex="2" GridPane.rowIndex="2">
                  <image>
                      <Image url="@assets/images/farmHouse.png" />
                  </image>
@@ -105,7 +104,9 @@
              </ImageView>
 
              <!-- Creates a button that will appear on top of the farm house icon within the grid at column 2 and row 2 -->
-             <Button fx:id="farmHouseButton" accessibleText="Go to farmhouse" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#farmHouseButtonClick" prefHeight="200.0" prefWidth="222.0" style="-fx-background-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="2">
+             <Button fx:id="farmHouseButton" accessibleText="Go to farmhouse" minHeight="-Infinity" minWidth="-Infinity"
+                     mnemonicParsing="false" onAction="#farmHouseButtonClick" onMouseEntered="#speakAccessibleText"
+                     prefHeight="200.0" prefWidth="222.0" style="-fx-background-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets bottom="200.0" />
                </GridPane.margin>
@@ -142,15 +143,18 @@
              </ImageView>
 
              <!-- Creates a button that will appear on top of the corn icon within the grid at column 4 and row 2 -->
-             <Button fx:id="cornButton"  accessibleText="open nature quiz" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cornButtonClick" prefHeight="130.0" prefWidth="160.0" style="-fx-background-color: transparent;" GridPane.columnIndex="4" GridPane.rowIndex="2">
+             <Button fx:id="cornButton"  accessibleText="open nature quiz" onMouseEntered="#speakAccessibleText"
+                     minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cornButtonClick"
+                     prefHeight="130.0" prefWidth="160.0" style="-fx-background-color: transparent;"
+                     GridPane.columnIndex="4" GridPane.rowIndex="2">
                  <GridPane.margin>
                      <Insets bottom="50.0" left="-25.0" />
                  </GridPane.margin>
              </Button>
 
-
              <!-- Uploads the image of a profile picture to the grid at column 4 row 0 -->
-             <ImageView fitHeight="60" fitWidth="60" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="0">
+             <ImageView fitHeight="60" fitWidth="60" pickOnBounds="true" preserveRatio="true"
+                        GridPane.columnIndex="4" GridPane.rowIndex="0">
                  <image>
                      <Image url="@assets/images/account_circle.png" />
                  </image>
@@ -160,7 +164,10 @@
              </ImageView>
 
              <!-- Creates a button that will appear on top of the profile icon within the grid at column 4 and row 2 -->
-             <Button fx:id="profileButton" accessibleText="open profile" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#profileButtonClick" prefHeight="60" prefWidth="60" style="-fx-background-color: transparent;" GridPane.columnIndex="4" GridPane.rowIndex="0">
+             <Button fx:id="profileButton" accessibleText="open profile" onMouseEntered="#speakAccessibleText"
+                     minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#profileButtonClick"
+                     prefHeight="60" prefWidth="60" style="-fx-background-color: transparent;" GridPane.columnIndex="4"
+                     GridPane.rowIndex="0">
                <GridPane.margin>
                   <Insets left="100.0" />
                </GridPane.margin></Button>
