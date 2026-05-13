@@ -32,14 +32,14 @@
                         </columnConstraints>
                         <children>
                             <VBox spacing="5.0" GridPane.rowIndex="0">
-                                <Label text="Email" accessibleText="email"
+                                <Label text="Email*" accessibleText="email"
                                        onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                                        style="-fx-text-fill: #666666;" />
                                 <TextField fx:id="usernameField" prefHeight="40.0" promptText="Your Username"
                                            style="-fx-background-color: #f0f4f0; -fx-background-radius: 10;" />
                             </VBox>
                             <VBox spacing="5.0" GridPane.rowIndex="1">
-                                <Label text="Password" accessibleText="Password"
+                                <Label text="Password*" accessibleText="Password"
                                        onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                                        style="-fx-text-fill: #666666;" />
                                 <PasswordField fx:id="passwordField" prefHeight="40.0" promptText="••••••••"

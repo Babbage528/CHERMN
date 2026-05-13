@@ -34,33 +34,33 @@
                     <children>
 
                         <VBox spacing="5.0">
-                            <Label text="First Name" accessibleText="first name" onMouseEntered="#speakAccessibleText"
+                            <Label text="First Name*" accessibleText="first name" onMouseEntered="#speakAccessibleText"
                                    onMouseExited="#cancelSpeak" style="-fx-text-fill: #999999; -fx-font-size: 14px;" />
                             <TextField fx:id="firstNameField" prefHeight="45.0" promptText="First Name"
                                        style="-fx-background-color: #F0F7EE; -fx-background-radius: 10;" />
                         </VBox>
 
                         <VBox spacing="5.0">
-                            <Label text="Last Name" accessibleText="last name" onMouseEntered="#speakAccessibleText"
+                            <Label text="Last Name*" accessibleText="last name" onMouseEntered="#speakAccessibleText"
                                    onMouseExited="#cancelSpeak" style="-fx-text-fill: #999999; -fx-font-size: 14px;" />
                             <TextField fx:id="lastNameField" prefHeight="45.0" promptText="Last Name"
                                        style="-fx-background-color: #F0F7EE; -fx-background-radius: 10;" />
                         </VBox>
 
                         <VBox spacing="5.0">
-                            <Label text="School Name" accessibleText="School name" onMouseEntered="#speakAccessibleText"
+                            <Label text="School Name*" accessibleText="School name" onMouseEntered="#speakAccessibleText"
                                    onMouseExited="#cancelSpeak" style="-fx-text-fill: #999999; -fx-font-size: 14px;" />
                             <TextField fx:id="schoolNameField" prefHeight="45.0" promptText="School Name"
                                        style="-fx-background-color: #F0F7EE; -fx-background-radius: 10;" />
                         </VBox>
                         <VBox spacing="5.0">
-                            <Label text="email" accessibleText="Email" onMouseEntered="#speakAccessibleText"
+                            <Label text="Email*" accessibleText="Email" onMouseEntered="#speakAccessibleText"
                                    onMouseExited="#cancelSpeak" style="-fx-text-fill: #999999; -fx-font-size: 14px;" />
                             <TextField fx:id="unameField" prefHeight="45.0" promptText="Email"
                                        style="-fx-background-color: #F0F7EE; -fx-background-radius: 10;" />
                         </VBox>
                         <VBox spacing="5.0">
-                            <Label text="Password" accessibleText="Password" onMouseEntered="#speakAccessibleText"
+                            <Label text="Password*" accessibleText="Password" onMouseEntered="#speakAccessibleText"
                                    onMouseExited="#cancelSpeak" style="-fx-text-fill: #999999; -fx-font-size: 14px;" />
                             <PasswordField fx:id="passwordField" prefHeight="45.0" promptText="••••••••"
                                            style="-fx-background-color: #F0F7EE; -fx-background-radius: 10;" />

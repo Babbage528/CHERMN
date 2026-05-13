@@ -44,11 +44,9 @@
                         </Label>
 
                         <Label
-                                layoutX="313.0" layoutY="45.0"
-                                text="View your personal details"
-                                accessibleText="view your personal details"
-                                onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
-                                GridPane.columnIndex="1">
+                                layoutX="313.0" layoutY="45.0" GridPane.columnIndex="1"
+                                text="View your personal details" accessibleText="view your personal details"
+                                onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak">
                             <font>
                                 <Font name="System Bold Italic" size="14.0" />
                             </font>
@@ -57,7 +55,7 @@
                             </GridPane.margin>
                         </Label>
 
-                        <Label text="First Name:" accessibleText="first name"
+                        <Label text="First Name*:" accessibleText="first name"
                                onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                                GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                             <font>
@@ -70,7 +68,7 @@
 
                         <Label
                                 layoutX="10.0" layoutY="145.0"
-                                text="Last Name:" accessibleText="last name"
+                                text="Last Name*:" accessibleText="last name"
                                 onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                                 GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                             <font>
@@ -83,7 +81,7 @@
 
                         <Label
                                 layoutX="10.0" layoutY="145.0"
-                                text="Username:" accessibleText="username"
+                                text="Username*:" accessibleText="username"
                                 onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                                 GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                             <font>
@@ -96,7 +94,7 @@
 
                         <Label
                                 layoutX="10.0" layoutY="243.0"
-                                text="Email:" accessibleText="email"
+                                text="Email*:" accessibleText="email"
                                 onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                                 GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                             <font>
@@ -109,7 +107,7 @@
 
                         <Label
                                 layoutX="10.0" layoutY="243.0"
-                                text="School:" accessibleText="school"
+                                text="School*:" accessibleText="school"
                                 onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                                 GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                             <font>

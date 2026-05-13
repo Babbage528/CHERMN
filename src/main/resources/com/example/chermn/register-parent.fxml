@@ -39,14 +39,14 @@
                         <HBox spacing="10.0">
                             <children>
                                 <VBox HBox.hgrow="ALWAYS" spacing="2.0">
-                                    <Label text="First Name" accessibleText="first name"
+                                    <Label text="First Name*" accessibleText="first name"
                                            onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                                            style="-fx-text-fill: #999999; -fx-font-size: 12px;" />
                                     <TextField fx:id="firstNameField" prefHeight="35.0" promptText="First Name"
                                                style="-fx-background-color: #F0F7EE; -fx-background-radius: 10;" />
                                 </VBox>
                                 <VBox HBox.hgrow="ALWAYS" spacing="2.0">
-                                    <Label text="Last Name" accessibleText="last name"
+                                    <Label text="Last Name*" accessibleText="last name"
                                            onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                                            style="-fx-text-fill: #999999; -fx-font-size: 12px;" />
                                     <TextField fx:id="lastNameField" prefHeight="35.0" promptText="Last Name"
@@ -56,14 +56,14 @@
                         </HBox>
 
                         <VBox spacing="4.0">
-                            <Label text="Email" accessibleText="email" onMouseEntered="#speakAccessibleText"
+                            <Label text="Email*" accessibleText="email" onMouseEntered="#speakAccessibleText"
                                    onMouseExited="#cancelSpeak" style="-fx-text-fill: #999999; -fx-font-size: 13px;"/>
                             <TextField fx:id="unameField" prefHeight="40.0" promptText="example@mail.com"
                                        style="-fx-background-color: #F0F7EE; -fx-background-radius: 10;" />
                         </VBox>
 
                         <VBox spacing="4.0">
-                            <Label text="Password" accessibleText="password" onMouseEntered="#speakAccessibleText"
+                            <Label text="Password*" accessibleText="password" onMouseEntered="#speakAccessibleText"
                                    onMouseExited="#cancelSpeak"  style="-fx-text-fill: #999999; -fx-font-size: 13px;"/>
                             <PasswordField fx:id="passwordField" prefHeight="40.0" promptText="••••••••"
                                            style="-fx-background-color: #F0F7EE; -fx-background-radius: 10;" />
@@ -74,7 +74,7 @@
                         </Separator>
 
                         <VBox spacing="4.0">
-                            <Label text="Relationship to Student" accessibleText="relationship to student"
+                            <Label text="Relationship to Student*" accessibleText="relationship to student"
                                    onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                                    style="-fx-text-fill: #999999; -fx-font-size: 13px;" />
                             <ComboBox fx:id="relationshipComboBox" prefHeight="40.0" prefWidth="Infinity"
@@ -91,7 +91,7 @@
                         </VBox>
 
                         <VBox spacing="4.0">
-                            <Label text="Student Name" accessibleText="student name"
+                            <Label text="Student Name*" accessibleText="student name"
                                    onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                                    style="-fx-text-fill: #999999; -fx-font-size: 13px;" />
                             <TextField fx:id="studentNameField" prefHeight="40.0" promptText="Full Student Name"
@@ -99,7 +99,7 @@
                         </VBox>
 
                         <VBox spacing="4.0">
-                            <Label text="School Name" accessibleText="school name"
+                            <Label text="School Name*" accessibleText="school name"
                                    onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                                    style="-fx-text-fill: #999999; -fx-font-size: 13px;" />
                             <TextField fx:id="schoolNameField" prefHeight="40.0" promptText="School Name"
