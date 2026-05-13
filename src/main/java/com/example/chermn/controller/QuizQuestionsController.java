@@ -1,44 +1,31 @@
 
 package com.example.chermn.controller;
-
-import com.example.chermn.controller.QuizSessionController;
 import com.example.chermn.OnBoarding;
-import com.example.chermn.QuizQuestions;
 import com.example.chermn.model.TriviaQuestion;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.control.Label;
-import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONArray;
-
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.Collections;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-
-
-import java.sql.Array;
-import java.util.Arrays;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 public class QuizQuestionsController {
 
     /// setting score for new quiz
     public static int score = 0;
+    public static String theQuestion;
 
-    @FXML
-    private Pane container;
+
 
     @FXML
     /// buttons from quiz-questions.fxml
@@ -55,7 +42,14 @@ public class QuizQuestionsController {
     public static final int WIDTH = 1280;
     public static final int HEIGHT = 720;
 
+
+
+
+
     int answerIndex = 1;
+
+    public QuizQuestionsController() throws IOException, InterruptedException {
+    }
 
     /** public 'getQuestions' retries the api response from QuizBegin, including the question, correct answers and incorrect answer.
      * It adds the correct answers and incorrect answers into a list and randomizes the list so that the answers are not always in the same place.
@@ -71,9 +65,10 @@ public class QuizQuestionsController {
             List<TriviaQuestion> realQuestions = apiService.fetchQuestions();
             QuizSessionController session = new QuizSessionController(realQuestions);
 
+
         /// setting 'currentQuestion' to cycle through
             TriviaQuestion currentQuestion = session.getCurrentQuestion();
-
+            theQuestion = currentQuestion.getQuestion();
         /// defining responses from api
             correctAnswer = currentQuestion.getCorrectAnswer();
             List<String> incorrectAnswers = currentQuestion.getIncorrectAnswers();
@@ -97,13 +92,14 @@ public class QuizQuestionsController {
 
         }
 
-    /** Public void 'Answer Submitted' controls the UI and score when a user clicks an answer button.
+    /** Public void 'Answer Submitted' controls the UI and score when a user clicks an answer button also posting and returning an api response from the ollama ai api.
      * @param actionEvent is used to check for any of the buttons submitted (as users can select correct or incorrect answer and the same code block needs to run - DRY code).
      * Once a button clicking event has been registered, the incorrect option buttons are disabled.
      * There is then a conditional statement to check if the user submitted the correct answer which updates the score, gives an appropriate message and sets the label colour to green.
      * If the user submits an incorrect answer, the score is not updated, an appropriate message is displayed and the label is coloured red.
+     * The labels that change colour also have the response from the ollama ai api to explain what and why the correct answer is.
      */
-    public void AnswerSubmitted(javafx.event.ActionEvent actionEvent) {
+    public void AnswerSubmitted(javafx.event.ActionEvent actionEvent) throws IOException, InterruptedException {
         Button userAnswer = (Button) actionEvent.getSource();
         /// disable next button so users cant skip through questions
         Next.setDisable(false);
@@ -144,15 +140,42 @@ public class QuizQuestionsController {
 
         }
 
+        /// defining prompt for the api
+        String newprompt = """ 
+                using no personal pronouns say """ + " " + correctAnswer + " is the correct answer to " +  theQuestion + " " + """
+                 in 10 words with small explanation" , 
+                 """;
+        String jsonPayload = """
+            {
+              "model": "llama3",
+              "prompt": " """ +newprompt+""" 
+              "stream": false
+            }
+            """;
+
+        /// sending ai prompt to ollama
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://localhost:11434/api/generate"))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(jsonPayload))
+                .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        /// formatting ai api response
+        JSONObject jsonObject = new JSONObject(response.body());
+
+        String aiResponse = jsonObject.getString("response");
         /// setting label formatting and text depending on answer
         if (userAnswer.getText().substring(3).equals(correctAnswer)) {
             /// incrementing score
             score += 1;
-            explanation.setText("Correct! " + correctAnswer + " is the correct answer, good job!");
+            explanation.setText("Correct! "  + aiResponse);
             /// green background for label
             explanation.setStyle("-fx-background-color: #ECFCE3; -fx-font-size: 20px;");
         } else {
-            explanation.setText("Incorrect! " + correctAnswer + " is the correct answer, next time!");
+            explanation.setText("Incorrect! "  + aiResponse);
             /// red background for label
             explanation.setStyle("-fx-background-color: #FFC2C2; -fx-font-size: 20px;");
         }
