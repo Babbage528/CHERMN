@@ -45,8 +45,9 @@
               <children>
                 <VBox fx:id="studentCard" onMouseClicked="#selectStudent" accessibleText="I'm a student."
                       onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak" alignment="CENTER"
-                      spacing="15.0" prefWidth="250.0" style="-fx-background-color: #D5E8D4;
-                                      -fx-background-radius: 20; -fx-padding: 25; -fx-cursor: hand;">
+                      spacing="15.0" prefWidth="250.0" minWidth="250" maxWidth="250"
+                      prefHeight="300" minHeight="300" maxHeight="300"
+                      style="-fx-background-color: #D5E8D4; -fx-background-radius: 20; -fx-padding: 25; -fx-cursor: hand;">
                   <children>
                     <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                       <image>
@@ -60,8 +61,9 @@
 
                 <VBox fx:id="teacherCard" onMouseClicked="#selectTeacher" accessibleText="I'm a teacher."
                       onMouseEntered="#speakAccessibleText"  onMouseExited="#cancelSpeak" alignment="CENTER"
-                      spacing="15.0" prefWidth="250.0" style="-fx-background-color: #FFF2CC; -fx-background-radius: 20;
-                                      -fx-padding: 25; -fx-cursor: hand;">
+                      spacing="15.0" prefWidth="250.0" minWidth="250" maxWidth="250"
+                      prefHeight="300" minHeight="300" maxHeight="300"
+                      style="-fx-background-color: #FFF2CC; -fx-background-radius: 20; -fx-padding: 25; -fx-cursor: hand;">
                   <children>
                     <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                       <image>
@@ -75,8 +77,9 @@
 
                 <VBox fx:id="parentCard" onMouseClicked="#selectParent" accessibleText="I'm a Parent."
                       onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak" alignment="CENTER"
-                      spacing="15.0" prefWidth="250.0" style="-fx-background-color: #F8CECC; -fx-background-radius: 20;
-                                      -fx-padding: 25; -fx-cursor: hand;">
+                      spacing="15.0" prefWidth="250.0" minWidth="250" maxWidth="250"
+                      prefHeight="300" minHeight="300" maxHeight="300"
+                      style="-fx-background-color: #F8CECC; -fx-background-radius: 20; -fx-padding: 25; -fx-cursor: hand;">
                   <children>
                     <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                       <image>
