@@ -33,7 +33,8 @@ public class RoleSelectionController extends BaseController {
     @FXML
     public void initialize() {
         nextButton.setDisable(true);
-        nextButton.setStyle("-fx-background-color: grey; -fx-opacity: 0.6;");
+        nextButton.setStyle("-fx-background-color: grey; -fx-opacity: 0.6; -fx-text-fill: white; " +
+                "-fx-font-weight: bold; -fx-font-size: 18px; -fx-background-radius: 15;");
     }
 
     @FXML
@@ -105,7 +106,8 @@ public class RoleSelectionController extends BaseController {
         );
 
         nextButton.setDisable(false);
-        nextButton.setStyle("-fx-background-color: #3E7C2B; -fx-text-fill: white;");
+        nextButton.setStyle("-fx-background-color: #6DBE45; -fx-text-fill: white;" +
+                "-fx-font-weight: bold; -fx-font-size: 18px;-fx-background-radius: 15;");
     }
 
 
