@@ -40,11 +40,14 @@ public class Student extends Users {
 
     @Override
     public String toString() {
-        return super.toString() +
-                ", vehicle category level: " + vehicleLevel +
-                ", animal category level: " + animalLevel +
-                ", nature category level: " + natureLevel +
-                "}";
+        return getFirstName() + " " + getLastName();
     }
 
+    public String debugString() {
+        return super.toString() +
+            ", vehicle category level: " + vehicleLevel +
+            ", animal category level: " + animalLevel +
+            ", nature category level: " + natureLevel +
+            "}";
+    }
 }

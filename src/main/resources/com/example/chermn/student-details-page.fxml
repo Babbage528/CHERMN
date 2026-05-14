@@ -11,6 +11,6 @@
     <VBox spacing="10" xmlns:fx="http://javafx.com/fxml">
         <Label text="My Students" accessibleText="my students" style="-fx-font-size: 18;"
                onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"  />
-        <ListView fx:id="studentsList"/>
+        <ListView fx:id="studentList"/>
     </VBox>
 </AnchorPane>
