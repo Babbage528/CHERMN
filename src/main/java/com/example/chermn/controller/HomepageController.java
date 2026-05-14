@@ -125,8 +125,30 @@ public class HomepageController extends BaseController {
         setCurrentUser();
         // pulls the current user's stats/levels for the images
         displayLevelImages();
+
+        addHoverBorder(animalButton);
+        addHoverBorder(vehicleButton);
+        addHoverBorder(farmHouseButton);
+        addHoverBorder(cornButton);
+        addHoverBorder(settingsButton);
+        addHoverBorder(profileButton);
     }
 
+    private void addHoverBorder(Button button) {
+        button.setOnMouseEntered(e -> {
+            button.setStyle(
+                    "-fx-border-color: #4A90E2;" +
+                            "-fx-border-width: 3;" +
+                            "-fx-background-color: transparent;" +
+                            "-fx-border-radius: 8;" +
+                            "-fx-background-radius: 8;"
+            );
+        });
+
+        button.setOnMouseExited(e -> {
+            button.setStyle("-fx-background-color: transparent;");
+        });
+    }
 
     /**
      * Handles the animal button click event.
