@@ -1,6 +1,7 @@
 package com.example.chermn.controller;
 
 import com.example.chermn.OnBoarding;
+import com.example.chermn.SpeechHelper;
 import com.example.chermn.model.TriviaQuestion;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,33 +29,89 @@ import java.net.http.HttpResponse;
  */
 public class QuizQuestionsController  extends BaseController{
     /// setting score for new quiz
+/**
+ * Controller for handling quiz questions, answer submission,
+ * UI updates, scoring, and navigation to the next question.
+ *
+ * Now includes full Text-To-Speech (TTS) accessibility:
+ * - Hovering the question reads it aloud
+ * - Hovering any answer option reads it aloud
+ * - Speech stops when the mouse leaves
+ * - Respects global TTS toggle, voice, and volume
+ */
+public class QuizQuestionsController extends BaseController {
+
+    /** Score for the current quiz session. */
     public static int score = 0;
+
+    /** Stores the current question text for AI explanation. */
     public static String theQuestion;
 
-    @FXML
-    /// buttons from quiz-questions.fxml
-    private Button option1, option2, option3, option4,  questionbutton, Next;
+    // Buttons from quiz-questions.fxml
+    @FXML private Button option1, option2, option3, option4, questionbutton, Next;
 
-    @FXML
-    /// label from quiz-questions.fxml
-    private Label explanation;
+    // Label for AI explanation
+    @FXML private Label explanation;
 
-    String correctAnswer = null;
+    /** Correct answer from API. */
+    private String correctAnswer = null;
 
     /// setting window attributes
     public static final String TITLE = "Farmer Fred's Trivia";
     public static final int WIDTH = 1280;
     public static final int HEIGHT = 720;
 
-    int answerIndex = 1;
+    /** Tracks question number. */
+    private int answerIndex = 1;
 
-    public QuizQuestionsController() throws IOException, InterruptedException {
+    /** Stores original FXML styles so they can be restored. */
+    private String option1BaseStyle;
+    private String option2BaseStyle;
+    private String option3BaseStyle;
+    private String option4BaseStyle;
+    private String explanationBaseStyle;
+
+    public QuizQuestionsController() throws IOException, InterruptedException {}
+
+    /**
+     * Called automatically after FXML loads.
+     * Captures original styles and attaches hover-to-speak listeners.
+     */
+    @FXML
+    private void initialize() {
+
+        // Store original styles
+        option1BaseStyle = option1.getStyle();
+        option2BaseStyle = option2.getStyle();
+        option3BaseStyle = option3.getStyle();
+        option4BaseStyle = option4.getStyle();
+        explanationBaseStyle = explanation.getStyle();
+
+        // QUESTION hover-to-speak
+        questionbutton.setOnMouseEntered(e -> SpeechHelper.speak(questionbutton.getText()));
+        questionbutton.setOnMouseExited(e -> SpeechHelper.stop());
+
+        // ANSWER BUTTON hover-to-speak
+        setupHoverToSpeak(option1);
+        setupHoverToSpeak(option2);
+        setupHoverToSpeak(option3);
+        setupHoverToSpeak(option4);
     }
 
-    /** public 'getQuestions' retries the api response from QuizBegin, including the question, correct answers and incorrect answer.
-     * It adds the correct answers and incorrect answers into a list and randomizes the list so that the answers are not always in the same place.
-     * The Text on the questions and answer buttons in the fxml are then set to the question and answers retrieved from the api, with appropriate formatting such as 'a), b)...' and 'Q1.'.
+    /**
+     * Attaches hover-to-speak behaviour to a button.
+     * Reads the button text aloud when hovered.
      *
+     * @param btn the answer button to attach listeners to
+     */
+    private void setupHoverToSpeak(Button btn) {
+        btn.setOnMouseEntered(e -> SpeechHelper.speak(btn.getText()));
+        btn.setOnMouseExited(e -> SpeechHelper.stop());
+    }
+
+    /**
+     * Retrieves a question from the API, randomizes answers,
+     * and updates the UI with the new question and answer options.
      */
     @FXML
     public void getQuestions() {
@@ -72,6 +129,7 @@ public class QuizQuestionsController  extends BaseController{
         correctAnswer = currentQuestion.getCorrectAnswer();
         List<String> incorrectAnswers = currentQuestion.getIncorrectAnswers();
         answers.add(correctAnswer);
+        answers.addAll(incorrectAnswers);
 
         /// collating both correct and incorrect answers from api
         for (int j = 0; j < incorrectAnswers.size(); j++) {
@@ -92,11 +150,14 @@ public class QuizQuestionsController  extends BaseController{
         resetButtonStyles();
     }
 
+    /**
+     * Restores original button styles and resets UI for the next question.
+     */
     private void resetButtonStyles() {
-        option1.getStyleClass().setAll("answer-button", "answer-a");
-        option2.getStyleClass().setAll("answer-button", "answer-b");
-        option3.getStyleClass().setAll("answer-button", "answer-c");
-        option4.getStyleClass().setAll("answer-button", "answer-d");
+        option1.setStyle(option1BaseStyle);
+        option2.setStyle(option2BaseStyle);
+        option3.setStyle(option3BaseStyle);
+        option4.setStyle(option4BaseStyle);
 
         option1.setDisable(false);
         option2.setDisable(false);
@@ -104,7 +165,7 @@ public class QuizQuestionsController  extends BaseController{
         option4.setDisable(false);
 
         explanation.setText("");
-        explanation.getStyleClass().setAll("explanation-label");
+        explanation.setStyle(explanationBaseStyle);
 
         Next.setDisable(true);
     }
@@ -121,14 +182,8 @@ public class QuizQuestionsController  extends BaseController{
         /// disable next button so users cant skip through questions
         Next.setDisable(false);
 
-        /// disable all buttons
-        option1.setDisable(true);
-        option2.setDisable(true);
-        option3.setDisable(true);
-        option4.setDisable(true);
-
-        /// highlight correct answer
-        highlightCorrectAnswer();
+        // Highlight selected answer
+        highlightSelectedAnswer(userAnswer);
 
         /// defining prompt for the api
         String newprompt = """ 
@@ -155,34 +210,50 @@ public class QuizQuestionsController  extends BaseController{
 
         /// formatting ai api response
         JSONObject jsonObject = new JSONObject(response.body());
+        String aiResponse = jsonObject.optString("response", "(No explanation available)");
 
-        String aiResponse = jsonObject.getString("response");
-        /// setting label formatting and text depending on answer
+        // Check correctness
+        boolean isCorrect =
+                userAnswer.getText().substring(3).equals(correctAnswer);
 
-        boolean isCorrect = userAnswer.getText().substring(3).equals(correctAnswer);
         if (isCorrect) {
-            /// incrementing score
             score += 1;
-            explanation.setText("Correct! "  + aiResponse);
-            /// green background for label
-            explanation.setStyle("-fx-background-color: #ECFCE3; -fx-font-size: 20px;");
+            explanation.setText("Correct! " + aiResponse);
+            explanation.setStyle(explanationBaseStyle +
+                    "; -fx-background-color: #ECFCE3; -fx-font-size: 20px;");
         } else {
-            explanation.setText("Incorrect! "  + aiResponse);
-            /// red background for label
-            explanation.setStyle("-fx-background-color: #FFC2C2; -fx-font-size: 20px;");
+            explanation.setText("Incorrect! " + aiResponse);
+            explanation.setStyle(explanationBaseStyle +
+                    "; -fx-background-color: #FFC2C2; -fx-font-size: 20px;");
         }
     }
 
+    /**
+     * Highlights the selected answer in green and greys out all others.
+     *
+     * @param selected the button the user clicked
+     */
+    private void highlightSelectedAnswer(Button selected) {
 
-    private void highlightCorrectAnswer() {
         List<Button> buttons = List.of(option1, option2, option3, option4);
+
         for (Button b : buttons) {
-            String text = b.getText().substring(3);
-            if (text.equals(correctAnswer)) {
-                b.getStyleClass().add("correct-answer");
+
+            String baseStyle =
+                    (b == option1) ? option1BaseStyle :
+                            (b == option2) ? option2BaseStyle :
+                                    (b == option3) ? option3BaseStyle :
+                                            option4BaseStyle;
+
+            if (b == selected) {
+                b.setStyle(baseStyle +
+                        "; -fx-background-color: #4CAF50; -fx-text-fill: white;");
             } else {
-                b.getStyleClass().add("wrong-answer");
+                b.setStyle(baseStyle +
+                        "; -fx-background-color: #d3d3d3; -fx-text-fill: #666666;");
             }
+
+            b.setDisable(true);
         }
     }
 
@@ -208,18 +279,15 @@ public class QuizQuestionsController  extends BaseController{
 
         /// resetting label
         explanation.setText(" ");
-        explanation.setStyle("-fx-background-color: transparent;");
+        explanation.setStyle(explanationBaseStyle);
 
         /// enabling next button
         Next.setDisable(true);
 
-        /// incrementing index of question and re-running getQuestions for new question
-        if(answerIndex < 10){
+        if (answerIndex < 10) {
             answerIndex++;
             getQuestions();
-        }
-        else{
-            /// change scene after quiz finished
+        } else {
             Stage stage = (Stage) Next.getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("quiz-results.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);

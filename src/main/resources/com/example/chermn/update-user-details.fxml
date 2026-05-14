@@ -94,19 +94,6 @@
 
                         <Label
                                 layoutX="10.0" layoutY="243.0"
-                                text="Email*:" accessibleText="email"
-                                onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
-                                GridPane.halignment="RIGHT" GridPane.rowIndex="2">
-                            <font>
-                                <Font name="System Bold Italic" size="16.0" />
-                            </font>
-                            <GridPane.margin>
-                                <Insets left="200.0" top="50.0" />
-                            </GridPane.margin>
-                        </Label>
-
-                        <Label
-                                layoutX="10.0" layoutY="243.0"
                                 text="School*:" accessibleText="school"
                                 onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                                 GridPane.halignment="RIGHT" GridPane.rowIndex="3">
@@ -124,7 +111,7 @@
                                 mnemonicParsing="false"
                                 onAction="#updateButtonClick"
                                 prefHeight="50.0" prefWidth="140.0"
-                                style="-fx-background-color: #F7FAE9;"
+                                style="-fx-background-color: #F7FAE9; -fx-cursor: hand;"
                                 text="Update" accessibleText="update my details"
                                 onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                                 GridPane.columnIndex="1" GridPane.rowIndex="4">

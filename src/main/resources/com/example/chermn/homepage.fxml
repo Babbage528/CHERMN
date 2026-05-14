@@ -47,24 +47,15 @@
                     style="-fx-background-color: transparent;"
                     GridPane.columnIndex="1" GridPane.rowIndex="3"
                     onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak">
-                    GridPane.columnIndex="1" GridPane.rowIndex="3"
-                    onMouseEntered="#speakAccessibleText">
-
-                <cursor>
-                    <Cursor fx:constant="HAND"/>
-                </cursor>
-
-               <GridPane.margin>
-                  <Insets bottom="35.0" left="250.0" />
-               </GridPane.margin>
+                <cursor><Cursor fx:constant="HAND"/></cursor>
+               <GridPane.margin><Insets bottom="35.0" left="250.0" /></GridPane.margin>
             </Button>
 
              <!-- Uploads the image of the tractor (level 3) to the grid at column 2 row 2 -->
              <ImageView fx:id="vehicleImageView" pickOnBounds="true" preserveRatio="true"
                         GridPane.columnIndex="3" GridPane.rowIndex="3">
-                 <GridPane.margin>
-                     <Insets bottom="200.0" />
-                 </GridPane.margin>
+                 <cursor><Cursor fx:constant="HAND"/></cursor>
+                 <GridPane.margin><Insets bottom="200.0" /></GridPane.margin>
              </ImageView>
 
              <!-- Creates a button that will appear on top of the vechile within the grid at column 3 and row 3 -->
@@ -77,17 +68,14 @@
                     prefHeight="210.0" prefWidth="270.0"
                     style="-fx-background-color: transparent;"
                     GridPane.columnIndex="3" GridPane.rowIndex="3">
-               <GridPane.margin>
-                  <Insets bottom="200.0" />
-               </GridPane.margin>
+                <cursor><Cursor fx:constant="HAND"/></cursor>
+                <GridPane.margin><Insets bottom="200.0" /></GridPane.margin>
             </Button>
 
              <!-- Uploads the image of the settings icon to the grid at column 0 row 0 -->
              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0">
                  <Image url="@assets/images/Settings.png" />
-               <GridPane.margin>
-                  <Insets left="5.0" />
-               </GridPane.margin>
+                 <GridPane.margin><Insets left="5.0" /></GridPane.margin>
              </ImageView>
 
              <!-- Creates a button that will appear on top of the settings icon within the grid at column 0 and row 0 -->
@@ -96,20 +84,15 @@
                     mnemonicParsing="false" onAction="#settingsButtonClick"
                     prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: transparent;"
                     GridPane.columnIndex="0" GridPane.rowIndex="0">
-               <GridPane.margin>
-                  <Insets left="5.0" />
-               </GridPane.margin></Button>
+                <cursor><Cursor fx:constant="HAND"/></cursor>
+                <GridPane.margin><Insets left="5.0" /></GridPane.margin></Button>
 
 
              <!-- Uploads the image of the farm house to the grid at column 2 row 2 -->
              <ImageView fitHeight="220.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true"
                         GridPane.columnIndex="2" GridPane.rowIndex="2">
-                 <image>
-                     <Image url="@assets/images/farmHouse.png" />
-                 </image>
-                 <GridPane.margin>
-                     <Insets bottom="200.0" />
-                 </GridPane.margin>
+                 <image><Image url="@assets/images/farmHouse.png" /></image>
+                 <GridPane.margin><Insets bottom="200.0" /></GridPane.margin>
              </ImageView>
 
              <!-- Creates a button that will appear on top of the farm house icon within the grid at column 2 and row 2 -->
@@ -117,9 +100,8 @@
                      mnemonicParsing="false" onAction="#farmHouseButtonClick"
                      onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                      prefHeight="200.0" prefWidth="222.0" style="-fx-background-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets bottom="200.0" />
-               </GridPane.margin>
+                 <cursor><Cursor fx:constant="HAND"/></cursor>
+                 <GridPane.margin><Insets bottom="200.0" /></GridPane.margin>
             </Button>
 
 

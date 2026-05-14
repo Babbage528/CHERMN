@@ -45,8 +45,7 @@
 
                 <Label
                         layoutX="313.0" layoutY="45.0"
-                        text="View your personal details"
-                        accessibleText="View your personal details"
+                        text="View your personal details" accessibleText="View your personal details"
                         onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                         GridPane.columnIndex="1">
                     <font>
@@ -96,8 +95,7 @@
 
                 <Label
                         layoutX="10.0" layoutY="243.0"
-                        text="Email:" accessibleText="email"
-                        onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
+                        text="Email:" accessibleText="email" onMouseEntered="#speakAccessibleText"
                         GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                     <font>
                         <Font name="System Bold Italic" size="16.0" />

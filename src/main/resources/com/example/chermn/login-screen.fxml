@@ -56,9 +56,9 @@
                     <VBox spacing="10.0" alignment="CENTER">
                         <Button fx:id="signInButton" text="Sign In" accessibleText="Sign in"
                                 onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
-                                prefHeight="45.0" maxWidth="Infinity" onAction="#handleSignIn" style="-fx-background
-                                -color: #8cc63f; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius:
-                                10; -fx-cursor: hand;" />
+                                prefHeight="45.0" maxWidth="Infinity" onAction="#handleSignIn"
+                                style="-fx-background-color: #8cc63f; -fx-text-fill: white; -fx-font-weight: bold;
+                                -fx-background-radius: 10; -fx-cursor: hand;" />
 
                         <HBox spacing="5.0" alignment="CENTER">
                             <Label text="Don't have an account?" accessibleText="Don't have an account?"
