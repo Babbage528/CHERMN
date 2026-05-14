@@ -369,4 +369,28 @@ public class UserDAO implements IUserDAO {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Resets the user's password in the database.
+     * The new password is automatically hashed using BCrypt before storage.
+     *
+     * @param username    The username of the account to update.
+     * @param newPassword The new plain-text password to be hashed and saved.
+     * @return true if the update was successful, false otherwise.
+     */
+    public boolean resetPassword(String username, String newPassword) {
+        String sql = "UPDATE USER SET password_hash = ? WHERE LOWER(username) = LOWER(?)";
+        try (Connection conn = DatabaseConnection.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, hash(newPassword));
+            pstmt.setString(2, username.trim());
+
+            int rowsAffected = pstmt.executeUpdate();
+            return rowsAffected > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

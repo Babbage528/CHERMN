@@ -9,6 +9,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.scene.control.PasswordField;
+import javafx.scene.layout.HBox;
 
 /**
  * Utility class for displaying customized JavaFX alert dialogs.
@@ -110,5 +112,110 @@ public class AlertHelper {
 
         stage.setScene(scene);
         stage.showAndWait();
+    }
+
+    /**
+     * Displays a custom reset password dialog with a dark overlay (shadow background).
+     * Includes internal validation to prevent closing if passwords don't match.
+     *
+     * @param title Dialog title
+     * @return The confirmed new password, or null if cancelled
+     */
+    public static String showResetPasswordDialog(String title) {
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.TRANSPARENT);
+
+        // DARK OVERLAY
+        VBox overlay = new VBox();
+        overlay.setAlignment(Pos.CENTER);
+        overlay.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5);");
+        overlay.setPrefSize(1280, 720);
+
+        // POP UP BOX
+        VBox root = new VBox(15);
+        root.setMaxWidth(350);
+        root.setPadding(new Insets(30));
+        root.setStyle(
+                "-fx-background-color: white;" +
+                        "-fx-background-radius: 25;" +
+                        "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 30, 0, 0, 10);"
+        );
+
+        // UI ELEMENTS
+        Label titleLabel = new Label(title);
+        titleLabel.setStyle("-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #8cc63f;");
+
+        String labelStyle = "-fx-font-size: 13px; -fx-text-fill: #666666;";
+        String fieldStyle = "-fx-background-color: #f1f3f1; -fx-background-radius: 12; -fx-padding: 12; -fx-text-fill: #333333;";
+
+        Label newPassLabel = new Label("New Password*");
+        newPassLabel.setStyle(labelStyle);
+        PasswordField newPassField = new PasswordField();
+        newPassField.setStyle(fieldStyle);
+
+        Label confirmPassLabel = new Label("Reconfirm Password*");
+        confirmPassLabel.setStyle(labelStyle);
+        PasswordField confirmPassField = new PasswordField();
+        confirmPassField.setStyle(fieldStyle);
+
+        // ERROR MESSAGE (Hidden by default)
+        Label errorMsg = new Label("");
+        errorMsg.setStyle("-fx-text-fill: #ff6b6b; -fx-font-size: 12px;");
+        errorMsg.setVisible(false);
+
+        final String[] finalPassword = {null};
+
+        // UPDATE BUTTON
+        Button updateBtn = new Button("Update Password");
+        updateBtn.setCursor(javafx.scene.Cursor.HAND);
+        updateBtn.setStyle("-fx-background-color: #8cc63f; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 12; -fx-padding: 10 25;");
+
+        updateBtn.setOnAction(e -> {
+            String p1 = newPassField.getText();
+            String p2 = confirmPassField.getText();
+
+            if (p1.isEmpty() || p2.isEmpty()) {
+                errorMsg.setText("Fields cannot be empty!");
+                errorMsg.setVisible(true);
+            } else if (!p1.equals(p2)) {
+                newPassField.clear();
+                confirmPassField.clear();
+                errorMsg.setText("Passwords do not match! Try again.");
+                errorMsg.setVisible(true);
+            } else {
+                finalPassword[0] = p1;
+                stage.close();
+            }
+        });
+
+        Button cancelBtn = new Button("Cancel");
+        cancelBtn.setCursor(javafx.scene.Cursor.HAND);
+        cancelBtn.setStyle("-fx-background-color: transparent; -fx-text-fill: #999999;");
+        cancelBtn.setOnAction(e -> stage.close());
+
+        HBox actionBox = new HBox(15, cancelBtn, updateBtn);
+        actionBox.setAlignment(Pos.CENTER_RIGHT);
+
+        // ASSEMBLE
+        root.getChildren().addAll(
+                titleLabel,
+                new VBox(5, newPassLabel, newPassField),
+                new VBox(5, confirmPassLabel, confirmPassField),
+                errorMsg,
+                actionBox
+        );
+
+        overlay.getChildren().add(root);
+
+        Scene scene = new Scene(overlay);
+        scene.setFill(null);
+        stage.setScene(scene);
+
+        stage.setWidth(OnBoarding.WIDTH);
+        stage.setHeight(OnBoarding.HEIGHT);
+
+        stage.showAndWait();
+        return finalPassword[0];
     }
 }
