@@ -1,22 +1,67 @@
 package com.example.chermn;
 
-import com.sun.speech.freetts.Voice;
-import com.sun.speech.freetts.VoiceManager;
-
 public class SpeechHelper {
 
-    private static final String VOICE_NAME = "kevin16";
+    private static Process currentSpeechProcess;
 
+    /**
+     * Speaks the given text using the OS's built-in TTS engine.
+     * Works on both Windows and macOS.
+     */
     public static void speak(String text) {
-        Voice voice = VoiceManager.getInstance().getVoice(VOICE_NAME);
+        stop(); // stop any previous speech
 
-        if (voice == null) {
-            System.out.println("Voice not found");
+        if (text == null || text.isBlank()) {
             return;
         }
 
-        voice.allocate();
-        voice.speak(text);
-        voice.deallocate();
+        try {
+            String os = System.getProperty("os.name").toLowerCase();
+
+            if (os.contains("win")) {
+                speakWindows(text);
+            } else if (os.contains("mac")) {
+                speakMac(text);
+            } else {
+                System.out.println("TTS not supported on this OS.");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Stops any currently running speech process.
+     */
+    public static void stop() {
+        try {
+            if (currentSpeechProcess != null && currentSpeechProcess.isAlive()) {
+                currentSpeechProcess.destroyForcibly();
+            }
+        } catch (Exception ignored) {}
+    }
+
+    // PLATFORM IMPLEMENTATIONS - so it works for both windows and apple
+    private static void speakWindows(String text) throws Exception {
+        String safe = text.replace("'", "''");
+
+        String command =
+                "Add-Type –AssemblyName System.Speech;" +
+                        "$s = New-Object System.Speech.Synthesis.SpeechSynthesizer;" +
+                        "$s.Speak('" + safe + "');";
+
+        ProcessBuilder pb = new ProcessBuilder(
+                "powershell.exe",
+                "-NoProfile",
+                "-WindowStyle", "Hidden",
+                "-Command", command
+        );
+        currentSpeechProcess = pb.start();
+    }
+
+    private static void speakMac(String text) throws Exception {
+        ProcessBuilder pb = new ProcessBuilder("say", text);
+        currentSpeechProcess = pb.start();
     }
 }

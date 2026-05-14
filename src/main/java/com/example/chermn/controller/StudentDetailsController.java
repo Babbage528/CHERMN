@@ -11,7 +11,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 
 
-public class StudentDetailsController {
+public class StudentDetailsController extends BaseController{
+
+    private UpdateUserDetailsController controller;
 
     @FXML
     private ListView<Student> studentList;
@@ -24,4 +26,11 @@ public class StudentDetailsController {
         List<Student> students = userDAO.getStudentsBySchool(currentUser.getSchoolName());
         studentList.getItems().addAll(students);
     }
+
+        // pulls the current users student details and levels
+    }
+
+    private void getStudentDetails(Users currentUser){
+    }
+
 }

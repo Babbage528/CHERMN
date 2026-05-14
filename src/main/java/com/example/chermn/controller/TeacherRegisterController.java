@@ -20,7 +20,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class TeacherRegisterController {
+public class TeacherRegisterController extends BaseController{
     @FXML private TextField firstNameField;
     @FXML private TextField lastNameField;
     @FXML private TextField schoolNameField;

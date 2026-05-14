@@ -22,7 +22,7 @@ import javafx.stage.Stage;
  * Handles the base profile functionalities, such as displaying screens, changing passwords,
  * and signing out.
  */
-public abstract class BaseProfileController {
+public abstract class BaseProfileController extends BaseController{
 
     /**
      * Abstract method that gets the type of StackPane used

@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ParentRegisterController {
+public class ParentRegisterController extends BaseController{
     @FXML private TextField firstNameField;
     @FXML private TextField lastNameField;
     @FXML private TextField unameField;

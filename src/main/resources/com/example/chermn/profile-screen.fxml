@@ -29,7 +29,7 @@
                     layoutX="767.0" mnemonicParsing="false"
                     onAction="#closeButtonClick"
                     style="-fx-background-color: transparent;"
-                    text="X" accessibleText="exit"
+                    text="X" accessibleText="exit" onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                     AnchorPane.leftAnchor="0.0">
                 <font>
                     <Font name="System Bold" size="56.0" />
@@ -48,11 +48,12 @@
 
                 <children>
                     <!-- Creates a profile button for the user to navigate to view their details -->
-                    <Button fx:id="userProfileButton" accessibleText="user profile" mnemonicParsing="false"
+                    <Button fx:id="userProfileButton" mnemonicParsing="false"
                             onAction="#userProfileButtonClick"
                             prefHeight="50.0" prefWidth="180.0"
                             style="-fx-background-color: transparent; -fx-border-radius: 5;"
-                            text="User Profile">
+                            text="User Profile" accessibleText="user profile"
+                            onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak">
                         <font>
                             <Font name="System Bold Italic" size="18.0" />
                         </font>
@@ -64,7 +65,8 @@
                             onAction="#levelProgressButtonClick"
                             prefHeight="50.0" prefWidth="180.0"
                             style="-fx-background-color: transparent; -fx-border-radius: 5;"
-                            text="Level Progress" accessibleText="level progress">
+                            text="Level Progress" accessibleText="level progress"
+                            onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak">
                         <font>
                             <Font name="System Bold Italic" size="18.0" />
                         </font>
@@ -75,7 +77,8 @@
                             onAction="#changePasswordButtonClick"
                             prefHeight="50.0" prefWidth="180.0"
                             style="-fx-background-color: transparent; -fx-border-radius: 5;"
-                            text="Change Password" accessibleText="Change password">
+                            text="Change Password" accessibleText="Change password"
+                            onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak">
                         <font>
                             <Font name="System Bold Italic" size="18.0" />
                         </font>
@@ -88,7 +91,8 @@
                             mnemonicParsing="false" onAction="#signOutButtonClick"
                             prefHeight="50.0" prefWidth="180.0"
                             style="-fx-background-color: transparent; -fx-border-radius: 5;"
-                            text="Sign Out" accessibleText="sign out">
+                            text="Sign Out" accessibleText="sign out"
+                            onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak">
                         <font>
                             <Font name="System Bold Italic" size="18.0" />
                         </font>
@@ -101,11 +105,7 @@
                        layoutX="273.0" layoutY="15.0"
                        prefHeight="490.0" prefWidth="605.0">
             </StackPane>
-
         </children>
-
     </AnchorPane>
-
     </children>
-
 </AnchorPane>

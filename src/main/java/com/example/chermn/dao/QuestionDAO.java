@@ -9,8 +9,16 @@ import java.util.List;
 
 import com.example.chermn.DatabaseConnection;
 
+/**
+ * handles database operations related to the quiz questions
+ */
 public class QuestionDAO {
 
+    /**
+     * this gets the question text based on ID
+     * @param questionId the question ID
+     * @return question text or null
+     */
     public String getQuestionText(int questionId) {
         try {
             Connection conn = DatabaseConnection.connect();
@@ -32,6 +40,11 @@ public class QuestionDAO {
         return null;
     }
 
+    /**
+     * collects all answer options for a question.
+     * @param questionId the question ID
+     * @return list of answers
+     */
     public List<AnswerOption> getAnswers(int questionId) {
 
         List<AnswerOption> answers = new ArrayList<>();
