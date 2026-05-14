@@ -38,19 +38,22 @@ public class SettingsController extends BaseController {
      */
     @FXML
     public void initialize() {
-
-        // Load current TTS enabled/disabled state from SpeechHelper
+        // Existing TTS toggle + voice setup
         ttsToggle.setSelected(SpeechHelper.isTtsEnabled());
-
-        // Populate available Windows voices
         voiceChoice.getItems().addAll(
                 "Microsoft David Desktop",
                 "Microsoft Zira Desktop",
                 "Microsoft Mark Desktop"
         );
-
-        // Set the currently selected voice
         voiceChoice.setValue(SpeechHelper.getSelectedVoice());
+
+        // NEW: Bind Sound FX slider to TTS volume
+        soundFXSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
+            SpeechHelper.setTtsVolume(newVal.doubleValue());
+        });
+        // Disable controls if TTS is off
+        voiceChoice.setDisable(!SpeechHelper.isTtsEnabled());
+        soundFXSlider.setDisable(!SpeechHelper.isTtsEnabled());
     }
 
     /**
@@ -116,17 +119,21 @@ public class SettingsController extends BaseController {
         alert.showAndWait();
     }
 
-    // ============================================================
-    // NEW: READ ALOUD (TTS) SETTINGS
-    // ============================================================
-
+    // READ ALOUD (TTS) SETTINGS
     /**
      * Toggles the Read Aloud (TTS) feature on or off.
-     * Triggered when the user clicks the checkbox.
+     * Also enables/disables the voice selector and volume slider.
      */
     @FXML
     private void toggleTTS() {
-        SpeechHelper.setTtsEnabled(ttsToggle.isSelected());
+        boolean enabled = ttsToggle.isSelected();
+
+        // Update TTS engine
+        SpeechHelper.setTtsEnabled(enabled);
+
+        // Grey out / enable controls
+        voiceChoice.setDisable(!enabled);
+        soundFXSlider.setDisable(!enabled);
     }
 
     /**

@@ -63,25 +63,13 @@
                         </Label>
 
                         <!-- Music slider -->
-                        <Slider layoutX="336.0" layoutY="66.0" />
+                        <Slider fx:id="musicSlider"
+                                layoutX="336.0" layoutY="66.0" />
 
-                        <!-- Sound FX label -->
-                        <Label layoutX="111.0" layoutY="147.0" text="Sound FX" accessibleText="Sound FX Slider"
-                               onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak">
-                            <font>
-                                <Font name="System Bold" size="26.0" />
-                            </font>
-                        </Label>
-
-                        <!-- Sound FX slider -->
-                        <Slider layoutX="336.0" layoutY="154.0" />
-
-                        <!-- =============================== -->
-                        <!-- READ ALOUD (TTS) SETTINGS BELOW -->
-                        <!-- =============================== -->
+                        <!-- READ ALOUD (TTS) SETTINGS -->
 
                         <!-- Read Aloud label -->
-                        <Label layoutX="111.0" layoutY="225.0" text="Read Aloud"
+                        <Label layoutX="111.0" layoutY="147.0" text="Read Aloud"
                                accessibleText="Read Aloud Toggle"
                                onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak">
                             <font>
@@ -91,14 +79,27 @@
 
                         <!-- Read Aloud toggle -->
                         <CheckBox fx:id="ttsToggle"
-                                  layoutX="336.0" layoutY="230.0"
+                                  layoutX="336.0" layoutY="152.0"
                                   text="Enable"
                                   onAction="#toggleTTS"
                                   accessibleText="Enable Read Aloud"
                                   onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"/>
 
+                        <!-- Sound FX label (moved BELOW toggle) -->
+                        <Label layoutX="111.0" layoutY="205.0" text="Sound FX"
+                               accessibleText="Sound FX Slider"
+                               onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak">
+                            <font>
+                                <Font name="System Bold" size="26.0" />
+                            </font>
+                        </Label>
+
+                        <!-- Sound FX slider (moved BELOW toggle + correct fx:id) -->
+                        <Slider fx:id="soundFXSlider"
+                                layoutX="336.0" layoutY="212.0" />
+
                         <!-- Voice selection label -->
-                        <Label layoutX="111.0" layoutY="285.0" text="Voice"
+                        <Label layoutX="111.0" layoutY="265.0" text="Voice"
                                accessibleText="Voice Selection"
                                onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak">
                             <font>
@@ -108,15 +109,11 @@
 
                         <!-- Voice dropdown -->
                         <ChoiceBox fx:id="voiceChoice"
-                                   layoutX="336.0" layoutY="290.0"
+                                   layoutX="336.0" layoutY="270.0"
                                    prefWidth="200"
                                    onAction="#changeVoice"
                                    accessibleText="Choose Voice"
                                    onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"/>
-
-                        <!-- =============================== -->
-                        <!-- END OF TTS SETTINGS -->
-                        <!-- =============================== -->
 
                         <!-- Get Help button -->
                         <Button fx:id="getHelpButton"
