@@ -4,6 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.Cursor?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chermn.controller.HomepageController">
    <children>
@@ -46,6 +47,13 @@
                     style="-fx-background-color: transparent;"
                     GridPane.columnIndex="1" GridPane.rowIndex="3"
                     onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak">
+                    GridPane.columnIndex="1" GridPane.rowIndex="3"
+                    onMouseEntered="#speakAccessibleText">
+
+                <cursor>
+                    <Cursor fx:constant="HAND"/>
+                </cursor>
+
                <GridPane.margin>
                   <Insets bottom="35.0" left="250.0" />
                </GridPane.margin>
