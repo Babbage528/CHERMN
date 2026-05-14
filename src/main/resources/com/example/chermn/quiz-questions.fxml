@@ -38,18 +38,23 @@
 
                         <!-- where question is displayed with variable size for larger text inputs -->
                     <Button fx:id="questionbutton" HBox.hgrow="ALWAYS" maxWidth="Infinity" prefHeight="160.0"
-                            style="-fx-background-color: #E7FF76; -fx-text-fill: #3E7C2B; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand; -fx-font-size: 20px; -fx-wrap-text:true;" text=" "  />
+                            style="-fx-background-color: #E7FF76; -fx-text-fill: #3E7C2B; -fx-font-weight: bold;
+                            -fx-background-radius: 12;  -fx-font-size: 20px; -fx-wrap-text:true;" text=" "  />
                     <VBox alignment="CENTER" spacing="150.0">
                         <children>
                             <!-- first row of buttons -->
                             <HBox spacing="10.0">
                                 <!-- first button with light green on action -> AnswerSubmitted-->
-                                <Button fx:id="option1" HBox.hgrow="ALWAYS" maxWidth="500"  minWidth="500" prefHeight="100.0"
-                                        style="-fx-background-color: #E7FF76; -fx-text-fill: #3E7C2B; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand; -fx-font-size: 20px;" onAction="#AnswerSubmitted" text=" " />
+                                <Button fx:id="option1" HBox.hgrow="ALWAYS" maxWidth="500"  minWidth="500"
+                                        prefHeight="100.0" style="-fx-background-color: #E7FF76; -fx-text-fill: #3E7C2B;
+                                         -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand;
+                                         -fx-font-size: 20px;" onAction="#AnswerSubmitted" text=" " />
 
                                 <!-- second button with dark green on action -> AnswerSubmitted-->
-                                <Button fx:id="option2" HBox.hgrow="ALWAYS" maxWidth="500" minWidth="500"  prefHeight="100.0"
-                                        style="-fx-background-color: #6DBE45; -fx-text-fill: #3E7C2B; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand; -fx-font-size: 20px;" onAction="#AnswerSubmitted"  text=" "/>
+                                <Button fx:id="option2" HBox.hgrow="ALWAYS" maxWidth="500" minWidth="500"
+                                        prefHeight="100.0" style="-fx-background-color: #6DBE45; -fx-text-fill: #3E7C2B;
+                                         -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand;
+                                         -fx-font-size: 20px;" onAction="#AnswerSubmitted"  text=" "/>
                             </HBox>
                         </children>
                     </VBox>
