@@ -25,7 +25,7 @@ public class QuizBeginController extends BaseController {
     private Button returnToHomepageButton;
 
     @FXML
-    private Label categoryLabel;
+    private Label categoryLabel, difficultyLabel;
 
     @FXML
     private Button beginQuizButton;
@@ -61,6 +61,13 @@ public class QuizBeginController extends BaseController {
     @FXML
     public void setCategoryText(String text) {
         categoryLabel.setText(text);
+    }
+
+    /** Public void 'setDifficultyText' Acts as a setter for the fxml category difficulty label. Used by home page controller.
+     */
+    @FXML
+    public void setDifficultyText(String text) {
+        difficultyLabel.setText(text);
     }
 }
 

@@ -22,7 +22,9 @@
             <VBox alignment="CENTER" maxHeight="450.0" maxWidth="420.0" spacing="25.0"
                   style="-fx-background-color: white; -fx-background-radius: 30; -fx-padding: 40; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 15, 0, 0, 10);">
                 <children>
-                    <Label text="Welcome Back!" accessibleText="Welcome back!" onMouseEntered="#speakAccessibleText" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #333333;" />
+                    <Label text="Welcome Back!" accessibleText="Welcome back!"
+                           onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
+                           style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #333333;" />
 
                     <GridPane hgap="10.0" vgap="15.0">
                         <columnConstraints>
@@ -30,28 +32,40 @@
                         </columnConstraints>
                         <children>
                             <VBox spacing="5.0" GridPane.rowIndex="0">
-                                <Label text="Email" accessibleText="email" onMouseEntered="#speakAccessibleText" style="-fx-text-fill: #666666;" />
+                                <Label text="Email*" accessibleText="email"
+                                       onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
+                                       style="-fx-text-fill: #666666;" />
                                 <TextField fx:id="usernameField" prefHeight="40.0" promptText="Your Username"
                                            style="-fx-background-color: #f0f4f0; -fx-background-radius: 10;" />
                             </VBox>
                             <VBox spacing="5.0" GridPane.rowIndex="1">
-                                <Label text="Password" accessibleText="Password" onMouseEntered="#speakAccessibleText" style="-fx-text-fill: #666666;" />
+                                <Label text="Password*" accessibleText="Password"
+                                       onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
+                                       style="-fx-text-fill: #666666;" />
                                 <PasswordField fx:id="passwordField" prefHeight="40.0" promptText="••••••••"
                                                style="-fx-background-color: #f0f4f0; -fx-background-radius: 10;" />
-                                <Hyperlink text="Forgot Password?" alignment="CENTER_RIGHT" maxWidth="Infinity"
+                                <Hyperlink text="Forgot Password?" accessibleText="Forgot password?"
+                                           onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
+                                           alignment="CENTER_RIGHT" maxWidth="Infinity"
                                            style="-fx-font-size: 11px; -fx-text-fill: #8cc63f;"
-                                           accessibleText="Forgot password?" onMouseEntered="#speakAccessibleText"/>
+                                           />
                             </VBox>
                         </children>
                     </GridPane>
 
                     <VBox spacing="10.0" alignment="CENTER">
-                        <Button fx:id="signInButton" text="Sign In" accessibleText="Sign in" onMouseEntered="#speakAccessibleText" prefHeight="45.0" maxWidth="Infinity" onAction="#handleSignIn"
-                                style="-fx-background-color: #8cc63f; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-cursor: hand;" />
+                        <Button fx:id="signInButton" text="Sign In" accessibleText="Sign in"
+                                onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
+                                prefHeight="45.0" maxWidth="Infinity" onAction="#handleSignIn" style="-fx-background
+                                -color: #8cc63f; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius:
+                                10; -fx-cursor: hand;" />
 
                         <HBox spacing="5.0" alignment="CENTER">
-                            <Label text="Don't have an account?" accessibleText="Don't have an account?" onMouseEntered="#speakAccessibleText"/>
-                            <Hyperlink text="Sign up" accessibleText="Sign up here" onMouseEntered="#speakAccessibleText" onAction="#handleSignUpClick" style="-fx-text-fill: #8cc63f; -fx-font-weight: bold;" />
+                            <Label text="Don't have an account?" accessibleText="Don't have an account?"
+                                   onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"/>
+                            <Hyperlink text="Sign up" accessibleText="Sign up here"
+                                       onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
+                                       onAction="#handleSignUpClick" style="-fx-text-fill: #8cc63f; -fx-font-weight: bold;" />
                         </HBox>
                     </VBox>
                 </children>

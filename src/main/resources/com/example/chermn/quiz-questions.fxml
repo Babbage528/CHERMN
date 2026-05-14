@@ -27,7 +27,7 @@
 
             <!-- blank label to be changed by controller - add accessibility?-->
             <VBox fx:id="container">
-                <Label fx:id="explanation" text=" " style="-fx-text-fill: #3E7C2B" alignment="CENTER"  prefWidth="2000" prefHeight="70.0"/>
+                <Label fx:id="explanation" wrapText="true" text=" " style="-fx-text-fill: #3E7C2B" alignment="CENTER"  prefWidth="2000" prefHeight="70.0" />
             </VBox>
             <VBox alignment="CENTER">
                 <children>

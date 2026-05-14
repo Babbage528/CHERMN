@@ -32,7 +32,8 @@
                     </rowConstraints>
 
                     <children>
-                        <Label text="User Profile" accessibleText="User profile" onMouseEntered="#speakAccessibleText"
+                        <Label text="User Profile" accessibleText="User profile"
+                               onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                                GridPane.columnIndex="1">
                             <font>
                                 <Font name="System Bold Italic" size="24.0" />
@@ -43,10 +44,9 @@
                         </Label>
 
                         <Label
-                                layoutX="313.0" layoutY="45.0"
-                                text="View your personal details"
-                                accessibleText="view your personal details" onMouseEntered="#speakAccessibleText"
-                                GridPane.columnIndex="1">
+                                layoutX="313.0" layoutY="45.0" GridPane.columnIndex="1"
+                                text="View your personal details" accessibleText="view your personal details"
+                                onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak">
                             <font>
                                 <Font name="System Bold Italic" size="14.0" />
                             </font>
@@ -55,7 +55,8 @@
                             </GridPane.margin>
                         </Label>
 
-                        <Label text="First Name:" accessibleText="first name" onMouseEntered="#speakAccessibleText"
+                        <Label text="First Name*:" accessibleText="first name"
+                               onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                                GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                             <font>
                                 <Font name="System Bold Italic" size="16.0" />
@@ -67,7 +68,8 @@
 
                         <Label
                                 layoutX="10.0" layoutY="145.0"
-                                text="Last Name:" accessibleText="last name" onMouseEntered="#speakAccessibleText"
+                                text="Last Name*:" accessibleText="last name"
+                                onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                                 GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                             <font>
                                 <Font name="System Bold Italic" size="16.0" />
@@ -79,7 +81,8 @@
 
                         <Label
                                 layoutX="10.0" layoutY="145.0"
-                                text="Username:" accessibleText="username" onMouseEntered="#speakAccessibleText"
+                                text="Username*:" accessibleText="username"
+                                onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                                 GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                             <font>
                                 <Font name="System Bold Italic" size="16.0" />
@@ -91,7 +94,8 @@
 
                         <Label
                                 layoutX="10.0" layoutY="243.0"
-                                text="Email:" accessibleText="email" onMouseEntered="#speakAccessibleText"
+                                text="Email*:" accessibleText="email"
+                                onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                                 GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                             <font>
                                 <Font name="System Bold Italic" size="16.0" />
@@ -103,7 +107,8 @@
 
                         <Label
                                 layoutX="10.0" layoutY="243.0"
-                                text="School:" accessibleText="school" onMouseEntered="#speakAccessibleText"
+                                text="School*:" accessibleText="school"
+                                onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                                 GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                             <font>
                                 <Font name="System Bold Italic" size="16.0" />
@@ -120,7 +125,8 @@
                                 onAction="#updateButtonClick"
                                 prefHeight="50.0" prefWidth="140.0"
                                 style="-fx-background-color: #F7FAE9;"
-                                text="Update" accessibleText="update my details" onMouseEntered="#speakAccessibleText"
+                                text="Update" accessibleText="update my details"
+                                onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                                 GridPane.columnIndex="1" GridPane.rowIndex="4">
                             <font>
                                 <Font name="System Bold Italic" size="18.0" />

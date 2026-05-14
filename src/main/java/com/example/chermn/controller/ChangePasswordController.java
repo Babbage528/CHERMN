@@ -5,6 +5,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 
+/**
+ * Controller for the change user password screen.
+ * Handles the functionality for updating the user's password.
+ */
 public class ChangePasswordController extends ProfileController {
 
     @FXML
@@ -14,8 +18,13 @@ public class ChangePasswordController extends ProfileController {
     @FXML
     private Button updatePasswordButton;
 
+    /**
+     * Handles the update password button click event.
+     * Collects the data from the text fields, and checks that the two passwords entered match.
+     * Updates the user's password in the database, and clears all text fields on screen.
+     */
     @FXML
-    private void updatePasswordButtonClick() throws Exception {
+    private void updatePasswordButtonClick() {
 
         // collect the data written in the text fields
         String newPassword = newPasswordField.getText().trim();
@@ -40,19 +49,29 @@ public class ChangePasswordController extends ProfileController {
             // clears the password fields
             newPasswordField.clear();
             reconfirmPasswordField.clear();
-
-
         }
     }
 
-    private void updatePasswordDetails(String newPassword) throws Exception {
+    /**
+     * Handles updating the password details for the current user.
+     * Checks to ensure that the new password doesn't match the password currently
+     * stored, before updating.
+     * @param newPassword the new password that the user has entered
+     */
+    private void updatePasswordDetails(String newPassword) {
 
         if (newPassword != null && !newPassword.equals(user.getPassword())) {
             user.setPassword(newPassword);
         }
     }
 
-    //For the pop-up alert message
+    /**
+     * Handles showing a pop-up alert message on the screen.
+     * Allows the user to see any exceptions or errors thrown in a user-friendly approach.
+     * @param type the type of alert.
+     * @param title the alert title.
+     * @param content the message to be displayed within the alert.
+     */
     private void showAlert(Alert.AlertType type, String title, String content) {
         Alert alert = new Alert(type);
         alert.setTitle(title);

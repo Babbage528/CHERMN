@@ -1,9 +1,7 @@
 package com.example.chermn.controller;
 
-
 import com.example.chermn.OnBoarding;
 import com.example.chermn.Session;
-import com.example.chermn.model.Student;
 import com.example.chermn.model.Users;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,9 +11,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
+/**
+ * Controller for the settings screen.
+ * Handles displaying the game rules and overall objective, signing out, and music controls.
+ */
 
 public class SettingsController extends BaseController{
 
@@ -36,22 +37,12 @@ public class SettingsController extends BaseController{
     @FXML
     private Slider soundFXSlider;
 
-    // defining variable for current logged-in user
-    private Users currentUser = Session.getCurrentUser();
 
-    // assign the user passed through the controller to assignedUser
-    public void setCurrentUser(Users user) {
-        // check whether the user is a student
-        if (user instanceof Student student) {
-            this.currentUser = student;
-        }
-        else {
-            throw new IllegalArgumentException("Student profile requires a Student user");
-        }
-    }
-
-
-    // defining the associated actions associated with the above button variables
+    /**
+     * Handles the close button click event.
+     * Closes the settings page, and transfers the user back to the homepage.
+     * @throws IOException if the homepage can't be loaded.
+     */
     @FXML
     protected void closeButtonClick() throws IOException {
         Stage stage = (Stage) closeButton.getScene().getWindow();
@@ -60,6 +51,12 @@ public class SettingsController extends BaseController{
         stage.setScene(scene);
     }
 
+    /**
+     * Handles the sign-out button click event.
+     * Signs the current user out, and transfers the user back to the onboarding screen.
+     * Resets the current user stored in Session.
+     * @throws IOException if the onboarding screen can't be loaded.
+     */
     @FXML
     protected void signOutButtonClick() throws IOException {
         Session.clearCurrentUser();
@@ -69,14 +66,22 @@ public class SettingsController extends BaseController{
         stage.setScene(scene);
     }
 
-    // shows the help dialogue for the game
+    /**
+     * Handles the get help button click.
+     * Displays the help dialogue for the game to the user.
+     * @throws IOException if the help dialogue can't be loaded.
+     */
     @FXML
     protected void getHelpButtonClick() throws IOException {
         showHelpDialog();
     }
 
 
-    // Displays a help dialog with instructions.
+    /**
+     * Handles the show help dialogue call.
+     * Displays a help dialogue with detailed game instructions,
+     * and overall game objective.
+     */
     protected void showHelpDialog() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Help");

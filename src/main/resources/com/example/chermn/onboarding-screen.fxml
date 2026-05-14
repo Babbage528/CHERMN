@@ -19,17 +19,25 @@
         </padding>
 
         <children>
-            <VBox spacing="5.0">
-                <Label style="-fx-font-size: 40px; -fx-font-weight: bold; -fx-text-fill: #3E7C2B;" text="Welcome to" accessibleText="Welcome to" onMouseEntered="#speakAccessibleText"/>
-                <Label style="-fx-font-size: 40px; -fx-font-weight: bold; -fx-text-fill: #3E7C2B;" text="Farmer Fred's Trivia" accessibleText="Farmer Fred's Trivia" onMouseEntered="#speakAccessibleText"/>
-                <Label style="-fx-font-size: 18px; -fx-text-fill: #666666;" text="Let's get started" accessibleText="Let's get started" onMouseEntered="#speakAccessibleText"/>
+            <VBox spacing="5.0" accessibleText="Welcome to Farmer Fred's Trivia"
+                  onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak">
+                <Label style="-fx-font-size: 40px; -fx-font-weight: bold; -fx-text-fill: #3E7C2B;" text="Welcome to"/>
+                <Label style="-fx-font-size: 40px; -fx-font-weight: bold; -fx-text-fill: #3E7C2B;" text="Farmer Fred's Trivia"/>
+                <Label style="-fx-font-size: 18px; -fx-text-fill: #666666;"
+                       text="Let's get started" accessibleText="Let's get started"
+                       onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"/>
             </VBox>
 
             <HBox spacing="10.0" maxWidth="420.0">
-                <Button fx:id="signUpButton" accessibleText="Sign up" onMouseEntered="#speakAccessibleText" HBox.hgrow="ALWAYS" maxWidth="Infinity" prefHeight="50.0"
-                        style="-fx-background-color: #6DBE45; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand;" text="Sign Up" onAction="#signUpButtonClick"/>
-                <Button fx:id="loginButton" accessibleText="log in" onMouseEntered="#speakAccessibleText" HBox.hgrow="ALWAYS" maxWidth="Infinity" prefHeight="50.0"
-                        style="-fx-background-color: #F7FAE9; -fx-stroke: #6DBE45; -fx-stroke-width: 1px;-fx-text-fill: #6DBE45; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand;" text="Log In" onAction="#logInButtonClick"/>
+                <Button fx:id="signUpButton" accessibleText="Sign up" onMouseEntered="#speakAccessibleText"
+                        onMouseExited="#cancelSpeak" HBox.hgrow="ALWAYS" maxWidth="Infinity" prefHeight="50.0"
+                        style="-fx-background-color: #6DBE45; -fx-text-fill: white; -fx-font-weight: bold;
+                        -fx-background-radius: 12; -fx-cursor: hand;" text="Sign Up" onAction="#signUpButtonClick"/>
+                <Button fx:id="loginButton" text="Log In" accessibleText="log in" onMouseEntered="#speakAccessibleText"
+                        onMouseExited="#cancelSpeak" HBox.hgrow="ALWAYS" maxWidth="Infinity" prefHeight="50.0"
+                        style="-fx-background-color: #F7FAE9; -fx-stroke: #6DBE45; -fx-stroke-width: 1px;
+                        -fx-text-fill: #6DBE45; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand;"
+                        onAction="#logInButtonClick"/>
             </HBox>
         </children>
     </VBox>
