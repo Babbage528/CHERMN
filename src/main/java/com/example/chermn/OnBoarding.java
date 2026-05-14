@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 public class OnBoarding extends Application {
 
     /** The title of the primary application window */
-    public static final String TITLE = "Login View";
+    public static final String TITLE = "Farmer Fred's Trivia";
 
     /** The default width for all application scenes */
     public static final int WIDTH = 1280;
