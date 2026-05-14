@@ -2,46 +2,62 @@ package com.example.chermn.controller;
 
 import com.example.chermn.OnBoarding;
 import com.example.chermn.Session;
-import com.example.chermn.model.Users;
+import com.example.chermn.SpeechHelper;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
  * Controller for the settings screen.
- * Handles displaying the game rules and overall objective, signing out, and music controls.
+ * Handles navigation, audio sliders, help dialog,
+ * sign-out functionality, and Text-To-Speech (TTS) settings.
  */
+public class SettingsController extends BaseController {
 
-public class SettingsController extends BaseController{
+    // Buttons on the settings screen
+    @FXML private Button closeButton;
+    @FXML private Button signOutButton;
+    @FXML private Button getHelpButton;
 
-    // defining the buttons and sliders used in the settings screen
+    // Sliders for audio settings
+    @FXML private Slider musicSlider;
+    @FXML private Slider soundFXSlider;
+
+    // NEW: Read Aloud (TTS) toggle
+    @FXML private CheckBox ttsToggle;
+
+    // NEW: Voice selection dropdown
+    @FXML private ChoiceBox<String> voiceChoice;
+
+    /**
+     * Called automatically when the FXML loads.
+     * Initializes UI elements such as the TTS toggle and voice list.
+     */
     @FXML
-    private Button closeButton;
+    public void initialize() {
 
-    @FXML
-    private Button signOutButton;
+        // Load current TTS enabled/disabled state from SpeechHelper
+        ttsToggle.setSelected(SpeechHelper.isTtsEnabled());
 
-    @FXML
-    private Button getHelpButton;
+        // Populate available Windows voices
+        voiceChoice.getItems().addAll(
+                "Microsoft David Desktop",
+                "Microsoft Zira Desktop",
+                "Microsoft Mark Desktop"
+        );
 
-    // could expand on this later to include actions for when slider moved
-    @FXML
-    private Slider musicSlider;
-
-    @FXML
-    private Slider soundFXSlider;
-
+        // Set the currently selected voice
+        voiceChoice.setValue(SpeechHelper.getSelectedVoice());
+    }
 
     /**
      * Handles the close button click event.
-     * Closes the settings page, and transfers the user back to the homepage.
-     * @throws IOException if the homepage can't be loaded.
+     * Returns the user to the homepage.
+     *
+     * @throws IOException if the homepage cannot be loaded.
      */
     @FXML
     protected void closeButtonClick() throws IOException {
@@ -53,9 +69,9 @@ public class SettingsController extends BaseController{
 
     /**
      * Handles the sign-out button click event.
-     * Signs the current user out, and transfers the user back to the onboarding screen.
-     * Resets the current user stored in Session.
-     * @throws IOException if the onboarding screen can't be loaded.
+     * Clears the current user session and returns to onboarding.
+     *
+     * @throws IOException if the onboarding screen cannot be loaded.
      */
     @FXML
     protected void signOutButtonClick() throws IOException {
@@ -67,52 +83,58 @@ public class SettingsController extends BaseController{
     }
 
     /**
-     * Handles the get help button click.
-     * Displays the help dialogue for the game to the user.
-     * @throws IOException if the help dialogue can't be loaded.
+     * Handles the Get Help button click.
+     * Displays a help dialog containing game instructions.
      */
     @FXML
-    protected void getHelpButtonClick() throws IOException {
+    protected void getHelpButtonClick() {
         showHelpDialog();
     }
 
-
     /**
-     * Handles the show help dialogue call.
-     * Displays a help dialogue with detailed game instructions,
-     * and overall game objective.
+     * Displays a help dialog with instructions and game objectives.
      */
     protected void showHelpDialog() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Help");
         alert.setHeaderText("Farmer Fred's Trivia Application: Instructions");
 
-        // put the instructions within a label as setContent doesn't wrap
         Label content = new Label(
-                "This is a long instruction message that will tell the user how to use game with instructions and objectives. " +
-                        "Could start off being like: there are a variety of trivia topics to choose from including ...." +
-                        "they range in varying difficulty levels - easy to hard - that you can progress through " +
-                        "you can keep track of your progress through the progress bar at the top of the homepage screen" +
-                        "or through your profile which you can access via the clicking on the farm house"
+                "This is a long instruction message that will tell the user how to use the game with instructions and objectives. " +
+                        "Could start off being like: there are a variety of trivia topics to choose from including ... " +
+                        "they range in varying difficulty levels - easy to hard - that you can progress through. " +
+                        "You can keep track of your progress through the progress bar at the top of the homepage screen " +
+                        "or through your profile which you can access via clicking on the farmhouse."
         );
 
-        // let the text wrap around, with a maximum box width of 350
         content.setWrapText(true);
-        content.setMaxWidth(Double.MAX_VALUE); // allow it to shrink properly
+        content.setMaxWidth(Double.MAX_VALUE);
         alert.getDialogPane().setPrefWidth(800);
-
-        // set the content of the dialog pane to be the label
         alert.getDialogPane().setContent(content);
-
-        // adjust font size
         content.setStyle("-fx-font-size: 14px;");
 
         alert.showAndWait();
     }
 
+    // ============================================================
+    // NEW: READ ALOUD (TTS) SETTINGS
+    // ============================================================
 
+    /**
+     * Toggles the Read Aloud (TTS) feature on or off.
+     * Triggered when the user clicks the checkbox.
+     */
+    @FXML
+    private void toggleTTS() {
+        SpeechHelper.setTtsEnabled(ttsToggle.isSelected());
+    }
+
+    /**
+     * Updates the selected TTS voice.
+     * Triggered when the user chooses a voice from the dropdown.
+     */
+    @FXML
+    private void changeVoice() {
+        SpeechHelper.setSelectedVoice(voiceChoice.getValue());
+    }
 }
-
-
-
-

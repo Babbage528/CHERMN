@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<!-- Creates a stack pane to store all the settings information in with a linked SettingsController -->
+<!-- Settings screen with audio controls, TTS toggle, voice selection, and navigation -->
 <StackPane
         maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
         prefHeight="720.0" prefWidth="1280.0"
@@ -15,7 +15,8 @@
         fx:controller="com.example.chermn.controller.SettingsController">
 
     <children>
-        <!-- Background image behind the title pane of the farm background -->
+
+        <!-- Background image -->
         <ImageView fitHeight="720.0" fitWidth="1280.0"
                    opacity="0.4"
                    pickOnBounds="true">
@@ -24,95 +25,143 @@
             </image>
         </ImageView>
 
-        <!-- Sets a titled pane to include the settings info -->
-      <TitledPane
-              animated="false" prefHeight="600.0" prefWidth="520.0"
-              text="Settings" accessibleText="settings"
-              onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak">
+        <!-- Main settings container -->
+        <TitledPane
+                animated="false" prefHeight="600.0" prefWidth="520.0"
+                text="Settings" accessibleText="settings"
+                onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak">
 
-          <!-- Sets the content of the titled pane to include all the settings options -->
-        <content>
-          <AnchorPane
-                  minHeight="0.0" minWidth="0.0"
-                  prefHeight="180.0" prefWidth="200.0"
-                  style="-fx-background-color: #6DBE45;">
+            <content>
 
-               <children>
-                   <!-- Creates a close button to exit from the settings page -->
-                  <Button fx:id="closeButton"
-                          layoutX="767.0"
-                          mnemonicParsing="false"
-                          onAction="#closeButtonClick"
-                          style="-fx-background-color: transparent;"
-                          text="X" accessibleText="exit"
-                          onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak">
-                     <font>
-                        <Font name="System Bold" size="56.0" />
-                     </font>
-                  </Button>
+                <!-- Green background panel inside titled pane -->
+                <AnchorPane
+                        minHeight="0.0" minWidth="0.0"
+                        prefHeight="180.0" prefWidth="200.0"
+                        style="-fx-background-color: #6DBE45;">
 
-                   <!-- Creates a sign out button to allow the user to sign out of game -->
-                  <Button fx:id="signOutButton"
-                          layoutX="522.0" layoutY="338.0"
-                          mnemonicParsing="false"
-                          onAction="#signOutButtonClick"
-                          prefHeight="102.0" prefWidth="228.0"
-                          style="-fx-background-color: #F7FAE9;"
-                          text="Sign Out" accessibleText="sign out"
-                          onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
-                          AnchorPane.bottomAnchor="20.0"
-                          AnchorPane.rightAnchor="40.0">
-                     <font>
-                        <Font name="System Bold Italic" size="28.0" />
-                     </font>
-                  </Button>
+                    <children>
 
-                   <!-- Creates a label with text Music -->
-                  <Label layoutX="157.0" layoutY="59.0" text="Music" accessibleText="Music Slider"
-                         onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak">
-                     <font>
-                        <Font name="System Bold" size="26.0" />
-                     </font>
-                  </Label>
+                        <!-- Close button (top right) -->
+                        <Button fx:id="closeButton"
+                                layoutX="767.0"
+                                mnemonicParsing="false"
+                                onAction="#closeButtonClick"
+                                style="-fx-background-color: transparent;"
+                                text="X" accessibleText="exit"
+                                onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak">
+                            <font>
+                                <Font name="System Bold" size="56.0" />
+                            </font>
+                        </Button>
 
-                   <!-- Creates a label with text Sound FX -->
-                   <Label layoutX="111.0" layoutY="147.0" text="Sound FX" accessibleText="Sound FX Slider"
-                          onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak">
-                       <font>
-                           <Font name="System Bold" size="26.0" />
-                       </font>
-                   </Label>
+                        <!-- Music label -->
+                        <Label layoutX="157.0" layoutY="59.0" text="Music" accessibleText="Music Slider"
+                               onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak">
+                            <font>
+                                <Font name="System Bold" size="26.0" />
+                            </font>
+                        </Label>
 
-                   <!-- Creates a slider that correlates to music volume -->
-                  <Slider layoutX="336.0" layoutY="66.0" />
+                        <!-- Music slider -->
+                        <Slider layoutX="336.0" layoutY="66.0" />
 
-                   <!-- Creates a slider that correlates to sound fx control -->
-                  <Slider layoutX="336.0" layoutY="154.0" />
+                        <!-- Sound FX label -->
+                        <Label layoutX="111.0" layoutY="147.0" text="Sound FX" accessibleText="Sound FX Slider"
+                               onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak">
+                            <font>
+                                <Font name="System Bold" size="26.0" />
+                            </font>
+                        </Label>
 
-                   <!-- Creates a button that allows the user to get help, and has an on action -->
-                  <Button fx:id="getHelpButton"
-                          layoutX="81.0" layoutY="338.0"
-                          mnemonicParsing="false"
-                          onAction="#getHelpButtonClick"
-                          prefHeight="102.0" prefWidth="224.0"
-                          style="-fx-background-color: #F7FAE9;"
-                          text="Get Help" accessibleText="get help"
-                          onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
-                          AnchorPane.bottomAnchor="20.0"
-                          AnchorPane.leftAnchor="40.0">
-                     <font>
-                        <Font name="System Bold Italic" size="28.0" />
-                     </font>
-                  </Button>
-               </children>
-            </AnchorPane>
-        </content>
-         <StackPane.margin>
-            <Insets bottom="100.0" left="200.0" right="200.0" top="100.0" />
-         </StackPane.margin>
-         <font>
-            <Font name="System Bold Italic" size="21.0" />
-         </font>
-      </TitledPane>
+                        <!-- Sound FX slider -->
+                        <Slider layoutX="336.0" layoutY="154.0" />
+
+                        <!-- =============================== -->
+                        <!-- READ ALOUD (TTS) SETTINGS BELOW -->
+                        <!-- =============================== -->
+
+                        <!-- Read Aloud label -->
+                        <Label layoutX="111.0" layoutY="225.0" text="Read Aloud"
+                               accessibleText="Read Aloud Toggle"
+                               onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak">
+                            <font>
+                                <Font name="System Bold" size="26.0" />
+                            </font>
+                        </Label>
+
+                        <!-- Read Aloud toggle -->
+                        <CheckBox fx:id="ttsToggle"
+                                  layoutX="336.0" layoutY="230.0"
+                                  text="Enable"
+                                  onAction="#toggleTTS"
+                                  accessibleText="Enable Read Aloud"
+                                  onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"/>
+
+                        <!-- Voice selection label -->
+                        <Label layoutX="111.0" layoutY="285.0" text="Voice"
+                               accessibleText="Voice Selection"
+                               onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak">
+                            <font>
+                                <Font name="System Bold" size="26.0" />
+                            </font>
+                        </Label>
+
+                        <!-- Voice dropdown -->
+                        <ChoiceBox fx:id="voiceChoice"
+                                   layoutX="336.0" layoutY="290.0"
+                                   prefWidth="200"
+                                   onAction="#changeVoice"
+                                   accessibleText="Choose Voice"
+                                   onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"/>
+
+                        <!-- =============================== -->
+                        <!-- END OF TTS SETTINGS -->
+                        <!-- =============================== -->
+
+                        <!-- Get Help button -->
+                        <Button fx:id="getHelpButton"
+                                layoutX="81.0" layoutY="338.0"
+                                mnemonicParsing="false"
+                                onAction="#getHelpButtonClick"
+                                prefHeight="102.0" prefWidth="224.0"
+                                style="-fx-background-color: #F7FAE9;"
+                                text="Get Help" accessibleText="get help"
+                                onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
+                                AnchorPane.bottomAnchor="20.0"
+                                AnchorPane.leftAnchor="40.0">
+                            <font>
+                                <Font name="System Bold Italic" size="28.0" />
+                            </font>
+                        </Button>
+
+                        <!-- Sign Out button -->
+                        <Button fx:id="signOutButton"
+                                layoutX="522.0" layoutY="338.0"
+                                mnemonicParsing="false"
+                                onAction="#signOutButtonClick"
+                                prefHeight="102.0" prefWidth="228.0"
+                                style="-fx-background-color: #F7FAE9;"
+                                text="Sign Out" accessibleText="sign out"
+                                onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
+                                AnchorPane.bottomAnchor="20.0"
+                                AnchorPane.rightAnchor="40.0">
+                            <font>
+                                <Font name="System Bold Italic" size="28.0" />
+                            </font>
+                        </Button>
+
+                    </children>
+                </AnchorPane>
+            </content>
+
+            <StackPane.margin>
+                <Insets bottom="100.0" left="200.0" right="200.0" top="100.0" />
+            </StackPane.margin>
+
+            <font>
+                <Font name="System Bold Italic" size="21.0" />
+            </font>
+
+        </TitledPane>
     </children>
 </StackPane>
