@@ -26,15 +26,20 @@
         <!-- SIDEBAR -->
         <left>
             <VBox spacing="10" style="-fx-padding: 15; -fx-background-color: #34495e;">
-                <Button onAction="#showDashboard" text="Dashboard" accessibleText="Dashboard"
+                <Button onAction="#showDashboard" style="-fx-cursor: hand;"
+                        text="Dashboard" accessibleText="Dashboard"
                         onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"/>
-                <Button onAction="#showStudentsDetails" text="My Students" accessibleText="My Students"
+                <Button onAction="#showStudentsDetails" style="-fx-cursor: hand;"
+                        text="My Students" accessibleText="My Students"
                         onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"/>
-                <Button onAction="#showUserDetails" text="My Details" accessibleText="my details"
+                <Button onAction="#showUserDetails" style="-fx-cursor: hand;"
+                        text="My Details" accessibleText="my details"
                         onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"/>
-                <Button onAction="#changePasswordButtonClick" text="Change Password" accessibleText="change password"
+                <Button onAction="#changePasswordButtonClick" style="-fx-cursor: hand;"
+                        text="Change Password" accessibleText="change password"
                         onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"/>
-                <Button fx:id="signOutButton" onAction="#signOutButtonClick" text="Sign Out" accessibleText="sign out"
+                <Button fx:id="signOutButton" onAction="#signOutButtonClick"  style="-fx-cursor: hand;"
+                        text="Sign Out" accessibleText="sign out"
                         onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"/>
             </VBox>
         </left>

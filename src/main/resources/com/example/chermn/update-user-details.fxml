@@ -111,7 +111,7 @@
                                 mnemonicParsing="false"
                                 onAction="#updateButtonClick"
                                 prefHeight="50.0" prefWidth="140.0"
-                                style="-fx-background-color: #F7FAE9;"
+                                style="-fx-background-color: #F7FAE9; -fx-cursor: hand;"
                                 text="Update" accessibleText="update my details"
                                 onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                                 GridPane.columnIndex="1" GridPane.rowIndex="4">
