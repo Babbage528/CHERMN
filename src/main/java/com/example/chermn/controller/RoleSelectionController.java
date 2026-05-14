@@ -54,21 +54,60 @@ public class RoleSelectionController extends BaseController {
         highlightCard(parentCard);
     }
 
+    private String extractBackground(VBox card) {
+        String style = card.getStyle();
+
+        // If the card already has a background set inline, keep it
+        if (style.contains("-fx-background-color")) {
+            int start = style.indexOf("-fx-background-color");
+            int end = style.indexOf(";", start) + 1;
+            return style.substring(start, end);
+        }
+        // Otherwise, default to transparent (or whatever you want)
+        return "-fx-background-color: transparent;";
+    }
+
+
     /**
      * Highlights the selected role card and enables the next button.
      *
      * @param activeCard The VBox that was clicked
      */
     private void highlightCard(VBox activeCard) {
-        studentCard.setStyle("-fx-border-color: transparent;");
-        teacherCard.setStyle("-fx-border-color: transparent;");
-        parentCard.setStyle("-fx-border-color: transparent;");
 
-        activeCard.setStyle("-fx-border-color: #3E7C2B; -fx-border-width: 3; -fx-border-radius: 20;");
+        // Reset all cards to their default background + no border
+        studentCard.setStyle(
+                "-fx-background-color: #D5E8D4;" +
+                        "-fx-background-radius: 20;" +
+                        "-fx-border-color: transparent;"
+        );
+        teacherCard.setStyle(
+                "-fx-background-color: #FFF2CC;" +
+                        "-fx-background-radius: 20;" +
+                        "-fx-border-color: transparent;"
+        );
+        parentCard.setStyle(
+                "-fx-background-color: #F8CECC;" +
+                        "-fx-background-radius: 20;" +
+                        "-fx-border-color: transparent;"
+        );
+
+        // Extract the card's current background colour
+        String bg = extractBackground(activeCard);
+
+        // Apply highlight while keeping background + rounded corners
+        activeCard.setStyle(
+                bg +
+                        "-fx-background-radius: 20;" +
+                        "-fx-border-radius: 20;" +
+                        "-fx-border-color: #3E7C2B;" +
+                        "-fx-border-width: 3;"
+        );
 
         nextButton.setDisable(false);
-        nextButton.setStyle("-fx-background-color: #3E7C2B; -fx-text-fill: white; -fx-opacity: 1;");
+        nextButton.setStyle("-fx-background-color: #3E7C2B; -fx-text-fill: white;");
     }
+
 
     /**
      * Navigates to the corresponding registration form based on the selected role.
