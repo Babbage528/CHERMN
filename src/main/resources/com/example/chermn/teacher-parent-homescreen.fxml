@@ -3,50 +3,96 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.Cursor?>
 
-<StackPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+<StackPane prefHeight="720.0" prefWidth="1280.0"
+           xmlns="http://javafx.com/javafx/17.0.12"
+           xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="com.example.chermn.controller.TeacherParentHomescreenController">
 
-    <ImageView fx:id="fullBackground" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true">
+    <!-- Background -->
+    <ImageView fx:id="fullBackground"
+               fitHeight="720.0"
+               fitWidth="1280.0"
+               pickOnBounds="true">
         <image>
-            <Image url="@assets/images/FullBackground.png" />
+            <Image url="@assets/images/FullBackground.png"/>
         </image>
     </ImageView>
 
     <BorderPane prefHeight="720.0" prefWidth="1280.0">
+
         <!-- TOP BAR -->
         <top>
-            <HBox spacing="20" style="-fx-padding: 10; -fx-background-color: #2c3e50;">
-                <Label style="-fx-text-fill: white; -fx-font-size: 18;" text="Home Dashboard"
-                       accessibleText="home dashboard" onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak" />
-                <Region HBox.hgrow="ALWAYS" />
+            <HBox spacing="20"
+                  style="-fx-padding: 10; -fx-background-color: #2c3e50;">
+                <children>
+                    <Label text="Home Dashboard"
+                           accessibleText="home dashboard"
+                           onMouseEntered="#speakAccessibleText"
+                           onMouseExited="#cancelSpeak"
+                           style="-fx-text-fill: white; -fx-font-size: 18;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                </children>
             </HBox>
         </top>
 
         <!-- SIDEBAR -->
         <left>
-            <VBox spacing="10" style="-fx-padding: 15; -fx-background-color: #34495e;">
-                <Button onAction="#showDashboard" style="-fx-cursor: hand;"
-                        text="Dashboard" accessibleText="Dashboard"
-                        onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"/>
-                <Button onAction="#showStudentsDetails" style="-fx-cursor: hand;"
-                        text="My Students" accessibleText="My Students"
-                        onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"/>
-                <Button onAction="#showUserDetails" style="-fx-cursor: hand;"
-                        text="My Details" accessibleText="my details"
-                        onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"/>
-                <Button onAction="#changePasswordButtonClick" style="-fx-cursor: hand;"
-                        text="Change Password" accessibleText="change password"
-                        onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"/>
-                <Button fx:id="signOutButton" onAction="#signOutButtonClick"  style="-fx-cursor: hand;"
-                        text="Sign Out" accessibleText="sign out"
-                        onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"/>
+            <VBox spacing="10"
+                  style="-fx-padding: 15; -fx-background-color: #34495e;">
+
+                <Button text="Dashboard"
+                        onAction="#showDashboard"
+                        accessibleText="Dashboard"
+                        onMouseEntered="#speakAccessibleText"
+                        onMouseExited="#cancelSpeak">
+                    <cursor><Cursor fx:constant="HAND"/></cursor>
+                </Button>
+
+                <Button text="My Students"
+                        onAction="#showStudentsDetails"
+                        accessibleText="My Students"
+                        onMouseEntered="#speakAccessibleText"
+                        onMouseExited="#cancelSpeak">
+                    <cursor><Cursor fx:constant="HAND"/></cursor>
+                </Button>
+
+                <Button text="My Details"
+                        onAction="#showUserDetails"
+                        accessibleText="my details"
+                        onMouseEntered="#speakAccessibleText"
+                        onMouseExited="#cancelSpeak">
+                    <cursor><Cursor fx:constant="HAND"/></cursor>
+                </Button>
+
+                <Button text="Change Password"
+                        onAction="#changePasswordButtonClick"
+                        accessibleText="change password"
+                        onMouseEntered="#speakAccessibleText"
+                        onMouseExited="#cancelSpeak">
+                    <cursor><Cursor fx:constant="HAND"/></cursor>
+                </Button>
+
+                <Button fx:id="signOutButton"
+                        text="Sign Out"
+                        onAction="#signOutButtonClick"
+                        accessibleText="sign out"
+                        onMouseEntered="#speakAccessibleText"
+                        onMouseExited="#cancelSpeak">
+                    <cursor><Cursor fx:constant="HAND"/></cursor>
+                </Button>
+
             </VBox>
         </left>
 
         <!-- MAIN CONTENT AREA -->
         <center>
-            <StackPane fx:id="contentArea" prefHeight="14.0" prefWidth="5.0" />
+            <StackPane fx:id="contentArea"
+                       prefHeight="14.0"
+                       prefWidth="5.0"/>
         </center>
+
     </BorderPane>
+
 </StackPane>
