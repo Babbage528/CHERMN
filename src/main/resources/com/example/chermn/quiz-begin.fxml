@@ -8,13 +8,20 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.image.*?>
+<?import javafx.scene.Cursor?>
 
 <StackPane prefHeight="720.0" prefWidth="1280.0"
            xmlns:fx="http://javafx.com/fxml"
            fx:controller="com.example.chermn.controller.QuizBeginController">
+
+    <!-- Background -->
     <ImageView fitHeight="1000" fitWidth="2010" pickOnBounds="true" preserveRatio="true" opacity="0.4">
-        <Image url="@assets/images/quiz-questions-background.png"/>
+        <image>
+            <Image url="@assets/images/quiz-questions-background.png"/>
+        </image>
     </ImageView>
+
+    <!-- Green rounded rectangle -->
     <Rectangle width="1160" height="600" fill="#98CB68" arcHeight="30" arcWidth="30"/>
 
     <children>
@@ -22,37 +29,69 @@
             <padding>
                 <Insets bottom="50.0" top="200.0" />
             </padding>
+
+            <!-- Title Section -->
             <VBox alignment="TOP_CENTER">
-                <!-- add accessible text here once dynamic (?) -->
                 <children>
-                    <Label style="-fx-font-size: 56px; -fx-font-weight: bold; -fx-text-fill: #3E7C2B;" text="Level 1!" />
-                    <Label fx:id="difficultyLabel" style="-fx-font-size: 28px; -fx-font-fill: #666666; -fx-text-fill: #3E7C2B;" />
-                    <Label fx:id="categoryLabel" style="-fx-font-size: 28px; -fx-text-fill: #666666; -fx-text-fill: #3E7C2B;" />
+                    <Label text="Level 1!"
+                           style="-fx-font-size: 56px; -fx-font-weight: bold; -fx-text-fill: #3E7C2B;" />
+
+                    <Label fx:id="difficultyLabel"
+                           style="-fx-font-size: 28px; -fx-text-fill: #3E7C2B;" />
+
+                    <Label fx:id="categoryLabel"
+                           style="-fx-font-size: 28px; -fx-text-fill: #3E7C2B;" />
                 </children>
             </VBox>
 
+            <!-- Buttons Section -->
             <VBox alignment="CENTER" maxHeight="450.0" maxWidth="420.0" spacing="25.0">
                 <children>
                     <VBox alignment="CENTER" spacing="10.0">
                         <children>
+
                             <HBox spacing="10.0">
-                                <Button fx:id="returnToHomepageButton" HBox.hgrow="ALWAYS" prefWidth="250.0"
-                                        prefHeight="75.0" style="-fx-background-color: #E7FF76; -fx-text-fill: #3E7C2B;
-                                         -fx-font-weight: bold; -fx-font-size: 20px; -fx-background-radius: 12;
-                                         -fx-cursor: hand;" text="Return to farm" accessibleText="return to farm"
-                                        onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
-                                        onAction="#returnToHomepageButtonClick"/>
-                                <Button fx:id="beginQuizButton" HBox.hgrow="ALWAYS" prefWidth="250.0" prefHeight="75.0"
-                                        style="-fx-background-color: #E7FF76; -fx-text-fill: #3E7C2B; -fx-font-weight:
-                                         bold; -fx-font-size: 20px; -fx-background-radius: 12; -fx-cursor: hand;"
-                                        text="Begin quiz" accessibleText="begin quiz"
-                                        onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
-                                        onAction="#beginQuizButtonClick"/>
+
+                                <!-- Return to Farm Button -->
+                                <Button fx:id="returnToHomepageButton"
+                                        HBox.hgrow="ALWAYS"
+                                        prefWidth="250.0"
+                                        prefHeight="75.0"
+                                        text="Return to farm"
+                                        accessibleText="return to farm"
+                                        onMouseEntered="#speakAccessibleText"
+                                        onMouseExited="#cancelSpeak"
+                                        onAction="#returnToHomepageButtonClick"
+                                        style="-fx-background-color: #E7FF76; -fx-text-fill: #3E7C2B;
+                                               -fx-font-weight: bold; -fx-font-size: 20px;
+                                               -fx-background-radius: 12;">
+                                    <cursor><Cursor fx:constant="HAND"/></cursor>
+                                </Button>
+
+                                <!-- Begin Quiz Button -->
+                                <Button fx:id="beginQuizButton"
+                                        HBox.hgrow="ALWAYS"
+                                        prefWidth="250.0"
+                                        prefHeight="75.0"
+                                        text="Begin quiz"
+                                        accessibleText="begin quiz"
+                                        onMouseEntered="#speakAccessibleText"
+                                        onMouseExited="#cancelSpeak"
+                                        onAction="#beginQuizButtonClick"
+                                        style="-fx-background-color: #E7FF76; -fx-text-fill: #3E7C2B;
+                                               -fx-font-weight: bold; -fx-font-size: 20px;
+                                               -fx-background-radius: 12;">
+                                    <cursor><Cursor fx:constant="HAND"/></cursor>
+                                </Button>
+
                             </HBox>
+
                         </children>
                     </VBox>
                 </children>
             </VBox>
+
         </StackPane>
     </children>
+
 </StackPane>

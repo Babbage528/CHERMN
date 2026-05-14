@@ -4,162 +4,160 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.scene.Cursor?>
 
-<AnchorPane
-        prefHeight="400.0" prefWidth="600.0"
-        xmlns="http://javafx.com/javafx/17.0.12"
-        xmlns:fx="http://javafx.com/fxml/1"
-        fx:controller="com.example.chermn.controller.UpdateUserDetailsController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.chermn.controller.UpdateUserDetailsController">
 
     <children>
-                <!-- Creates a grid pane to store the user's profile information -->
-                <GridPane hgap="20.0"
-                          layoutX="273.0" layoutY="15.0"
-                          prefHeight="490.0" prefWidth="605.0"
-                          AnchorPane.leftAnchor="-125.0">
 
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
+        <GridPane hgap="20" vgap="20"
+                  layoutX="100" layoutY="20"
+                  prefWidth="500">
 
-                    <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
+            <!-- Column Setup -->
+            <columnConstraints>
+                <ColumnConstraints prefWidth="150" halignment="RIGHT"/>
+                <ColumnConstraints prefWidth="300"/>
+            </columnConstraints>
 
-                    <children>
-                        <Label text="User Profile" accessibleText="User profile"
-                               onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
-                               GridPane.columnIndex="1">
-                            <font>
-                                <Font name="System Bold Italic" size="24.0" />
-                            </font>
-                            <GridPane.margin>
-                                <Insets left="-80.0" />
-                            </GridPane.margin>
-                        </Label>
+            <!-- Row Setup -->
+            <rowConstraints>
+                <RowConstraints minHeight="40"/>
+                <RowConstraints minHeight="40"/>
+                <RowConstraints minHeight="40"/>
+                <RowConstraints minHeight="40"/>
+                <RowConstraints minHeight="40"/>
+            </rowConstraints>
 
-                        <Label
-                                layoutX="313.0" layoutY="45.0" GridPane.columnIndex="1"
-                                text="View your personal details" accessibleText="view your personal details"
-                                onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak">
-                            <font>
-                                <Font name="System Bold Italic" size="14.0" />
-                            </font>
-                            <GridPane.margin>
-                                <Insets left="-100.0" top="70.0" />
-                            </GridPane.margin>
-                        </Label>
+            <!-- Title -->
+            <Label text="User Profile"
+                   accessibleText="User profile"
+                   onMouseEntered="#speakAccessibleText"
+                   onMouseExited="#cancelSpeak"
+                   GridPane.columnIndex="1">
+                <font>
+                    <Font name="System Bold Italic" size="24"/>
+                </font>
+                <GridPane.margin>
+                    <Insets left="-80"/>
+                </GridPane.margin>
+            </Label>
 
-                        <Label text="First Name*:" accessibleText="first name"
-                               onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
-                               GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-                            <font>
-                                <Font name="System Bold Italic" size="16.0" />
-                            </font>
-                            <GridPane.margin>
-                                <Insets bottom="40.0" />
-                            </GridPane.margin>
-                        </Label>
+            <!-- Subtitle -->
+            <Label text="View your personal details"
+                   accessibleText="view your personal details"
+                   onMouseEntered="#speakAccessibleText"
+                   onMouseExited="#cancelSpeak"
+                   GridPane.columnIndex="1"
+                   GridPane.rowIndex="1">
+                <font>
+                    <Font name="System Bold Italic" size="14"/>
+                </font>
+                <GridPane.margin>
+                    <Insets left="-80"/>
+                </GridPane.margin>
+            </Label>
 
-                        <Label
-                                layoutX="10.0" layoutY="145.0"
-                                text="Last Name*:" accessibleText="last name"
-                                onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
-                                GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-                            <font>
-                                <Font name="System Bold Italic" size="16.0" />
-                            </font>
-                            <GridPane.margin>
-                                <Insets left="200.0" top="50.0" />
-                            </GridPane.margin>
-                        </Label>
+            <!-- First Name -->
+            <Label text="First Name*:"
+                   accessibleText="first name"
+                   onMouseEntered="#speakAccessibleText"
+                   onMouseExited="#cancelSpeak"
+                   GridPane.rowIndex="2">
+                <font>
+                    <Font name="System Bold Italic" size="16"/>
+                </font>
+            </Label>
 
-                        <Label
-                                layoutX="10.0" layoutY="145.0"
-                                text="Username*:" accessibleText="username"
-                                onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
-                                GridPane.halignment="RIGHT" GridPane.rowIndex="2">
-                            <font>
-                                <Font name="System Bold Italic" size="16.0" />
-                            </font>
-                            <GridPane.margin>
-                                <Insets bottom="40.0" left="200.0" />
-                            </GridPane.margin>
-                        </Label>
+            <TextField fx:id="firstNameField"
+                       GridPane.columnIndex="1"
+                       GridPane.rowIndex="2"/>
 
-                        <Label
-                                layoutX="10.0" layoutY="243.0"
-                                text="School*:" accessibleText="school"
-                                onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
-                                GridPane.halignment="RIGHT" GridPane.rowIndex="3">
-                            <font>
-                                <Font name="System Bold Italic" size="16.0" />
-                            </font>
-                            <GridPane.margin>
-                                <Insets bottom="40.0" />
-                            </GridPane.margin>
-                        </Label>
+            <!-- Last Name -->
+            <Label text="Last Name*:"
+                   accessibleText="last name"
+                   onMouseEntered="#speakAccessibleText"
+                   onMouseExited="#cancelSpeak"
+                   GridPane.rowIndex="3">
+                <font>
+                    <Font name="System Bold Italic" size="16"/>
+                </font>
+            </Label>
 
-                        <!-- Creates an update button allowing the user to update their details -->
-                        <Button fx:id="updateButton"
-                                layoutX="522.0" layoutY="338.0"
-                                mnemonicParsing="false"
-                                onAction="#updateButtonClick"
-                                prefHeight="50.0" prefWidth="140.0"
-                                style="-fx-background-color: #F7FAE9; -fx-cursor: hand;"
-                                text="Update" accessibleText="update my details"
-                                onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
-                                GridPane.columnIndex="1" GridPane.rowIndex="4">
-                            <font>
-                                <Font name="System Bold Italic" size="18.0" />
-                            </font>
-                            <GridPane.margin>
-                                <Insets left="-80.0" />
-                            </GridPane.margin>
-                        </Button>
+            <TextField fx:id="lastNameField"
+                       GridPane.columnIndex="1"
+                       GridPane.rowIndex="3"/>
 
-                        <!-- label to display the user's username as can't be changed -->
-                        <Label fx:id="usernameLabel"
-                               GridPane.columnIndex="1" GridPane.rowIndex="2">
-                            <GridPane.margin>
-                                <Insets bottom="40.0" />
-                            </GridPane.margin>
-                        </Label>
+            <!-- Username (read-only label) -->
+            <Label text="Username*:"
+                   accessibleText="username"
+                   onMouseEntered="#speakAccessibleText"
+                   onMouseExited="#cancelSpeak"
+                   GridPane.rowIndex="4">
+                <font>
+                    <Font name="System Bold Italic" size="16"/>
+                </font>
+            </Label>
 
-                        <!-- Text fields for the user's personal data -->
-                        <TextField fx:id="firstNameField"
-                                   GridPane.columnIndex="1" GridPane.rowIndex="1">
-                            <GridPane.margin>
-                                <Insets bottom="40.0" />
-                            </GridPane.margin>
-                        </TextField>
+            <Label fx:id="usernameLabel"
+                   GridPane.columnIndex="1"
+                   GridPane.rowIndex="4"/>
 
-                        <TextField fx:id="lastNameField"
-                                   GridPane.columnIndex="1" GridPane.rowIndex="1">
-                            <GridPane.margin>
-                                <Insets top="50.0" />
-                            </GridPane.margin>
-                        </TextField>
+            <!-- Email -->
+            <Label text="Email*:"
+                   accessibleText="email"
+                   onMouseEntered="#speakAccessibleText"
+                   onMouseExited="#cancelSpeak"
+                   GridPane.rowIndex="5">
+                <font>
+                    <Font name="System Bold Italic" size="16"/>
+                </font>
+            </Label>
 
-                        <TextField fx:id="emailField"
-                                   GridPane.columnIndex="1" GridPane.rowIndex="2">
-                            <GridPane.margin>
-                                <Insets top="50.0" />
-                            </GridPane.margin>
-                        </TextField>
+            <TextField fx:id="emailField"
+                       GridPane.columnIndex="1"
+                       GridPane.rowIndex="5"/>
 
-                        <TextField fx:id="schoolField"
-                                   GridPane.columnIndex="1" GridPane.rowIndex="3">
-                            <GridPane.margin>
-                                <Insets bottom="40.0" />
-                            </GridPane.margin>
-                        </TextField>
-                    </children>
-                </GridPane>
-            </children>
+            <!-- School -->
+            <Label text="School*:"
+                   accessibleText="school"
+                   onMouseEntered="#speakAccessibleText"
+                   onMouseExited="#cancelSpeak"
+                   GridPane.rowIndex="6">
+                <font>
+                    <Font name="System Bold Italic" size="16"/>
+                </font>
+            </Label>
+
+            <TextField fx:id="schoolField"
+                       GridPane.columnIndex="1"
+                       GridPane.rowIndex="6"/>
+
+            <!-- Update Button -->
+            <Button fx:id="updateButton"
+                    text="Update"
+                    accessibleText="update my details"
+                    onMouseEntered="#speakAccessibleText"
+                    onMouseExited="#cancelSpeak"
+                    onAction="#updateButtonClick"
+                    prefWidth="140" prefHeight="50"
+                    style="-fx-background-color: #F7FAE9;"
+                    GridPane.columnIndex="1"
+                    GridPane.rowIndex="7">
+                <font>
+                    <Font name="System Bold Italic" size="18"/>
+                </font>
+                <cursor><Cursor fx:constant="HAND"/></cursor>
+                <GridPane.margin>
+                    <Insets left="-80"/>
+                </GridPane.margin>
+            </Button>
+
+        </GridPane>
+
+    </children>
+
 </AnchorPane>
