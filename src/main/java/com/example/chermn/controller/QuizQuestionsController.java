@@ -22,14 +22,6 @@ import java.net.http.HttpResponse;
 
 
 /**
- * Quiz controller for question delivery and presentation.
- * This class handles the button actions and change of text for elements in
- * the quiz questions screen. Computes logic, compilation and dynamics of
- * presenting quiz questions to the user across multiple quizzes.
- */
-public class QuizQuestionsController  extends BaseController{
-    /// setting score for new quiz
-/**
  * Controller for handling quiz questions, answer submission,
  * UI updates, scoring, and navigation to the next question.
  *
