@@ -1,5 +1,4 @@
-// import class and database
-import com.example.chermn.model.TriviaQuestion;
+package com.example.chermn;
 
 // import test library
 import org.junit.jupiter.api.*;
