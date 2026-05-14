@@ -4,7 +4,7 @@ import com.example.chermn.model.TriviaQuestion;
 
 import java.util.List;
 
-public class QuizSessionController {
+public class QuizSessionController extends BaseController{
     private List<TriviaQuestion> currentQuiz;
     private int currentQuestionIndex = 0;
 

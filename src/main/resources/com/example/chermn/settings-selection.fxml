@@ -26,9 +26,9 @@
 
         <!-- Sets a titled pane to include the settings info -->
       <TitledPane
-              animated="false"
-              prefHeight="600.0" prefWidth="520.0"
-              text="Settings" accessibleText="settings">
+              animated="false" prefHeight="600.0" prefWidth="520.0"
+              text="Settings" accessibleText="settings"
+              onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak">
 
           <!-- Sets the content of the titled pane to include all the settings options -->
         <content>
@@ -44,7 +44,8 @@
                           mnemonicParsing="false"
                           onAction="#closeButtonClick"
                           style="-fx-background-color: transparent;"
-                          text="X" accessibleText="exit">
+                          text="X" accessibleText="exit"
+                          onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak">
                      <font>
                         <Font name="System Bold" size="56.0" />
                      </font>
@@ -58,6 +59,7 @@
                           prefHeight="102.0" prefWidth="228.0"
                           style="-fx-background-color: #F7FAE9;"
                           text="Sign Out" accessibleText="sign out"
+                          onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                           AnchorPane.bottomAnchor="20.0"
                           AnchorPane.rightAnchor="40.0">
                      <font>
@@ -66,14 +68,16 @@
                   </Button>
 
                    <!-- Creates a label with text Music -->
-                  <Label layoutX="157.0" layoutY="59.0" text="Music">
+                  <Label layoutX="157.0" layoutY="59.0" text="Music" accessibleText="Music Slider"
+                         onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak">
                      <font>
                         <Font name="System Bold" size="26.0" />
                      </font>
                   </Label>
 
                    <!-- Creates a label with text Sound FX -->
-                   <Label layoutX="111.0" layoutY="147.0" text="Sound FX">
+                   <Label layoutX="111.0" layoutY="147.0" text="Sound FX" accessibleText="Sound FX Slider"
+                          onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak">
                        <font>
                            <Font name="System Bold" size="26.0" />
                        </font>
@@ -93,6 +97,7 @@
                           prefHeight="102.0" prefWidth="224.0"
                           style="-fx-background-color: #F7FAE9;"
                           text="Get Help" accessibleText="get help"
+                          onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                           AnchorPane.bottomAnchor="20.0"
                           AnchorPane.leftAnchor="40.0">
                      <font>

@@ -19,7 +19,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class LoginController {
+public class LoginController extends BaseController{
 
     @FXML private TextField usernameField;
     @FXML private PasswordField passwordField;
