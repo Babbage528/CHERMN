@@ -5,9 +5,18 @@ import com.example.chermn.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
+/**
+ * handles the uiz attempt database operations.
+ */
 public class QuizAttemptDAO {
 
-    //saves the score from the quiz
+    /**
+     * saves a completed quiz attempt.
+     * @param userId user ID
+     * @param categoryId category ID
+     * @param score achieved score
+     * @param isPassed whether user passed
+     */
     public void saveQuizAttempt(int userId, int categoryId, double score, boolean isPassed) {
 
         String sql = """
