@@ -15,6 +15,11 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * Quiz api handler for the quiz questions.
+ * This class handles the response creation and retrieval for trivia api requests.
+ * Handles basic exceptions stemming from a lack of response from api.
+ */
 public class QuizBeginApiService extends BaseController{
 
     /** Public static String 'getApiRequest' determines the category of quiz required for the api request. It finds what

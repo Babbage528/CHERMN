@@ -4,6 +4,11 @@ import com.example.chermn.model.TriviaQuestion;
 
 import java.util.List;
 
+/**
+ * Quiz session controller
+ * Handles the return of current quiz session question.
+ * Passes questions from the API controller to other quiz controllers.
+ */
 public class QuizSessionController extends BaseController{
     private List<TriviaQuestion> currentQuiz;
     private int currentQuestionIndex = 0;

@@ -19,6 +19,11 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * Quiz controller for quiz entry
+ * This class handles the button actions and change of text for elements in
+ * the quiz begin screen.
+ */
 public class QuizBeginController extends BaseController {
 
     @FXML

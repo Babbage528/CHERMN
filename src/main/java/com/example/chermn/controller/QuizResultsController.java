@@ -18,6 +18,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Quiz controller for quiz results
+ * This class acts on the results from the previous quiz question controller.
+ * Controls the computation and presentation of the user's results and level.
+ */
 public class QuizResultsController extends BaseController {
 
     @FXML
@@ -53,7 +58,10 @@ public class QuizResultsController extends BaseController {
 
     Student student;
 
-    // Check if logged in user is a student
+    /**
+     * Acts as a setter to help with progressing user level
+     * upon passing quiz.
+     */
     public void setCurrentUser() {
         // check whether the user is a student
         if (currentStudent instanceof Student) {
@@ -65,7 +73,10 @@ public class QuizResultsController extends BaseController {
 
     }
 
-    // Intended for 10 question quizzes only
+    /**
+     * Public void 'initialize' method assisting the logic with quiz results.
+     * Grabs the current quiz category and sets student quiz levels if they have passed the quiz.
+     */
     public void initialize() {
         if (percentageScore >= 80) {
             resultsLabel.setText("You passed with " + percentageScore + "%");
