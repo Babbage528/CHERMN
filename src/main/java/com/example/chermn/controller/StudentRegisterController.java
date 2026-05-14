@@ -1,6 +1,8 @@
 package com.example.chermn.controller;
 
 import java.io.IOException;
+
+import com.example.chermn.AlertHelper;
 import com.example.chermn.OnBoarding;
 import com.example.chermn.Session;
 import com.example.chermn.dao.UserDAO;
@@ -18,7 +20,12 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class StudentRegisterController extends BaseController{
+/**
+ * Controller class for the Student registration screen.
+ * Manages the creation of new student accounts, including input validation
+ * and database persistence.
+ */
+public class StudentRegisterController extends BaseController {
 
     @FXML private TextField firstNameField;
     @FXML private TextField lastNameField;
@@ -28,29 +35,37 @@ public class StudentRegisterController extends BaseController{
 
     private UserDAO userDAO = new UserDAO();
 
+    /**
+     * Processes the student registration form.
+     * Validates that all fields are filled, checks password length, verifies email format,
+     * and ensures the email is not already taken before saving the student to the database.
+     *
+     * @param event The action event triggered by the submit button
+     * @throws IOException If the homepage FXML file cannot be loaded
+     */
     @FXML
     private void handleRegisterSubmit(ActionEvent event) throws IOException {
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
         String school = schoolNameField.getText();
-        String email = unameField.getText().trim().toLowerCase();;
+        String email = unameField.getText().trim().toLowerCase();
         String password = passwordField.getText();
 
         if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, "Form Error!", "Please fill in all the field");
+            AlertHelper.showWarning("Incomplete Form", "Please fill all fields!");
             return;
         }
 
         if (password.length() < 5) {
-            showAlert(Alert.AlertType.WARNING, "Password is weak", "Password has to be 5 character min!");
+            AlertHelper.showWarning("Password is weak", "Password has to be 5 character min!");
             return;
         }
         if (!email.matches("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")) {
-            showAlert(Alert.AlertType.WARNING, "Invalid Email", "Please enter a valid email address (e.g., name@example.com)");
+            AlertHelper.showWarning( "Invalid Email", "Please enter a valid email address (e.g., name@example.com)");
             return;
         }
         if (userDAO.isEmailTaken(email)) {
-            showAlert(Alert.AlertType.ERROR, "Registration Error",
+            AlertHelper.showError("Registration Error",
                     "This email is already registered. Please use another email or login.");
             return;
         }
@@ -62,7 +77,7 @@ public class StudentRegisterController extends BaseController{
             // store in session
             Session.setCurrentUser(student);
 
-            showAlert(Alert.AlertType.INFORMATION, "Registration success", "Account " + email + " successfully registered!");
+            AlertHelper.showSuccess("Registration success", "Account " + email + " successfully registered!");
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("homepage.fxml"));
@@ -73,10 +88,15 @@ public class StudentRegisterController extends BaseController{
 
         } catch (Exception e) {
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Database Error", "There is problem when saving to the DB.");
+            AlertHelper.showError("Database Error", "There is problem when saving to the DB.");
         }
     }
 
+    /**
+     * Navigates the user back to the role selection screen.
+     *
+     * @param event The action event triggered by the back button
+     */
     @FXML
     private void handleBack(ActionEvent event) {
         try {
@@ -89,13 +109,5 @@ public class StudentRegisterController extends BaseController{
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private void showAlert(Alert.AlertType alertType, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 }
