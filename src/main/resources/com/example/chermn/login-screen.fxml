@@ -47,8 +47,8 @@
                                 <Hyperlink text="Forgot Password?" accessibleText="Forgot password?"
                                            onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
                                            alignment="CENTER_RIGHT" maxWidth="Infinity"
-                                           style="-fx-font-size: 11px; -fx-text-fill: #8cc63f;"
-                                           />
+                                           onAction="#handleForgotPassword"
+                                           style="-fx-font-size: 11px; -fx-text-fill: #8cc63f;" />
                             </VBox>
                         </children>
                     </GridPane>
