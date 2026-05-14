@@ -26,11 +26,4 @@ public class StudentDetailsController extends BaseController{
         List<Student> students = userDAO.getStudentsBySchool(currentUser.getSchoolName());
         studentList.getItems().addAll(students);
     }
-
-        // pulls the current users student details and levels
-    }
-
-    private void getStudentDetails(Users currentUser){
-    }
-
 }
