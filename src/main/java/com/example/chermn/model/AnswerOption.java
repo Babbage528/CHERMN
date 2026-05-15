@@ -1,5 +1,8 @@
 package com.example.chermn.model;
 
+/**
+ * Represents an answer option.
+ */
 public class AnswerOption {
     private String text;
     private boolean isCorrect;

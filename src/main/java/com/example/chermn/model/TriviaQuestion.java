@@ -5,6 +5,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Represents a trivia question to be used in quizzes.
+ * Intends to contain a category, question, corresponding correct
+ * answer and a list of corresponding incorrect answers.
+ */
 public class TriviaQuestion {
 
     private String category;

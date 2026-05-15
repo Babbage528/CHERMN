@@ -1,5 +1,10 @@
 package com.example.chermn.model;
 
+/**
+ * Represents a student user in the application.
+ * Intends to be registered with their quiz levels, name, password, school name
+ * and username/email.
+ */
 public class Student extends Users {
     // vehicle
     private static int vehicleLevel;

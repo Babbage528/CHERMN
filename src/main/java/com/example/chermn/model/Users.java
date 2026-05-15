@@ -2,6 +2,10 @@ package com.example.chermn.model;
 
 import java.util.Objects;
 
+/**
+ * Represents a base user in the application.
+ * Acts as a base for other user classes to extend from.
+ */
 public class Users {
     // user id is auto-incremented
     private int id;

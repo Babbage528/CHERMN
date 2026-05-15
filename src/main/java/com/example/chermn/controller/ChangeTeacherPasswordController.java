@@ -5,6 +5,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 
+/**
+ * Controller for updating teacher password.
+ */
 public class ChangeTeacherPasswordController extends TeacherParentHomescreenController{
 
 

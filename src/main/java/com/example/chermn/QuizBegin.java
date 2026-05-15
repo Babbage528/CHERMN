@@ -11,6 +11,10 @@ import javafx.stage.Stage;
 
 import java.util.List;
 
+/**
+ * Entry point for quizzes.
+ * This class defines the startup of quizzes and window formatting.
+ */
 public class QuizBegin extends Application{
     public static final String TITLE = "Farmer Fred's Trivia";
     public static final int WIDTH = 1280;
