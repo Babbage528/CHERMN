@@ -1,5 +1,9 @@
 package com.example.chermn.model;
 
+/**
+ * Represents a parent user in the application.
+ * Intends to be registered with their student name, relationship and student ID. 
+ */
 public class Parent extends Users {
     private String relationship;
     private int studentId;
