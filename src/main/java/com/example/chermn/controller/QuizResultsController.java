@@ -19,7 +19,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Quiz controller for quiz results
+ * Quiz controller for quiz results.
  * This class acts on the results from the previous quiz question controller.
  * Controls the computation and presentation of the user's results and level.
  */

@@ -10,7 +10,9 @@ import com.example.chermn.model.Users;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 
-
+/**
+ * Controller for the student details screen.
+ */
 public class StudentDetailsController extends BaseController{
 
     private UpdateUserDetailsController controller;

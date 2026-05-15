@@ -22,6 +22,7 @@ import java.net.http.HttpResponse;
 
 
 /**
+ * Quiz controller for question logic and updates.
  * Controller for handling quiz questions, answer submission,
  * UI updates, scoring, and navigation to the next question.
  *
