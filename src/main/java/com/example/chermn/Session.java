@@ -4,7 +4,10 @@ import com.example.chermn.controller.SettingsController;
 import com.example.chermn.dao.UserDAO;
 import com.example.chermn.model.Users;
 
-// stores the current session information regarding all current user information
+/**
+ * Class for conveniently storing session information.
+ * Stores the current session information regarding all current user information
+ */
 public class Session {
 
     // the current logged-in user
