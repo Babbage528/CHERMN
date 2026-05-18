@@ -4,6 +4,7 @@ import com.example.chermn.model.Users;
 import com.example.chermn.OnBoarding;
 import com.example.chermn.Session;
 import com.example.chermn.model.Student;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -129,6 +130,11 @@ public class HomepageController extends BaseController {
         addHoverBorder(cornButton);
         addHoverBorder(settingsButton);
         addHoverBorder(profileButton);
+
+        // waits until the screen has rendered before showing instructions
+        Platform.runLater(() -> {
+            GameInstuctionsController.showHelpDialog();
+        });
     }
 
     private void addHoverBorder(Button button) {
