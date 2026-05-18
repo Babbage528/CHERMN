@@ -95,15 +95,6 @@
                  <GridPane.margin><Insets bottom="200.0" /></GridPane.margin>
              </ImageView>
 
-             <!-- Creates a button that will appear on top of the farm house icon within the grid at column 2 and row 2 -->
-             <Button fx:id="farmHouseButton" accessibleText="Go to farmhouse" minHeight="-Infinity" minWidth="-Infinity"
-                     mnemonicParsing="false" onAction="#farmHouseButtonClick"
-                     onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
-                     prefHeight="200.0" prefWidth="222.0" style="-fx-background-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                 <cursor><Cursor fx:constant="HAND"/></cursor>
-                 <GridPane.margin><Insets bottom="200.0" /></GridPane.margin>
-            </Button>
-
 
              <!-- Uploads the image of one corn to the grid at column 4 row 2 -->
              <ImageView fx:id="natureImageView1" fitHeight="100" fitWidth="100" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="2">

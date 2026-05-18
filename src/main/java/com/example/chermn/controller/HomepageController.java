@@ -31,8 +31,6 @@ public class HomepageController extends BaseController {
     @FXML
     public Button vehicleButton;
     @FXML
-    private Button farmHouseButton;
-    @FXML
     private Button cornButton;
     @FXML
     private Button settingsButton;
@@ -128,7 +126,6 @@ public class HomepageController extends BaseController {
 
         addHoverBorder(animalButton);
         addHoverBorder(vehicleButton);
-        addHoverBorder(farmHouseButton);
         addHoverBorder(cornButton);
         addHoverBorder(settingsButton);
         addHoverBorder(profileButton);
@@ -215,26 +212,6 @@ public class HomepageController extends BaseController {
                 difficultySelection = "Hard";
             }
             Scene scene = new Scene(root, OnBoarding.WIDTH, OnBoarding.HEIGHT);
-            stage.setScene(scene);
-        }
-        // otherwise catches any exceptions thrown
-        catch (IllegalArgumentException | IOException exception)
-        {
-            throw new IllegalArgumentException(exception);
-        }
-    }
-
-    /**
-     * Handles the farm house button click event.
-     * Loads the placeholder screen and corresponding controller.
-     * @throws IllegalArgumentException if the farmhouse placeholder screen couldn't be loaded
-     */
-    @FXML
-    protected void farmHouseButtonClick() {
-        Stage stage = (Stage) farmHouseButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("farmHouse-selection.fxml"));
-        try {
-            Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
             stage.setScene(scene);
         }
         // otherwise catches any exceptions thrown
