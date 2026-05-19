@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.HBox;
+import javafx.scene.control.ScrollPane;
 
 /**
  * Utility class for displaying customized JavaFX alert dialogs.
@@ -183,7 +184,13 @@ public class AlertHelper {
                 confirmPassField.clear();
                 errorMsg.setText("Passwords do not match! Try again.");
                 errorMsg.setVisible(true);
-            } else {
+            } else if (p1.length() < 5) {
+                newPassField.clear();
+                confirmPassField.clear();
+                errorMsg.setText("Password must be 5 characters or longer.");
+                errorMsg.setVisible(true);
+            }
+            else {
                 finalPassword[0] = p1;
                 stage.close();
             }
@@ -218,4 +225,85 @@ public class AlertHelper {
         stage.showAndWait();
         return finalPassword[0];
     }
+
+
+
+    /**
+     * Displays a customised game instructions popup with a green theme and a scroll bar.
+     *
+     * @param title the title text displayed at the top
+     * @param headerText the heading text displayed below the title
+     * @param message the instructions message displayed in the popup
+     */
+    public static void showInstructions(String title, String headerText, String message) {
+
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.TRANSPARENT);
+
+        // TITLE
+        Label titleLabel = new Label(title);
+        titleLabel.setStyle("""
+        -fx-font-size: 20px;
+        -fx-font-weight: bold;
+        -fx-text-fill: #6bcB77;
+    """);
+
+        // HEADER
+        Label headerLabel = new Label(headerText);
+        headerLabel.setStyle("""
+        -fx-font-size: 16px;
+        -fx-font-weight: bold;
+        -fx-text-fill: #6bcB77;
+    """);
+
+        // MESSAGE (LONG TEXT)
+        Label messageLabel = new Label(message);
+        messageLabel.setWrapText(true);
+        messageLabel.setStyle("""
+        -fx-font-size: 14px;
+        -fx-text-fill: #555555;
+    """);
+        messageLabel.setMaxHeight(800);
+        messageLabel.setMaxHeight(800);
+
+        // SCROLLABLE CONTENT
+        VBox contentBox = new VBox(10, titleLabel, headerLabel, messageLabel);
+        contentBox.setPadding(new Insets(20));
+
+        ScrollPane scrollPane = new ScrollPane(contentBox);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setPrefViewportHeight(400);
+        scrollPane.setStyle("-fx-background: white; -fx-border-color: transparent;");
+
+        // BUTTON
+        Button okButton = new Button("OK");
+        okButton.setOnAction(e -> stage.close());
+        okButton.setStyle("""
+        -fx-background-color: #6bcB77;
+        -fx-text-fill: white;
+        -fx-font-weight: bold;
+        -fx-background-radius: 12;
+        -fx-padding: 8 24 8 24;
+    """);
+
+        VBox root = new VBox(15, scrollPane, okButton);
+        root.setAlignment(Pos.CENTER);
+        root.setPadding(new Insets(20));
+        // adds a shadow effect to pop out
+        root.setStyle("""
+        -fx-background-color: white;
+        -fx-background-radius: 20;
+        -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 20, 0, 0, 4);
+    """);
+
+        Scene scene = new Scene(root);
+        scene.setFill(null);
+
+        stage.setMaxHeight(800);
+        stage.setMaxWidth(800);
+        stage.setScene(scene);
+        stage.showAndWait();
+    }
+
 }

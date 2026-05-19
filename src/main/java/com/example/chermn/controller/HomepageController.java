@@ -133,7 +133,7 @@ public class HomepageController extends BaseController {
 
         // waits until the screen has rendered before showing instructions
         Platform.runLater(() -> {
-            GameInstuctionsController.showHelpDialog();
+            GameInstuctionsController.showGameInstructions();
         });
     }
 

@@ -91,7 +91,7 @@ public class SettingsController extends BaseController {
      */
     @FXML
     protected void getHelpButtonClick() {
-        GameInstuctionsController.showHelpDialog();
+        GameInstuctionsController.showGameInstructions();
     }
 
 
