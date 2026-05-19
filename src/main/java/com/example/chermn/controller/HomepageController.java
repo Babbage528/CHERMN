@@ -30,7 +30,7 @@ public class HomepageController extends BaseController {
     @FXML
     private Button animalButton;
     @FXML
-    public Button vehicleButton;
+    private Button vehicleButton;
     @FXML
     private Button cornButton;
     @FXML
@@ -254,6 +254,7 @@ public class HomepageController extends BaseController {
     /**
      * Handles the profile button click event.
      * Loads the user's profile screen and corresponding controller.
+     * @param actionEvent the event from the user clicking the profile button
      * @throws IllegalArgumentException if the profile screen couldn't be loaded
      */
     @FXML
@@ -416,5 +417,8 @@ public class HomepageController extends BaseController {
         natureImageView4.setImage(cornImage);
     }
 
-
+    /**
+     * Public constructor for the homepage controller class.
+     */
+    public HomepageController() {};
 }

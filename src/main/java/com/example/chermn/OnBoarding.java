@@ -44,4 +44,9 @@ public class OnBoarding extends Application {
     public static void main(String[] args) {
         launch();
     }
+
+    /**
+     * Public constructor for the Onboarding class.
+     */
+    public OnBoarding() {};
 }

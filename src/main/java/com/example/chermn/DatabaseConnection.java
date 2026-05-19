@@ -12,6 +12,10 @@ public class DatabaseConnection {
 
     private static final String URL = "jdbc:sqlite:trivia.db";
 
+    /**
+     * Establishes the connection to the database.
+     * @return the url connection to the database
+     */
     public static Connection connect() {
         try {
             return DriverManager.getConnection(URL);
