@@ -1,7 +1,5 @@
 package com.example.chermn.model;
 
-import com.example.chermn.AlertHelper;
-
 import java.util.Objects;
 
 /**
@@ -9,6 +7,7 @@ import java.util.Objects;
  * Acts as a base for other user classes to extend from.
  */
 public class Users {
+
     // user id is auto-incremented
     private int id;
     private String userName;
@@ -19,6 +18,17 @@ public class Users {
 
 
     // Public constructor for User
+
+    /**
+     * Public constructor for the user. Takes the user's id, username, first name, last name,
+     * password and school name.
+     * @param id the user's id
+     * @param userName the user's username
+     * @param firstName the user's first name
+     * @param lastName the user's last name
+     * @param password the user's password
+     * @param schoolName the user's school name
+     */
     public Users(int id, String userName, String firstName, String lastName, String password, String schoolName) {
         this.id = id;
         // calls the setters to ensure validation is upheld when constructing user
@@ -29,7 +39,16 @@ public class Users {
         setSchoolName(schoolName);
     }
 
-    // Public constructor without id since it is auto-incremented
+
+    /**
+     * Public constructor for the User without the id field since it is auto-incremented.
+     * Takes the user's username, first name, last name, password and school name.
+     * @param userName the user's username
+     * @param firstName the user's first name
+     * @param lastName the user's last name
+     * @param password the user's password
+     * @param schoolName the user's school name
+     */
     public Users(String userName, String firstName, String lastName, String password, String schoolName)
     {
         // calls the setters to ensure validation is upheld
@@ -41,36 +60,64 @@ public class Users {
     }
 
 
+    /**
+     * Returns the user's id
+     * @return the user's id
+     */
     public int getid() {
         return id;
     }
 
+    /**
+     * Returns the user's username
+     * @return the user's username
+     */
     public String getUserName() {
 
         return userName;
     }
 
+    /**
+     * Returns the user's first name
+     * @return the user's first name
+     */
     public String getFirstName() {
 
         return firstName;
     }
 
+    /**
+     * Returns the user's last name
+     * @return the user's last name
+     */
     public String getLastName() {
 
         return lastName;
     }
 
+    /**
+     * Returns the user's password
+     * @return the user's password
+     */
     public String getPassword() {
 
         return password;
     }
 
+    /**
+     * Returns the user's school name
+     * @return the user's school name
+     */
     public String getSchoolName()
     {
-
         return schoolName;
     }
 
+    /**
+     * Sets the user's first name.
+     * Validates ensuring that only letters are entered, and format to ensure consistency.
+     * @param firstName the user's updated first name
+     */
     public void setFirstName(String firstName) {
         // validate the first name, ensuring only letters are entered
         validateName(firstName, "First name");
@@ -78,6 +125,11 @@ public class Users {
         this.firstName = formatName(firstName);
     }
 
+    /**
+     * Sets the user's last name.
+     * Validates ensuring that only letters are entered, and format to ensure consistency.
+     * @param lastName the user's updated last name
+     */
     public void setLastName(String lastName) {
         // validate the last name, ensuring only letters are entered
         validateName(lastName, "Last name");
@@ -85,6 +137,11 @@ public class Users {
         this.lastName = formatName(lastName);
     }
 
+    /**
+     * Sets the user's password.
+     * Validates ensuring that the password has a minimum of 5 characters.
+     * @param password the user's updated password
+     */
     public void setPassword(String password)
     {
         if (password == null || password.length() < 5)
@@ -98,6 +155,11 @@ public class Users {
         this.password = password;
     }
 
+    /**
+     * Sets the user's school name.
+     * Validates and formats the school name.
+     * @param schoolName the user's school name
+     */
     public void setSchoolName(String schoolName)
     {
         validateName(schoolName, "School name");
@@ -105,6 +167,10 @@ public class Users {
         this.schoolName = formatSchoolName(schoolName);
     }
 
+    /**
+     * Converts the user's details into a string format.
+     * @return the user's details as a string
+     */
     @Override
     public String toString() {
         return "User Information{" +
@@ -115,13 +181,21 @@ public class Users {
                 '}';
     }
 
-
+    /**
+     * Sets the user's id.
+     * @param autoIncrementedId the user's autoincrement id
+     */
     public void setId(int autoIncrementedId) {
 
         this.id = autoIncrementedId;
     }
 
 
+    /**
+     * Sets the user's username.
+     * Validates to ensure that it isn't empty.
+     * @param username the user's username.
+     */
     public void setUsername(String username) {
         if ((Objects.equals(username, "")) || (username == null))
         {
