@@ -133,7 +133,11 @@ public class HomepageController extends BaseController {
 
         // waits until the screen has rendered before showing instructions
         Platform.runLater(() -> {
-            GameInstuctionsController.showGameInstructions();
+            // ONLY show once per session
+            if (!Session.isInstructionsShown()) {
+                GameInstructionsController.showGameInstructions();
+                Session.setInstructionsShown(true);
+            }
         });
     }
 

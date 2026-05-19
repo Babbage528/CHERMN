@@ -5,7 +5,7 @@ import com.example.chermn.AlertHelper;
 /**
  * A public class that displays the game instructions to the screen for the user.
  */
-public class GameInstuctionsController
+public class GameInstructionsController
 {
     /**
      * Displays a window with instructions and game objectives for the user.

@@ -78,7 +78,10 @@ public class SettingsController extends BaseController {
      */
     @FXML
     protected void signOutButtonClick() throws IOException {
+        // clears the current user from session
         Session.clearCurrentUser();
+        // resets the instruction boolean back to false (show again to next user)
+        Session.setInstructionsShown(false);
         Stage stage = (Stage) signOutButton.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("onboarding-screen.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
@@ -91,7 +94,7 @@ public class SettingsController extends BaseController {
      */
     @FXML
     protected void getHelpButtonClick() {
-        GameInstuctionsController.showGameInstructions();
+        GameInstructionsController.showGameInstructions();
     }
 
 

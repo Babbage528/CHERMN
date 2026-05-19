@@ -13,20 +13,48 @@ public class Session {
     // the current logged-in user
     private static Users currentUser;
 
-    // sets the current user for the session
+    // logs whether the instructions have been shown yet
+    private static boolean instructionsShown = false;
+
+    /**
+     * Sets the current user for the session as the user inputted
+     * @param user the logged-in user
+     */
     public static void setCurrentUser(Users user) {
 
         currentUser = user;
     }
 
-    // gets the current user for the session
+    /**
+     * Gets the current user that is logged in
+     * @return the current user
+     */
     public static Users getCurrentUser() {
         return currentUser;
     }
 
-    // clears the current user (for signing out)
+    /**
+     * Clears the current user from the session memory when logging out
+     */
     public static void clearCurrentUser() {
         currentUser = null;
     }
+
+    /**
+     * Returns whether the games instructions have been shown yet
+     * @return a boolean dictating whether the game instructions have been shown
+     */
+    public static boolean isInstructionsShown() {
+        return instructionsShown;
+    }
+
+    /**
+     * Sets the instructions shown boolean
+     * @param shown the boolean denoting whether the instructions have been shown
+     */
+    public static void setInstructionsShown(boolean shown) {
+        instructionsShown = shown;
+    }
+
 
 }
