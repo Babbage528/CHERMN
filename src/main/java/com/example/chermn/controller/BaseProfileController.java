@@ -30,13 +30,11 @@ public abstract class BaseProfileController extends BaseController{
      */
     protected abstract StackPane getContainer();
 
-    // instantiate userDAO to access
     /**
      * Instantiates the database to allow access.
      */
     protected UserDAO userDAO = new UserDAO();
 
-    // defining variable for current logged-in user
     /**
      * Defines the variable for the current, logged-in user.
      */

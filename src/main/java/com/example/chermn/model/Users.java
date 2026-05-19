@@ -1,5 +1,7 @@
 package com.example.chermn.model;
 
+import com.example.chermn.AlertHelper;
+
 import java.util.Objects;
 
 /**
@@ -143,21 +145,24 @@ public class Users {
     // validate name method that uses regex
     private void validateName(String name, String fieldName) {
         if (name == null || name.trim().isEmpty()) {
-            throw new IllegalArgumentException(fieldName + " must not be empty.");
+            AlertHelper.showError("Error Saving Details", fieldName + " must not be empty.");
+            // throw new IllegalArgumentException(fieldName + " must not be empty.");
         }
         // checks whether the school name was entered
         if (Objects.equals(fieldName, "School name"))
         {
             // ensures that only letters or spaces are entered into the name fields
             if (!name.matches("^[a-zA-Z ]+$")) {
-                throw new IllegalArgumentException(fieldName + " must contain only letters or spaces.");
+                AlertHelper.showError("Error Saving Details", fieldName + " must contain only letters or spaces.");
+                // throw new IllegalArgumentException(fieldName + " must contain only letters or spaces.");
             }
         }
         else // first or last name
         {
             // ensures that only letters are entered into the name fields
             if (!name.matches("^[a-zA-Z]+$")) {
-                throw new IllegalArgumentException(fieldName + " must contain only letters.");
+                AlertHelper.showError("Error Saving Details", fieldName + " must contain only letters.");
+                // throw new IllegalArgumentException(fieldName + " must contain only letters.");
             }
         }
 
