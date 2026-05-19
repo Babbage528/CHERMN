@@ -20,4 +20,10 @@ public class DatabaseConnection {
             return null;
         }
     }
+
+    /**
+     * Private constructor to prevent instantiation of class.
+     */
+    private DatabaseConnection() {
+    }
 }
