@@ -4,6 +4,7 @@ import com.example.chermn.model.Users;
 import com.example.chermn.OnBoarding;
 import com.example.chermn.Session;
 import com.example.chermn.model.Student;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,8 +31,6 @@ public class HomepageController extends BaseController {
     private Button animalButton;
     @FXML
     public Button vehicleButton;
-    @FXML
-    private Button farmHouseButton;
     @FXML
     private Button cornButton;
     @FXML
@@ -128,10 +127,18 @@ public class HomepageController extends BaseController {
 
         addHoverBorder(animalButton);
         addHoverBorder(vehicleButton);
-        addHoverBorder(farmHouseButton);
         addHoverBorder(cornButton);
         addHoverBorder(settingsButton);
         addHoverBorder(profileButton);
+
+        // waits until the screen has rendered before showing instructions
+        Platform.runLater(() -> {
+            // ONLY show once per session
+            if (!Session.isInstructionsShown()) {
+                GameInstructionsController.showGameInstructions();
+                Session.setInstructionsShown(true);
+            }
+        });
     }
 
     private void addHoverBorder(Button button) {
@@ -215,26 +222,6 @@ public class HomepageController extends BaseController {
                 difficultySelection = "Hard";
             }
             Scene scene = new Scene(root, OnBoarding.WIDTH, OnBoarding.HEIGHT);
-            stage.setScene(scene);
-        }
-        // otherwise catches any exceptions thrown
-        catch (IllegalArgumentException | IOException exception)
-        {
-            throw new IllegalArgumentException(exception);
-        }
-    }
-
-    /**
-     * Handles the farm house button click event.
-     * Loads the placeholder screen and corresponding controller.
-     * @throws IllegalArgumentException if the farmhouse placeholder screen couldn't be loaded
-     */
-    @FXML
-    protected void farmHouseButtonClick() {
-        Stage stage = (Stage) farmHouseButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("farmHouse-selection.fxml"));
-        try {
-            Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
             stage.setScene(scene);
         }
         // otherwise catches any exceptions thrown

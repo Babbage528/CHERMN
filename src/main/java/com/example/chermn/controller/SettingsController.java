@@ -78,7 +78,10 @@ public class SettingsController extends BaseController {
      */
     @FXML
     protected void signOutButtonClick() throws IOException {
+        // clears the current user from session
         Session.clearCurrentUser();
+        // resets the instruction boolean back to false (show again to next user)
+        Session.setInstructionsShown(false);
         Stage stage = (Stage) signOutButton.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("onboarding-screen.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
@@ -91,33 +94,9 @@ public class SettingsController extends BaseController {
      */
     @FXML
     protected void getHelpButtonClick() {
-        showHelpDialog();
+        GameInstructionsController.showGameInstructions();
     }
 
-    /**
-     * Displays a help dialog with instructions and game objectives.
-     */
-    protected void showHelpDialog() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Help");
-        alert.setHeaderText("Farmer Fred's Trivia Application: Instructions");
-
-        Label content = new Label(
-                "This is a long instruction message that will tell the user how to use the game with instructions and objectives. " +
-                        "Could start off being like: there are a variety of trivia topics to choose from including ... " +
-                        "they range in varying difficulty levels - easy to hard - that you can progress through. " +
-                        "You can keep track of your progress through the progress bar at the top of the homepage screen " +
-                        "or through your profile which you can access via clicking on the farmhouse."
-        );
-
-        content.setWrapText(true);
-        content.setMaxWidth(Double.MAX_VALUE);
-        alert.getDialogPane().setPrefWidth(800);
-        alert.getDialogPane().setContent(content);
-        content.setStyle("-fx-font-size: 14px;");
-
-        alert.showAndWait();
-    }
 
     // READ ALOUD (TTS) SETTINGS
     /**

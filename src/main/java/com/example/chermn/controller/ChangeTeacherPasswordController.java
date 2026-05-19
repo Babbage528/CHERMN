@@ -1,5 +1,6 @@
 package com.example.chermn.controller;
 
+import com.example.chermn.AlertHelper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -29,7 +30,11 @@ public class ChangeTeacherPasswordController extends TeacherParentHomescreenCont
         if (!newPassword.equals(reconfirmedPassword))
         {
             // error text appears on the screen for the user
-            showAlert(Alert.AlertType.ERROR, "Unable to update password", "Passwords must match!");
+            AlertHelper.showError("Unable to update password", "Passwords must match!");
+        }
+        else if (newPassword.length() < 5){
+            // error text appears on the screen for the user
+            AlertHelper.showError("Unable to update password", "Password must be a minimum of 5 characters");
         }
         else {
             // updates the password in the current users details
@@ -39,7 +44,7 @@ public class ChangeTeacherPasswordController extends TeacherParentHomescreenCont
             userDAO.updateUser(user);
 
             // alerts user that password has been changed
-            showAlert(Alert.AlertType.WARNING, "Password Updated!", "Your password has been updated");
+            AlertHelper.showSuccess( "Password Updated!", "Your password has been updated");
 
             // clears the password fields
             newPasswordField.clear();
@@ -55,17 +60,5 @@ public class ChangeTeacherPasswordController extends TeacherParentHomescreenCont
             user.setPassword(newPassword);
         }
     }
-
-    //For the pop-up alert message
-    private void showAlert(Alert.AlertType type, String title, String content) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
-    }
-
-
-
 
 }

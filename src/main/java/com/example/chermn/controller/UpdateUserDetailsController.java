@@ -1,5 +1,6 @@
 package com.example.chermn.controller;
 
+import com.example.chermn.AlertHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -91,12 +92,13 @@ public class UpdateUserDetailsController extends ProfileController {
 
             // update the text fields with current data stored in the database
             fillUserDetails();
+
+            // lets user know that details have been updated
+            AlertHelper.showSuccess("Details Updated", "Your details have been updated successfully");
         }
         // catches any illegal argument exceptions and displays them to the user through show alert method
         catch (IllegalArgumentException exception) {
-            showAlert(Alert.AlertType.ERROR,
-                    "Invalid Details",
-                    exception.getMessage());
+            AlertHelper.showError("Invalid Details", exception.getMessage());
         }
     }
 
@@ -123,22 +125,6 @@ public class UpdateUserDetailsController extends ProfileController {
                 user.setSchoolName(schoolName);
             }
         }
-
-
-    /**
-     * Displays an alert message to the user.
-     * @param alertType the type of alert to display.
-     * @param title the alert title.
-     * @param message the alert message.
-     */
-    private void showAlert(Alert.AlertType alertType, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-
 
 
     }

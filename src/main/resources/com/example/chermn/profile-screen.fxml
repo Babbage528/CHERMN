@@ -21,7 +21,7 @@
         <!-- Anchor pane to anchor the separate components of the profile screen together -->
     <AnchorPane layoutX="190.0" layoutY="100.0"
                 prefHeight="520.0" prefWidth="900.0"
-                style="-fx-background-color: #6DBE45;">
+                style="-fx-background-color: #6bcB77;">
 
         <children>
             <!-- Creates a close button to exit from the settings page -->
