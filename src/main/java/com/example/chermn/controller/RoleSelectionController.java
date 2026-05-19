@@ -158,4 +158,10 @@ public class RoleSelectionController extends BaseController {
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     * Public constructor of role selection controller class.
+     */
+    public RoleSelectionController() {
+    }
 }

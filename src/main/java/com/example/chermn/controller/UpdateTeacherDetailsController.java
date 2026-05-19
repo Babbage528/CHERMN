@@ -122,4 +122,10 @@ public class UpdateTeacherDetailsController extends TeacherParentHomescreenContr
             user.setSchoolName(schoolName);
         }
     }
+
+    /**
+     * Public constructor of update teacher details controller class.
+     */
+    public UpdateTeacherDetailsController() {
+    }
 }

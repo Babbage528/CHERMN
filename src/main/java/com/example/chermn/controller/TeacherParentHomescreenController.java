@@ -100,5 +100,12 @@ public class TeacherParentHomescreenController extends BaseProfileController {
         super.changePasswordButtonClick(event);
     }
 
+
+    /**
+     * Public constructor of teacher parent homescreen controller class.
+     */
+    public TeacherParentHomescreenController() {
+    }
+
 }
 

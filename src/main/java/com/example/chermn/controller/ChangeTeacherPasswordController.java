@@ -61,4 +61,10 @@ public class ChangeTeacherPasswordController extends TeacherParentHomescreenCont
         }
     }
 
+    /**
+     * Public constructor of change teacher's password controller class.
+     */
+    public ChangeTeacherPasswordController() {
+    }
+
 }

@@ -28,4 +28,10 @@ public class StudentDetailsController extends BaseController{
         List<Student> students = userDAO.getStudentsBySchool(currentUser.getSchoolName());
         studentList.getItems().addAll(students);
     }
+
+    /**
+     * Public constructor of student detilas controller class.
+     */
+    public StudentDetailsController() {
+    }
 }

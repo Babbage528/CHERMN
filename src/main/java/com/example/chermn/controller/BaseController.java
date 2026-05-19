@@ -68,4 +68,10 @@ public class BaseController {
         lastHoveredNode = null;
         SpeechHelper.stop(); // makes sure only the one you want, plays
     }
+
+    /**
+     * Public constructor of base controller class.
+     */
+    public BaseController() {
+    }
 }
