@@ -113,4 +113,10 @@ public abstract class BaseProfileController extends BaseController{
         stage.setScene(scene);
     }
 
+    /**
+     * Public constructor of base profile controller class.
+     */
+    public BaseProfileController() {
+    }
+
 }

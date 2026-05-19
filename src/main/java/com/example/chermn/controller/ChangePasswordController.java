@@ -70,4 +70,10 @@ public class ChangePasswordController extends ProfileController {
         }
     }
 
+    /**
+     * Public constructor of change password controller class.
+     */
+    public ChangePasswordController() {
+    }
+
 }

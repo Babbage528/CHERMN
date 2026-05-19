@@ -110,4 +110,10 @@ public class StudentRegisterController extends BaseController {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Public constructor of student register controller class.
+     */
+    public StudentRegisterController() {
+    }
 }

@@ -97,5 +97,10 @@ public class ProfileController extends BaseProfileController{
     }
 
 
+    /**
+     * Public constructor of profile controller class.
+     */
+    public ProfileController() {
+    }
 
 }

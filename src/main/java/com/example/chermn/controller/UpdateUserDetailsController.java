@@ -127,5 +127,14 @@ public class UpdateUserDetailsController extends ProfileController {
         }
 
 
+    /**
+     * Public constructor of update user details controller class.
+     */
+    public UpdateUserDetailsController() {
     }
+
+
+    }
+
+
 

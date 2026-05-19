@@ -48,4 +48,11 @@ public class GameInstructionsController
 
     }
 
+
+    /**
+     * Private constructor of game instruction controller to prevent instantiation of class.
+     */
+    private GameInstructionsController() {
+    }
+
 }

@@ -49,4 +49,10 @@ public class OnBoardingController extends BaseController {
         Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
         stage.setScene(scene);
     }
+
+    /**
+     * Public constructor of onboarding controller class.
+     */
+    public OnBoardingController() {
+    }
 }

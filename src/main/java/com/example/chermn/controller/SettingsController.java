@@ -123,4 +123,11 @@ public class SettingsController extends BaseController {
     private void changeVoice() {
         SpeechHelper.setSelectedVoice(voiceChoice.getValue());
     }
+
+    /**
+     * Public constructor of settings controller class.
+     */
+    public SettingsController() {
+    }
+
 }

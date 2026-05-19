@@ -110,4 +110,10 @@ public class SpeechHelper {
         ProcessBuilder pb = new ProcessBuilder("say", text);
         currentSpeechProcess = pb.start();
     }
+
+    /**
+     * Private constructor to prevent instantiation of class.
+     */
+    private SpeechHelper() {
+    }
 }

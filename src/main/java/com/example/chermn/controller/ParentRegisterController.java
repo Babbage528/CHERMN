@@ -128,4 +128,10 @@ public class ParentRegisterController extends BaseController {
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     * Public constructor of parent register controller class.
+     */
+    public ParentRegisterController() {
+    }
 }

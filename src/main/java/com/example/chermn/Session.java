@@ -56,5 +56,10 @@ public class Session {
         instructionsShown = shown;
     }
 
+    /**
+     * Private constructor to prevent instantiation of class.
+     */
+    private Session() {
+    }
 
 }

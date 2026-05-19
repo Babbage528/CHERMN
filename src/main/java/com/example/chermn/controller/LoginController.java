@@ -114,4 +114,10 @@ public class LoginController extends BaseController {
             AlertHelper.showError("Not Found", "Account not found.");
         }
     }
+
+    /**
+     * Public constructor of login controller class.
+     */
+    public LoginController() {
+    }
 }
