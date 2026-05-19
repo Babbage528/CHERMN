@@ -37,7 +37,7 @@
                 <AnchorPane
                         minHeight="0.0" minWidth="0.0"
                         prefHeight="180.0" prefWidth="200.0"
-                        style="-fx-background-color: #6DBE45;">
+                        style="-fx-background-color: #6bcB77;">
 
                     <children>
 
