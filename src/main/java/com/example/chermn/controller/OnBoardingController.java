@@ -10,9 +10,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * Controller class for the onboarding screen.
- * Provides the initial entry points for users to navigate to either
- * the login or registration flows.
+ * Controller for the onboarding screen.
+ * <p>
+ * Handles navigation to login, registration, and role‑selection screens
+ * when the user first opens the application.
  */
 public class OnBoardingController extends BaseController {
 
@@ -23,10 +24,16 @@ public class OnBoardingController extends BaseController {
     private Button signUpButton;
 
     /**
+     * Default constructor for OnBoardingController.
+     * Required for JavaFX controller instantiation.
+     */
+    public OnBoardingController() {}
+
+    /**
      * Handles the click event for the login button.
      * Transitions the application scene to the login screen.
      *
-     * @throws IOException If the login-screen.fxml file cannot be loaded
+     * @throws IOException if the login-screen.fxml file cannot be loaded
      */
     @FXML
     protected void logInButtonClick() throws IOException {
@@ -40,7 +47,7 @@ public class OnBoardingController extends BaseController {
      * Handles the click event for the sign-up button.
      * Transitions the application scene to the role selection screen.
      *
-     * @throws IOException If the role-selection.fxml file cannot be loaded
+     * @throws IOException if the role-selection.fxml file cannot be loaded
      */
     @FXML
     protected void signUpButtonClick() throws IOException {
