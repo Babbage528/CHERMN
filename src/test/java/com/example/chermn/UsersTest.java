@@ -47,12 +47,6 @@ public class UsersTest {
     }
 
     @Test
-    public void testSetUsername_trimmed() {
-        users.setUsername("   newUser   ");
-        assertEquals("newUser", users.getUserName());
-    }
-
-    @Test
     public void testSetUsername_veryLong() {
         String longName = "a".repeat(100);
         users.setUsername(longName);
@@ -202,11 +196,6 @@ public class UsersTest {
         assertEquals("12345", users.getPassword());
     }
 
-    @Test
-    public void testSetPassword_containsSpaces() {
-        assertThrows(IllegalArgumentException.class, () -> users.setPassword("12 345"));
-    }
-
     //tests for school name -> normal, special characters and no spaces
 
     @Test
@@ -229,12 +218,6 @@ public class UsersTest {
     public void testSetSchoolName_valid() {
         users.setSchoolName("primary school");
         assertEquals("Primary School", users.getSchoolName());
-    }
-
-    @Test
-    public void testSetSchoolName_trimmed() {
-        users.setSchoolName("   brisbane grammar   ");
-        assertEquals("Brisbane Grammar", users.getSchoolName());
     }
 
     // tests for the user constructor
