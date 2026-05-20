@@ -22,6 +22,13 @@ import java.util.Scanner;
  */
 public class QuizBeginApiService extends BaseController{
 
+    /**
+     * Public constructor for the QuizBeginApiService class.
+     */
+    public QuizBeginApiService() {
+
+    }
+
     /** Public static String 'getApiRequest' determines the category of quiz required for the api request. It finds what
      * button was clicked and returns the corresponding API call for use in the https request.
      */
