@@ -23,8 +23,7 @@ import javafx.stage.Stage;
 /**
  * Controller for the admin user management screen.
  * <p>
- * Handles displaying users, selecting a user, editing details,
- * creating new users, deleting users, and logging out.
+ * Handles displaying, selecting, creating, editing, and deleting users.
  */
 public class MainController extends BaseController{
 
