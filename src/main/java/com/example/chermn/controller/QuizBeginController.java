@@ -55,6 +55,8 @@ public class QuizBeginController extends BaseController {
 
     /** Protected void 'beginQuizButtonClick' defines the actions that occur when the begin quiz button
      * is selected. The function continues the user onto the quiz questions scene screen.
+     *
+     * @param event ActionEvent (button click) to respond to.
      */
     @FXML
     protected void beginQuizButtonClick(ActionEvent event) throws IOException, JSONException {
@@ -69,6 +71,8 @@ public class QuizBeginController extends BaseController {
     }
 
     /** Public void 'setCategoryText' Acts as a setter for the fxml category text label. Used by home page controller.
+     *
+     * @param text String intended for the category label.
      */
     @FXML
     public void setCategoryText(String text) {
@@ -76,6 +80,8 @@ public class QuizBeginController extends BaseController {
     }
 
     /** Public void 'setDifficultyText' Acts as a setter for the fxml category difficulty label. Used by home page controller.
+     *
+     * @param text String intended for the difficulty label.
      */
     @FXML
     public void setDifficultyText(String text) {
