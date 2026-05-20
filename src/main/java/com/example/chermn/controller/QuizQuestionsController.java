@@ -34,6 +34,9 @@ import java.net.http.HttpResponse;
  */
 public class QuizQuestionsController extends BaseController {
 
+    private List<TriviaQuestion> realQuestions = null;
+    private int currentQuestionIndex = 0;
+
     /** Score for the current quiz session. */
     public static int score = 0;
 
@@ -109,26 +112,21 @@ public class QuizQuestionsController extends BaseController {
     @FXML
     public void getQuestions() {
         List<String> answers = new ArrayList<>();
-        /// retrieving api questions from QuizBeginApiService
-        QuizBeginApiService apiService = new QuizBeginApiService();
-        List<TriviaQuestion> realQuestions = apiService.fetchQuestions();
-        QuizSessionController session = new QuizSessionController(realQuestions);
+        /// retrieving api questions from QuizBeginApiService - once at start of each quiz
+        if (realQuestions == null) {
+            QuizBeginApiService apiService = new QuizBeginApiService();
+            realQuestions = apiService.fetchQuestions();
+        }
 
         /// setting 'currentQuestion' to cycle through
-        TriviaQuestion currentQuestion = session.getCurrentQuestion();
+        TriviaQuestion currentQuestion = realQuestions.get(currentQuestionIndex);
         theQuestion = currentQuestion.getQuestion();
 
-        /// defining responses from api
+        /// collating both correct and incorrect answers from api
         correctAnswer = currentQuestion.getCorrectAnswer();
         List<String> incorrectAnswers = currentQuestion.getIncorrectAnswers();
         answers.add(correctAnswer);
         answers.addAll(incorrectAnswers);
-
-        /// collating both correct and incorrect answers from api
-        for (int j = 0; j < incorrectAnswers.size(); j++) {
-            String answer = incorrectAnswers.get(j);
-            answers.add(answer);
-        }
 
         /// randomize answers so correct answer isn't always same position
         Collections.shuffle(answers);
@@ -205,9 +203,11 @@ public class QuizQuestionsController extends BaseController {
         JSONObject jsonObject = new JSONObject(response.body());
         String aiResponse = jsonObject.optString("response", "(No explanation available)");
 
-        // Check correctness
-        boolean isCorrect =
-                userAnswer.getText().substring(3).equals(correctAnswer);
+        /// Check correctness - allowing for unwanted formatting text
+        String selected = userAnswer.getText().substring(3).trim();
+        String correct = correctAnswer.trim();
+
+        boolean isCorrect = selected.equalsIgnoreCase(correct);
 
         if (isCorrect) {
             score += 1;
@@ -277,10 +277,12 @@ public class QuizQuestionsController extends BaseController {
         /// enabling next button
         Next.setDisable(true);
 
-        if (answerIndex < 10) {
-            answerIndex++;
+        currentQuestionIndex++;
+        answerIndex++;
+        // still going?
+        if (currentQuestionIndex < realQuestions.size()){
             getQuestions();
-        } else {
+        } else { // go to results screen
             Stage stage = (Stage) Next.getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("quiz-results.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
