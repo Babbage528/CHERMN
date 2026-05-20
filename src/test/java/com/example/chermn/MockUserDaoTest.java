@@ -10,15 +10,32 @@ import org.junit.jupiter.api.Test;
 import com.example.chermn.dao.IUserDAO;
 import com.example.chermn.model.Users;
 
+/**
+ * Unit tests for {@link MockUserDAO}, verifying that the in‑memory
+ * mock implementation behaves consistently with expected DAO behaviour.
+ *
+ * <p>These tests ensure that user creation, retrieval, authentication,
+ * deletion, and list operations work correctly without requiring a
+ * real database connection.
+ */
 public class MockUserDaoTest {
+
+    /** The DAO instance used for each test, reset before every run. */
     private IUserDAO dao;
 
+    /**
+     * Creates a fresh {@link MockUserDAO} before each test to ensure
+     * isolation and prevent state leakage between test cases.
+     */
     @BeforeEach
     void setUp() {
         dao = new MockUserDAO();
     }
 
-    //test creating user
+    /**
+     * Verifies that a newly created user is stored and can be retrieved
+     * by username.
+     */
     @Test
     void testCreateUser() {
         Users user = new Users(0, "nik", "N", "S", "pass123", "QUT");
@@ -27,7 +44,9 @@ public class MockUserDaoTest {
         assertNotNull(found);
     }
 
-    //test if the created user can login
+    /**
+     * Ensures that a user with valid credentials can successfully log in.
+     */
     @Test
     void testLoginSuccess() {
         Users user = new Users(0, "nik", "N", "S", "pass123", "QUT");
@@ -36,7 +55,9 @@ public class MockUserDaoTest {
         assertNotNull(loggedIn);
     }
 
-    //test if wrong password will results in null
+    /**
+     * Ensures that login fails when the password does not match.
+     */
     @Test
     void testLoginFail() {
         Users user = new Users(0, "nik", "N", "S", "pass123", "QUT");
@@ -45,41 +66,54 @@ public class MockUserDaoTest {
         assertNull(loggedIn);
     }
 
-    //test update user
+    /**
+     * Tests the update behaviour of the DAO.
+     *
+     * <p>Although {@link MockUserDAO#updateUser(Users)} is a no‑op,
+     * this test verifies that the updated user object itself reflects
+     * the new password and that authentication behaves accordingly.
+     */
     @Test
     void testUpdateUser() {
         Users user = new Users(0, "nik", "N", "S", "pass123", "QUT");
         dao.createUser(user);
+
         user.setPassword("newpass");
         dao.updateUser(user);
 
-        // old password should fail
+        // Old password should fail
         assertNull(dao.login("nik", "pass123"));
-        // new password should succeed
-        assertNotNull(dao.login("nik", "newpass"));
 
-        //Users updated = dao.getUserByUsername("nik");
-        //assertEquals("newpass", updated.getPassword());
+        // New password should succeed
+        assertNotNull(dao.login("nik", "newpass"));
     }
 
-    //test delete user
+    /**
+     * Verifies that a user can be deleted and is no longer retrievable.
+     */
     @Test
     void testDeleteUser() {
         Users user = new Users(0, "nik", "N", "S", "pass123", "QUT");
         dao.createUser(user);
         dao.deleteUser(user);
+
         Users deleted = dao.getUserByUsername("nik");
         assertNull(deleted);
     }
 
-    //test if user not found
+    /**
+     * Ensures that requesting a non‑existent user returns {@code null}.
+     */
     @Test
     void testGetUserNotFound() {
         Users user = dao.getUserByUsername("does_not_exist");
         assertNull(user);
     }
 
-    //test get all users method will return all created users
+    /**
+     * Verifies that {@link MockUserDAO#getAllUsers()} returns all
+     * users that have been created.
+     */
     @Test
     void testGetAllUsers() {
         dao.createUser(new Users(0, "a", "A", "A", "12345", "QUT"));
