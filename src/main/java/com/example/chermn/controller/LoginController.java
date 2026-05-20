@@ -100,7 +100,11 @@ public class LoginController extends BaseController {
         }
 
         if (userDAO.isEmailTaken(identifier)) {
-            String validatedPassword = AlertHelper.showResetPasswordDialog("Reset Your Password");
+            // Get the button/hyperlink node that triggered the ActionEvent
+            Node triggerNode = (Node) event.getSource();
+
+            // Pass 'triggerNode' as the first parameter here!
+            String validatedPassword = AlertHelper.showResetPasswordDialog(triggerNode, "Reset Your Password");
 
             if (validatedPassword != null) {
                 if (userDAO.resetPassword(identifier, validatedPassword)) {

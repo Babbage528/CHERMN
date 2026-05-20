@@ -12,6 +12,7 @@ import javafx.stage.StageStyle;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.HBox;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.Node;
 
 /**
  * Utility class for displaying customized JavaFX alert dialogs.
@@ -20,130 +21,74 @@ import javafx.scene.control.ScrollPane;
  */
 public class AlertHelper {
 
-    /**
-     * Displays a customized error alert with a red color theme.
-     *
-     * @param title The text to display in the alert header
-     * @param message The detailed error message to display in the body
-     */
     public static void showError(String title, String message) {
         showCustomAlert(title, message, "#ff6b6b");
     }
 
-    /**
-     * Displays a customized success alert with a green color theme.
-     *
-     * @param title The text to display in the alert header
-     * @param message The detailed success message to display in the body
-     */
     public static void showSuccess(String title, String message) {
         showCustomAlert(title, message, "#6bcB77");
     }
 
-    /**
-     * Displays a customized warning alert with a yellow/orange color theme.
-     *
-     * @param title The text to display in the alert header
-     * @param message The detailed warning message to display in the body
-     */
     public static void showWarning(String title, String message) {
         showCustomAlert(title, message, "#f7b731");
     }
 
-    /**
-     * Internal helper method to construct and display a modal stage with custom CSS styling.
-     * Configures the layout, labels, and "OK" button based on the provided theme color.
-     *
-     * @param title The text for the title label
-     * @param message The text for the description label
-     * @param color The hex color code used for text and button styling
-     */
     private static void showCustomAlert(String title, String message, String color) {
-
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initStyle(StageStyle.TRANSPARENT);
 
-        // TITLE
         Label titleLabel = new Label(title);
-        titleLabel.setStyle(
-                "-fx-font-size: 20px;" +
-                        "-fx-font-weight: bold;" +
-                        "-fx-text-fill: " + color + ";"
-        );
+        titleLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: " + color + ";");
 
-        // MESSAGE
         Label messageLabel = new Label(message);
         messageLabel.setWrapText(true);
-        messageLabel.setStyle(
-                "-fx-font-size: 14px;" +
-                        "-fx-text-fill: #555555;"
-        );
+        messageLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #555555;");
 
-        // BUTTON
         Button okButton = new Button("OK");
-        okButton.setStyle(
-                "-fx-background-color: " + color + ";" +
-                        "-fx-text-fill: white;" +
-                        "-fx-font-size: 14px;" +
-                        "-fx-font-weight: bold;" +
-                        "-fx-background-radius: 12;" +
-                        "-fx-padding: 8 24 8 24;" +
-                        "-fx-cursor: hand;"
-        );
-
+        okButton.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 12; -fx-padding: 8 24 8 24; -fx-cursor: hand;");
         okButton.setOnAction(e -> stage.close());
 
-        // ROOT
-        VBox root = new VBox(15);
-        root.getChildren().addAll(titleLabel, messageLabel, okButton);
-
+        VBox root = new VBox(15, titleLabel, messageLabel, okButton);
         root.setAlignment(Pos.CENTER);
         root.setPadding(new Insets(30));
-
-        root.setStyle(
-                "-fx-background-color: white;" +
-                        "-fx-background-radius: 20;" +
-                        "-fx-border-radius: 20;" +
-                        "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 20, 0, 0, 4);"
-        );
+        root.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 20, 0, 0, 4);");
 
         Scene scene = new Scene(root);
         scene.setFill(null);
-
         stage.setScene(scene);
         stage.showAndWait();
     }
 
     /**
      * Displays a custom reset password dialog with a dark overlay (shadow background).
-     * Includes internal validation to prevent closing if passwords don't match.
      *
+     * @param triggerNode The UI element (like the button clicked) that triggered this event
      * @param title Dialog title
      * @return The confirmed new password, or null if cancelled
      */
-    public static String showResetPasswordDialog(String title) {
+    public static String showResetPasswordDialog(Node triggerNode, String title) {
+        // Dynamic generation: Find the main screen stage based on the button clicked
+        Stage parentStage = (Stage) triggerNode.getScene().getWindow();
+
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initStyle(StageStyle.TRANSPARENT);
+        stage.initOwner(parentStage); // Bind ownership to parent window
 
         // DARK OVERLAY
         VBox overlay = new VBox();
         overlay.setAlignment(Pos.CENTER);
         overlay.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5);");
-        overlay.setPrefSize(1280, 720);
+        overlay.prefWidthProperty().bind(parentStage.widthProperty());
+        overlay.prefHeightProperty().bind(parentStage.heightProperty());
 
         // POP UP BOX
         VBox root = new VBox(15);
         root.setMaxWidth(350);
         root.setPadding(new Insets(30));
-        root.setStyle(
-                "-fx-background-color: white;" +
-                        "-fx-background-radius: 25;" +
-                        "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 30, 0, 0, 10);"
-        );
+        root.setStyle("-fx-background-color: white; -fx-background-radius: 25; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 30, 0, 0, 10);");
 
-        // UI ELEMENTS
         Label titleLabel = new Label(title);
         titleLabel.setStyle("-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #8cc63f;");
 
@@ -160,14 +105,12 @@ public class AlertHelper {
         PasswordField confirmPassField = new PasswordField();
         confirmPassField.setStyle(fieldStyle);
 
-        // ERROR MESSAGE (Hidden by default)
         Label errorMsg = new Label("");
         errorMsg.setStyle("-fx-text-fill: #ff6b6b; -fx-font-size: 12px;");
         errorMsg.setVisible(false);
 
         final String[] finalPassword = {null};
 
-        // UPDATE BUTTON
         Button updateBtn = new Button("Update Password");
         updateBtn.setCursor(javafx.scene.Cursor.HAND);
         updateBtn.setStyle("-fx-background-color: #8cc63f; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 12; -fx-padding: 10 25;");
@@ -189,8 +132,7 @@ public class AlertHelper {
                 confirmPassField.clear();
                 errorMsg.setText("Password must be 5 characters or longer.");
                 errorMsg.setVisible(true);
-            }
-            else {
+            } else {
                 finalPassword[0] = p1;
                 stage.close();
             }
@@ -204,7 +146,6 @@ public class AlertHelper {
         HBox actionBox = new HBox(15, cancelBtn, updateBtn);
         actionBox.setAlignment(Pos.CENTER_RIGHT);
 
-        // ASSEMBLE
         root.getChildren().addAll(
                 titleLabel,
                 new VBox(5, newPassLabel, newPassField),
@@ -219,55 +160,29 @@ public class AlertHelper {
         scene.setFill(null);
         stage.setScene(scene);
 
-        stage.setWidth(OnBoarding.WIDTH);
-        stage.setHeight(OnBoarding.HEIGHT);
+        stage.setX(parentStage.getX());
+        stage.setY(parentStage.getY());
 
         stage.showAndWait();
         return finalPassword[0];
     }
 
-
-
-    /**
-     * Displays a customised game instructions popup with a green theme and a scroll bar.
-     *
-     * @param title the title text displayed at the top
-     * @param headerText the heading text displayed below the title
-     * @param message the instructions message displayed in the popup
-     */
     public static void showInstructions(String title, String headerText, String message) {
-
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initStyle(StageStyle.TRANSPARENT);
 
-        // TITLE
         Label titleLabel = new Label(title);
-        titleLabel.setStyle("""
-        -fx-font-size: 20px;
-        -fx-font-weight: bold;
-        -fx-text-fill: #6bcB77;
-    """);
+        titleLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #6bcB77;");
 
-        // HEADER
         Label headerLabel = new Label(headerText);
-        headerLabel.setStyle("""
-        -fx-font-size: 16px;
-        -fx-font-weight: bold;
-        -fx-text-fill: #6bcB77;
-    """);
+        headerLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #6bcB77;");
 
-        // MESSAGE (LONG TEXT)
         Label messageLabel = new Label(message);
         messageLabel.setWrapText(true);
-        messageLabel.setStyle("""
-        -fx-font-size: 14px;
-        -fx-text-fill: #555555;
-    """);
-        messageLabel.setMaxHeight(800);
+        messageLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #555555;");
         messageLabel.setMaxHeight(800);
 
-        // SCROLLABLE CONTENT
         VBox contentBox = new VBox(10, titleLabel, headerLabel, messageLabel);
         contentBox.setPadding(new Insets(20));
 
@@ -276,26 +191,14 @@ public class AlertHelper {
         scrollPane.setPrefViewportHeight(400);
         scrollPane.setStyle("-fx-background: white; -fx-border-color: transparent;");
 
-        // BUTTON
         Button okButton = new Button("OK");
         okButton.setOnAction(e -> stage.close());
-        okButton.setStyle("""
-        -fx-background-color: #6bcB77;
-        -fx-text-fill: white;
-        -fx-font-weight: bold;
-        -fx-background-radius: 12;
-        -fx-padding: 8 24 8 24;
-    """);
+        okButton.setStyle("-fx-background-color: #6bcB77; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 12; -fx-padding: 8 24 8 24;");
 
         VBox root = new VBox(15, scrollPane, okButton);
         root.setAlignment(Pos.CENTER);
         root.setPadding(new Insets(20));
-        // adds a shadow effect to pop out
-        root.setStyle("""
-        -fx-background-color: white;
-        -fx-background-radius: 20;
-        -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 20, 0, 0, 4);
-    """);
+        root.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 20, 0, 0, 4);");
 
         Scene scene = new Scene(root);
         scene.setFill(null);
@@ -306,10 +209,6 @@ public class AlertHelper {
         stage.showAndWait();
     }
 
-    /**
-     * Private constructor to prevent instantiation of class.
-     */
     private AlertHelper() {
     }
-
 }
