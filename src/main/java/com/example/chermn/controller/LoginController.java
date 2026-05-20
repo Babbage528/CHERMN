@@ -62,7 +62,7 @@ public class LoginController extends BaseController {
         String inputPass = passwordField.getText();
 
         if (inputUser.isEmpty() || inputPass.isEmpty()) {
-            AlertHelper.showWarning("Error", "Username and password cannot be empty!");
+            AlertHelper.showWarning("Error", "Email and password cannot be empty!");
             return;
         }
 
@@ -82,7 +82,7 @@ public class LoginController extends BaseController {
                     stage.setScene(new Scene(loader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT));
                 }
             } else {
-                AlertHelper.showError("Login Failed", "Username or Password is incorrect!");
+                AlertHelper.showError("Login Failed", "Email or Password is incorrect!");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -95,7 +95,7 @@ public class LoginController extends BaseController {
         String identifier = usernameField.getText().trim();
 
         if (identifier.isEmpty()) {
-            AlertHelper.showWarning("Required", "Please enter your username in the login field first!");
+            AlertHelper.showWarning("Required", "Please enter your email in the login field first!");
             return;
         }
 
