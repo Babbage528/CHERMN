@@ -3,6 +3,7 @@ package com.example.chermn.controller;
 import com.example.chermn.SpeechHelper;
 import javafx.animation.PauseTransition;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 
