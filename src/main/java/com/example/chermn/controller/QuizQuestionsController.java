@@ -40,10 +40,6 @@ public class QuizQuestionsController extends BaseController {
     private List<TriviaQuestion> realQuestions = null;
 
     /** Tracks the index of the current question within the quiz. */
-
-    private int currentQuestionIndex = 0;
-
-    private List<TriviaQuestion> realQuestions = null;
     private int currentQuestionIndex = 0;
 
     /** Score for the current quiz session. */
