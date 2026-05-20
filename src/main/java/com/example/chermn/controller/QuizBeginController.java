@@ -35,6 +35,13 @@ public class QuizBeginController extends BaseController {
     @FXML
     private Button beginQuizButton;
 
+    /**
+     * Public constructor for the QuizBeginController class.
+     */
+    public QuizBeginController() {
+
+    }
+
     /** Protected void 'returnToHomepageButtonClick' defines the actions that occur when the return to homepage ui element
      * is selected. The function returns the user to the homepage screen.
      */

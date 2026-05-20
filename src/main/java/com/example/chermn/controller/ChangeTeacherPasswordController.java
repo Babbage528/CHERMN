@@ -19,6 +19,13 @@ public class ChangeTeacherPasswordController extends TeacherParentHomescreenCont
     private Button updatePasswordButton;
 
     /**
+     * Public constructor for the ChangeTeacherPasswordController class.
+     */
+    public ChangeTeacherPasswordController() {
+
+    }
+
+    /**
      * Handles the update password button click.
      * <p>
      * Validates that both password fields match, updates the user's password,

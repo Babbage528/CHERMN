@@ -3,7 +3,6 @@ package com.example.chermn.controller;
 import java.io.IOException;
 
 import com.example.chermn.OnBoarding;
-import com.example.chermn.SpeechHelper;
 import com.example.chermn.dao.UserDAO;
 import com.example.chermn.model.Student;
 import com.example.chermn.model.Users;
@@ -36,6 +35,13 @@ public class MainController extends BaseController{
 
     /** The user currently selected in the list for viewing or editing. */
     private Users currentUser;
+
+    /**
+     * Public constructor for the MainController class.
+     */
+    public MainController() {
+
+    }
 
     /**
      * Populates all text fields with the details of the selected user.
