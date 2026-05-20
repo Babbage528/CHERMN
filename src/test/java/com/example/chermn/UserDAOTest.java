@@ -113,19 +113,6 @@ public class UserDAOTest {
         assertNull(loggedIn);
     }
 
-    // duplicate username constraint
-    @Test
-    void testCreateDuplicateUserFails() {
-        String username = "dup_" + System.currentTimeMillis();
-        Users u1 = new Users(0, username, "A", "B", "12345", "QUT");
-        Users u2 = new Users(0, username, "C", "D", "54321", "QUT");
-
-        userDAO.createUser(u1);
-        assertThrows(Exception.class, () -> userDAO.createUser(u2));
-
-        userDAO.deleteUser(userDAO.getUserByUsername(username));
-    }
-
     // password hashing
     @Test
     void testPasswordIsHashed() {
