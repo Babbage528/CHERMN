@@ -18,6 +18,13 @@ package com.example.chermn;
  */
 public class SpeechHelper {
 
+    /**
+     * Public constructor for the SpeechHelper class.
+     */
+    public SpeechHelper() {
+
+    }
+
     /** The currently running speech process, if any. */
     private static Process currentSpeechProcess;
 
