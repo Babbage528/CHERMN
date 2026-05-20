@@ -17,9 +17,12 @@ import java.io.IOException;
 
 /**
  * Controller class for the Parent registration screen.
- * Handles user input validation, account creation, and linking parents to existing students.
+ * <p>
+ * Handles user input validation, account creation, and linking parents
+ * to existing students in the system.
  */
 public class ParentRegisterController extends BaseController {
+
     @FXML private TextField firstNameField;
     @FXML private TextField lastNameField;
     @FXML private TextField unameField;
@@ -28,14 +31,17 @@ public class ParentRegisterController extends BaseController {
     @FXML private TextField studentNameField;
     @FXML private TextField schoolNameField;
 
+    /** Data access object for interacting with user records. */
     private UserDAO userDAO = new UserDAO();
 
     /**
      * Processes the registration form submission.
-     * Performs validation on student details, email format, and password strength
-     * before creating a new Parent account in the database.
+     * <p>
+     * Validates all fields, checks email format and password strength,
+     * verifies that the referenced student exists, and creates a new
+     * {@link Parent} account if all checks pass.
      *
-     * @param event The action event triggered by clicking the register button
+     * @param event the action event triggered by clicking the register button
      */
     @FXML
     private void handleRegisterSubmit(ActionEvent event) {
@@ -46,7 +52,6 @@ public class ParentRegisterController extends BaseController {
         String relationship = relationshipComboBox.getValue();
         String studentName = studentNameField.getText().trim();
         String school = schoolNameField.getText().trim();
-
 
         if (!studentName.contains(" ")) {
             AlertHelper.showError(
@@ -62,18 +67,22 @@ public class ParentRegisterController extends BaseController {
         }
 
         if (password.length() < 5) {
-            AlertHelper.showWarning( "Password is weak", "Password has to be 5 characters minimum!");
+            AlertHelper.showWarning("Password is weak", "Password has to be 5 characters minimum!");
             return;
         }
+
         if (!email.matches("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")) {
-            AlertHelper.showWarning( "Invalid Email", "Please enter a valid email address (e.g., name@example.com)");
+            AlertHelper.showWarning("Invalid Email", "Please enter a valid email address (e.g., name@example.com)");
             return;
         }
+
         if (userDAO.isEmailTaken(email)) {
-            AlertHelper.showError( "Registration Error",
+            AlertHelper.showError(
+                    "Registration Error",
                     "This email is already registered. Please use another email or login.");
             return;
         }
+
         try {
             Integer foundStudentId = userDAO.findStudentIdByName(studentName, school);
 
@@ -84,15 +93,17 @@ public class ParentRegisterController extends BaseController {
                                 "' in " + school + ". Please check spelling or school name.");
                 return;
             }
+
             Parent p = new Parent(0, email, firstName, lastName, password, school, relationship, studentName);
             p.setStudentId(foundStudentId);
             userDAO.createParent(p);
 
             Session.setCurrentUser(p);
-            AlertHelper.showSuccess( "Registration Success", "Account " + email + " successfully registered!");
+            AlertHelper.showSuccess("Registration Success", "Account " + email + " successfully registered!");
             switchScene(event, "teacher-parent-homescreen.fxml");
+
         } catch (IllegalArgumentException e) {
-            AlertHelper.showError( "Invalid Input", e.getMessage());
+            AlertHelper.showError("Invalid Input", e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
             AlertHelper.showError("Database Error", e.getMessage());
@@ -102,7 +113,7 @@ public class ParentRegisterController extends BaseController {
     /**
      * Handles the back button action to return to the role selection screen.
      *
-     * @param event The action event triggered by clicking the back button
+     * @param event the action event triggered by clicking the back button
      */
     @FXML
     private void handleBack(ActionEvent event) {
@@ -114,11 +125,11 @@ public class ParentRegisterController extends BaseController {
     }
 
     /**
-     * Utility method to switch the current stage to a different FXML scene.
+     * Switches the current stage to a different FXML scene.
      *
-     * @param event The action event used to identify the current window
-     * @param fxmlFile The name of the FXML file to load
-     * @throws IOException If the specified FXML file cannot be found or loaded
+     * @param event the action event used to identify the current window
+     * @param fxmlFile the name of the FXML file to load
+     * @throws IOException if the specified FXML file cannot be found or loaded
      */
     private void switchScene(ActionEvent event, String fxmlFile) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

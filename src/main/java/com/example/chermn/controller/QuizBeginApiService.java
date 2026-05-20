@@ -1,102 +1,84 @@
 package com.example.chermn.controller;
 
 import com.example.chermn.model.TriviaQuestion;
-import com.example.chermn.controller.HomepageController;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.lang.reflect.InvocationTargetException;
+import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.List;
 import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.List;
 
 /**
- * Quiz api handler for the quiz questions.
- * This class handles the response creation and retrieval for trivia api requests.
- * Handles basic exceptions stemming from a lack of response from api.
+ * Service class responsible for building API requests and fetching quiz questions.
+ * <p>
+ * Communicates with the external trivia API, parses JSON responses,
+ * and converts them into {@link TriviaQuestion} model objects.
  */
-public class QuizBeginApiService extends BaseController{
+public class QuizBeginApiService extends BaseController {
 
-    /** Public static String 'getApiRequest' determines the category of quiz required for the api request. It finds what
-     * button was clicked and returns the corresponding API call for use in the https request.
-     */
-    public static String getApiRequest() {
-
-        if (HomepageController.getCategorySelection() == 1) {
-            if (Objects.equals(HomepageController.getDifficultySelection(), "Easy")) {return "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=easy&category=27&encode=base64";}
-            else if (Objects.equals(HomepageController.getDifficultySelection(), "Medium")) {return "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=medium&category=27&encode=base64";}
-            else if (Objects.equals(HomepageController.getDifficultySelection(), "Hard")) {return "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=hard&category=27&encode=base64";}
-        }
-        else if (HomepageController.getCategorySelection() == 2) {
-            if (Objects.equals(HomepageController.getDifficultySelection(), "Easy")) {return "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=easy&category=28&encode=base64";}
-            else if (Objects.equals(HomepageController.getDifficultySelection(), "Medium")) {return "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=medium&category=28&encode=base64";}
-            else if (Objects.equals(HomepageController.getDifficultySelection(), "Hard")) {return "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=hard&category=28&encode=base64";}
-        }
-        else if (HomepageController.getCategorySelection() == 3) {
-            if (Objects.equals(HomepageController.getDifficultySelection(), "Easy")) {return "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=easy&category=17&encode=base64";}
-            else if (Objects.equals(HomepageController.getDifficultySelection(), "Medium")) {return "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=medium&category=17&encode=base64";}
-            else if (Objects.equals(HomepageController.getDifficultySelection(), "Hard")) {return "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=hard&category=17&encode=base64";}
-        }
-        return "";
-    }
-
+    /** Stores the constructed API request URL. */
     public static String API_REQUEST = "";
 
-    /** Public static 'fetchQuestions' creates a Http client to request and retrieve the content from a request API_REQUEST.
-     * Utilises the public getters in TriviaQuestion.java to loop through the request response and move items of interest into
-     * a list of trivia questions questionList. The list of questions can then be used by the quiz session/quiz controllers.
+    /**
+     * Default constructor for QuizBeginApiService.
+     * Required for controller and service instantiation.
+     */
+    public QuizBeginApiService() {}
+
+    /**
+     * Returns the full API request URL used to fetch trivia questions.
+     *
+     * @return the API request string
+     */
+    public static String getApiRequest() {
+        return API_REQUEST;
+    }
+
+    /**
+     * Fetches trivia questions from the external API and converts them into model objects.
+     *
+     * @return a list of {@link TriviaQuestion} objects parsed from the API response
      */
     public static List<TriviaQuestion> fetchQuestions() {
-        List<TriviaQuestion> questionList = new ArrayList<>();
+        List<TriviaQuestion> questions = new ArrayList<>();
 
         try {
-            API_REQUEST = getApiRequest();
             HttpClient client = HttpClient.newHttpClient();
+
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(API_REQUEST))
                     .GET()
                     .build();
 
-            HttpResponse<String> response = client
-                    .send(request, HttpResponse.BodyHandlers.ofString());
+            HttpResponse<String> response =
+                    client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            String rawJsonText = response.body();
+            JSONObject json = new JSONObject(response.body());
+            JSONArray results = json.getJSONArray("results");
 
-            JSONObject fullResponse = new JSONObject(rawJsonText);
+            for (int i = 0; i < results.length(); i++) {
+                JSONObject q = results.getJSONObject(i);
 
-            JSONArray resultsArray = fullResponse.getJSONArray("results");
-            for (int i = 0; i < resultsArray.length(); i++) {
-                JSONObject jsonQuestion = resultsArray.getJSONObject(i);
+                String question = q.getString("question");
+                String correct = q.getString("correct_answer");
 
-                String category = jsonQuestion.getString("category");
-                String question = jsonQuestion.getString("question");
-                String correctAnswer = jsonQuestion.getString("correct_answer");
-
-                JSONArray jsonIncorrectAnswers = jsonQuestion.getJSONArray("incorrect_answers");
-                List<String> incorrectAnswers = new ArrayList<>();
-                for (int j = 0; j < jsonIncorrectAnswers.length(); j++) {
-                    incorrectAnswers.add(jsonIncorrectAnswers.getString(j));
+                JSONArray incorrectArray = q.getJSONArray("incorrect_answers");
+                List<String> incorrect = new ArrayList<>();
+                for (int j = 0; j < incorrectArray.length(); j++) {
+                    incorrect.add(incorrectArray.getString(j));
                 }
 
-                TriviaQuestion newQuestion = new TriviaQuestion(category, question, correctAnswer, incorrectAnswers);
-                questionList.add(newQuestion);
+                questions.add(new TriviaQuestion(question, correct, incorrect));
             }
 
-
-
-        }catch (Exception e) {
-            System.out.println("Error fetching from the API: " + e.getMessage()); // for testing
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
         }
 
-        return questionList;
-
+        return questions;
     }
-
-
-
 }

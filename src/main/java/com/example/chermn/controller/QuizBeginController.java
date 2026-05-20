@@ -1,78 +1,123 @@
 package com.example.chermn.controller;
 
-
 import com.example.chermn.QuizBegin;
+import com.example.chermn.Session;
+import com.example.chermn.model.Users;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import org.json.JSONException;
-import javafx.event.ActionEvent;
-import javafx.scene.Node;
 
 import java.io.IOException;
 
-import java.net.URL;
-import java.util.Objects;
-import java.util.ResourceBundle;
-
 /**
- * Quiz controller for quiz entry.
- * This class handles the button actions and change of text for elements in
- * the quiz begin screen.
+ * Controller for the quiz setup screen.
+ * <p>
+ * Handles category and difficulty selection, navigation to the quiz questions,
+ * and returning to the homepage.
  */
 public class QuizBeginController extends BaseController {
 
     @FXML
-    private Button returnToHomepageButton;
+    private Label categoryLabel;
 
     @FXML
-    private Label categoryLabel, difficultyLabel;
+    private Label difficultyLabel;
 
-    @FXML
-    private Button beginQuizButton;
+    /** Stores the selected quiz category. */
+    private static int categorySelection;
 
-    /** Protected void 'returnToHomepageButtonClick' defines the actions that occur when the return to homepage ui element
-     * is selected. The function returns the user to the homepage screen.
+    /** Stores the selected difficulty level. */
+    private static int difficultySelection;
+
+    /**
+     * Default constructor for QuizBeginController.
+     * Required for JavaFX controller instantiation.
+     */
+    public QuizBeginController() {}
+
+    /**
+     * Returns the user to the homepage screen.
+     *
+     * @throws IOException if the homepage FXML cannot be loaded
      */
     @FXML
-    protected void returnToHomepageButtonClick() throws  IOException{
-        Stage stage = (Stage) returnToHomepageButton.getScene().getWindow();
+    protected void returnToHomepageButtonClick() throws IOException {
+        Stage stage = (Stage) categoryLabel.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(QuizBegin.class.getResource("homepage.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), QuizBegin.WIDTH, QuizBegin.HEIGHT);
         stage.setScene(scene);
     }
 
-    /** Protected void 'beginQuizButtonClick' defines the actions that occur when the begin quiz button
-     * is selected. The function continues the user onto the quiz questions scene screen.
+    /**
+     * Begins the quiz by loading the quiz questions screen.
+     *
+     * @param event the button click event that triggered the action
+     * @throws IOException if the quiz questions FXML cannot be loaded
+     * @throws JSONException if JSON parsing fails during quiz setup
      */
     @FXML
     protected void beginQuizButtonClick(ActionEvent event) throws IOException, JSONException {
-        FXMLLoader loader = new FXMLLoader(QuizBegin.class.getResource("quiz-questions.fxml"));
-        Parent root = loader.load();
-        QuizQuestionsController scene2Controller = loader.getController();
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, QuizBegin.WIDTH, QuizBegin.HEIGHT);
+        Stage stage = (Stage) categoryLabel.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(QuizBegin.class.getResource("quiz-questions.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), QuizBegin.WIDTH, QuizBegin.HEIGHT);
         stage.setScene(scene);
-        stage.show();
-        scene2Controller.getQuestions();
     }
 
-    /** Public void 'setCategoryText' Acts as a setter for the fxml category text label. Used by home page controller.
+    /**
+     * Sets the category label text.
+     *
+     * @param text the category name to display
      */
-    @FXML
     public void setCategoryText(String text) {
         categoryLabel.setText(text);
     }
 
-    /** Public void 'setDifficultyText' Acts as a setter for the fxml category difficulty label. Used by home page controller.
+    /**
+     * Sets the difficulty label text.
+     *
+     * @param text the difficulty level to display
      */
-    @FXML
     public void setDifficultyText(String text) {
         difficultyLabel.setText(text);
     }
-}
 
+    /**
+     * Stores the selected category index.
+     *
+     * @param selection the category index chosen by the user
+     */
+    public static void setCategorySelection(int selection) {
+        categorySelection = selection;
+    }
+
+    /**
+     * Stores the selected difficulty index.
+     *
+     * @param selection the difficulty index chosen by the user
+     */
+    public static void setDifficultySelection(int selection) {
+        difficultySelection = selection;
+    }
+
+    /**
+     * Returns the selected category index.
+     *
+     * @return the selected category
+     */
+    public static int getCategorySelection() {
+        return categorySelection;
+    }
+
+    /**
+     * Returns the selected difficulty index.
+     *
+     * @return the selected difficulty
+     */
+    public static int getDifficultySelection() {
+        return difficultySelection;
+    }
+}

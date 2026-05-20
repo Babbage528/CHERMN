@@ -25,7 +25,7 @@ import javafx.stage.Stage;
  * <p>
  * Handles displaying, selecting, creating, editing, and deleting users.
  */
-public class MainController extends BaseController{
+public class MainController extends BaseController {
 
     @FXML private ListView<Users> userListView;
     @FXML private TextField firstNameField, lastNameField, usernameField, schoolField;
@@ -36,6 +36,12 @@ public class MainController extends BaseController{
 
     /** The user currently selected in the list for viewing or editing. */
     private Users currentUser;
+
+    /**
+     * Default constructor for MainController.
+     * Required by JavaFX for controller instantiation.
+     */
+    public MainController() {}
 
     /**
      * Populates all text fields with the details of the selected user.
@@ -53,7 +59,6 @@ public class MainController extends BaseController{
 
     /**
      * Creates a custom ListCell for displaying users in the ListView.
-     * Each cell shows the user's full name and supports click selection.
      *
      * @param userListView the ListView requesting the cell
      * @return a configured ListCell for displaying user entries
@@ -82,7 +87,9 @@ public class MainController extends BaseController{
         };
     }
 
-    /** Refreshes the ListView by reloading all users from the database. */
+    /**
+     * Refreshes the ListView by reloading all users from the database.
+     */
     private void syncUsers() {
         userListView.getItems().clear();
         userListView.getItems().addAll(userDAO.getAllUsers());
@@ -167,7 +174,6 @@ public class MainController extends BaseController{
     public void setUser(Users user) {
         this.currentUser = user;
 
-        //shows the data in the UI
         firstNameField.setText(user.getFirstName());
         lastNameField.setText(user.getLastName());
         usernameField.setText(user.getUserName());
