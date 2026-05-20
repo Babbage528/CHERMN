@@ -22,8 +22,16 @@ import java.util.Scanner;
  */
 public class QuizBeginApiService extends BaseController{
 
+    /**
+     * Public constructor for the QuizBeginApiService class.
+     */
+    public QuizBeginApiService() {
+
+    }
+
     /** Public static String 'getApiRequest' determines the category of quiz required for the api request. It finds what
      * button was clicked and returns the corresponding API call for use in the https request.
+     * @return String of the api request for use in question data retrieval.
      */
     public static String getApiRequest() {
 
@@ -45,11 +53,13 @@ public class QuizBeginApiService extends BaseController{
         return "";
     }
 
+    /** Empty string for the API_REQUEST to be stored in. **/
     public static String API_REQUEST = "";
 
     /** Public static 'fetchQuestions' creates a Http client to request and retrieve the content from a request API_REQUEST.
      * Utilises the public getters in TriviaQuestion.java to loop through the request response and move items of interest into
      * a list of trivia questions questionList. The list of questions can then be used by the quiz session/quiz controllers.
+     * @return List of TriviaQuestions from the api request response.
      */
     public static List<TriviaQuestion> fetchQuestions() {
         List<TriviaQuestion> questionList = new ArrayList<>();

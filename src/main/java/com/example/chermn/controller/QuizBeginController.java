@@ -35,8 +35,17 @@ public class QuizBeginController extends BaseController {
     @FXML
     private Button beginQuizButton;
 
+    /**
+     * Public constructor for the QuizBeginController class.
+     */
+    public QuizBeginController() {
+
+    }
+
     /** Protected void 'returnToHomepageButtonClick' defines the actions that occur when the return to homepage ui element
      * is selected. The function returns the user to the homepage screen.
+     *
+     * @throws IOException if an input is not read properly or as expected.
      */
     @FXML
     protected void returnToHomepageButtonClick() throws  IOException{
@@ -48,6 +57,10 @@ public class QuizBeginController extends BaseController {
 
     /** Protected void 'beginQuizButtonClick' defines the actions that occur when the begin quiz button
      * is selected. The function continues the user onto the quiz questions scene screen.
+     *
+     * @param event ActionEvent (button click) to respond to.
+     * @throws IOException if an input is not read properly or as expected.
+     * @throws JSONException if there is invalid syntax or failure to serialise data.
      */
     @FXML
     protected void beginQuizButtonClick(ActionEvent event) throws IOException, JSONException {
@@ -62,6 +75,8 @@ public class QuizBeginController extends BaseController {
     }
 
     /** Public void 'setCategoryText' Acts as a setter for the fxml category text label. Used by home page controller.
+     *
+     * @param text String intended for the category label.
      */
     @FXML
     public void setCategoryText(String text) {
@@ -69,6 +84,8 @@ public class QuizBeginController extends BaseController {
     }
 
     /** Public void 'setDifficultyText' Acts as a setter for the fxml category difficulty label. Used by home page controller.
+     *
+     * @param text String intended for the difficulty label.
      */
     @FXML
     public void setDifficultyText(String text) {

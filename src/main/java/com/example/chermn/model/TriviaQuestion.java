@@ -31,6 +31,7 @@ public class TriviaQuestion {
     }
 
     /** Public string 'getCategory' decodes an api request response. Intended as a getter for a quiz category.
+     * @return String representing category for corresponding question
      */
     public String getCategory() {
         String encodedCategory = this.category;
@@ -40,6 +41,7 @@ public class TriviaQuestion {
     }
 
     /** Public string 'getQuestion' decodes an api request response. Intended as a getter for individual question text.
+     * @return String representing text for the question.
      */
     public String getQuestion() {
         String encodedQuestion = this.question;
@@ -49,6 +51,7 @@ public class TriviaQuestion {
     }
 
     /** Public string 'getCorrectAnswer' decodes an api request response. Intended as a getter for a question's correct answer string.
+     * @return String representing correct answers for corresponding question
      */
     public String getCorrectAnswer () {
         String encodedAnswer = this.correctAnswer;
@@ -58,6 +61,7 @@ public class TriviaQuestion {
     }
 
     /** Public list of strings 'getIncorrectAnswers' decodes an api request response. Intended as a getter for a list of incorrect answer strings.
+     * @return List of strings representing incorrect answers for corresponding question
      */
     public List<String> getIncorrectAnswers () {
         Base64.Decoder decoder = Base64.getDecoder();

@@ -57,9 +57,13 @@ public class QuizQuestionsController extends BaseController {
     /** The correct answer for the currently displayed question. */
     private String correctAnswer = null;
 
-    /// setting window attributes
+    /** Title for the actual window of the application. **/
     public static final String TITLE = "Farmer Fred's Trivia";
+
+    /** Width constant for the actual window of the application. **/
     public static final int WIDTH = 1280;
+
+    /** Height constant for the actual window of the application. **/
     public static final int HEIGHT = 720;
 
     /** Human‑readable question number (1–10) shown in the UI. */
@@ -185,6 +189,8 @@ public class QuizQuestionsController extends BaseController {
      * all answer buttons to prevent multiple submissions.
      *
      * @param actionEvent the button click event triggered by the user's answer
+     * @throws IOException if an input is not read properly or as expected.
+     * @throws InterruptedException if a process is interrupted by a subsequent process.
      */
     public void AnswerSubmitted(javafx.event.ActionEvent actionEvent) throws IOException, InterruptedException {
         Button userAnswer = (Button) actionEvent.getSource();

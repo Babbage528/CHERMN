@@ -12,11 +12,17 @@ public class QuizSessionController extends BaseController{
     private List<TriviaQuestion> currentQuiz;
     private int currentQuestionIndex = 0;
 
+    /**
+     * Grabs questions and assigns them to the current quiz
+     *
+     * @param realQuestions Set of questions intended for the current quiz.
+     */
     public QuizSessionController(List<TriviaQuestion> realQuestions) {
         this.currentQuiz = realQuestions;
     }
 
     /** Public TriviaQuestion 'getCurrentQuestions' handles the return of the current trivia question. Acts as a getter.
+     * @return Current TriviaQuestion
      */
     public TriviaQuestion getCurrentQuestion() {
         if (currentQuestionIndex < currentQuiz.size()) {

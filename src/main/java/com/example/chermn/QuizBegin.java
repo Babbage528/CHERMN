@@ -16,9 +16,16 @@ import java.util.List;
  * This class defines the startup of quizzes and window formatting.
  */
 public class QuizBegin extends Application{
+
+    /** Title for the actual window of the application. **/
     public static final String TITLE = "Farmer Fred's Trivia";
+
+    /** Width constant for the actual window of the application. **/
     public static final int WIDTH = 1280;
+
+    /** Height constant for the actual window of the application. **/
     public static final int HEIGHT = 720;
+
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(QuizBegin.class.getResource("quiz-begin.fxml"));
@@ -29,7 +36,20 @@ public class QuizBegin extends Application{
 
 
     }
+
+    /**
+     * The main method that launches Javafx UI for the quiz begin scene.
+     *
+     * @param args Command line arguments
+     */
     public static void main(String[] args) {
         launch();
+    }
+
+    /**
+     * Public constructor for the QuizBegin class.
+     */
+    public QuizBegin() {
+
     }
 }
