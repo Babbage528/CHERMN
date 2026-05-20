@@ -189,6 +189,8 @@ public class QuizQuestionsController extends BaseController {
      * all answer buttons to prevent multiple submissions.
      *
      * @param actionEvent the button click event triggered by the user's answer
+     * @throws IOException if an input is not read properly or as expected.
+     * @throws InterruptedException if a process is interrupted by a subsequent process.
      */
     public void AnswerSubmitted(javafx.event.ActionEvent actionEvent) throws IOException, InterruptedException {
         Button userAnswer = (Button) actionEvent.getSource();

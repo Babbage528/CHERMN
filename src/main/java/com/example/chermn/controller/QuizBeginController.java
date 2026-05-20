@@ -44,6 +44,8 @@ public class QuizBeginController extends BaseController {
 
     /** Protected void 'returnToHomepageButtonClick' defines the actions that occur when the return to homepage ui element
      * is selected. The function returns the user to the homepage screen.
+     *
+     * @throws IOException if an input is not read properly or as expected.
      */
     @FXML
     protected void returnToHomepageButtonClick() throws  IOException{
@@ -57,6 +59,8 @@ public class QuizBeginController extends BaseController {
      * is selected. The function continues the user onto the quiz questions scene screen.
      *
      * @param event ActionEvent (button click) to respond to.
+     * @throws IOException if an input is not read properly or as expected.
+     * @throws JSONException if there is invalid syntax or failure to serialise data.
      */
     @FXML
     protected void beginQuizButtonClick(ActionEvent event) throws IOException, JSONException {
