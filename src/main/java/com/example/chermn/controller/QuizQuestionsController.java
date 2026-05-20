@@ -57,9 +57,13 @@ public class QuizQuestionsController extends BaseController {
     /** The correct answer for the currently displayed question. */
     private String correctAnswer = null;
 
-    /// setting window attributes
+    /** Title for the actual window of the application. **/
     public static final String TITLE = "Farmer Fred's Trivia";
+
+    /** Width constant for the actual window of the application. **/
     public static final int WIDTH = 1280;
+
+    /** Height constant for the actual window of the application. **/
     public static final int HEIGHT = 720;
 
     /** Human‑readable question number (1–10) shown in the UI. */

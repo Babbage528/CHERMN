@@ -53,6 +53,7 @@ public class QuizBeginApiService extends BaseController{
         return "";
     }
 
+    /** Empty string for the API_REQUEST to be stored in. **/
     public static String API_REQUEST = "";
 
     /** Public static 'fetchQuestions' creates a Http client to request and retrieve the content from a request API_REQUEST.
