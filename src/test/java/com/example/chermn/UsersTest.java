@@ -46,6 +46,18 @@ public class UsersTest {
         assertThrows(IllegalArgumentException.class, () -> users.setUsername(""));
     }
 
+    @Test
+    public void testSetUsername_trimmed() {
+        users.setUsername("   newUser   ");
+        assertEquals("newUser", users.getUserName());
+    }
+
+    @Test
+    public void testSetUsername_veryLong() {
+        String longName = "a".repeat(100);
+        users.setUsername(longName);
+        assertEquals(longName, users.getUserName());
+    }
 
 
     // tests for first name -> normal, special characters and no spaces
@@ -92,6 +104,11 @@ public class UsersTest {
     @Test
     public void testSetFirstName_whitespace() {
         assertThrows(IllegalArgumentException.class, () -> users.setFirstName("      ") );
+    }
+
+    @Test
+    public void testSetFirstName_hyphenated() {
+        assertThrows(IllegalArgumentException.class, () -> users.setFirstName("Anne-Marie"));
     }
 
 
@@ -142,6 +159,11 @@ public class UsersTest {
         assertThrows(IllegalArgumentException.class, () -> users.setLastName("      ") );
     }
 
+    @Test
+    public void testSetLastName_apostrophe() {
+        assertThrows(IllegalArgumentException.class, () -> users.setLastName("O'Connor"));
+    }
+
 
 
     // tests for password - normal, edge and invalid inputs
@@ -180,6 +202,10 @@ public class UsersTest {
         assertEquals("12345", users.getPassword());
     }
 
+    @Test
+    public void testSetPassword_containsSpaces() {
+        assertThrows(IllegalArgumentException.class, () -> users.setPassword("12 345"));
+    }
 
     //tests for school name -> normal, special characters and no spaces
 
@@ -205,6 +231,11 @@ public class UsersTest {
         assertEquals("Primary School", users.getSchoolName());
     }
 
+    @Test
+    public void testSetSchoolName_trimmed() {
+        users.setSchoolName("   brisbane grammar   ");
+        assertEquals("Brisbane Grammar", users.getSchoolName());
+    }
 
     // tests for the user constructor
     @Test

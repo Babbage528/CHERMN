@@ -17,8 +17,6 @@ public class Users {
     private String schoolName;
 
 
-    // Public constructor for User
-
     /**
      * Public constructor for the user. Takes the user's id, username, first name, last name,
      * password and school name.
