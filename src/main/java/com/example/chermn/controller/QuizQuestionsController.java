@@ -33,6 +33,15 @@ import java.net.http.HttpResponse;
  * - Respects global TTS toggle, voice, and volume
  */
 public class QuizQuestionsController extends BaseController {
+    /**
+     * Stores all quiz questions fetched from the API.
+     * Loaded once per quiz to prevent repeated questions.
+     */
+    private List<TriviaQuestion> realQuestions = null;
+
+    /** Tracks the index of the current question within the quiz. */
+
+    private int currentQuestionIndex = 0;
 
     /** Score for the current quiz session. */
     public static int score = 0;
@@ -46,7 +55,7 @@ public class QuizQuestionsController extends BaseController {
     // Label for AI explanation
     @FXML private Label explanation;
 
-    /** Correct answer from API. */
+    /** The correct answer for the currently displayed question. */
     private String correctAnswer = null;
 
     /// setting window attributes
@@ -54,16 +63,25 @@ public class QuizQuestionsController extends BaseController {
     public static final int WIDTH = 1280;
     public static final int HEIGHT = 720;
 
-    /** Tracks question number. */
+    /** Human‑readable question number (1–10) shown in the UI. */
     private int answerIndex = 1;
 
-    /** Stores original FXML styles so they can be restored. */
+    /** Base CSS styles so they can be restored. */
     private String option1BaseStyle;
     private String option2BaseStyle;
     private String option3BaseStyle;
     private String option4BaseStyle;
     private String explanationBaseStyle;
 
+    /**
+     * Default constructor for the QuizQuestionsController.
+     * <p>
+     * Required by JavaFX for controller instantiation. Does not perform any
+     * initialisation logic but declares exceptions to satisfy the class structure.
+     *
+     * @throws IOException if an I/O error occurs during controller setup
+     * @throws InterruptedException if the controller initialisation is interrupted
+     */
     public QuizQuestionsController() throws IOException, InterruptedException {}
 
     /**
@@ -72,7 +90,6 @@ public class QuizQuestionsController extends BaseController {
      */
     @FXML
     private void initialize() {
-
         // Store original styles
         option1BaseStyle = option1.getStyle();
         option2BaseStyle = option2.getStyle();
@@ -103,32 +120,30 @@ public class QuizQuestionsController extends BaseController {
     }
 
     /**
-     * Retrieves a question from the API, randomizes answers,
-     * and updates the UI with the new question and answer options.
+     * Loads and displays the current quiz question.
+     * <p>
+     * Fetches questions from the API only once, then cycles through them
+     * using {@code currentQuestionIndex}. Randomizes answer order and updates
+     * all UI elements for the question screen.
      */
     @FXML
     public void getQuestions() {
         List<String> answers = new ArrayList<>();
-        /// retrieving api questions from QuizBeginApiService
-        QuizBeginApiService apiService = new QuizBeginApiService();
-        List<TriviaQuestion> realQuestions = apiService.fetchQuestions();
-        QuizSessionController session = new QuizSessionController(realQuestions);
+        /// retrieving api questions from QuizBeginApiService - once at start of each quiz
+        if (realQuestions == null) {
+            QuizBeginApiService apiService = new QuizBeginApiService();
+            realQuestions = apiService.fetchQuestions();
+        }
 
         /// setting 'currentQuestion' to cycle through
-        TriviaQuestion currentQuestion = session.getCurrentQuestion();
+        TriviaQuestion currentQuestion = realQuestions.get(currentQuestionIndex);
         theQuestion = currentQuestion.getQuestion();
 
-        /// defining responses from api
+        /// collating both correct and incorrect answers from api
         correctAnswer = currentQuestion.getCorrectAnswer();
         List<String> incorrectAnswers = currentQuestion.getIncorrectAnswers();
         answers.add(correctAnswer);
         answers.addAll(incorrectAnswers);
-
-        /// collating both correct and incorrect answers from api
-        for (int j = 0; j < incorrectAnswers.size(); j++) {
-            String answer = incorrectAnswers.get(j);
-            answers.add(answer);
-        }
 
         /// randomize answers so correct answer isn't always same position
         Collections.shuffle(answers);
@@ -163,12 +178,14 @@ public class QuizQuestionsController extends BaseController {
         Next.setDisable(true);
     }
 
-    /** Public void 'Answer Submitted' controls the UI and score when a user clicks an answer button also posting and returning an api response from the ollama ai api.
-     * @param actionEvent is used to check for any of the buttons submitted (as users can select correct or incorrect answer and the same code block needs to run - DRY code).
-     * Once a button clicking event has been registered, the incorrect option buttons are disabled.
-     * There is then a conditional statement to check if the user submitted the correct answer which updates the score, gives an appropriate message and sets the label colour to green.
-     * If the user submits an incorrect answer, the score is not updated, an appropriate message is displayed and the label is coloured red.
-     * The labels that change colour also have the response from the ollama ai api to explain what and why the correct answer is.
+    /**
+     * Handles user answer selection.
+     * <p>
+     * Highlights the chosen option, checks correctness, updates the score,
+     * and retrieves a short explanation from the Ollama AI model. Also disables
+     * all answer buttons to prevent multiple submissions.
+     *
+     * @param actionEvent the button click event triggered by the user's answer
      */
     public void AnswerSubmitted(javafx.event.ActionEvent actionEvent) throws IOException, InterruptedException {
         Button userAnswer = (Button) actionEvent.getSource();
@@ -205,9 +222,11 @@ public class QuizQuestionsController extends BaseController {
         JSONObject jsonObject = new JSONObject(response.body());
         String aiResponse = jsonObject.optString("response", "(No explanation available)");
 
-        // Check correctness
-        boolean isCorrect =
-                userAnswer.getText().substring(3).equals(correctAnswer);
+        /// Check correctness - allowing for unwanted formatting text
+        String selected = userAnswer.getText().substring(3).trim();
+        String correct = correctAnswer.trim();
+
+        boolean isCorrect = selected.equalsIgnoreCase(correct);
 
         if (isCorrect) {
             score += 1;
@@ -251,13 +270,16 @@ public class QuizQuestionsController extends BaseController {
     }
 
 
-    /** Public void 'nextQuestion' is used to get the next question for the user.
-     * The buttons are all enabled again after being disabled when the answer was submitted, and the label and message are hidden.
-     * The next button is disabled to enforce users to submit an answer before continuing.
-     * A conditional statement determines if the quiz is still continuing which will increase the index for what question the user is on.
-     * If the user has finished the quiz it will change to the scene and fxml for 'quiz results' to display the score.
+    /**
+     * Moves the quiz to the next question.
+     * <p>
+     * Re-enables all answer buttons, resets styles, hides the explanation label,
+     * and disables the Next button to ensure the user must submit an answer before
+     * progressing. Increments both the displayed question number and the internal
+     * {@code currentQuestionIndex}. If more questions remain, loads the next one;
+     * otherwise navigates to the quiz results screen.
      *
-     * @throws IOException
+     * @throws IOException if the results screen FXML cannot be loaded
      */
     @FXML
     public void nextQuestion() throws IOException {
@@ -277,10 +299,12 @@ public class QuizQuestionsController extends BaseController {
         /// enabling next button
         Next.setDisable(true);
 
-        if (answerIndex < 10) {
-            answerIndex++;
+        currentQuestionIndex++;
+        answerIndex++;
+        // still going?
+        if (currentQuestionIndex < realQuestions.size()){
             getQuestions();
-        } else {
+        } else { // go to results screen
             Stage stage = (Stage) Next.getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(OnBoarding.class.getResource("quiz-results.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT);
