@@ -19,12 +19,6 @@ public class ViewLevelProgressController extends ProfileController {
     // the current user is a student for this screen
     private Student currentUser;
 
-    /**
-     * Public constructor for the ViewLevelProgressController class.
-     */
-    public ViewLevelProgressController() {
-
-    }
 
     /**
      * Initialises the controller before the screen is displayed.

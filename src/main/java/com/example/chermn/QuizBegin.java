@@ -32,11 +32,4 @@ public class QuizBegin extends Application{
     public static void main(String[] args) {
         launch();
     }
-
-    /**
-     * Public constructor for the QuizBegin class.
-     */
-    public QuizBegin() {
-
-    }
 }
