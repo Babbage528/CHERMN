@@ -17,6 +17,7 @@ public class QuizSessionController extends BaseController{
     }
 
     /** Public TriviaQuestion 'getCurrentQuestions' handles the return of the current trivia question. Acts as a getter.
+     * @return Current TriviaQuestion
      */
     public TriviaQuestion getCurrentQuestion() {
         if (currentQuestionIndex < currentQuiz.size()) {
