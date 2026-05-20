@@ -20,15 +20,29 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+/**
+ * Controller for the admin user management screen.
+ * <p>
+ * Handles displaying users, selecting a user, editing details,
+ * creating new users, deleting users, and logging out.
+ */
 public class MainController extends BaseController{
 
     @FXML private ListView<Users> userListView;
     @FXML private TextField firstNameField, lastNameField, usernameField, schoolField;
     @FXML private PasswordField passwordField;
 
+    /** Data access object for retrieving and modifying user records. */
     private UserDAO userDAO = new UserDAO();
+
+    /** The user currently selected in the list for viewing or editing. */
     private Users currentUser;
 
+    /**
+     * Populates all text fields with the details of the selected user.
+     *
+     * @param user the user whose details should be displayed
+     */
     private void selectUser(Users user) {
         userListView.getSelectionModel().select(user);
         firstNameField.setText(user.getFirstName());
@@ -38,6 +52,13 @@ public class MainController extends BaseController{
         passwordField.setText(user.getPassword());
     }
 
+    /**
+     * Creates a custom ListCell for displaying users in the ListView.
+     * Each cell shows the user's full name and supports click selection.
+     *
+     * @param userListView the ListView requesting the cell
+     * @return a configured ListCell for displaying user entries
+     */
     private ListCell<Users> renderUserCell(ListView<Users> userListView) {
         return new ListCell<>() {
             private void onUserSelected(MouseEvent mouseEvent) {
@@ -62,17 +83,26 @@ public class MainController extends BaseController{
         };
     }
 
+    /** Refreshes the ListView by reloading all users from the database. */
     private void syncUsers() {
         userListView.getItems().clear();
         userListView.getItems().addAll(userDAO.getAllUsers());
     }
 
+    /**
+     * Initializes the controller after the FXML is loaded.
+     * Sets up the ListView cell factory and loads all users.
+     */
     @FXML
     public void initialize() {
         userListView.setCellFactory(this::renderUserCell);
         syncUsers();
     }
 
+    /**
+     * Creates a new default user and adds it to the database.
+     * Selects the new user and focuses the first name field for editing.
+     */
     @FXML
     private void onAdd() {
         Users newUser = new Student(0, "newuser", "New", "User", "123", "QUT", 0, 0, 0);
@@ -82,6 +112,11 @@ public class MainController extends BaseController{
         firstNameField.requestFocus();
     }
 
+    /**
+     * Saves edits made to the selected user's details.
+     *
+     * @throws Exception if the update operation fails
+     */
     @FXML
     private void onEditConfirm() throws Exception {
         Users selected = userListView.getSelectionModel().getSelectedItem();
@@ -95,6 +130,10 @@ public class MainController extends BaseController{
         }
     }
 
+    /**
+     * Deletes the currently selected user from the database
+     * and clears the input fields.
+     */
     @FXML
     private void onDelete() {
         Users selected = userListView.getSelectionModel().getSelectedItem();
@@ -108,6 +147,12 @@ public class MainController extends BaseController{
         }
     }
 
+    /**
+     * Logs the user out and returns to the login screen.
+     *
+     * @param event the logout button click event
+     * @throws IOException if the login screen cannot be loaded
+     */
     @FXML
     private void handleLogout(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(OnBoarding.class.getResource("login-screen.fxml"));
@@ -115,6 +160,11 @@ public class MainController extends BaseController{
         stage.setScene(new Scene(loader.load(), OnBoarding.WIDTH, OnBoarding.HEIGHT));
     }
 
+    /**
+     * Sets the current user and displays their details in the UI.
+     *
+     * @param user the user whose information should be shown
+     */
     public void setUser(Users user) {
         this.currentUser = user;
 

@@ -11,7 +11,6 @@ import javafx.scene.control.PasswordField;
  */
 public class ChangeTeacherPasswordController extends TeacherParentHomescreenController{
 
-
     @FXML
     private PasswordField reconfirmPasswordField;
     @FXML
@@ -19,6 +18,14 @@ public class ChangeTeacherPasswordController extends TeacherParentHomescreenCont
     @FXML
     private Button updatePasswordButton;
 
+    /**
+     * Handles the update password button click.
+     * <p>
+     * Validates that both password fields match, updates the user's password,
+     * persists the change to the database, and displays appropriate alerts.
+     *
+     * @throws Exception if updating the user record fails
+     */
     @FXML
     private void updatePasswordButtonClick() throws Exception {
 
@@ -54,6 +61,12 @@ public class ChangeTeacherPasswordController extends TeacherParentHomescreenCont
         }
     }
 
+    /**
+     * Updates the current user's password if it differs from the existing one.
+     *
+     * @param newPassword the new password entered by the user
+     * @throws Exception if the password update fails
+     */
     private void updatePasswordDetails(String newPassword) throws Exception {
 
         if (newPassword != null && !newPassword.equals(user.getPassword())) {
@@ -62,9 +75,17 @@ public class ChangeTeacherPasswordController extends TeacherParentHomescreenCont
     }
 
     /**
-     * Public constructor of change teacher's password controller class.
-     */
-    public ChangeTeacherPasswordController() {
+     * Displays an alert dialog with the specified type, title, and message.
+     *
+     * @param type the type of alert to display
+     * @param title the title of the alert window
+     * @param content the message shown in the alert
+     */    private void showAlert(Alert.AlertType type, String title, String content) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 
 }
