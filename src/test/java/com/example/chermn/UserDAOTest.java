@@ -1,14 +1,12 @@
 package com.example.chermn;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
 import org.junit.jupiter.api.Test;
 
 import com.example.chermn.dao.UserDAO;
 import com.example.chermn.model.Users;
 import org.mindrot.jbcrypt.BCrypt;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class UserDAOTest {
 
@@ -107,4 +105,39 @@ public class UserDAOTest {
     void testGetAllUsers() {
         assertNotNull(userDAO.getAllUsers());
     }
+
+    // SQL injection attempt
+    @Test
+    void testLoginSqlInjectionAttempt() {
+        Users loggedIn = userDAO.login("' OR '1'='1", "anything");
+        assertNull(loggedIn);
+    }
+
+    // duplicate username constraint
+    @Test
+    void testCreateDuplicateUserFails() {
+        String username = "dup_" + System.currentTimeMillis();
+        Users u1 = new Users(0, username, "A", "B", "12345", "QUT");
+        Users u2 = new Users(0, username, "C", "D", "54321", "QUT");
+
+        userDAO.createUser(u1);
+        assertThrows(Exception.class, () -> userDAO.createUser(u2));
+
+        userDAO.deleteUser(userDAO.getUserByUsername(username));
+    }
+
+    // password hashing
+    @Test
+    void testPasswordIsHashed() {
+        String username = "hash_" + System.currentTimeMillis();
+        Users user = new Users(0, username, "Test", "User", "mypassword", "QUT");
+
+        userDAO.createUser(user);
+        Users stored = userDAO.getUserByUsername(username);
+
+        assertNotEquals("mypassword", stored.getPassword());
+
+        userDAO.deleteUser(stored);
+    }
+
 }

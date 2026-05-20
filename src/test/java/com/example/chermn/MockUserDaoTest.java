@@ -1,14 +1,12 @@
 package com.example.chermn;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.example.chermn.dao.IUserDAO;
 import com.example.chermn.model.Users;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MockUserDaoTest {
     private IUserDAO dao;
@@ -86,4 +84,31 @@ public class MockUserDaoTest {
         dao.createUser(new Users(0, "b", "B", "B", "12345", "QUT"));
         assertEquals(2, dao.getAllUsers().size());
     }
+
+    // checks that duplicate usernames are allowed
+    @Test
+    void testCreateDuplicateUser() {
+        Users u1 = new Users(0, "nik", "A", "B", "12345", "QUT");
+        Users u2 = new Users(0, "nik", "C", "D", "54321", "QUT");
+
+        dao.createUser(u1);
+        dao.createUser(u2);
+
+        assertEquals(2, dao.getAllUsers().size());
+    }
+
+    // delete non-existent user
+    @Test
+    void testDeleteNonExistentUser() {
+        Users ghost = new Users(0, "ghost", "A", "B", "12345", "QUT");
+        assertDoesNotThrow(() -> dao.deleteUser(ghost));
+    }
+
+    // check if it returns internal list reference
+    @Test
+    void testGetAllUsers_modifiesInternalList() {
+        dao.getAllUsers().add(new Users(0, "x", "X", "X", "12345", "QUT"));
+        assertEquals(1, dao.getAllUsers().size());
+    }
+
 }

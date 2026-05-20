@@ -50,4 +50,7 @@ public class MockUserDAO implements IUserDAO {
     public void deleteUser(Users user) {
         users.remove(user);
     }
+
+    // case-sensitive
+
 }
