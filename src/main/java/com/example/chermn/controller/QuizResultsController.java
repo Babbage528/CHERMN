@@ -37,11 +37,20 @@ public class QuizResultsController extends BaseController {
     @FXML
     private Button beginQuizButton;
 
+    /**
+     * Default constructor for the QuizResultsController.
+     * Required by JavaFX for controller instantiation.
+     *
+     * @throws JSONException if JSON processing fails during setup
+     */
     public QuizResultsController() throws JSONException {
     }
 
-    /** Protected void 'returnToHomepageButtonClick' defines the actions that occur when the return to homepage ui element
-     * is selected. The function returns the user to the homepage screen.
+    /**
+     * Returns the user to the homepage screen.
+     * Loads the homepage FXML and updates the current stage.
+     *
+     * @throws IOException if the homepage FXML cannot be loaded
      */
     @FXML
     protected void returnToHomepageButtonClick() throws  IOException{
@@ -51,16 +60,18 @@ public class QuizResultsController extends BaseController {
         stage.setScene(scene);
     }
 
-    int percentageScore = (QuizQuestionsController.score*10);
+    /** The user's quiz score expressed as a percentage (0–100). */
+    int percentageScore = (QuizQuestionsController.score * 10);
 
-    // Initialise the user logged in
+    /** The user currently logged into the session. */
     Users currentStudent = Session.getCurrentUser();
 
+    /** Strongly typed reference to the current user once validated as a Student. */
     Student student;
 
     /**
-     * Acts as a setter to help with progressing user level
-     * upon passing quiz.
+     * Retrieves and validates the current session user as a Student.
+     * Throws an exception if the logged-in user is not a Student.
      */
     public void setCurrentUser() {
         // check whether the user is a student
@@ -74,8 +85,10 @@ public class QuizResultsController extends BaseController {
     }
 
     /**
-     * Public void 'initialize' method assisting the logic with quiz results.
-     * Grabs the current quiz category and sets student quiz levels if they have passed the quiz.
+     * Initialises the results screen.
+     * <p>
+     * Displays the user's score, determines pass/fail status, and updates
+     * the student's level progression based on the quiz category completed.
      */
     public void initialize() {
         if (percentageScore >= 80) {
@@ -113,13 +126,5 @@ public class QuizResultsController extends BaseController {
             congratsLabel.setText("Better luck next time!");
             setCurrentUser();
         }
-
     }
-
-
-
-
-
-
-
 }
