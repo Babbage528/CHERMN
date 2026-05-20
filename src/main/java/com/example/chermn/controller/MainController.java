@@ -38,6 +38,13 @@ public class MainController extends BaseController{
     private Users currentUser;
 
     /**
+     * Public constructor for the MainController class.
+     */
+    public MainController() {
+
+    }
+
+    /**
      * Populates all text fields with the details of the selected user.
      *
      * @param user the user whose details should be displayed
