@@ -8,29 +8,48 @@
             fx:controller="com.example.chermn.controller.StudentDetailsController"
             prefHeight="400.0" prefWidth="600.0">
 
-    <VBox spacing="10" xmlns:fx="http://javafx.com/fxml">
-        <Label text="My Students" accessibleText="my students" style="-fx-font-size: 18;"
-               onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"  />
+    <HBox spacing="10" xmlns:fx="http://javafx.com/fxml">
+        <VBox> <!-- student list (left) -->
+            <Label text="My Students" accessibleText="my students" style="-fx-font-size: 18;"
+                   onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"  />
 
-        <ListView fx:id="studentList"/>
+            <ListView fx:id="studentList"/>
+        </VBox>
 
-        <!-- Student Details Section -->
-        <Label text="Student Progress:" style="-fx-font-size: 16;" />
+    <!-- Student Details (right) -->
+    <VBox spacing="10" fx:id="detailsBox" visible="false">
 
-        <HBox spacing="10">
-            <Label text="Animal Level:" />
-            <Label fx:id="animalLevel" text="-" />
-        </HBox>
+            <Label text="Student Progress:" style="-fx-font-size: 16;" />
 
-        <HBox spacing="10">
-            <Label text="Nature Level:" />
-            <Label fx:id="natureLevel" text="-" />
-        </HBox>
+            <HBox spacing="10">
+                <Label
+                        text="Animal Level:" accessibleText="Animal Level"
+                        onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
+                />
+                <Label fx:id="animalLevel" text="-" />
+            </HBox>
 
-        <HBox spacing="10">
-            <Label text="Vehicle Level:" />
-            <Label fx:id="vehicleLevel" text="-" />
-        </HBox>
+            <HBox spacing="10">
+                <Label
+                        text="Nature Level:" accessibleText="Nature Level"
+                        onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
+                />
+                <Label fx:id="natureLevel" text="-" />
+            </HBox>
 
+            <HBox spacing="10">
+                <Label
+                    text="Vehicle Level:" accessibleText="Vehicle Level"
+                    onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
+                />
+
+                <Label fx:id="vehicleLevel" text="-" />
+            </HBox>
+
+        <Label text="Attempt History:" accessibleText="Attempt history:"
+               onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
+               style="-fx-font-size: 16;" />
+        <ListView fx:id="attemptList" prefHeight="200"/>
     </VBox>
+
 </AnchorPane>
