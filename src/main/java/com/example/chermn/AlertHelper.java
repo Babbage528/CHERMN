@@ -235,4 +235,9 @@ public class AlertHelper {
         stage.showAndWait();
     }
 
+    /**
+     * Private constructor to prevent instantiation.
+     */
+    private AlertHelper() {}
+
 }
