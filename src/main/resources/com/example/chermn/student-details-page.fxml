@@ -8,9 +8,51 @@
             fx:controller="com.example.chermn.controller.StudentDetailsController"
             prefHeight="400.0" prefWidth="600.0">
 
-    <VBox spacing="10" xmlns:fx="http://javafx.com/fxml">
-        <Label text="My Students" accessibleText="my students" style="-fx-font-size: 18;"
-               onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"  />
-        <ListView fx:id="studentList"/>
-    </VBox>
+    <!-- Main horizontal layout -->
+    <HBox spacing="20" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10">
+
+        <!-- LEFT SIDE: Student List -->
+        <VBox spacing="10">
+            <Label text="My Students"
+                   accessibleText="my students"
+                   style="-fx-font-size: 18;"
+                   onMouseEntered="#speakAccessibleText"
+                   onMouseExited="#cancelSpeak" />
+
+            <ListView fx:id="studentList" prefWidth="200"/>
+        </VBox>
+
+        <!-- RIGHT SIDE: Student Details Panel -->
+        <VBox spacing="10" fx:id="detailsBox" visible="false">
+
+            <Label text="Student Progress:" style="-fx-font-size: 16;" />
+
+            <HBox spacing="10">
+                <Label text="Animal Level:"
+                       accessibleText="Animal Level"
+                       onMouseEntered="#speakAccessibleText"
+                       onMouseExited="#cancelSpeak" />
+                <Label fx:id="animalLevel" text="-" />
+            </HBox>
+
+            <HBox spacing="10">
+                <Label text="Nature Level:"
+                       accessibleText="Nature Level"
+                       onMouseEntered="#speakAccessibleText"
+                       onMouseExited="#cancelSpeak" />
+                <Label fx:id="natureLevel" text="-" />
+            </HBox>
+
+            <HBox spacing="10">
+                <Label text="Vehicle Level:"
+                       accessibleText="Vehicle Level"
+                       onMouseEntered="#speakAccessibleText"
+                       onMouseExited="#cancelSpeak" />
+                <Label fx:id="vehicleLevel" text="-" />
+            </HBox>
+
+        </VBox>
+
+    </HBox>
+
 </AnchorPane>

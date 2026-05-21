@@ -1,12 +1,16 @@
 package com.example.chermn.dao;
 
 import com.example.chermn.DatabaseConnection;
+import com.example.chermn.model.QuizAttempt;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * handles the uiz attempt database operations.
+ * handles the quiz attempt database operations.
  */
 public class QuizAttemptDAO {
 
@@ -18,7 +22,6 @@ public class QuizAttemptDAO {
      * @param isPassed whether user passed
      */
     public void saveQuizAttempt(int userId, int categoryId, double score, boolean isPassed) {
-
         String sql = """
             INSERT INTO QUIZ_ATTEMPT (user_id, category_id, score, is_passed)
             VALUES (?, ?, ?, ?)
