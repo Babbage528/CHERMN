@@ -11,6 +11,26 @@
     <VBox spacing="10" xmlns:fx="http://javafx.com/fxml">
         <Label text="My Students" accessibleText="my students" style="-fx-font-size: 18;"
                onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"  />
+
         <ListView fx:id="studentList"/>
+
+        <!-- Student Details Section -->
+        <Label text="Student Progress:" style="-fx-font-size: 16;" />
+
+        <HBox spacing="10">
+            <Label text="Animal Level:" />
+            <Label fx:id="animalLevel" text="-" />
+        </HBox>
+
+        <HBox spacing="10">
+            <Label text="Nature Level:" />
+            <Label fx:id="natureLevel" text="-" />
+        </HBox>
+
+        <HBox spacing="10">
+            <Label text="Vehicle Level:" />
+            <Label fx:id="vehicleLevel" text="-" />
+        </HBox>
+
     </VBox>
 </AnchorPane>
