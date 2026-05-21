@@ -21,17 +21,35 @@ import javafx.scene.Node;
  */
 public class AlertHelper {
 
+    /**
+     * Shows a custom error message to the user, detailing what the exact problem with
+     * their input was
+     * @param title the error message title
+     * @param message the error message that will describe the issue to the user
+     */
     public static void showError(String title, String message) {
         showCustomAlert(title, message, "#ff6b6b");
     }
 
+    /**
+     * Shows a custom success message to the user, detailing that the action was successfully
+     * completed.
+     * @param title the message title
+     * @param message the success message
+     */
     public static void showSuccess(String title, String message) {
         showCustomAlert(title, message, "#6bcB77");
     }
 
+    /**
+     * Shows a warning message to the user, detailing that there was an issue with the action.
+     * @param title the message title
+     * @param message the warning message
+     */
     public static void showWarning(String title, String message) {
         showCustomAlert(title, message, "#f7b731");
     }
+
 
     private static void showCustomAlert(String title, String message, String color) {
         Stage stage = new Stage();
@@ -167,6 +185,14 @@ public class AlertHelper {
         return finalPassword[0];
     }
 
+    /**
+     * Shows the game instructions to the user.
+     * Includes a scroll bar ensuring that the user can scroll down to read,
+     * and not condense everything into a small section.
+     * @param title the instructions title
+     * @param headerText the header text of the content box
+     * @param message the game instructions
+     */
     public static void showInstructions(String title, String headerText, String message) {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -209,6 +235,9 @@ public class AlertHelper {
         stage.showAndWait();
     }
 
-    private AlertHelper() {
-    }
+    /**
+     * Private constructor to prevent instantiation.
+     */
+    private AlertHelper() {}
+
 }
