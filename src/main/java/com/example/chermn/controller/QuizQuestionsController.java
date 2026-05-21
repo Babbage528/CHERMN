@@ -198,7 +198,7 @@ public class QuizQuestionsController extends BaseController {
         Next.setDisable(false);
 
         // Highlight selected answer
-        highlightSelectedAnswer(userAnswer);
+        highlightSelectedAnswer(userAnswer.getText(), correctAnswer);
 
         /// defining prompt for the api
         String newprompt = """ 
@@ -237,11 +237,11 @@ public class QuizQuestionsController extends BaseController {
             score += 1;
             explanation.setText("Correct! " + aiResponse);
             explanation.setStyle(explanationBaseStyle +
-                    "; -fx-background-color: #ECFCE3; -fx-font-size: 20px;");
+                    "; -fx-background-color: #ECFCE3; -fx-text-fill: #000000; -fx-font-size: 20px;");
         } else {
             explanation.setText("Incorrect! " + aiResponse);
             explanation.setStyle(explanationBaseStyle +
-                    "; -fx-background-color: #FFC2C2; -fx-font-size: 20px;");
+                    "; -fx-background-color: #FFC2C2; -fx-text-fill: #000000; -fx-font-size: 20px;");
         }
     }
 
@@ -250,28 +250,42 @@ public class QuizQuestionsController extends BaseController {
      *
      * @param selected the button the user clicked
      */
-    private void highlightSelectedAnswer(Button selected) {
+    private void highlightSelectedAnswer(String selected, String correct) {
+        if (option1.getText().substring(3).equals(correctAnswer)) {
+            ///correct answer format
+            option1.setDisable(true);
+            option1.setStyle("-fx-background-color: #E7FF76; -fx-text-fill: #3E7C2B; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand; -fx-font-size: 20px;-fx-opacity: 1.0;");
+            ///incorrect answers
+            option2.setDisable(true);
+            option3.setDisable(true);
+            option4.setDisable(true);
+        } else if (option2.getText().substring(3).equals(correctAnswer)) {
+            ///correct answer format
+            option2.setDisable(true);
+            option2.setStyle("-fx-background-color: #6DBE45; -fx-text-fill: #3E7C2B; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand; -fx-font-size: 20px;-fx-opacity: 1.0;");
+            /// incorrect answers
+            option1.setDisable(true);
+            option3.setDisable(true);
+            option4.setDisable(true);
+        } else if (option3.getText().substring(3).equals(correctAnswer)) {
+            ///correct answer format
+            option3.setDisable(true);
+            option3.setStyle("-fx-background-color: #6DBE45; -fx-text-fill: #3E7C2B; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand; -fx-font-size: 20px;-fx-opacity: 1.0;");
+            /// incorrect answers
+            option1.setDisable(true);
+            option2.setDisable(true);
+            option4.setDisable(true);
+        } else {
+            ///correct answer format
+            option4.setDisable(true);
+            option4.setStyle("-fx-background-color: #E7FF76; -fx-text-fill: #3E7C2B; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand; -fx-font-size: 20px;-fx-opacity: 1.0;");
+            /// incorrect answers
+            option1.setDisable(true);
+            option2.setDisable(true);
+            option3.setDisable(true);
 
-        List<Button> buttons = List.of(option1, option2, option3, option4);
-
-        for (Button b : buttons) {
-
-            String baseStyle =
-                    (b == option1) ? option1BaseStyle :
-                            (b == option2) ? option2BaseStyle :
-                                    (b == option3) ? option3BaseStyle :
-                                            option4BaseStyle;
-
-            if (b == selected) {
-                b.setStyle(baseStyle +
-                        "; -fx-background-color: #4CAF50; -fx-text-fill: white;");
-            } else {
-                b.setStyle(baseStyle +
-                        "; -fx-background-color: #d3d3d3; -fx-text-fill: #666666;");
-            }
-
-            b.setDisable(true);
         }
+
     }
 
 
