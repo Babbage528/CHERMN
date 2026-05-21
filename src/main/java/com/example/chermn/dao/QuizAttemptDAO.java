@@ -20,8 +20,8 @@ public class QuizAttemptDAO {
     public void saveQuizAttempt(int userId, int categoryId, double score, boolean isPassed) {
 
         String sql = """
-            INSERT INTO QUIZ_ATTEMPT (user_id, category_id, score, is_passed)
-            VALUES (?, ?, ?, ?)
+            INSERT INTO QUIZ_ATTEMPT (user_id, category_id, score, is_passed, attempt_date)
+            VALUES (?, ?, ?, ?, ?)
         """;
 
         try (Connection conn = DatabaseConnection.connect();
@@ -31,6 +31,7 @@ public class QuizAttemptDAO {
             stmt.setInt(2, categoryId);
             stmt.setDouble(3, score);
             stmt.setBoolean(4, isPassed);
+            stmt.setTimestamp(5, new java.sql.Timestamp(System.currentTimeMillis()));
 
             stmt.executeUpdate();
 
