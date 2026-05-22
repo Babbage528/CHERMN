@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.Cursor?>
 
+<?import javafx.scene.text.Font?>
 <StackPane prefHeight="720.0" prefWidth="1280.0"
            xmlns="http://javafx.com/javafx/17.0.12"
            xmlns:fx="http://javafx.com/fxml/1"
@@ -31,7 +32,9 @@
                            accessibleText="home dashboard"
                            onMouseEntered="#speakAccessibleText"
                            onMouseExited="#cancelSpeak"
-                           style="-fx-text-fill: white; -fx-font-size: 18;"/>
+                           style="-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold; -fx-font-style: italic;"
+                    />
+
                     <Region HBox.hgrow="ALWAYS"/>
                 </children>
             </HBox>
@@ -40,50 +43,84 @@
         <!-- SIDEBAR -->
         <left>
             <VBox spacing="10"
+                  alignment="TOP_CENTER"
                   style="-fx-padding: 15; -fx-background-color: #34495e;">
 
                 <Button text="Dashboard"
+                        VBox.vgrow="ALWAYS"
                         onAction="#showDashboard"
                         accessibleText="Dashboard"
                         onMouseEntered="#speakAccessibleText"
-                        onMouseExited="#cancelSpeak">
+                        onMouseExited="#cancelSpeak"
+                        prefWidth="160" prefHeight="50"
+                        style="-fx-background-color: #F7FAE9;">
+                    <font>
+                        <Font name="System Bold Italic" size="16"/>
+                    </font>
                     <cursor><Cursor fx:constant="HAND"/></cursor>
                 </Button>
 
                 <Button text="My Students"
+                        VBox.vgrow="ALWAYS"
                         onAction="#showStudentsDetails"
                         accessibleText="My Students"
                         onMouseEntered="#speakAccessibleText"
-                        onMouseExited="#cancelSpeak">
+                        onMouseExited="#cancelSpeak"
+                        prefWidth="160" prefHeight="50"
+                        style="-fx-background-color: #F7FAE9;">
+                    <font>
+                        <Font name="System Bold Italic" size="16"/>
+                    </font>
                     <cursor><Cursor fx:constant="HAND"/></cursor>
                 </Button>
 
                 <Button text="My Details"
+                        VBox.vgrow="ALWAYS"
                         onAction="#showUserDetails"
                         accessibleText="my details"
                         onMouseEntered="#speakAccessibleText"
-                        onMouseExited="#cancelSpeak">
+                        onMouseExited="#cancelSpeak"
+                        prefWidth="160" prefHeight="50"
+                        style="-fx-background-color: #F7FAE9;">
+                    <font>
+                        <Font name="System Bold Italic" size="16"/>
+                    </font>
                     <cursor><Cursor fx:constant="HAND"/></cursor>
                 </Button>
 
                 <Button text="Change Password"
+                        VBox.vgrow="ALWAYS"
                         onAction="#changePasswordButtonClick"
                         accessibleText="change password"
                         onMouseEntered="#speakAccessibleText"
-                        onMouseExited="#cancelSpeak">
+                        onMouseExited="#cancelSpeak"
+                        prefWidth="160" prefHeight="50"
+                        style="-fx-background-color: #F7FAE9;">
+                    <font>
+                        <Font name="System Bold Italic" size="16"/>
+                    </font>
                     <cursor><Cursor fx:constant="HAND"/></cursor>
                 </Button>
 
                 <Button fx:id="signOutButton"
                         text="Sign Out"
+                        VBox.vgrow="ALWAYS"
                         onAction="#signOutButtonClick"
                         accessibleText="sign out"
                         onMouseEntered="#speakAccessibleText"
-                        onMouseExited="#cancelSpeak">
+                        onMouseExited="#cancelSpeak"
+                        prefWidth="160" prefHeight="50"
+                        style="-fx-background-color: #F7FAE9;">
+                    <font>
+                        <Font name="System Bold Italic" size="16"/>
+                    </font>
                     <cursor><Cursor fx:constant="HAND"/></cursor>
                 </Button>
 
+                <Region VBox.vgrow="ALWAYS"/>
+
             </VBox>
+
         </left>
 
         <!-- MAIN CONTENT AREA -->
