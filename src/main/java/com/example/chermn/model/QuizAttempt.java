@@ -1,7 +1,5 @@
 package com.example.chermn.model;
 
-import java.sql.Date;
-
 /**
  * Represents a single quiz attempt by a student.
  */
@@ -11,22 +9,18 @@ public class QuizAttempt {
     private double score;
     private boolean passed;
 
+    /**
+     * Public constructor that initialises a user's quiz attempt, taking
+     * the trivia category ID, the user's score, and a boolean that denotes whether
+     * the user passed or failed the quiz.
+     * @param categoryId the trivia quiz category
+     * @param score the user's quiz score
+     * @param passed whether the user passed or failed the quiz
+     */
     public QuizAttempt(int categoryId, double score, boolean passed) {
         this.categoryId = categoryId;
         this.score = score;
         this.passed = passed;
     }
 
-    public int getCategoryId() { return categoryId; }
-    public double getScore() { return score; }
-    public boolean isPassed() { return passed; }
-
-    public String getCategoryName() {
-        return switch (categoryId) {
-            case 1 -> "Animals";
-            case 2 -> "Nature";
-            case 3 -> "Vehicles";
-            default -> "Unknown";
-        };
-    }
 }

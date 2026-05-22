@@ -75,7 +75,7 @@ public class StudentDetailsController extends BaseController{
     }
 
     /**
-     * Public constructor of student detilas controller class.
+     * Public constructor of student details controller class.
      */
     public StudentDetailsController() {
     }
