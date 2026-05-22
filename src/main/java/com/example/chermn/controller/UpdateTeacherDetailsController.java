@@ -1,5 +1,6 @@
 package com.example.chermn.controller;
 
+import com.example.chermn.AlertHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -110,17 +111,64 @@ public class UpdateTeacherDetailsController extends TeacherParentHomescreenContr
      */
     private void updateUserDetails(String firstName, String lastName, String schoolName) {
 
+        // boolean to keep track of whether details have been updated
+        boolean updated = false;
+        // boolean to keep track of whether any errors have been thrown
+        boolean hasError = false;
+
         if (firstName != null && !firstName.equals(user.getFirstName())) {
-            user.setFirstName(firstName);
+            try {
+                user.setFirstName(firstName);
+                // successful setting of first name
+                updated = true;
+            }
+            catch (IllegalArgumentException exception) {
+                // displays error as an alert to UI for user
+                AlertHelper.showError("First Name Error", exception.getMessage());
+                // error has been thrown
+                hasError = true;
+            }
         }
 
         if (lastName != null && !lastName.equals(user.getLastName())) {
-            user.setLastName(lastName);
+            try {
+                user.setLastName(lastName);
+                // successful setting of last name
+                updated = true;
+            }
+            catch (IllegalArgumentException exception) {
+                // displays error as an alert to UI for user
+                AlertHelper.showError("Last Name Error", exception.getMessage());
+                // error has been thrown
+                hasError = true;
+            }
         }
 
         if(schoolName != null && !schoolName.equals(user.getSchoolName())) {
-            user.setSchoolName(schoolName);
+            try{
+                user.setSchoolName(schoolName);
+                // successful setting of school name
+                updated = true;
+            }
+            catch (IllegalArgumentException exception) {
+                // displays error as an alert to UI for user
+                AlertHelper.showError("School name error", exception.getMessage());
+                // error has been thrown
+                hasError = true;
+            }
+
         }
+
+        // if all the details have been updated with no errors thrown
+        if (updated && !hasError) {
+            AlertHelper.showSuccess("Success!", "User details updated");
+        }
+
+        // if there was an error in the form
+        if (!updated && !hasError) {
+            AlertHelper.showWarning("No Changes", "No details were changed.");
+        }
+
     }
 
     /**
