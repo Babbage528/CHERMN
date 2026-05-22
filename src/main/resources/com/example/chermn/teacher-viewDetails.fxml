@@ -93,28 +93,17 @@
                     </GridPane.margin>
                 </Label>
 
-                <Label
-                        layoutX="10.0" layoutY="243.0"
-                        text="Email:" accessibleText="email" onMouseEntered="#speakAccessibleText"
-                        GridPane.halignment="RIGHT" GridPane.rowIndex="2">
-                    <font>
-                        <Font name="System Bold Italic" size="16.0" />
-                    </font>
-                    <GridPane.margin>
-                        <Insets left="200.0" top="50.0" />
-                    </GridPane.margin>
-                </Label>
 
                 <Label
                         layoutX="10.0" layoutY="243.0"
                         text="School:" accessibleText="school"
                         onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
-                        GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                        GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                     <font>
                         <Font name="System Bold Italic" size="16.0" />
                     </font>
                     <GridPane.margin>
-                        <Insets bottom="40.0" />
+                        <Insets top="50.0" />
                     </GridPane.margin>
                 </Label>
 
@@ -127,7 +116,7 @@
                         style="-fx-background-color: #F7FAE9;"
                         text="Update" accessibleText="update my details"
                         onMouseEntered="#speakAccessibleText" onMouseExited="#cancelSpeak"
-                        GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        GridPane.columnIndex="1" GridPane.rowIndex="3">
                     <font>
                         <Font name="System Bold Italic" size="18.0" />
                     </font>
@@ -159,17 +148,10 @@
                     </GridPane.margin>
                 </TextField>
 
-                <TextField fx:id="emailField"
+                <TextField fx:id="schoolField"
                            GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <GridPane.margin>
                         <Insets top="50.0" />
-                    </GridPane.margin>
-                </TextField>
-
-                <TextField fx:id="schoolField"
-                           GridPane.columnIndex="1" GridPane.rowIndex="3">
-                    <GridPane.margin>
-                        <Insets bottom="40.0" />
                     </GridPane.margin>
                 </TextField>
             </children>
