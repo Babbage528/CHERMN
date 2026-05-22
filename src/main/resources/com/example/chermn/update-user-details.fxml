@@ -62,7 +62,7 @@
             </Label>
 
             <!-- First Name -->
-            <Label text="First Name*:"
+            <Label text="First Name:"
                    accessibleText="first name"
                    onMouseEntered="#speakAccessibleText"
                    onMouseExited="#cancelSpeak"
@@ -77,7 +77,7 @@
                        GridPane.rowIndex="2"/>
 
             <!-- Last Name -->
-            <Label text="Last Name*:"
+            <Label text="Last Name:"
                    accessibleText="last name"
                    onMouseEntered="#speakAccessibleText"
                    onMouseExited="#cancelSpeak"
@@ -92,7 +92,7 @@
                        GridPane.rowIndex="3"/>
 
             <!-- Username (read-only label) -->
-            <Label text="Username*:"
+            <Label text="Username:"
                    accessibleText="username"
                    onMouseEntered="#speakAccessibleText"
                    onMouseExited="#cancelSpeak"
@@ -106,9 +106,9 @@
                    GridPane.columnIndex="1"
                    GridPane.rowIndex="4"/>
 
-            <!-- Email -->
-            <Label text="Email*:"
-                   accessibleText="email"
+            <!-- School -->
+            <Label text="School:"
+                   accessibleText="school"
                    onMouseEntered="#speakAccessibleText"
                    onMouseExited="#cancelSpeak"
                    GridPane.rowIndex="5">
@@ -117,24 +117,9 @@
                 </font>
             </Label>
 
-            <TextField fx:id="emailField"
-                       GridPane.columnIndex="1"
-                       GridPane.rowIndex="5"/>
-
-            <!-- School -->
-            <Label text="School*:"
-                   accessibleText="school"
-                   onMouseEntered="#speakAccessibleText"
-                   onMouseExited="#cancelSpeak"
-                   GridPane.rowIndex="6">
-                <font>
-                    <Font name="System Bold Italic" size="16"/>
-                </font>
-            </Label>
-
             <TextField fx:id="schoolField"
                        GridPane.columnIndex="1"
-                       GridPane.rowIndex="6"/>
+                       GridPane.rowIndex="5"/>
 
             <!-- Update Button -->
             <Button fx:id="updateButton"
